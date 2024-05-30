@@ -5,8 +5,14 @@ using GagspeakSynchronos.API.Dto.User;
 
 namespace GagspeakSynchronos.API.SignalR;
 
+// interface reflecting the GagSpeakHub
 public interface IGagspeakHub
 {
+
+    Task<string> Connect(); // dummy sample test to see if we can become connected
+    Task<string> Disconnect();
+    
+    /*
     const int ApiVersion = 30;
     const string Path = "/Gagspeak";
 
@@ -66,4 +72,5 @@ public interface IGagspeakHub
     Task UserSetProfile(UserProfileDto userDescription);
     Task UserUpdateDefaultPermissions(DefaultPermissionsDto defaultPermissionsDto);
     Task SetBulkPermissions(BulkPermissionsDto dto);
+    */
 }
