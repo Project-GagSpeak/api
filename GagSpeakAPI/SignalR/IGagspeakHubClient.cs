@@ -1,12 +1,13 @@
-﻿using GagspeakSynchronos.API.Data.Enum;
-using GagspeakSynchronos.API.Dto;
-using GagspeakSynchronos.API.Dto.Group;
-using GagspeakSynchronos.API.Dto.User;
+﻿// using GagspeakSynchronos.API.Data.Enum;
+// using GagspeakSynchronos.API.Dto;
+// using GagspeakSynchronos.API.Dto.Group;
+// using GagspeakSynchronos.API.Dto.User;
 
 namespace GagspeakSynchronos.API.SignalR;
 
 public interface IGagspeakHubClient : IGagspeakHub
 {
+    /*
     void OnDownloadReady(Action<Guid> act);
 
     void OnGroupChangePermissions(Action<GroupPermissionDto> act);
@@ -50,4 +51,5 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUpdateUserIndividualPairStatusDto(Action<UserIndividualPairStatusDto> act);
 
     void OnGroupChangeUserPairPermissions(Action<GroupPairUserPermissionDto> act);
+    */
 }
