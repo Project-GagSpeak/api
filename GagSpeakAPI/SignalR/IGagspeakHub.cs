@@ -1,7 +1,7 @@
-﻿using GagspeakSynchronos.API.Data.Enum;
-using GagspeakSynchronos.API.Dto;
-using GagspeakSynchronos.API.Dto.Group;
-using GagspeakSynchronos.API.Dto.User;
+﻿// using GagspeakSynchronos.API.Data.Enum;
+// using GagspeakSynchronos.API.Dto;
+// using GagspeakSynchronos.API.Dto.Group;
+// using GagspeakSynchronos.API.Dto.User;
 
 namespace GagspeakSynchronos.API.SignalR;
 
@@ -11,7 +11,7 @@ public interface IGagspeakHub
 
     Task<string> Connect(); // dummy sample test to see if we can become connected
     Task<string> Disconnect();
-    
+
     /*
     const int ApiVersion = 30;
     const string Path = "/Gagspeak";

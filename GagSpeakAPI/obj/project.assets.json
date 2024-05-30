@@ -1,0 +1,110 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "MessagePack.Annotations/2.5.129": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MessagePack.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/MessagePack.Annotations.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MessagePack.Annotations/2.5.129": {
+      "sha512": "wNJB3EaJKjq+5pti+0T8b444fEb2PRw3hFefp9+of/BvDdTWO0iIUWfYNZbKx5aAIrpFzhLEfMAEJnGWWq3OFQ==",
+      "type": "package",
+      "path": "messagepack.annotations/2.5.129",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MessagePack.Annotations.dll",
+        "lib/netstandard2.0/MessagePack.Annotations.xml",
+        "messagepack.annotations.2.5.129.nupkg.sha512",
+        "messagepack.annotations.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "MessagePack.Annotations >= 2.5.129"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\buzzm\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\buzzm\\OneDrive\\Desktop\\XIV Modding\\.Dalamud Plugins\\GSpeak Plugin\\GagSpeak-ServerAPI\\GagSpeakAPI\\Gagspeak.API.csproj",
+      "projectName": "Gagspeak.API",
+      "projectPath": "C:\\Users\\buzzm\\OneDrive\\Desktop\\XIV Modding\\.Dalamud Plugins\\GSpeak Plugin\\GagSpeak-ServerAPI\\GagSpeakAPI\\Gagspeak.API.csproj",
+      "packagesPath": "C:\\Users\\buzzm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\buzzm\\OneDrive\\Desktop\\XIV Modding\\.Dalamud Plugins\\GSpeak Plugin\\GagSpeak-ServerAPI\\GagSpeakAPI\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\buzzm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "dependencies": {
+          "MessagePack.Annotations": {
+            "target": "Package",
+            "version": "[2.5.129, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
