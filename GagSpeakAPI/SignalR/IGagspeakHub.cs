@@ -1,76 +1,35 @@
-﻿// using GagspeakSynchronos.API.Data.Enum;
-// using GagspeakSynchronos.API.Dto;
-// using GagspeakSynchronos.API.Dto.Group;
-// using GagspeakSynchronos.API.Dto.User;
+﻿using Gagspeak.API.Data.Enum;
+using Gagspeak.API.Dto;
+using Gagspeak.API.Dto.User;
 
-namespace GagspeakSynchronos.API.SignalR;
+namespace Gagspeak.API.SignalR;
 
-// interface reflecting the GagSpeakHub
+/// <summary>
+/// the interface for the GagspeakHub
+/// <para>
+/// This interface is the server end of the SignalR calls made by the client.
+/// </para>
+/// </summary>
 public interface IGagspeakHub
 {
+    const int ApiVersion = 1; // First version of the API
+    const string Path  = "/gagspeak"; // Path to the API on the hosted server
 
-    Task<string> Connect(); // dummy sample test to see if we can become connected
-    Task<string> Disconnect();
+    Task<bool> CheckClientHealth(); // Check if the client is healthy
+    Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the server
 
-    /*
-    const int ApiVersion = 30;
-    const string Path = "/Gagspeak";
 
-    Task<bool> CheckClientHealth();
+    // some client actions send to the server
+    Task Client_RecieveServerMessage(MessageSeverity messageSeverity, string message); // Recieve a message from the server
+    Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); // Update the system information of the client
+    // Task Client_User_AddClientPair(UserPairDto dto); // Add a sucessful whitelist pairing to the user's client list
 
-    Task Client_DownloadReady(Guid requestId);
-    Task Client_GroupChangePermissions(GroupPermissionDto groupPermission);
-    Task Client_GroupDelete(GroupDto groupDto);
-    Task Client_GroupPairChangeUserInfo(GroupPairUserInfoDto userInfo);
-    Task Client_GroupPairJoined(GroupPairFullInfoDto groupPairInfoDto);
-    Task Client_GroupPairLeft(GroupPairDto groupPairDto);
-    Task Client_GroupSendFullInfo(GroupFullInfoDto groupInfo);
-    Task Client_GroupSendInfo(GroupInfoDto groupInfo);
-    Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message);
-    Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
-    Task Client_UserAddClientPair(UserPairDto dto);
-    Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
-    Task Client_UserReceiveUploadStatus(UserDto dto);
-    Task Client_UserRemoveClientPair(UserDto dto);
-    Task Client_UserSendOffline(UserDto dto);
-    Task Client_UserSendOnline(OnlineUserIdentDto dto);
-    Task Client_UserUpdateOtherPairPermissions(UserPermissionsDto dto);
-    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto);
-    Task Client_UserUpdateProfile(UserDto dto);
-    Task Client_UserUpdateSelfPairPermissions(UserPermissionsDto dto);
-    Task Client_UserUpdateDefaultPermissions(DefaultPermissionsDto dto);
-    Task Client_GroupChangeUserPairPermissions(GroupPairUserPermissionDto dto);
 
-    Task<ConnectionDto> GetConnectionDto();
 
-    Task GroupBanUser(GroupPairDto dto, string reason);
-    Task GroupChangeGroupPermissionState(GroupPermissionDto dto);
-    Task GroupChangeOwnership(GroupPairDto groupPair);
-    Task<bool> GroupChangePassword(GroupPasswordDto groupPassword);
-    Task GroupClear(GroupDto group);
-    Task<GroupJoinDto> GroupCreate();
-    Task<List<string>> GroupCreateTempInvite(GroupDto group, int amount);
-    Task GroupDelete(GroupDto group);
-    Task<List<BannedGroupUserDto>> GroupGetBannedUsers(GroupDto group);
-    Task<GroupJoinInfoDto> GroupJoin(GroupPasswordDto passwordedGroup);
-    Task<bool> GroupJoinFinalize(GroupJoinDto passwordedGroup);
-    Task GroupLeave(GroupDto group);
-    Task GroupRemoveUser(GroupPairDto groupPair);
-    Task GroupSetUserInfo(GroupPairUserInfoDto groupPair);
-    Task<List<GroupFullInfoDto>> GroupsGetAll();
-    Task GroupUnbanUser(GroupPairDto groupPair);
-    Task<int> GroupPrune(GroupDto group, int days, bool execute);
-
-    Task UserAddPair(UserDto user);
-    Task UserDelete();
-    Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(CensusDataDto? censusDataDto);
-    Task<List<UserFullPairDto>> UserGetPairedClients();
-    Task<UserProfileDto> UserGetProfile(UserDto dto);
-    Task UserPushData(UserCharaDataMessageDto dto);
-    Task UserRemovePair(UserDto userDto);
-    Task UserReportProfile(UserProfileReportDto userDto);
-    Task UserSetProfile(UserProfileDto userDescription);
-    Task UserUpdateDefaultPermissions(DefaultPermissionsDto defaultPermissionsDto);
-    Task SetBulkPermissions(BulkPermissionsDto dto);
-    */
+    // some user impacted actions
+    Task UserAddWhitelistedPlayer(UserDto user); // Add a player to the user's whitelist.
+    Task UserRemoveWhitelistedPlayer(UserDto user); // Remove a player from the user's whitelist.
+    Task UserDelete(); // Delete the user's account.
+    Task<UserProfileDto> UserGetProfile(UserDto user); // Get the profile of a user by their userDto.
+    Task UserSetProfile(UserProfileDto userProfile); // Set or update the user's profile.
 }

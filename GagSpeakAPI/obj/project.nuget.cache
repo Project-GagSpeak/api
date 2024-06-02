@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7TVjd0/bN1oIOno3fgtgXksrSRcWbUD3MFE6u9MKxTsd5T+8RvJd2ZgbMECzYbowSXWe9JBiNwcO5weXG8SiSA==",
+  "dgSpecHash": "c05ENvaqu3hmfDznMi+lCNsZ2d8Bi7dH/bckBT5y4JR7PHWFETXP6CGOEK/5T64aLPVkNqHTOd6hpWLmoftjmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\buzzm\\OneDrive\\Desktop\\XIV Modding\\.Dalamud Plugins\\GSpeak Plugin\\GagSpeak-ServerAPI\\GagSpeakAPI\\Gagspeak.API.csproj",
+  "projectFilePath": "C:\\Users\\buzzm\\OneDrive\\Desktop\\XIV Modding\\.Dalamud Plugins\\GSpeak Plugin\\GagSpeak-ServerAPI\\GagSpeakAPI\\GagSpeak.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\buzzm\\.nuget\\packages\\messagepack.annotations\\2.5.129\\messagepack.annotations.2.5.129.nupkg.sha512"
   ],
