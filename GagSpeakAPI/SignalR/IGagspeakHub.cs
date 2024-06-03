@@ -27,9 +27,9 @@ public interface IGagspeakHub
 
 
     // some user impacted actions
-    Task UserAddWhitelistedPlayer(UserDto user); // Add a player to the user's whitelist.
-    Task UserRemoveWhitelistedPlayer(UserDto user); // Remove a player from the user's whitelist.
-    Task UserDelete(); // Delete the user's account.
-    Task<UserProfileDto> UserGetProfile(UserDto user); // Get the profile of a user by their userDto.
-    Task UserSetProfile(UserProfileDto userProfile); // Set or update the user's profile.
+    //Task UserAddWhitelistedPlayer(UserDto user); // Add a player to the user's whitelist.
+    //Task UserRemoveWhitelistedPlayer(UserDto user); // Remove a player from the user's whitelist.
+    //Task UserDelete(); // Delete the user's account.
+    //Task<UserProfileDto> UserGetProfile(UserDto user); // Get the profile of a user by their userDto.
+    //Task UserSetProfile(UserProfileDto userProfile); // Set or update the user's profile.
 }
