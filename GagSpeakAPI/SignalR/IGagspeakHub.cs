@@ -12,24 +12,33 @@ namespace Gagspeak.API.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 1; // First version of the API
-    const string Path  = "/gagspeak"; // Path to the API on the hosted server
+     const int ApiVersion = 1;               // First version of the API
+     const string Path  = "/gagspeak";       // Path to the API on the hosted server
 
-    Task<bool> CheckClientHealth(); // Check if the client is healthy
-    Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the server
+     Task<bool> CheckClientHealth();         // Check if the client is healthy
+
+     /* ----------------- Task methods called upon by server and sent to clients ----------------- */
+     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); // send message to client
+     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); // update client with the system info
+     Task Client_UserAddClientPair(UserPairDto dto); // once a pair is bidirectional, send to the client the userpairDto as validation
+     Task Client_UserRemoveClientPair(UserDto dto); // if either end of a bidirectional pair removes one another, remove the pairing.
+     Task Client_UserSendOffline(UserDto dto); // send to a client that one of their paired users is offline
+     Task Client_UserSendOnline(OnlineUserIdentDto dto); // send to a client that one of their paired users is online
+     // there was a update pair permissions here, maybe repurpose it for a update to userdata permissions later?
+     Task Client_UserUpdateProfile(UserDto dto); // send to a client that one of their paired users has updated their profile
 
 
-    // some client actions send to the server
-    Task Client_RecieveServerMessage(MessageSeverity messageSeverity, string message); // Recieve a message from the server
-    Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); // Update the system information of the client
-    // Task Client_User_AddClientPair(UserPairDto dto); // Add a sucessful whitelist pairing to the user's client list
+     /* ----------------- Task for grabbing a users current connectionDto ----------------- */
+     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the server
 
 
-
-    // some user impacted actions
-    //Task UserAddWhitelistedPlayer(UserDto user); // Add a player to the user's whitelist.
-    //Task UserRemoveWhitelistedPlayer(UserDto user); // Remove a player from the user's whitelist.
-    //Task UserDelete(); // Delete the user's account.
-    //Task<UserProfileDto> UserGetProfile(UserDto user); // Get the profile of a user by their userDto.
-    //Task UserSetProfile(UserProfileDto userProfile); // Set or update the user's profile.
+     /* ----------------- Task methods called upon by clients and sent to the server ----------------- */
+     Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
+     Task UserDelete(); // delete this users account from the servers database
+     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
+     Task<List<UserFullPairDto>> UserGetPairedClients(); // get the current paired users of this client
+     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of another user (could be self too?)
+     Task UserPushData(UserCharaDataMessageDto dto); // push clients character data to the server
+     Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
+     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
 }

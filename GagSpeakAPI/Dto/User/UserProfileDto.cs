@@ -3,8 +3,9 @@ using MessagePack;
 
 namespace Gagspeak.API.Dto.User;
 
-/// <summary>
-/// a datatransfer object that stores the information for the mini-profile window of a user.
+/// <summary> 
+/// Datatransfer object that stores the information for the mini-profile window of a user.
+/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserProfileDto(
     UserData User,                      // the user of whom the profile belongs to
