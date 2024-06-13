@@ -4,9 +4,11 @@
 /// Enum that determines the state of a current pairing with other clients.
 /// Ensures the connection is mutual.
 /// </summary>
-public enum IndividualPairStatus
+public enum DynamicTier
 {
-    None,
-    OneSided,
-    Bidirectional
+     Tier0 = 0,
+     Tier1 = 1,
+     Tier2 = 2,
+     Tier3 = 3,
+     Tier4 = 4,
 }
