@@ -36,7 +36,7 @@ public interface IGagspeakHub
      Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
      Task UserDelete(); // delete this users account from the servers database
      Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
-     Task<List<UserFullPairDto>> UserGetPairedClients(); // get the current paired users of this client
+     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
      Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of another user (could be self too?)
      Task UserPushData(UserCharaDataMessageDto dto); // push clients character data to the server
      Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
