@@ -22,6 +22,7 @@ public interface IGagspeakHub
      Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); // update client with the system info
      Task Client_UserAddClientPair(UserPairDto dto); // once a pair is bidirectional, send to the client the userpairDto as validation
      Task Client_UserRemoveClientPair(UserDto dto); // if either end of a bidirectional pair removes one another, remove the pairing.
+     Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); // updates user with a pair status dto they have w/ another user
      Task Client_UserSendOffline(UserDto dto); // send to a client that one of their paired users is offline
      Task Client_UserSendOnline(OnlineUserIdentDto dto); // send to a client that one of their paired users is online
      // there was a update pair permissions here, maybe repurpose it for a update to userdata permissions later?
