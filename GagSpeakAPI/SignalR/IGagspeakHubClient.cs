@@ -13,12 +13,12 @@ namespace Gagspeak.API.SignalR;
 /// </summary>
 public interface IGagspeakHubClient : IGagspeakHub
 {
-     void Client_ReceiveServerMessage(Action<MessageSeverity, string> act); // send message to client
-     void Client_UpdateSystemInfo(Action<SystemInfoDto> act); // update client with the system info
-     void Client_UserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
-     void Client_UserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
-     void Client_UserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
-     void Client_UserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online
+     void OnReceiveServerMessage(Action<MessageSeverity, string> act); // send message to client
+     void OnUpdateSystemInfo(Action<SystemInfoDto> act); // update client with the system info
+     void OnUserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
+     void OnUserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
+     void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
+     void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online
      // there was a update pair permissions here, maybe repurpose it for a update to userdata permissions later?
-     void Client_UserUpdateProfile(Action<UserDto> act); // send to a client that one of their paired users has updated their profile
+     void OnUserUpdateProfile(Action<UserDto> act); // send to a client that one of their paired users has updated their profile
 }
