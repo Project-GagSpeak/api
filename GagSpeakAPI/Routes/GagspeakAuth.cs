@@ -1,7 +1,7 @@
 namespace Gagspeak.API.Routes;
 
 // no purpose yet but likely will later???
-public class MareAuth
+public class GagspeakAuth
 {
      public const string Auth = "/auth"; // the authentication path.
      public const string Auth_CreateIdent = "createWithIdent"; // creating a new identity for the user authentication
