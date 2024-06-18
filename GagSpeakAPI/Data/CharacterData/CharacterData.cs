@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 
 namespace Gagspeak.API.Data.CharacterData;
 
@@ -8,14 +8,17 @@ namespace Gagspeak.API.Data.CharacterData;
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharacterData
 {
-     public CharaGeneralConfig GeneralConfig { get; set; }
-     public CharaAppearanceConfig AppearanceConfig { get; set; }
-     public Dictionary<string, CharaPairSpecificConfig> PairSpecificConfig { get; set; }
+    public CharaGeneralConfig GeneralConfig { get; set; }
+    public CharaAppearanceConfig AppearanceConfig { get; set; }
+    public Dictionary<string, CharaPairSpecificConfig> PairSpecificConfig { get; set; }
 
-     public CharacterData()
-     {
-          GeneralConfig = new CharaGeneralConfig();
-          AppearanceConfig = new CharaAppearanceConfig();
-          PairSpecificConfig = new Dictionary<string, CharaPairSpecificConfig>();
-     }
+    // Moodles data is stored as a string, but is a JSON object
+    public string MoodlesData { get; set; } = string.Empty;
+
+    public CharacterData()
+    {
+        GeneralConfig = new CharaGeneralConfig();
+        AppearanceConfig = new CharaAppearanceConfig();
+        PairSpecificConfig = new Dictionary<string, CharaPairSpecificConfig>();
+    }
 }
