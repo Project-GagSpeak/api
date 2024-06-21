@@ -25,8 +25,9 @@ public interface IGagspeakHub
      Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto); // pushes updated character data of a user to their online client pairs.
      Task Client_UserSendOffline(UserDto dto); // send to a client that one of their paired users is offline
      Task Client_UserSendOnline(OnlineUserIdentDto dto); // send to a client that one of their paired users is online
-     // there was a update pair permissions here, maybe repurpose it for a update to userdata permissions later?
+     // there was a update pair permissions here, maybe repurpose it for a update to user data permissions later?
      Task Client_UserUpdateProfile(UserDto dto); // send to a client that one of their paired users has updated their profile
+     Task Client_DisplayVerificationPopup(VerificationDto dto); // send to a client to display a verification popup
 
 
      /* ----------------- Task for grabbing a users current connectionDto ----------------- */
