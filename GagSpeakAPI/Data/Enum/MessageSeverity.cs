@@ -1,6 +1,8 @@
 namespace Gagspeak.API.Data.Enum;
 
-// an enum used to determine the severity level of an incoming message from the gagspeak server.
+/// <summary>
+/// Determines the sevrity of a message being sent out to the clients.
+/// </summary>
 public enum MessageSeverity
 {
     Information,

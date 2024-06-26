@@ -1,5 +1,5 @@
 ﻿using Gagspeak.API.Data;
-using Gagspeak.API.Data.CharacterData;
+using GagSpeak.API.Data.Character;
 using MessagePack;
 
 namespace Gagspeak.API.Dto.User;
@@ -10,4 +10,4 @@ namespace Gagspeak.API.Dto.User;
 /// <param name="User"></param>
 /// <param name="CharaData"></param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaDataDto(UserData User, CharacterData CharaData) : UserDto(User);
+public record OnlineUserCharaDataDto(UserData User, CharacterCompositeData CharaData) : UserDto(User);

@@ -7,16 +7,7 @@ namespace Gagspeak.API.Data;
 /// </summary>
 public class AliasTrigger
 {
-     // the list stores the searched for input command on the left, and the output command on the right
-     public bool _enabled;
-     public string _inputCommand;
-     public string _outputCommand;
-     // potentially store subset commands that can chain with eachother like psuedo-macros, but for now just single.
-
-     public AliasTrigger()
-     {
-          _enabled = false;
-          _inputCommand = string.Empty;
-          _outputCommand = string.Empty;
-     }
+    public bool Enabled { get; set; } = false;
+    public string InputCommand { get; set; } = string.Empty;
+    public string OutputCommand { get; set; } = string.Empty;
 }

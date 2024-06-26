@@ -1,5 +1,5 @@
 ﻿using Gagspeak.API.Data;
-using Gagspeak.API.Data.CharacterData;
+using GagSpeak.API.Data.Character;
 using MessagePack;
 
 namespace Gagspeak.API.Dto.User;
@@ -10,4 +10,4 @@ namespace Gagspeak.API.Dto.User;
 /// <param name="Recipients">The list of client users that should recieve this data transfer object</param>
 /// <param name="CharaData">Contains information related to the users permissions and settings.</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaDataMessageDto(List<UserData> Recipients, CharacterData CharaData);
+public record UserCharaDataMessageDto(List<UserData> Recipients, CharacterCompositeData CharaData);

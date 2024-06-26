@@ -3,10 +3,10 @@ using MessagePack;
 
 namespace Gagspeak.API.Dto.User;
 
-/// <summary>
-/// Datatransfer object that stores the UserData.
-/// <para> The UserData consists of the users UID or their AliasUID.</para>
-/// <para> This is SEPERATE from the User class defined for the database. </para>
+/// <summary> DTO responsible for transferring the a user's UID from the users table in the DB.
+/// <para>
+/// Could potentially transfer the vanity tier along inside the UserData if we need it later. We'll see.
+/// </para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserDto(UserData User);

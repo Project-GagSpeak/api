@@ -1,6 +1,11 @@
 ﻿namespace Gagspeak.API.Data.Enum;
 
-/// <summary> The defined role of another paired user in a dynamic </summary>
+/// <summary> The defined role of another paired user in a dynamic 
+/// <para>
+/// Unsure if this will serve any purpose once dynamic tiers are removed. 
+/// Could serve as a permission preset filter.
+/// </para>
+/// </summary>
 public enum RoleLean
 {
      None = 0,
@@ -12,4 +17,5 @@ public enum RoleLean
      Mistress = 6,
      Master = 7,
      Owner = 8,
+     AbsoluteOwner = 9,
 }

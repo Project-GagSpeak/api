@@ -10,4 +10,9 @@
     <PackageReference Include="MessagePack.Annotations" Version="2.5.129" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\PermissionUpdate\" />
+    <Folder Include="Dto\UserPair\" />
+  </ItemGroup>
+
 </Project>
