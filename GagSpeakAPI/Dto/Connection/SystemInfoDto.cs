@@ -1,6 +1,6 @@
 using MessagePack;
 
-namespace Gagspeak.API.Dto;
+namespace GagSpeak.API.Dto.Connection;
 
 // The datatransfer object that tracks the current number of connected online users on the server.
 [MessagePackObject(keyAsPropertyName: true)]

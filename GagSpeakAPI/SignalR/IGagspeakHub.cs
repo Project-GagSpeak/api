@@ -1,7 +1,8 @@
 ﻿using Gagspeak.API.Data.Enum;
-using Gagspeak.API.Dto;
 using Gagspeak.API.Dto.User;
 using GagSpeak.API.Dto.Connection;
+using GagSpeak.API.Dto.Permissions;
+using GagSpeak.API.Dto.UserPair;
 
 namespace Gagspeak.API.SignalR;
 
@@ -72,7 +73,7 @@ public interface IGagspeakHub
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of another user (could be self too?)
-    Task UserPushData(UserCharaDataMessageDto dto); // push clients character data to the server
+    Task UserPushData(UserCharaCompositeDataMessageDto dto); // push clients character data to the server
     Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
 }

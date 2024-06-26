@@ -1,6 +1,8 @@
 ﻿using Gagspeak.API.Data.Enum;
-using Gagspeak.API.Dto;
 using Gagspeak.API.Dto.User;
+using GagSpeak.API.Dto.Connection;
+using GagSpeak.API.Dto.Permissions;
+using GagSpeak.API.Dto.UserPair;
 
 namespace Gagspeak.API.SignalR;
 

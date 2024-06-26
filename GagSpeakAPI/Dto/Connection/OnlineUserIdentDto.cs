@@ -1,7 +1,8 @@
 ﻿using Gagspeak.API.Data;
+using Gagspeak.API.Dto.User;
 using MessagePack;
 
-namespace Gagspeak.API.Dto.User;
+namespace GagSpeak.API.Dto.Connection;
 
 /// <summary>
 /// The Data Transfer Object for an online user. 

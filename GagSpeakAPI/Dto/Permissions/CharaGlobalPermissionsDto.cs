@@ -1,9 +1,19 @@
-﻿namespace GagSpeak.API.Data.CharacterData;
+﻿using MessagePack;
+
+namespace GagSpeak.API.Dto.Permissions;
 
 /// <summary>
-/// Configurations for the toybox module unique to each paired user.
+/// 
+/// A DTO representing the permissions for a user that are applied globally across all pairs.
+/// 
+/// <para>
+/// 
+/// This could also be seen as a user's "Default permissions"
+/// 
+/// </para>
 /// </summary>
-public class UserPermissionsGlobal
+[MessagePackObject(keyAsPropertyName: true)]
+public record GlobalPermissionsDto
 {
     // main global permissions
     public string Safeword { get; set; } = string.Empty;        // DO NOT ALLOW THIS TO BE MODIFABLE
