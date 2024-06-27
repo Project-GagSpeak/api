@@ -63,7 +63,7 @@ public interface IGagspeakHub
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
 
     /* ***************** PERMISSION SENDING SECTION ***************** */
-    Task UserPushDataComposite(UserCharaCompositeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (composite)
+    Task UserPushData(UserCharaCompositeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (composite)
     Task UserPushDataIpc(UserCharaIpcDataMessageDto dto); // push clients data to the server, updating self & paired online clients (ipc ONLY)
     Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto); // push clients data to the server, updating self & paired online clients (appearance ONLY)
     Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (wardrobe ONLY)
@@ -74,6 +74,6 @@ public interface IGagspeakHub
     // split them into subsections like we tried before.
     Task UserUpdateGlobalPerms(UserGlobalPermChangeDto dto); // update the global permissions of the client
     Task UserUpdatePairPerms(UserPairPermChangeDto dto); // pushes all permissions to the server (minus global??)
-    Task userUpdateEditAccess(UserPairAccessChangeDto dto); // update the permissions the client can edit on the other user
+    Task UserUpdatePairPermAccess(UserPairAccessChangeDto dto); // update the permissions the client can edit on the other user
 
 }
