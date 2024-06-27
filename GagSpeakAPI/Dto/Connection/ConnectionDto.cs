@@ -1,6 +1,7 @@
 using Gagspeak.API.Data;
 using GagSpeak.API.Data.Character;
-using GagSpeak.API.Dto.PermissionUpdate;
+using GagSpeak.API.Data.UserPermissions;
+using GagSpeak.API.Dto.Permissions;
 using MessagePack;
 
 namespace GagSpeak.API.Dto.Connection;
@@ -23,7 +24,7 @@ public record ConnectionDto(UserData User)
 {
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0); // The current version of the client
     public int ServerVersion { get; set; }                            // The version of the gagspeak server
-    public CharaGlobalPermissionsDto UserGlobalPermissions { get; set; } = new(); // The user's global permissions
+    public UserPermissionsGlobal UserGlobalPermissions { get; set; } = new(); // The user's global permissions
     public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
 
 }

@@ -13,67 +13,67 @@ namespace Gagspeak.API.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 1;               // First version of the API
+    const int ApiVersion = 2;               // First version of the API
     const string Path = "/gagspeak";       // Path to the API on the hosted server
 
     Task<bool> CheckClientHealth();         // Check if the client is healthy
 
     /* ----------------- Task methods called upon by server and sent to clients ----------------- */
+    Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
+    Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); /* Updates the client with the servers current system information */
+    Task Client_UserAddClientPair(UserPairDto dto); /* sends to a connected user to add the specified user to their pair list */
+    Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
+    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
 
+    // sends a message to client informing them to update their pair permissions (composite) [ See variants for smaller updates ]
+    /* Client_UserUpdateSelf == The callback returned from server to the client caller. Will contain UID of person's perms to update if successful.*/
+    Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
+    Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
+    Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
+    /* Client_UserUpdateOther == Callback returned from server to the other user who should update their permissions. */
+    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); /* special case for updating all permissions at once */
+    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
+    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
+    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
 
-    // is used by the server to send a message to the respective client based on client caller context.
-    // Often for notifications but can also be used to inform a user about a task or send a global warning.
-    Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message);
-
-
-    // updates a client with the servers current system information
-    Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
-
-
-    // sends a message to the client requesting them to add a userPair to their pair manager list.
-    Task Client_UserAddClientPair(UserPairDto dto);
-
-
-    // sent whenever a player should be removed from a clients pair manager. (Account deletion or they removed this client from their list)
-    Task Client_UserRemoveClientPair(UserDto dto);
-
-
-    // let's the client receive the updated state of another paired user's indidivual pair status.
-    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto);
-
-
-    // is sent to a client who should be informed of another paired user's login, along with their latest character data.
-    Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
-
-
-    // is sent to a client who should be informed of another paired user's logout.
-    Task Client_UserSendOffline(UserDto dto); 
-
-
-    // Informs a client that one of their added pairs has gone online and is now connected to the server.
-    // Contains information UserData and Identification. no CharacterData
-    Task Client_UserSendOnline(OnlineUserIdentDto dto);
-
-
-    // Informs a client whenever another paired user's profile has been updated.
-    Task Client_UserUpdateProfile(UserDto dto);
-
-
-    // The popup that is sent to the respective client for a verification code display once they accept the prompt from the discord bot.
-    Task Client_DisplayVerificationPopup(VerificationDto dto);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Task Client_UserReceiveCharacterDataComposite(OnlineUserCharaCompositeDataDto dto); /* informs a client of a users login, sending latest data (COMPOSITE) */
+    Task Client_UserReceiveCharacterDataIpc(OnlineUserCharaIpcDataDto dto); /* informs a client of a users login, sending latest data (IPC ONLY) */
+    Task Client_UserReceiveCharacterDataAppearance(OnlineUserCharaAppearanceDataDto dto); /* informs a client of a users login, sending latest data (APPEARANCE ONLY) */
+    Task Client_UserReceiveCharacterDataWardrobe(OnlineUserCharaWardrobeDataDto dto); /* informs a client of a users login, sending latest data (WARDROBE ONLY) */
+    Task Client_UserReceiveCharacterDataAlias(OnlineUserCharaAliasDataDto dto); /* informs a client of a users login, sending latest data (ALIAS ONLY) */
+    Task Client_UserReceiveCharacterDataPattern(OnlineUserCharaPatternDataDto dto); /* informs a client of a users login, sending latest data (PATTERN ONLY) */
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
+    Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
+    Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
+    Task Client_DisplayVerificationPopup(VerificationDto dto); /* Displays a verification popup to this client. Triggered by discord bot */
 
 
     /* ----------------- Task for grabbing a users current connectionDto ----------------- */
-    Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the server
-
+    Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
     /* ----------------- Task methods called upon by clients and sent to the server ----------------- */
     Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
+    Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
     Task UserDelete(); // delete this users account from the servers database
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
-    Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of another user (could be self too?)
-    Task UserPushData(UserCharaCompositeDataMessageDto dto); // push clients character data to the server
-    Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
+    Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
+
+    /* ***************** PERMISSION SENDING SECTION ***************** */
+    Task UserPushDataComposite(UserCharaCompositeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (composite)
+    Task UserPushDataIpc(UserCharaIpcDataMessageDto dto); // push clients data to the server, updating self & paired online clients (ipc ONLY)
+    Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto); // push clients data to the server, updating self & paired online clients (appearance ONLY)
+    Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (wardrobe ONLY)
+    Task UserPushDataAlias(UserCharaAliasDataMessageDto dto); // push clients data to the server, updating self & paired online clients (alias ONLY)
+    Task UserPushDataPattern(UserCharaPatternDataMessageDto dto); // push clients data to the server, updating self & paired online clients (pattern ONLY)
+
+    // for now, i will generalize the permissions into 3 sections, but if this becomes a problem later,
+    // split them into subsections like we tried before.
+    Task UserUpdateGlobalPerms(UserGlobalPermChangeDto dto); // update the global permissions of the client
+    Task UserUpdatePairPerms(UserPairPermChangeDto dto); // pushes all permissions to the server (minus global??)
+    Task userUpdateEditAccess(UserPairAccessChangeDto dto); // update the permissions the client can edit on the other user
+
 }

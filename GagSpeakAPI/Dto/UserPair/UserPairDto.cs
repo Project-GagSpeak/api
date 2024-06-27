@@ -1,21 +1,27 @@
 ﻿using Gagspeak.API.Data;
 using Gagspeak.API.Data.Enum;
 using Gagspeak.API.Dto.User;
-using GagSpeak.API.Data.CharacterData;
+using GagSpeak.API.Data.Permissions;
 using MessagePack;
 
 namespace GagSpeak.API.Dto.UserPair;
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserPairDto(UserData User, IndividualPairStatus IndividualPairStatus,
-    UserPermissionsComposite OwnPermissionsComposite, UserPermissionsEditAccessComposite OwnEditAccessPermissions,
-    UserPermissionsComposite OtherPermissionsComposite, UserPermissionsEditAccessComposite OtherEditAccessPermissions
+    UserGlobalPermissions ownGlobalPerms,
+    UserPairPermissions ownPairPerms,
+    UserEditAccessPermissions ownEditAccessPerms,
+    UserGlobalPermissions otherGlobalPerms,
+    UserPairPermissions otherPairPerms,
+    UserEditAccessPermissions otherEditAccessPerms
     ) : UserDto(User)
 {
-    public UserPermissionsComposite OwnPermissionsComposite { get; set; } = OwnPermissionsComposite;
-    public UserPermissionsEditAccessComposite OwnEditAccessPermissions { get; set; } = OwnEditAccessPermissions;
-    public UserPermissionsComposite OtherPermissionsComposite { get; set; } = OtherPermissionsComposite;
-    public UserPermissionsEditAccessComposite OtherEditAccessPermissions { get; set; } = OtherEditAccessPermissions;
+    public UserGlobalPermissions OwnGlobalPerms { get; set; } = ownGlobalPerms;
+    public UserPairPermissions OwnPairPerms { get; set; } = ownPairPerms;
+    public UserEditAccessPermissions OwnEditAccessPerms { get; set; } = ownEditAccessPerms;
+    public UserGlobalPermissions OtherGlobalPerms { get; set; } = otherGlobalPerms;
+    public UserPairPermissions OtherPairPerms { get; set; } = otherPairPerms;
+    public UserEditAccessPermissions OtherEditAccessPerms { get; set; } = otherEditAccessPerms;
     public IndividualPairStatus IndividualPairStatus { get; set; } = IndividualPairStatus;
 
 }

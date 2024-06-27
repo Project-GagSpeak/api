@@ -1,7 +1,4 @@
 using MessagePack;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using Gagspeak.API.Data;
 
 namespace GagSpeak.API.Data.Character;
 
