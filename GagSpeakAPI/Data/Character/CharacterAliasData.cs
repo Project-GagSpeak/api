@@ -10,6 +10,5 @@ namespace GagSpeak.API.Data.Character;
 public class CharacterAliasData
 {
     // the user UID that this alias data belongs to.
-    public string AffectedUserUID { get; set; } = string.Empty;
     public List<AliasTrigger> AliasList { get; set; } = new();
 }
