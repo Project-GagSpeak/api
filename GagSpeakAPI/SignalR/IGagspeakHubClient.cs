@@ -1,4 +1,4 @@
-﻿using Gagspeak.API.Data.Enum;
+using Gagspeak.API.Data.Enum;
 using Gagspeak.API.Dto.User;
 using GagSpeak.API.Dto.Connection;
 using GagSpeak.API.Dto.Permissions;
@@ -41,7 +41,6 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveCharacterDataAlias(Action<OnlineUserCharaAliasDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
     void OnUserReceiveCharacterDataPattern(Action<OnlineUserCharaPatternDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
 
-    void OnUserReceiveCharacterData(Action<OnlineUserCharaCompositeDataDto> act); // send to a client that one of their paired users has updated their character data (i think?)
     void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
     void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online
     void OnUserUpdateProfile(Action<UserDto> act); // send to a client that one of their paired users has updated their profile

@@ -1,6 +1,6 @@
 using Gagspeak.API.Data;
 using GagSpeak.API.Data.Character;
-using GagSpeak.API.Data.UserPermissions;
+using GagSpeak.API.Data.Permissions;
 using GagSpeak.API.Dto.Permissions;
 using MessagePack;
 
@@ -24,7 +24,8 @@ public record ConnectionDto(UserData User)
 {
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0); // The current version of the client
     public int ServerVersion { get; set; }                            // The version of the gagspeak server
-    public UserPermissionsGlobal UserGlobalPermissions { get; set; } = new(); // The user's global permissions
-    public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
+    // if possible we could get a fetch for composite data? idk
+    public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
+    // public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
 
 }
