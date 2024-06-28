@@ -9,6 +9,7 @@ namespace GagSpeak.API.Data.Character;
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharacterAliasData
 {
-    // Properties specific to alias data
+    // the user UID that this alias data belongs to.
+    public string AffectedUserUID { get; set; } = string.Empty;
     public List<AliasTrigger> AliasList { get; set; } = new();
 }
