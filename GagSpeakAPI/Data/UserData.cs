@@ -16,6 +16,6 @@ public record UserData(string UID, string? Alias = null, CkSupporterTier? suppor
 {
     [IgnoreMember]
     public string AliasOrUID => string.IsNullOrWhiteSpace(Alias) ? UID : Alias;
-
+    [IgnoreMember]
     public CkSupporterTier SupporterTier => supporterTier ?? CkSupporterTier.NoRole;
 }

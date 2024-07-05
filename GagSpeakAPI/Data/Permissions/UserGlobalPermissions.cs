@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GagSpeak.API.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public class UserGlobalPermissions
+public record UserGlobalPermissions
 {
     // main global permissions
     public string Safeword { get; set; } = "NONE SET";          // DO NOT ALLOW THIS TO BE MODIFABLE
