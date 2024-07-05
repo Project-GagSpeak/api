@@ -1,9 +1,11 @@
 using Gagspeak.API.Data.Enum;
+using MessagePack;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GagSpeak.API.Data.Permissions;
 
+[MessagePackObject(keyAsPropertyName: true)]
 public class UserGlobalPermissions
 {
     // main global permissions
