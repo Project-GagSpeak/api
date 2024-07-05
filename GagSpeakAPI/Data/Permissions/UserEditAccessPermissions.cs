@@ -1,8 +1,10 @@
+using MessagePack;
 using System.ComponentModel.DataAnnotations;
 
 namespace GagSpeak.API.Data.Permissions;
 
-public class UserEditAccessPermissions
+[MessagePackObject(keyAsPropertyName: true)]
+public record UserEditAccessPermissions
 {
     // unique permissions stored here:
     public bool CommandsFromFriendsAllowed { get; set; } = false; // Global

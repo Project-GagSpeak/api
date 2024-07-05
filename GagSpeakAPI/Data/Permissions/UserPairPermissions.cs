@@ -1,8 +1,10 @@
+using MessagePack;
 using System.ComponentModel.DataAnnotations;
 
 namespace GagSpeak.API.Data.Permissions;
 
-public class UserPairPermissions
+[MessagePackObject(keyAsPropertyName: true)]
+public record UserPairPermissions
 {
     // unique permissions stored here:
     public bool IsPaused { get; set; } = false;  // if the pair is paused, a unique unmodifiable permission by other pairs.
