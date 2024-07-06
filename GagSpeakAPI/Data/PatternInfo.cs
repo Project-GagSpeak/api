@@ -5,7 +5,8 @@ namespace Gagspeak.API.Data;
 /// <summary>
 /// Stores a list of alias triggers. This is intended to be applied once for each player in your whitelist.
 /// </summary>
-public class PatternInfo
+[MessagePackObject(keyAsPropertyName: true)]
+public record PatternInfo
 {
     /// <summary> The name of the pattern </summary>
     public string Name = string.Empty;
