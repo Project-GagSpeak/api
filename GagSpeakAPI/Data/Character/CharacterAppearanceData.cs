@@ -6,7 +6,7 @@ namespace GagSpeak.API.Data.Character;
 /// CharacterData class stores all of the user's settings, permissions, and apperance data
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharacterAppearanceData
+public record CharacterAppearanceData
 {
     // Properties specific to appearance data
     public string SlotOneGagType { get; set; } = "None";

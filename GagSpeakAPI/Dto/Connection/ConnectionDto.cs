@@ -26,6 +26,6 @@ public record ConnectionDto(UserData User)
     public int ServerVersion { get; set; }                            // The version of the gagspeak server
     // if possible we could get a fetch for composite data? idk
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
-    // public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
+    public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
 
 }
