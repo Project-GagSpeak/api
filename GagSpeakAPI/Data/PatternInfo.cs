@@ -7,9 +7,18 @@ namespace Gagspeak.API.Data;
 /// </summary>
 public class PatternInfo
 {
+    /// <summary> The name of the pattern </summary>
     public string Name = string.Empty;
+
+    /// <summary> The description of the pattern </summary>
     public string Description = string.Empty;
+
+    /// <summary> The duration of the pattern </summary>
     public string Duration = string.Empty;
+
+    /// <summary> If the pattern is active </summary>
     public bool IsActive = false;
+
+    /// <summary> If the pattern should loop </summary>
     public bool ShouldLoop = false;
 }
