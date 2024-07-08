@@ -32,9 +32,9 @@ public interface IGagspeakHub
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
     /* Client_UserUpdateOther == Callback returned from server to the other user who should update their permissions. */
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); /* special case for updating all permissions at once */
-    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
-    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
+    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);// this can update either the user self, or another paired user. It's all based on the UserData in the Dto
+    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);        // read above
+    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto); // read above
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     Task Client_UserReceiveCharacterDataComposite(OnlineUserCharaCompositeDataDto dto); /* informs a client of a users login, sending latest data (COMPOSITE) */
@@ -72,8 +72,10 @@ public interface IGagspeakHub
 
     // for now, i will generalize the permissions into 3 sections, but if this becomes a problem later,
     // split them into subsections like we tried before.
-    Task UserUpdateGlobalPerms(UserGlobalPermChangeDto dto); // update the global permissions of the client
-    Task UserUpdatePairPerms(UserPairPermChangeDto dto); // pushes all permissions to the server (minus global??)
-    Task UserUpdatePairPermAccess(UserPairAccessChangeDto dto); // update the permissions the client can edit on the other user
+    Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto); // update a global permission of the client caller (UserData == UserUID)
+    Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto); // update a pair permission of the client caller (UserData == UserUID)
+    Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto); // updates an edit access permission of the client caller. Caller must equal User affected.
+    Task UserUpdateOtherGlobalPerm(UserGlobalPermChangeDto dto); // update a global permission of another paired user (UserData == paired user)
+    Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto); // update a pair permission of another paired user (UserData == paired user)
 
 }
