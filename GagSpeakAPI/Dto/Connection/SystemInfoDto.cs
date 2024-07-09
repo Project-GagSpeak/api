@@ -7,4 +7,5 @@ namespace GagSpeak.API.Dto.Connection;
 public record SystemInfoDto
 {
     public int OnlineUsers { get; set; } // The number of online users
+    public int OnlineToyboxUsers { get; set; } // The number of online users using the toybox connections
 }
