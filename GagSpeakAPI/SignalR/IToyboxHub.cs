@@ -21,8 +21,8 @@ public interface IToyboxHub
     /************ CALLBACKS ***************/
     Task Client_ReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
 
-    // method to update a clients vibrator intensity.
-    Task Client_UpdateIntensity(UpdateIntensityDto dto);
+    // method to update a clients vibrator intensity. "Was Applying", if true, means we were applying an intensity to others,
+    Task Client_UpdateIntensity(byte intensity, bool wasApplying); // and this is confirmation it happened.
 
     /************** CALLERS **********/
     Task UpdateIntensity(UpdateIntensityDto dto); // updates intensity to UID's in DTO. Sent real-time updates

@@ -1,5 +1,6 @@
 using Gagspeak.API.Data.Enum;
 using GagSpeak.API.Dto.Connection;
+using GagSpeak.API.Dto.Toybox;
 
 namespace Gagspeak.API.SignalR;
 
@@ -11,5 +12,5 @@ namespace Gagspeak.API.SignalR;
 public interface IToyboxHubClient : IToyboxHub
 {
     void OnReceiveToyboxServerMessage(Action<MessageSeverity, string> act); // send message to client
-    void OnUpdateIntensity(Action<SystemInfoDto> act); // update client with the system info
+    void OnUpdateIntensity(Action<byte, bool> act); // update client with the system info
 }
