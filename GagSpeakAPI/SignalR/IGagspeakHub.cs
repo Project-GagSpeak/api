@@ -1,4 +1,4 @@
-﻿using Gagspeak.API.Data.Enum;
+using Gagspeak.API.Data.Enum;
 using Gagspeak.API.Dto.User;
 using GagSpeak.API.Dto.Connection;
 using GagSpeak.API.Dto.Permissions;
@@ -21,6 +21,7 @@ public interface IGagspeakHub
 
     /* ----------------- Task methods called upon by server and sent to clients ----------------- */
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
+    Task Client_ReceiveHardReconnectMessage(MessageSeverity messageSeverity, string message, ServerState state);
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); /* Updates the client with the servers current system information */
     Task Client_UserAddClientPair(UserPairDto dto); /* sends to a connected user to add the specified user to their pair list */
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */

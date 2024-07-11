@@ -22,6 +22,7 @@ public interface IGagspeakHubClient : IGagspeakHub
 {
     // to view function purposes, be sure to inspect the IGagspeakHub interface class comments.
     void OnReceiveServerMessage(Action<MessageSeverity, string> act); // send message to client
+    void OnReceiveHardReconnectMessage(Action<MessageSeverity, string, ServerState> act); // send message to client forcing a reconnection
     void OnUpdateSystemInfo(Action<SystemInfoDto> act); // update client with the system info
     void OnUserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
     void OnUserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
