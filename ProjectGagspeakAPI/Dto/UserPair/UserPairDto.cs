@@ -1,10 +1,10 @@
-using Gagspeak.API.Data;
-using Gagspeak.API.Data.Enum;
-using Gagspeak.API.Dto.User;
-using GagSpeak.API.Data.Permissions;
+using GagspeakAPI.Data;
+using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Dto.User;
+using GagspeakAPI.Data.Permissions;
 using MessagePack;
 
-namespace GagSpeak.API.Dto.UserPair;
+namespace GagspeakAPI.Dto.UserPair;
 
 /// <summary>
 /// Contains the record DTO for a userpair of the client.

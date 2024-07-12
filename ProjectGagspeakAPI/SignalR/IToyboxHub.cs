@@ -1,12 +1,12 @@
-using Gagspeak.API.Data;
-using Gagspeak.API.Data.Enum;
-using Gagspeak.API.Dto.User;
-using GagSpeak.API.Dto.Connection;
-using GagSpeak.API.Dto.Permissions;
-using GagSpeak.API.Dto.Toybox;
-using GagSpeak.API.Dto.UserPair;
+using GagspeakAPI.Data;
+using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Dto.User;
+using GagspeakAPI.Dto.Connection;
+using GagspeakAPI.Dto.Permissions;
+using GagspeakAPI.Dto.Toybox;
+using GagspeakAPI.Dto.UserPair;
 
-namespace Gagspeak.API.SignalR;
+namespace GagspeakAPI.SignalR;
 
 /// <summary> The interface for the ToyboxHub
 /// <para>

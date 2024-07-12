@@ -1,7 +1,7 @@
-using Gagspeak.API.Data;
+using GagspeakAPI.Data;
 using MessagePack;
 
-namespace Gagspeak.API.Dto.User;
+namespace GagspeakAPI.Dto.User;
 
 /// <summary> 
 /// 

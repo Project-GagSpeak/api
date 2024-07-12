@@ -1,4 +1,4 @@
-namespace Gagspeak.API.Routes;
+namespace GagspeakAPI.Routes;
 
 // no purpose yet but likely will later???
 public class GagspeakVibe

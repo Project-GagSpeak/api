@@ -1,7 +1,7 @@
-using Gagspeak.API.Data.Enum;
+using GagspeakAPI.Data.Enum;
 using MessagePack;
 
-namespace Gagspeak.API.Data;
+namespace GagspeakAPI.Data;
 
 /// <summary>
 /// Data object that represents the core information about a user that we ususually want to obtain.

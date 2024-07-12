@@ -1,7 +1,7 @@
-using Gagspeak.API.Data;
+using GagspeakAPI.Data;
 using MessagePack;
 
-namespace GagSpeak.API.Data.Character;
+namespace GagspeakAPI.Data.Character;
 
 /// <summary>
 /// CharacterData class stores all of the user's settings, permissions, and apperance data

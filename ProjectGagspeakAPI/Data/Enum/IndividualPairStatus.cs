@@ -1,4 +1,4 @@
-﻿namespace Gagspeak.API.Data.Enum;
+﻿namespace GagspeakAPI.Data.Enum;
 
 /// <summary>
 /// Enum that determines the state of a current pairing with other clients.

@@ -1,6 +1,6 @@
 using MessagePack;
 
-namespace Gagspeak.API.Data;
+namespace GagspeakAPI.Data;
 
 /// <summary>
 /// Stores a list of alias triggers. This is intended to be applied once for each player in your whitelist.

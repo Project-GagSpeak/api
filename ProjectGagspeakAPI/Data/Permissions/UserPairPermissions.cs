@@ -1,7 +1,7 @@
 using MessagePack;
 using System.ComponentModel.DataAnnotations;
 
-namespace GagSpeak.API.Data.Permissions;
+namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserPairPermissions

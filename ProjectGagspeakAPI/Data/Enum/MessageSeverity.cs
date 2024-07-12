@@ -1,4 +1,4 @@
-namespace Gagspeak.API.Data.Enum;
+namespace GagspeakAPI.Data.Enum;
 
 /// <summary>
 /// Determines the sevrity of a message being sent out to the clients.

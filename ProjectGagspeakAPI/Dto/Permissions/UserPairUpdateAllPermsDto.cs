@@ -1,9 +1,9 @@
-using Gagspeak.API.Data;
-using Gagspeak.API.Dto.User;
-using GagSpeak.API.Data.Permissions;
+using GagspeakAPI.Data;
+using GagspeakAPI.Dto.User;
+using GagspeakAPI.Data.Permissions;
 using MessagePack;
 
-namespace GagSpeak.API.Dto.Permissions;
+namespace GagspeakAPI.Dto.Permissions;
 
 /// <summary> 
 /// 

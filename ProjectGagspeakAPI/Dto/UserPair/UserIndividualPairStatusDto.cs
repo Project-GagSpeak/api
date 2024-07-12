@@ -1,9 +1,9 @@
-﻿using Gagspeak.API.Data;
-using Gagspeak.API.Data.Enum;
-using Gagspeak.API.Dto.User;
+﻿using GagspeakAPI.Data;
+using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Dto.User;
 using MessagePack;
 
-namespace GagSpeak.API.Dto.UserPair;
+namespace GagspeakAPI.Dto.UserPair;
 
 /// <summary>
 /// 

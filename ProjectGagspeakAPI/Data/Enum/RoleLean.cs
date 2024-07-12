@@ -1,4 +1,4 @@
-﻿namespace Gagspeak.API.Data.Enum;
+﻿namespace GagspeakAPI.Data.Enum;
 
 /// <summary> The defined role of another paired user in a dynamic 
 /// <para>

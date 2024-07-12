@@ -1,7 +1,7 @@
-﻿using Gagspeak.API.Dto.User;
-using GagSpeak.API.Dto.Permissions;
+﻿using GagspeakAPI.Dto.User;
+using GagspeakAPI.Dto.Permissions;
 
-namespace Gagspeak.API.Data.Comparer;
+namespace GagspeakAPI.Data.Comparer;
 
 /// <summary>
 /// Compares two UserDto objects based on their UID.

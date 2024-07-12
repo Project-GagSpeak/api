@@ -1,4 +1,4 @@
-namespace Gagspeak.API.Data.Enum;
+namespace GagspeakAPI.Data.Enum;
 
 public enum ServerState
 {

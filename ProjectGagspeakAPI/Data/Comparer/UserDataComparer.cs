@@ -1,4 +1,4 @@
-﻿namespace Gagspeak.API.Data.Comparer;
+﻿namespace GagspeakAPI.Data.Comparer;
 
 public class UserDataComparer : IEqualityComparer<UserData>
 {

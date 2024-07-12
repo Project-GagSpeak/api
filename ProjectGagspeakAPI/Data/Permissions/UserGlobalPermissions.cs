@@ -1,9 +1,9 @@
-using Gagspeak.API.Data.Enum;
+using GagspeakAPI.Data.Enum;
 using MessagePack;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GagSpeak.API.Data.Permissions;
+namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserGlobalPermissions

@@ -1,8 +1,8 @@
-﻿using Gagspeak.API.Data;
-using GagSpeak.API.Data.Character;
+﻿using GagspeakAPI.Data;
+using GagspeakAPI.Data.Character;
 using MessagePack;
 
-namespace Gagspeak.API.Dto.User;
+namespace GagspeakAPI.Dto.User;
 
 /// <summary>
 /// Represents a message that contains the character data of a user, and the recipients that should recieve it

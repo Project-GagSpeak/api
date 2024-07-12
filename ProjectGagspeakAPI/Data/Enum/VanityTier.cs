@@ -1,4 +1,4 @@
-﻿namespace Gagspeak.API.Data.Enum;
+﻿namespace GagspeakAPI.Data.Enum;
 
 /// <summary>
 /// Enum determining which tier vanity supporter the user is, if any.

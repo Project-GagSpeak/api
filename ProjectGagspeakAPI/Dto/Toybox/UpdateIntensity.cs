@@ -1,8 +1,8 @@
-using GagSpeak.API.Data.Character;
+using GagspeakAPI.Data.Character;
 using MessagePack;
-using global::Gagspeak.API.Data;
+using global::GagspeakAPI.Data;
 
-namespace GagSpeak.API.Dto.Toybox;
+namespace GagspeakAPI.Dto.Toybox;
 
 /// <summary>
 /// Update the intensity of the list of user's toys
