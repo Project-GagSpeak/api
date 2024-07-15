@@ -10,5 +10,5 @@ namespace GagspeakAPI.Data.Character;
 public class CharacterAliasData
 {
     // the user UID that this alias data belongs to.
-    public List<AliasTrigger> AliasList { get; set; } = new();
+    public List<PhonemeProperties> AliasList { get; set; } = new();
 }
