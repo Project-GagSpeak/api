@@ -16,7 +16,7 @@ public interface IGagspeakHub
     const int ApiVersion = 2;               // First version of the API
     const string Path = "/gagspeak";       // Path to the API on the hosted server
 
-    Task<bool> CheckClientHealth();         // Check if the client is healthy
+    Task<bool> CheckMainClientHealth();         // Check if the client is healthy
 
     /* ----------------- Task methods called upon by server and sent to clients ----------------- */
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
