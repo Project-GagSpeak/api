@@ -17,7 +17,7 @@ public interface IToyboxHub
 {
     const string Path = "/toybox";       // Path to the API on the hosted server
 
-    Task<bool> CheckMainClientHealth(); // REQUIRED to stay connected on redi's AKA maintain a connection.
+    Task<bool> CheckToyboxClientHealth(); // REQUIRED to stay connected on redi's AKA maintain a connection.
 
     Task<ToyboxConnectionDto> GetToyboxConnectionDto(); // Get the connection details of the client to the serve
     /************ CALLBACKS ***************/
