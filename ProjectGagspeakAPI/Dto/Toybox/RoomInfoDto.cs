@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.Toybox;
 /// Updates devices of all users in a group that is not the caller.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UpdateGroupDevicesDto(DeviceUpdate NewUpdate);
+public record RoomInfoDto(string NewRoomName, string RoomHost, List<string> ConnectedUsers);

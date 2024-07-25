@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.Toybox;
 /// Updates a single user's device.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UpdateDeviceDto(UserData User, DeviceUpdate NewUpdate) : UserDto(User);
+public record UpdateDeviceDto(UserData User, string RoomName, DeviceUpdate NewUpdate) : UserDto(User);

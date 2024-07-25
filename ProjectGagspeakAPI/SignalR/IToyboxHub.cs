@@ -24,17 +24,22 @@ public interface IToyboxHub
     /************ CALLBACKS ***************/
     Task Client_ReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
     Task Client_UserReceiveRoomInvite(RoomInviteDto dto); // Receives a room invite from another user.
-    Task Client_UserJoinedRoom(RoomInviteDto dto); // recieved when a user joins your room.
-    Task Client_UserRecievedRoomMessage(RoomMessageDto dto); // Recieves a message from another user in the room.
-    Task Client_UserDeviceInfo(DeviceInfoDto dto); // Receives device info from another connected user.
+    Task Client_UserJoinedRoom(RoomInfoDto dto); // whenever you joined a room.
+    Task Client_OtherUserJoinedRoom(UserDto dto); // Recieved when another user joins the room.
+    Task Client_OtherUserLeftRoom(UserDto dto); // Recieved when another user leaves the room.
+    Task Client_UserReceiveRoomMessage(RoomMessageDto dto); // Recieves a message from another user in the room.
+    Task Client_UserReceiveDeviceInfo(UserCharaDeviceInfoMessageDto dto); // Receives device info from another connected user.
     Task Client_UserDeviceUpdate(UpdateDeviceDto dto); // Updates the clients device with the new update.
+    Task Client_ReceiveRoomClosedMessage(string roomName); // Informs the client that the room has been closed.
 
     /************** CALLERS **********/
     Task UserCreateNewRoom(RoomCreateDto dto); // Creates a new room with the given name.
     Task UserRoomInvite(RoomInviteDto dto); // Sends an invite to a room to the given user.
     Task UserJoinRoom(string roomName); // Joins the user to the given room.
     Task UserSendMessageToRoom(RoomMessageDto dto); // Sends a message to the room.
-    Task UserRequestDeviceInfo(UserDto dto); // Requests the device info of the given user.
+    Task UserPushDeviceInfo(UserCharaDeviceInfoMessageDto dto); // Requests the device info of the given user.
     Task UserUpdateDevice(UpdateDeviceDto dto); // Updates the device of the user.
+    Task UserUpdateGroupDevices(UpdateDeviceDto dto); // Updates the devices of the group.
     Task UserLeaveRoom(); // Leaves the room they are in.
+    Task OnDisconnectedAsync(Exception exception);
 }
