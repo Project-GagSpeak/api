@@ -1,19 +1,28 @@
+using GagspeakAPI.Data.VibeServer;
 using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary>
-/// Stores the modifications that can be done to a device
-/// </summary>
+
 [MessagePackObject(keyAsPropertyName: true)]
 public record DeviceUpdate
 {
-    /// <summary> If this alias trigger is enabled </summary>
-    public bool Enabled { get; set; } = false;
+    // The device we are updating. If blank, sending to all Connected Devices.
+    public string DeviceName { get; set; } = string.Empty;
 
-    /// <summary> The input command that triggers the output command </summary>
-    public string InputCommand { get; set; } = string.Empty;
+    // The type of vibration being applied. Vibrate by default
+    public VibrateType VibrateType { get; set; } = VibrateType.Vibrate;
 
-    /// <summary> The output command that is triggered by the input command </summary>
-    public string OutputCommand { get; set; } = string.Empty;
+    // the motor it is being applied to. -1 for all motors.
+    public int MotorAffected { get; set; } = -1;
+
+    // the intensity of the vibration. 0-100
+    public byte Intensity { get; set; } = 0;
+
+    // if type is rotate, reference this for the direction of rotation.
+    public bool Clockwise { get; set; } = true;
+
+    // if oscillating, refernece period of oscillation.
+    public int Period { get; set; } = 0;
 }
+

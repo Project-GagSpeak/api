@@ -31,7 +31,6 @@ public interface IGagspeakHub
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
-    /* Client_UserUpdateOther == Callback returned from server to the other user who should update their permissions. */
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); /* special case for updating all permissions at once */
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);// this can update either the user self, or another paired user. It's all based on the UserData in the Dto
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);        // read above

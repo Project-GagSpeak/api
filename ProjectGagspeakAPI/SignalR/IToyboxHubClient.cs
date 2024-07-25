@@ -12,5 +12,10 @@ namespace GagspeakAPI.SignalR;
 public interface IToyboxHubClient : IToyboxHub
 {
     void OnReceiveToyboxServerMessage(Action<MessageSeverity, string> act); // send message to client
-    void OnUpdateIntensity(Action<byte, bool> act); // update client with the system info
+    void OnReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
+    void OnUserReceiveRoomInvite(Action<RoomInviteDto> act);
+    void OnUserJoinedRoom(Action<RoomInviteDto> act);
+    void OnUserRecievedRoomMessage(Action<RoomMessageDto> act);
+    void OnUserDeviceInfo(Action<DeviceInfoDto> act);
+    void OnUserDeviceUpdate(Action<UpdateDeviceDto> act);
 }

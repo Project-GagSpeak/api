@@ -20,19 +20,21 @@ public interface IToyboxHub
     Task<bool> CheckToyboxClientHealth(); // REQUIRED to stay connected on redi's AKA maintain a connection.
 
     Task<ToyboxConnectionDto> GetToyboxConnectionDto(); // Get the connection details of the client to the serve
+    
     /************ CALLBACKS ***************/
     Task Client_ReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
-
-    // method to update a clients vibrator intensity. "Was Applying", if true, means we were applying an intensity to others,
-    Task Client_UpdateIntensity(byte intensity, bool wasApplying); // and this is confirmation it happened.
+    Task Client_UserReceiveRoomInvite(RoomInviteDto dto); // Receives a room invite from another user.
+    Task Client_UserJoinedRoom(RoomInviteDto dto); // recieved when a user joins your room.
+    Task Client_UserRecievedRoomMessage(RoomMessageDto dto); // Recieves a message from another user in the room.
+    Task Client_UserDeviceInfo(DeviceInfoDto dto); // Receives device info from another connected user.
+    Task Client_UserDeviceUpdate(UpdateDeviceDto dto); // Updates the clients device with the new update.
 
     /************** CALLERS **********/
-    Task UpdateIntensity(UpdateIntensityDto dto); // updates intensity to UID's in DTO. Sent real-time updates
-
-
-    // feature creep ideas:
-    // - Making use of the paths hub context, groups can be created as "rooms" that people can make for controlling groups of people.
-    // - These rooms can be named by identifications that users define to create a room. Any room with no users in it will be deleted, or when no activity in them has elapsed.
-    // - Rooms can optionally be publicly visible, allowing people to enter them as sort of "kink rooms" for people to browse.
-    // - In the future, a chat space could potentially be added as things expand, allowing for more social interaction between users.
+    Task UserCreateNewRoom(RoomCreateDto dto); // Creates a new room with the given name.
+    Task UserRoomInvite(RoomInviteDto dto); // Sends an invite to a room to the given user.
+    Task UserJoinRoom(string roomName); // Joins the user to the given room.
+    Task UserSendMessageToRoom(RoomMessageDto dto); // Sends a message to the room.
+    Task UserRequestDeviceInfo(UserDto dto); // Requests the device info of the given user.
+    Task UserUpdateDevice(UpdateDeviceDto dto); // Updates the device of the user.
+    Task UserLeaveRoom(); // Leaves the room they are in.
 }
