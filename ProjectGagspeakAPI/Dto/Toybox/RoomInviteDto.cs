@@ -2,11 +2,12 @@ using GagspeakAPI.Data.Character;
 using MessagePack;
 using global::GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
+using GagspeakAPI.Data.VibeServer;
 
 namespace GagspeakAPI.Dto.Toybox;
 
 /// <summary>
-/// Updates devices of all users in a group that is not the caller.
+///  Use userdata over the new private room user because they are not yet set as one.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record RoomInviteDto(UserData UserInvited, string RoomName) : UserDto(UserInvited);
+public record RoomInviteDto(UserData UserInvited, string RoomName);

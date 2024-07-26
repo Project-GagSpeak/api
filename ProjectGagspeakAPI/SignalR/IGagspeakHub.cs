@@ -3,6 +3,7 @@ using GagspeakAPI.Dto.Permissions;
 using GagspeakAPI.Dto.UserPair;
 using GagspeakAPI.Data.Enum;
 using GagspeakAPI.Dto.User;
+using GagspeakAPI.Dto.Toybox;
 
 namespace GagspeakAPI.SignalR;
 

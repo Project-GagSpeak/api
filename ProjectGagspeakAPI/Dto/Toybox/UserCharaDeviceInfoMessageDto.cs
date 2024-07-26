@@ -10,5 +10,5 @@ namespace GagspeakAPI.Dto.Toybox;
 /// Sends basic information about a user's connected Device.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaDeviceInfoMessageDto(UserData User, string RoomName, string Devicename, 
-    string DeviceDisplayName, Dictionary<VibrateType, int> MotorsAndTypes) : UserDto(User);
+public record UserCharaDeviceInfoMessageDto(PrivateRoomUser User, string RoomName, string Devicename, 
+    string DeviceDisplayName, Dictionary<VibrateType, int> MotorsAndTypes);
