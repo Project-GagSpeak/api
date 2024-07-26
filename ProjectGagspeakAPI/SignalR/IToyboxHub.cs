@@ -25,8 +25,8 @@ public interface IToyboxHub
     Task Client_ReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
     Task Client_UserReceiveRoomInvite(RoomInviteDto dto); // Receives a room invite from another user.
     Task Client_UserJoinedRoom(RoomInfoDto dto); // whenever you joined a room.
-    Task Client_OtherUserJoinedRoom(UserDto dto); // Recieved when another user joins the room.
-    Task Client_OtherUserLeftRoom(UserDto dto); // Recieved when another user leaves the room.
+    Task Client_OtherUserJoinedRoom(RoomParticipantDto dto); // Recieved when another user joins the room.
+    Task Client_OtherUserLeftRoom(RoomParticipantDto dto); // Recieved when another user leaves the room.
     Task Client_UserReceiveRoomMessage(RoomMessageDto dto); // Recieves a message from another user in the room.
     Task Client_UserReceiveDeviceInfo(UserCharaDeviceInfoMessageDto dto); // Receives device info from another connected user.
     Task Client_UserDeviceUpdate(UpdateDeviceDto dto); // Updates the clients device with the new update.
@@ -41,5 +41,4 @@ public interface IToyboxHub
     Task UserUpdateDevice(UpdateDeviceDto dto); // Updates the device of the user.
     Task UserUpdateGroupDevices(UpdateDeviceDto dto); // Updates the devices of the group.
     Task UserLeaveRoom(); // Leaves the room they are in.
-    Task OnDisconnectedAsync(Exception exception);
 }
