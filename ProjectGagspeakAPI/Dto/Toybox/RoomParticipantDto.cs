@@ -1,4 +1,5 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.Data.VibeServer;
 using GagspeakAPI.Dto.User;
 using MessagePack;
 
@@ -10,5 +11,5 @@ namespace GagspeakAPI.Dto.Connection;
 /// <param name="User">The UserData object containing the UID</param>
 /// <param name="Ident">The Ident??? (Not sure what this is)</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record RoomParticipantDto(UserData User, string RoomName) : UserDto(User);
+public record RoomParticipantDto(PrivateRoomUser User, string RoomName);
 

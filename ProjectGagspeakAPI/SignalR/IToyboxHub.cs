@@ -35,7 +35,7 @@ public interface IToyboxHub
     /************** CALLERS **********/
     Task UserCreateNewRoom(RoomCreateDto dto); // Creates a new room with the given name.
     Task UserRoomInvite(RoomInviteDto dto); // Sends an invite to a room to the given user.
-    Task UserJoinRoom(string roomName); // Joins the user to the given room.
+    Task UserJoinRoom(RoomParticipantDto dto); // Joins the user to the given room.
     Task UserSendMessageToRoom(RoomMessageDto dto); // Sends a message to the room.
     Task UserPushDeviceInfo(UserCharaDeviceInfoMessageDto dto); // Requests the device info of the given user.
     Task UserUpdateDevice(UpdateDeviceDto dto); // Updates the device of the user.
