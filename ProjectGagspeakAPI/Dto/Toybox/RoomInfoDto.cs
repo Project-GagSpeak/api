@@ -1,8 +1,5 @@
-using GagspeakAPI.Data.Character;
-using MessagePack;
-using global::GagspeakAPI.Data;
-using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.VibeServer;
+using MessagePack;
 
 namespace GagspeakAPI.Dto.Toybox;
 
@@ -12,7 +9,7 @@ namespace GagspeakAPI.Dto.Toybox;
 [MessagePackObject(keyAsPropertyName: true)]
 public record RoomInfoDto
 {
-    public string NewRoomName { get; set; } = "";
-    public PrivateRoomUser RoomHost { get; set; } = new("", "", false, false);
+    public string NewRoomName { get; set; } = string.Empty;
+    public PrivateRoomUser RoomHost { get; set; } = new(string.Empty, string.Empty, false, false);
     public List<PrivateRoomUser> ConnectedUsers { get; set; } = [];
 }
