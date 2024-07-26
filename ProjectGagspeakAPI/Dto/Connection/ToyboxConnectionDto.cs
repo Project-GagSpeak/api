@@ -2,6 +2,7 @@ using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
 using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Dto.Permissions;
+using GagspeakAPI.Dto.Toybox;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.Connection;
@@ -12,5 +13,13 @@ namespace GagspeakAPI.Dto.Connection;
 [MessagePackObject(keyAsPropertyName: true)]
 public record ToyboxConnectionDto(UserData User)
 {
-    public int ServerVersion { get; set; } // version of the gagspeak API
+    // version of the gagspeak API
+    public int ServerVersion { get; set; }
+
+    // the room the user is hosting @ time of join, if any
+    public RoomInfoDto HostedRoom { get; set; } = new();
+
+    // the room the user is a participant of @ time of join, if any
+    public List<RoomInfoDto> ConnectedRooms { get; set; } = new();
+
 }
