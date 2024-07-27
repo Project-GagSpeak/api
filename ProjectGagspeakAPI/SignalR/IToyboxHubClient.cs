@@ -17,7 +17,7 @@ public interface IToyboxHubClient : IToyboxHub
     void OnPrivateRoomJoined(Action<RoomInfoDto> act); // whenever you joined a room.
     void OnPrivateRoomOtherUserJoined(Action<RoomParticipantDto> act); // when a user joins the room. Sets them to active. (creates if not there yet)
     void OnPrivateRoomOtherUserLeft(Action<RoomParticipantDto> act); // when a user goes inactive from the room.
-    void OnPrivateRoomRemoved(Action<RoomParticipantDto> act); // when a user is fully removed from a room. Dispose of them from the list.
+    void OnPrivateRoomRemovedUser(Action<RoomParticipantDto> act); // when a user is fully removed from a room. Dispose of them from the list.
     void OnPrivateRoomUpdateUser(Action<RoomParticipantDto> act);
     void OnPrivateRoomMessage(Action<RoomMessageDto> act); // Recieves a message from another user in the room.
     void OnPrivateRoomReceiveUserDevice(Action<UserCharaDeviceInfoMessageDto> act); // Receives device info from another connected user.

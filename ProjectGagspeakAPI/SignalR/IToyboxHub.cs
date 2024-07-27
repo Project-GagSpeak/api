@@ -27,7 +27,7 @@ public interface IToyboxHub
     Task Client_PrivateRoomJoined(RoomInfoDto dto); // whenever you joined a room.
     Task Client_PrivateRoomOtherUserJoined(RoomParticipantDto dto); // when a user joins the room. Sets them to active. (creates if not there yet)
     Task Client_PrivateRoomOtherUserLeft(RoomParticipantDto dto); // when a user goes inactive from the room.
-    Task Client_PrivateRoomRemoved(RoomParticipantDto dto); // when a user is fully removed from a room. Dispose of them from the list.
+    Task Client_PrivateRoomRemovedUser(RoomParticipantDto dto); // when a user is fully removed from a room. Dispose of them from the list.
     Task Client_PrivateRoomUpdateUser(RoomParticipantDto dto); // Recieved upon a user updating their status.
     Task Client_PrivateRoomMessage(RoomMessageDto dto); // Recieves a message from another user in the room.
     Task Client_PrivateRoomReceiveUserDevice(UserCharaDeviceInfoMessageDto dto); // Receives device info from another connected user.
