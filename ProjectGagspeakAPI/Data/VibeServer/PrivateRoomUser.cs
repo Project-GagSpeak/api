@@ -17,4 +17,10 @@ namespace GagspeakAPI.Data.VibeServer;
 /// </para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PrivateRoomUser(string UserUID, string ChatAlias, bool ActiveInRoom, bool vibeAccess);
+public record PrivateRoomUser
+{
+    public string UserUID { get; set; } = string.Empty;
+    public string ChatAlias { get; set; } = string.Empty;
+    public bool ActiveInRoom { get; set; } = false;
+    public bool VibeAccess { get; set; } = false;
+};

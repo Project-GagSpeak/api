@@ -10,6 +10,6 @@ namespace GagspeakAPI.Dto.Toybox;
 public record RoomInfoDto
 {
     public string NewRoomName { get; set; } = string.Empty;
-    public PrivateRoomUser RoomHost { get; set; } = new(string.Empty, string.Empty, false, false);
+    public PrivateRoomUser RoomHost { get; set; } = new();
     public List<PrivateRoomUser> ConnectedUsers { get; set; } = [];
 }
