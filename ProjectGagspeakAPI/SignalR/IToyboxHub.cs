@@ -20,7 +20,10 @@ public interface IToyboxHub
     Task<bool> CheckToyboxClientHealth(); // REQUIRED to stay connected on redi's AKA maintain a connection.
 
     Task<ToyboxConnectionDto> GetToyboxConnectionDto(); // Get the connection details of the client to the serve
-    
+
+    Task<List<UserData>> UserGetOnlinePairs(List<string> uids); // get the current online users paired with this client
+    Task Client_UserSendOffline(UserDto dto);
+    Task Client_UserSendOnline(UserDto dto);
     /************ CALLBACKS ***************/
     Task Client_ReceiveToyboxServerMessage(MessageSeverity messageSeverity, string message);
     Task Client_UserReceiveRoomInvite(RoomInviteDto dto); // Receives a room invite from another user.

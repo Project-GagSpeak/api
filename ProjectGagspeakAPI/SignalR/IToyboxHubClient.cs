@@ -13,6 +13,8 @@ namespace GagspeakAPI.SignalR;
 public interface IToyboxHubClient : IToyboxHub
 {
     void OnReceiveToyboxServerMessage(Action<MessageSeverity, string> act); // send message to client
+    void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
+    void OnUserSendOnline(Action<UserDto> act); // send to a client that one of their paired users is online
     void OnUserReceiveRoomInvite(Action<RoomInviteDto> act); // Receives a room invite from another user.
     void OnPrivateRoomJoined(Action<RoomInfoDto> act); // whenever you joined a room.
     void OnPrivateRoomOtherUserJoined(Action<RoomParticipantDto> act); // when a user joins the room. Sets them to active. (creates if not there yet)
