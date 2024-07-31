@@ -7,17 +7,16 @@ using GagspeakAPI.Dto.Toybox;
 
 namespace GagspeakAPI.SignalR;
 
-/// <summary> The interface for the GagspeakHub
-/// <para>
-/// This interface is the server end of the SignalR calls made by the client.
-/// </para>
+/// <summary> 
+/// The interface for the GagspeakHub
+/// <para> This interface is the server end of the SignalR calls made by the client. </para>
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 4;               // First version of the API
-    const string Path = "/gagspeak";       // Path to the API on the hosted server
+    const int ApiVersion = 4;
+    const string Path = "/gagspeak";
 
-    Task<bool> CheckMainClientHealth();         // Check if the client is healthy
+    Task<bool> CheckMainClientHealth();
 
     /* ----------------- Task methods called upon by server and sent to clients ----------------- */
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
@@ -27,32 +26,129 @@ public interface IGagspeakHub
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
 
-    // sends a message to client informing them to update their pair permissions (composite) [ See variants for smaller updates ]
-    /* Client_UserUpdateSelf == The callback returned from server to the client caller. Will contain UID of person's perms to update if successful.*/
+    /// <summary>
+    /// Whenever we push a update to our own client global permissions, it must be validated by the server.
+    /// <para>
+    /// This is received by the server whenever we have successfully updated our pushed change to the server,
+    /// informing us that we can now update our global permissions client-side.
+    /// </para>
+    /// </summary>
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
-    Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
-    /* Client_UserUpdateOther == Callback returned from server to the other user who should update their permissions. */
-    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); /* special case for updating all permissions at once */
-    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);// this can update either the user self, or another paired user. It's all based on the UserData in the Dto
-    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);        // read above
-    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto); // read above
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Task Client_UserReceiveCharacterDataComposite(OnlineUserCharaCompositeDataDto dto); /* informs a client of a users login, sending latest data (COMPOSITE) */
-    Task Client_UserReceiveCharacterDataIpc(OnlineUserCharaIpcDataDto dto); /* informs a client of a users login, sending latest data (IPC ONLY) */
-    Task Client_UserReceiveCharacterDataAppearance(OnlineUserCharaAppearanceDataDto dto); /* informs a client of a users login, sending latest data (APPEARANCE ONLY) */
-    Task Client_UserReceiveCharacterDataWardrobe(OnlineUserCharaWardrobeDataDto dto); /* informs a client of a users login, sending latest data (WARDROBE ONLY) */
-    Task Client_UserReceiveCharacterDataAlias(OnlineUserCharaAliasDataDto dto); /* informs a client of a users login, sending latest data (ALIAS ONLY) */
-    Task Client_UserReceiveCharacterDataPattern(OnlineUserCharaPatternDataDto dto); /* informs a client of a users login, sending latest data (PATTERN ONLY) */
+    /// <summary>
+    /// Whenever we push a update to our own unique pair permissions 
+    /// for an online user-pair, it must be validated by the server.
+    /// <para>
+    /// The server will send a callback to other pairs that the update is for 
+    /// the pair, while it will return to us an update self-perm.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
+
+    /// <summary>
+    /// Whenever we push a update to our own unique pair access permissions 
+    /// for an online user-pair, it must be validated by the server.
+    /// <para>
+    /// The server will send a callback to other pairs that the update is for 
+    /// the pair, while it will return to us an update self-perm.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
+
+    /// <summary>
+    /// A special call received by a paired user once they establish a preset 
+    /// update for their permissions, sending you them in bulk.
+    /// <para>
+    /// This is only sent to you by the user who defined this preset for you, 
+    /// and only called back to your user.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto);
+    
+    /// <summary>
+    /// Receives a callback from the server to update the global permissions of another pair.
+    /// <para>
+    /// You will only receive this callback when this userpair has updated their global permissions.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
+    
+    /// <summary>
+    /// Receives a callback from the server to update the unique permissions of another pair.
+    /// <para>
+    /// You will only receive this callback when this userpair has updated their unique permissions for you.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
+    
+    /// <summary>
+    /// Receives a callback from the server to update the unique access permissions of another pair.
+    /// <para>
+    /// You will only receive this callback when this userpair has updated their unique access permissions for you.
+    /// </para>
+    /// </summary>
+    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
+    
+    /// <summary>
+    /// Receives callback from server to update the collective data of a userpair.
+    /// <para>
+    /// This is typically, and intended to only be called, whenever a pair is 
+    /// either added or initially called once you go online.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataComposite(OnlineUserCharaCompositeDataDto dto);
+   
+    /// <summary>
+    /// Receives callback from server to update IPC data for either self or a pair.
+    /// <para>
+    /// By the time this data is received, all validation checks SHOULD have been run,
+    /// so we can simply update the data.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataIpc(OnlineUserCharaIpcDataDto dto);
+
+    /// <summary>
+    /// Receives callback from server to update Appearance data for either self or a pair.
+    /// <para>
+    /// By the time this data is received, all validation checks SHOULD have been run, 
+    /// so we can simply update the data.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataAppearance(OnlineUserCharaAppearanceDataDto dto);
+
+    /// <summary>
+    /// Receives callback from server to update Wardrobe data for either self or a pair.
+    /// <para>
+    /// By the time this data is received, all validation checks SHOULD have been run, 
+    /// so we can simply update the data.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+
+    /// <summary>
+    /// Receives callback from server to update Alias data for a pair.
+    /// (Should never be for client pair.)
+    /// <para>
+    /// Retrieved whenever one of the clients user-pairs updates their alias list in any way.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataAlias(OnlineUserCharaAliasDataDto dto);
+    
+    /// <summary>
+    /// Receives callback from server to update Toybox data for either the client or for a pair.
+    /// <para>
+    /// By the time this data is received, all validation checks SHOULD have been run, 
+    /// so we can simply update the data.
+    /// </para>
+    /// </summary>
+    Task Client_UserReceiveCharacterDataToybox(OnlineUserCharaPatternDataDto dto);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
     Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
     Task Client_DisplayVerificationPopup(VerificationDto dto); /* Displays a verification popup to this client. Triggered by discord bot */
 
-
-    /* ----------------- Task for grabbing a users current connectionDto ----------------- */
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
     /* ----------------- Task methods called upon by clients and sent to the server ----------------- */
@@ -65,19 +161,109 @@ public interface IGagspeakHub
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
 
     /* ***************** PERMISSION SENDING SECTION ***************** */
-    Task UserPushData(UserCharaCompositeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (composite)
-    Task UserPushDataIpc(UserCharaIpcDataMessageDto dto); // push clients data to the server, updating self & paired online clients (ipc ONLY)
-    Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto); // push clients data to the server, updating self & paired online clients (appearance ONLY)
-    Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto); // push clients data to the server, updating self & paired online clients (wardrobe ONLY)
-    Task UserPushDataAlias(UserCharaAliasDataMessageDto dto); // push clients data to the server, updating self & paired online clients (alias ONLY)
-    Task UserPushDataPattern(UserCharaPatternDataMessageDto dto); // push clients data to the server, updating self & paired online clients (pattern ONLY)
+    /// <summary>
+    /// Pushes the compiled information from all other modules DTO at once.
+    /// <para> Meant for a bulk send in a send online push for initial updates. </para>
+    /// </summary>
+    Task UserPushData(UserCharaCompositeDataMessageDto dto);
 
-    // for now, i will generalize the permissions into 3 sections, but if this becomes a problem later,
-    // split them into subsections like we tried before.
-    Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto); // update a global permission of the client caller (UserData == UserUID)
-    Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto); // update a pair permission of the client caller (UserData == UserUID)
-    Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto); // updates an edit access permission of the client caller. Caller must equal User affected.
-    Task UserUpdateOtherGlobalPerm(UserGlobalPermChangeDto dto); // update a global permission of another paired user (UserData == paired user)
-    Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto); // update a pair permission of another paired user (UserData == paired user)
+    /// <summary>
+    /// pushes IPC data to the server, updating paired online clients
+    /// <para> Currently only includes the moodles IPC string, as C+ is stored locally. </para>
+    /// </summary>
+    Task UserPushDataIpc(UserCharaIpcDataMessageDto dto);
+    
+    /// <summary>
+    /// Pushes a player's appearance data to the server, updating paired online clients.
+    /// <para>
+    /// Information pushed includes info about current gags, locks, passwords, timers, and assigners 
+    /// </para>
+    /// <para><b> Of Note: Because timers are in DateTimeOffsetUTC format, we will not need to worry update data messing up timers. </b></para>
+    /// </summary>
+    Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto);
+
+    /// <summary>
+    /// Pushes a player's wardrobe data to the server, updating paired online clients.
+    /// <para> 
+    /// Information pushed includes the list of restraint sets by name, and info about the active set. 
+    /// </para>
+    /// <para>
+    /// <b> For another client pair to update someone else's restraint set, the following must be true: </b>
+    /// <list type="bullet">
+    /// <item> Cannot activate a set if a set is currently active. </item>
+    /// <item> Cannot lock a set if it is not the currently active set. </item>
+    /// <item> Cannot unlock a set if you were not the one who locked it. (maybe add exceptions to this later idk) </item>
+    /// <item> Time To lock cannot exceed the player's set max allowed lock time. </item>
+    /// </list>
+    /// If any of these are violated, do not push update to server.
+    /// </para>
+    /// <para><b> Be Careful that you do not introduce feedback loops when updating changes. </b></para>
+    /// </summary>
+    Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto);
+
+    /// <summary>
+    /// Pushes a player's alias data to the server, updating the userpair of the client that should be updated.
+    /// <para> Information pushed includes the list of triggers the client has set for the corresponding user. </para>
+    /// <para> The information is pushed to the recipient user whenever the clients trigger list is modified in any way, keeping them up to date. </para>
+    /// </summary>
+    Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
+
+    /// <summary>
+    /// Pushes data relevant to the toybox module to the server, updating other paired clients.
+    /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
+    /// </summary>
+    Task UserPushDataToybox(UserCharaPatternDataMessageDto dto);
+
+    /// <summary>
+    /// Pushes the collective permissions of edit access, unique pair perms, and global perms to another pair.
+    /// <para> 
+    /// This should only be called upon setting a preset for a player, to avoid spamming the server.
+    /// </para>
+    /// </summary>
+    Task UserPushAllPerms(UserPairUpdateAllPermsDto dto);
+
+    /// <summary>
+    /// Push an update of your own global permissions to the server, and update other pairs with your change.
+    /// <para> Manages the synchronization of pairs viewing on one another permissions that are set. </para>
+    /// </summary>
+    Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto);
+
+    /// <summary>
+    /// Push an update of your own unique permissions for a specific pair to the server. 
+    /// <para> This change is also pushed to the pair you made it for. </para>
+    /// </summary>
+    Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto);
+
+    /// <summary>
+    /// Push an update of your own access permissions for a specific pair to the server.
+    /// <para> This change is also pushed to the pair you made it for. </para>
+    /// </summary>
+    Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto);
+
+    /// <summary>
+    /// Push an update you made to another pairs global permissions to the server.
+    /// <para> 
+    /// You must be granted access to make this change in order to make it.
+    /// So if it is pushed, we assume you had access. 
+    /// </para>
+    /// <para> 
+    /// Additionally, once this change is applied to the pair, it will be reflected 
+    /// back to all pairs of that affected pair (including us). Allowing us to update it properly.
+    /// </para>
+    /// </summary>
+    Task UserUpdateOtherGlobalPerm(UserGlobalPermChangeDto dto);
+
+    /// <summary>
+    /// Push an update you made to another pairs unique permissions to the server.
+    /// <para>
+    /// You must be granted access to make this change in order to make it.
+    /// So if it is pushed, we assume you had access.
+    /// </para>
+    /// <para>
+    /// Additionally, once this change is applied to the pair, it will be reflected
+    /// back to all pairs of that affected pair (including us). Allowing us to update it properly.
+    /// </para>
+    /// </summary>
+    Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto);
 
 }

@@ -34,15 +34,17 @@ public record UserPairPermissions
     public bool PairCanApplyYourMoodlesToYou { get; set; } = false; // if the client pair can apply your moodles
     public TimeSpan MaxMoodleTime { get; set; } = TimeSpan.Zero; // the max time the client pair can apply moodles to you
     public bool AllowPermanentMoodles { get; set; } = false; // if the client pair can apply permanent moodles to you
+    public bool AllowRemovingMoodles { get; set; } = false; // if the client pair can remove moodles from you
+
 
     // unique permissions for the toybox
     public bool ChangeToyState { get; set; } = false;   // if the client pair can turn your toy on and off.
     public bool CanControlIntensity { get; set; } = false;    // if the client pair can control the intensity of your toy.
     public bool VibratorAlarms { get; set; } = false; // if the client pair can set alarms on your toy.
+    public bool VibratorAlarmsToggle { get; set; } = false; // if the client pair can toggle alarms on your toy.
     public bool CanUseRealtimeVibeRemote { get; set; } = false; // if the client pair can use the real-time vibe remote on your toy.
     public bool CanExecutePatterns { get; set; } = false;      // if the client pair can use patterns on your toy.
     public bool CanExecuteTriggers { get; set; } = false;      // if the client pair can use triggers on your toy.
-    public bool CanCreateTriggers { get; set; } = false;       // if the client pair can create triggers on your toy.
     public bool CanSendTriggers { get; set; } = false;         // if the client pair can send triggers to your toy.
 
     // unique hardcore permissions.

@@ -1,13 +1,13 @@
-﻿using GagspeakAPI.Data;
+using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.User;
 
 /// <summary>
-/// Represents a message that contains the character data of a user, and the recipients that should recieve it
+/// Message DTO Holds the list of triggers that the sender has set for the recipient user.
 /// </summary>
-/// <param name="Recipients">The list of client users that should recieve this data transfer object</param>
-/// <param name="CharaData">Contains information related to the users permissions and settings.</param>
+/// <param name="RecipientUser"> The User receiving this updated information. </param>
+/// <param name="AliasData"> Contains the alias list of triggers that the sender has set for the recipient user. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaAliasDataMessageDto(List<UserData> Recipients, CharacterAliasData AliasData);
+public record UserCharaAliasDataMessageDto(UserData RecipientUser, CharacterAliasData AliasData);

@@ -18,7 +18,6 @@ public record UserEditAccessPermissions
     public bool WardrobeEnabledAllowed { get; set; } = false; // Global
     public bool ItemAutoEquipAllowed { get; set; } = false; // Global
     public bool RestraintSetAutoEquipAllowed { get; set; } = false; // Global
-    public bool LockGagStorageOnGagLockAllowed { get; set; } = false; // Global
     public bool ApplyRestraintSetsAllowed { get; set; } = false;
     public bool LockRestraintSetsAllowed { get; set; } = false;
     public bool MaxAllowedRestraintTimeAllowed { get; set; } = false;
@@ -39,6 +38,7 @@ public record UserEditAccessPermissions
     public bool PairCanApplyYourMoodlesToYouAllowed { get; set; } = false;
     public bool MaxMoodleTimeAllowed { get; set; } = false;
     public bool AllowPermanentMoodlesAllowed { get; set; } = false;
+    public bool AllowRemovingMoodlesAllowed { get; set; } = false;
 
     // unique permissions for the toybox
     public bool ToyboxEnabledAllowed { get; set; } = false; // Global
@@ -48,9 +48,9 @@ public record UserEditAccessPermissions
     public bool ChangeToyStateAllowed { get; set; } = false;
     public bool CanControlIntensityAllowed { get; set; } = false;
     public bool VibratorAlarmsAllowed { get; set; } = false;
+    public bool VibratorAlarmsToggleAllowed { get; set; } = false;
     public bool CanUseRealtimeVibeRemoteAllowed { get; set; } = false;
     public bool CanExecutePatternsAllowed { get; set; } = false;
     public bool CanExecuteTriggersAllowed { get; set; } = false;
-    public bool CanCreateTriggersAllowed { get; set; } = false;
     public bool CanSendTriggersAllowed { get; set; } = false;
 }
