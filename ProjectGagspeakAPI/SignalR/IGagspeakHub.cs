@@ -26,6 +26,7 @@ public interface IGagspeakHub
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
 
+    #region Permission Callbacks
     /// <summary>
     /// Whenever we push a update to our own client global permissions, it must be validated by the server.
     /// <para>
@@ -88,7 +89,9 @@ public interface IGagspeakHub
     /// </para>
     /// </summary>
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
-    
+    #endregion Permission Callbacks
+
+    #region CharacterData Update Callbacks
     /// <summary>
     /// Receives callback from server to update the collective data of a userpair.
     /// <para>
@@ -142,16 +145,18 @@ public interface IGagspeakHub
     /// </para>
     /// </summary>
     Task Client_UserReceiveCharacterDataToybox(OnlineUserCharaPatternDataDto dto);
+    #endregion CharacterData Update Callbacks
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    #region Generic Callbacks
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
     Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
     Task Client_DisplayVerificationPopup(VerificationDto dto); /* Displays a verification popup to this client. Triggered by discord bot */
+    #endregion Generic Callbacks
 
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
-    /* ----------------- Task methods called upon by clients and sent to the server ----------------- */
+    #region Generic Interactions
     Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
     Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
     Task UserDelete(); // delete this users account from the servers database
@@ -159,8 +164,9 @@ public interface IGagspeakHub
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
+    #endregion Generic Interactions
 
-    /* ***************** PERMISSION SENDING SECTION ***************** */
+    #region Client Push Own Data Updates
     /// <summary>
     /// Pushes the compiled information from all other modules DTO at once.
     /// <para> Meant for a bulk send in a send online push for initial updates. </para>
@@ -213,7 +219,43 @@ public interface IGagspeakHub
     /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
     /// </summary>
     Task UserPushDataToybox(UserCharaPatternDataMessageDto dto);
+    #endregion Client Push Own Data Updates
 
+    #region Client Update Other UserPair Data
+    /// <summary>
+    /// Pushes an updated version of the pair's current IPC data to the server.
+    /// <para> Once server handles update, it is pushed to all pairs of the pair, including us. </para>
+    /// <para> (Mainly for injecting new modifications from stored data) </para>
+    /// </summary>
+    Task UserPushPairDataIpcUpdate(OnlineUserCharaIpcDataDto dto);
+
+    /// <summary>
+    /// Pushes an updated state of the pair's appearance data after we made modifications to it, to the server.
+    /// <para> Once server handles update, it is pushed to all pairs of the pair, including us. </para>
+    /// <para><b> Of Note: Because timers are in DateTimeOffsetUTC format, we will not need to worry update data messing up timers. </b></para>
+    /// </summary>
+    Task UserPushPairDataAppearanceUpdate(OnlineUserCharaAppearanceDataDto dto);
+
+    /// <summary>
+    /// Pushes an updated version of a pair's Wardrobe DTO.
+    /// <para>
+    /// In no way should this ever modify the list of names. The only thing updated via this call 
+    /// should be the labels about the active sets, and the active set information.
+    /// </para>
+    /// </summary>
+    Task UserPushPairDataWardrobeUpdate(OnlineUserCharaWardrobeDataDto dto);
+
+    /* ----- Yes there is intentionally no PushAliasData here. Nobody except the client of the Alias List should be able to modify it. ----- */
+
+    /// <summary>
+    /// Pushes an updated version of a pair's Toybox DTO.
+    /// <para> Pushes an updated version of the information from a pairs toybox data. </para>
+    /// <para> This is called whenever we toggle a pairs trigger, alarm, or pattern. </para>
+    /// </summary>
+    Task UserPushPairDataToyboxUpdate(OnlineUserCharaPatternDataDto dto);
+    #endregion Client Update Other UserPair Data
+
+    #region Permission Updates
     /// <summary>
     /// Pushes the collective permissions of edit access, unique pair perms, and global perms to another pair.
     /// <para> 
@@ -265,5 +307,6 @@ public interface IGagspeakHub
     /// </para>
     /// </summary>
     Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto);
+    #endregion Permission Updates
 
 }
