@@ -27,5 +27,5 @@ public record TriggerInfo
     public TriggerKind Type { get; set; } = TriggerKind.Chat;
 
     /// <summary> Who has access to use the trigger. </summary>
-    public List<string> CanTrigger { get; set; } = [];
+    public List<string> CanViewAndToggleTrigger { get; set; } = [];
 }

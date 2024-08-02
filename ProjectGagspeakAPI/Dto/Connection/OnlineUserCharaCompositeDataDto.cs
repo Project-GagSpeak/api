@@ -2,15 +2,15 @@
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.Character;
 using MessagePack;
+using GagspeakAPI.Data.Enum;
 
 namespace GagspeakAPI.Dto.Connection;
 
 /// <summary>
-/// 
-/// Data Transfer Object record for an online user, with their character data attached.
-/// 
+/// Ultimately this should be removed, or if kept, only used for initial sign-in's and sign-offs.
+/// The most resource heavy function we have.
+/// <para><b>User == The user Updated (can be client caller or other pair)</b></para>
 /// </summary>
-/// <param name="User"> the user who just went online and is sending us their composite data </param>
-/// <param name="CharaData"> the composite character data containing all components of a users characterdata</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaCompositeDataDto(UserData User, CharacterCompositeData CompositeData) : UserDto(User);
+public record OnlineUserCompositeDataDto(UserData User, 
+    CharacterCompositeData CompositeData, DataUpdateKind UpdateKind) : UserDto(User);

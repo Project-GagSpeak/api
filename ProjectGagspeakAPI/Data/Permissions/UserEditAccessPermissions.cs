@@ -11,6 +11,8 @@ public record UserEditAccessPermissions
     public bool CommandsFromPartyAllowed { get; set; } = false; // Global
     public bool LiveChatGarblerActiveAllowed { get; set; } = false; // Global
     public bool LiveChatGarblerLockedAllowed { get; set; } = false; // Global
+    public bool GagFeaturesAllowed { get; set; } = false;
+    public bool OwnerLocksAllowed { get; set; } = false;
     public bool ExtendedLockTimesAllowed { get; set; } = false;
     public bool MaxLockTimeAllowed { get; set; } = false;
 
@@ -21,6 +23,7 @@ public record UserEditAccessPermissions
     public bool ApplyRestraintSetsAllowed { get; set; } = false;
     public bool LockRestraintSetsAllowed { get; set; } = false;
     public bool MaxAllowedRestraintTimeAllowed { get; set; } = false;
+    public bool UnlockRestraintSetsAllowed { get; set; } = false;
     public bool RemoveRestraintSetsAllowed { get; set; } = false;
 
     // unique permissions for the puppeteer

@@ -13,7 +13,7 @@ namespace GagspeakAPI.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 4;
+    const int ApiVersion = 5;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
@@ -99,7 +99,7 @@ public interface IGagspeakHub
     /// either added or initially called once you go online.
     /// </para>
     /// </summary>
-    Task Client_UserReceiveCharacterDataComposite(OnlineUserCharaCompositeDataDto dto);
+    Task Client_UserReceiveCharacterDataComposite(OnlineUserCompositeDataDto dto);
    
     /// <summary>
     /// Receives callback from server to update IPC data for either self or a pair.
@@ -144,7 +144,7 @@ public interface IGagspeakHub
     /// so we can simply update the data.
     /// </para>
     /// </summary>
-    Task Client_UserReceiveCharacterDataToybox(OnlineUserCharaPatternDataDto dto);
+    Task Client_UserReceiveCharacterDataToybox(OnlineUserCharaToyboxDataDto dto);
     #endregion CharacterData Update Callbacks
 
     #region Generic Callbacks
@@ -163,6 +163,7 @@ public interface IGagspeakHub
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
+    Task UserReportProfile(UserProfileReportDto userDto); // hopefully this is never used x-x...
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
     #endregion Generic Interactions
 
@@ -218,7 +219,7 @@ public interface IGagspeakHub
     /// Pushes data relevant to the toybox module to the server, updating other paired clients.
     /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
     /// </summary>
-    Task UserPushDataToybox(UserCharaPatternDataMessageDto dto);
+    Task UserPushDataToybox(UserCharaPatternToyboxMessageDto dto);
     #endregion Client Push Own Data Updates
 
     #region Client Update Other UserPair Data
@@ -252,7 +253,7 @@ public interface IGagspeakHub
     /// <para> Pushes an updated version of the information from a pairs toybox data. </para>
     /// <para> This is called whenever we toggle a pairs trigger, alarm, or pattern. </para>
     /// </summary>
-    Task UserPushPairDataToyboxUpdate(OnlineUserCharaPatternDataDto dto);
+    Task UserPushPairDataToyboxUpdate(OnlineUserCharaToyboxDataDto dto);
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates

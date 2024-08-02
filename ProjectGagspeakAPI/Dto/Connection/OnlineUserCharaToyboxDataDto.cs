@@ -7,8 +7,8 @@ using MessagePack;
 namespace GagspeakAPI.Dto.Connection;
 
 /// <summary>
-/// DTO for handling updated to a pair or self's Appearance data.
+/// DTO for handling updated to a pair or self's Toybox data.
 /// <para><b>User == The user Updated (can be client caller or other pair)</b></para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaAppearanceDataDto(UserData User, CharacterAppearanceData AppearanceData, DataUpdateKind UpdateKind) : UserDto(User);
+public record OnlineUserCharaToyboxDataDto(UserData User, CharacterToyboxInfo ToyboxInfo, DataUpdateKind UpdateKind) : UserDto(User);

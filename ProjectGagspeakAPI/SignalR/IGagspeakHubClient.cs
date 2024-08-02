@@ -37,12 +37,12 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserUpdateOtherPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
     void OnUserUpdateOtherPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
 
-    void OnUserReceiveCharacterDataComposite(Action<OnlineUserCharaCompositeDataDto> act); // send to a client that one of their paired users has updated their character data (composite)
+    void OnUserReceiveCharacterDataComposite(Action<OnlineUserCompositeDataDto> act); // send to a client that one of their paired users has updated their character data (composite)
     void OnUserReceiveCharacterDataIpc(Action<OnlineUserCharaIpcDataDto> act); // send to a client that one of their paired users has updated their character data (ipc)
     void OnUserReceiveCharacterDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act); // send to a client that one of their paired users has updated their character data (appearance)
     void OnUserReceiveCharacterDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act); // send to a client that one of their paired users has updated their character data (wardrobe)
     void OnUserReceiveCharacterDataAlias(Action<OnlineUserCharaAliasDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
-    void OnUserReceiveCharacterDataPattern(Action<OnlineUserCharaPatternDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
+    void OnUserReceiveCharacterDataPattern(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
 
     void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
     void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online

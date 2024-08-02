@@ -1,16 +1,13 @@
 ﻿using GagspeakAPI.Data;
-using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.Character;
+using GagspeakAPI.Dto.User;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.Connection;
 
 /// <summary>
-/// 
-/// Data Transfer Object record for an online user, with their character data attached.
-/// 
+/// DTO for handling updating self's IPC data.
+/// <para><b>User == The user Updated (should be client caller)</b></para>
 /// </summary>
-/// <param name="User"> the user who just went online and is sending us their composite data </param>
-/// <param name="CharaData"> the composite character data containing all components of a users characterdata</param>
 [MessagePackObject(keyAsPropertyName: true)]
 public record OnlineUserCharaAliasDataDto(UserData User, CharacterAliasData AliasData) : UserDto(User);

@@ -8,7 +8,7 @@ namespace GagspeakAPI.Data.Character;
 /// CharacterData class stores all of the user's settings, permissions, and appearance data
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharacterPatternInfo
+public class CharacterToyboxInfo
 {
     // Properties specific to pattern info
     public List<PatternInfo> PatternList { get; set; } = new();

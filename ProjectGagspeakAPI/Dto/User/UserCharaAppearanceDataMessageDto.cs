@@ -1,13 +1,12 @@
 ﻿using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data.Enum;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.User;
 
 /// <summary>
-/// Represents a message that contains the character data of a user, and the recipients that should recieve it
+/// DTO for handling the updating of our own data to our online user pairs.
 /// </summary>
-/// <param name="Recipients">The list of client users that should recieve this data transfer object</param>
-/// <param name="CharaData">Contains information related to the users permissions and settings.</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaAppearanceDataMessageDto(List<UserData> Recipients, CharacterAppearanceData AppearanceData);
+public record UserCharaAppearanceDataMessageDto(List<UserData> Recipients, CharacterAppearanceData AppearanceData, DataUpdateKind UpdateKind);

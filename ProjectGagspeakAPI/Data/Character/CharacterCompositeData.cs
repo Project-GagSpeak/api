@@ -21,5 +21,5 @@ public class CharacterCompositeData
     public CharacterAliasData AliasData { get; set; } = new();
 
     // stores the list of patterns you have in your toybox, and info for them (will also store trigger information) Updates to all ONLINE PLAYERS
-    public CharacterPatternInfo PatternData { get; set; } = new();
+    public CharacterToyboxInfo PatternData { get; set; } = new();
 }

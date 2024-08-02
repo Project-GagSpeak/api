@@ -12,6 +12,6 @@ public enum Padlocks
     PasswordPadlock,        // Password Padlock, must enter password to unlock
     FiveMinutesPadlock,     // 5 minute padlock, must wait 5 minutes to unlock
     TimerPasswordPadlock,   // Timer Password Padlock, must enter password to unlock, but only after a certain amount of time
-    MistressPadlock,        // Mistress Padlock, must ask mistress to unlock
-    MistressTimerPadlock,   // Mistress Timer Padlock, must ask mistress to unlock, but only after a certain amount of time
+    OwnerPadlock,           // Can only be locked/unlocked by people with Owner Padlock perm Access
+    OwnerTimerPadlock,      // Can only be locked/unlocked by people with Owner Padlock perm Access (Timed)
 };
