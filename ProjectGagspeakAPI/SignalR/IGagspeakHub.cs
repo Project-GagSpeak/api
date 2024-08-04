@@ -100,51 +100,39 @@ public interface IGagspeakHub
     /// </para>
     /// </summary>
     Task Client_UserReceiveCharacterDataComposite(OnlineUserCompositeDataDto dto);
-   
-    /// <summary>
-    /// Receives callback from server to update IPC data for either self or a pair.
-    /// <para>
-    /// By the time this data is received, all validation checks SHOULD have been run,
-    /// so we can simply update the data.
-    /// </para>
-    /// </summary>
-    Task Client_UserReceiveCharacterDataIpc(OnlineUserCharaIpcDataDto dto);
 
-    /// <summary>
-    /// Receives callback from server to update Appearance data for either self or a pair.
-    /// <para>
-    /// By the time this data is received, all validation checks SHOULD have been run, 
-    /// so we can simply update the data.
-    /// </para>
-    /// </summary>
-    Task Client_UserReceiveCharacterDataAppearance(OnlineUserCharaAppearanceDataDto dto);
 
-    /// <summary>
-    /// Receives callback from server to update Wardrobe data for either self or a pair.
-    /// <para>
-    /// By the time this data is received, all validation checks SHOULD have been run, 
-    /// so we can simply update the data.
-    /// </para>
-    /// </summary>
-    Task Client_UserReceiveCharacterDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+    /// <summary> Callback to forcefully update Client's own IPC data. </summary>
+    Task Client_UserReceiveOwnDataIpc(OnlineUserCharaIpcDataDto dto);
 
-    /// <summary>
-    /// Receives callback from server to update Alias data for a pair.
-    /// (Should never be for client pair.)
-    /// <para>
-    /// Retrieved whenever one of the clients user-pairs updates their alias list in any way.
-    /// </para>
-    /// </summary>
-    Task Client_UserReceiveCharacterDataAlias(OnlineUserCharaAliasDataDto dto);
-    
-    /// <summary>
-    /// Receives callback from server to update Toybox data for either the client or for a pair.
-    /// <para>
-    /// By the time this data is received, all validation checks SHOULD have been run, 
-    /// so we can simply update the data.
-    /// </para>
-    /// </summary>
-    Task Client_UserReceiveCharacterDataToybox(OnlineUserCharaToyboxDataDto dto);
+    /// <summary> Callback to forcefully update a paired user's IPC data. </summary>
+    Task Client_UserReceiveOtherDataIpc(OnlineUserCharaIpcDataDto dto);
+
+
+
+    /// <summary> Callback to forcefully update Client's own Appearance data. </summary>
+    Task Client_UserReceiveOwnDataAppearance(OnlineUserCharaAppearanceDataDto dto);
+
+    /// <summary> Callback to forcefully update a paired user's Appearance data. </summary>
+    Task Client_UserReceiveOtherDataAppearance(OnlineUserCharaAppearanceDataDto dto);
+
+
+    /// <summary> Callback to forcefully update Client's own Wardrobe data. </summary>
+    Task Client_UserReceiveOwnDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+
+    /// <summary> Callback to forcefully update a paired user's Wardrobe data. </summary>
+    Task Client_UserReceiveOtherDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+
+
+    /// <summary> Callback to forcefully update Client's own Alias data. </summary>
+    Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
+
+
+    /// <summary> Callback to forcefully update Client's own Toybox data. </summary>
+    Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
+
+    /// <summary> Callback to forcefully update a paired user's Toybox data. </summary>
+    Task Client_UserReceiveOtherDataToybox(OnlineUserCharaToyboxDataDto dto);
     #endregion CharacterData Update Callbacks
 
     #region Generic Callbacks
@@ -219,7 +207,7 @@ public interface IGagspeakHub
     /// Pushes data relevant to the toybox module to the server, updating other paired clients.
     /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
     /// </summary>
-    Task UserPushDataToybox(UserCharaPatternToyboxMessageDto dto);
+    Task UserPushDataToybox(UserCharaToyboxDataMessageDto dto);
     #endregion Client Push Own Data Updates
 
     #region Client Update Other UserPair Data

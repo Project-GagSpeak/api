@@ -38,11 +38,15 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserUpdateOtherPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
 
     void OnUserReceiveCharacterDataComposite(Action<OnlineUserCompositeDataDto> act); // send to a client that one of their paired users has updated their character data (composite)
-    void OnUserReceiveCharacterDataIpc(Action<OnlineUserCharaIpcDataDto> act); // send to a client that one of their paired users has updated their character data (ipc)
-    void OnUserReceiveCharacterDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act); // send to a client that one of their paired users has updated their character data (appearance)
-    void OnUserReceiveCharacterDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act); // send to a client that one of their paired users has updated their character data (wardrobe)
-    void OnUserReceiveCharacterDataAlias(Action<OnlineUserCharaAliasDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
-    void OnUserReceiveCharacterDataPattern(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
+    void OnUserReceiveOwnDataIpc(Action<OnlineUserCharaIpcDataDto> act); // send to a client that one of their paired users has updated their character data (ipc)
+    void OnUserReceiveOtherDataIpc(Action<OnlineUserCharaIpcDataDto> act);
+    void OnUserReceiveOwnDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act); // send to a client that one of their paired users has updated their character data (appearance)
+    void OnUserReceiveOtherDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
+    void OnUserReceiveOwnDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
+    void OnUserReceiveOtherDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
+    void OnUserReceiveOtherDataAlias(Action<OnlineUserCharaAliasDataDto> act); // update client with another UserPair's latest aliasList data.
+    void OnUserReceiveOwnDataToybox(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
+    void OnUserReceiveOtherDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
 
     void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
     void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online

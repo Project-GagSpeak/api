@@ -22,7 +22,7 @@ public enum DataUpdateKind
     AppearanceGagAppliedLayerOne,
     AppearanceGagAppliedLayerTwo,
     AppearanceGagAppliedLayerThree,
-    
+
     AppearanceGagLockedLayerOne,
     AppearanceGagLockedLayerTwo,
     AppearanceGagLockedLayerThree,
@@ -39,7 +39,7 @@ public enum DataUpdateKind
     WardrobeRestraintApplied,
     WardrobeRestraintLocked,
     WardrobeRestraintUnlocked,
-    WardrobeRestraintRemoved,
+    WardrobeRestraintRemoved, // Wording is weird. Removed means taken off, not Deleted.
     /* ------------------------------ */
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
     /* ------------------------------ */
@@ -57,6 +57,7 @@ public enum DataUpdateKind
 
     IpcMoodlesCleared,
     /* ------------------------------ */
+    ToyboxPatternListUpdated,
     ToyboxPatternActivated,
     ToyboxPatternDeactivated,
 

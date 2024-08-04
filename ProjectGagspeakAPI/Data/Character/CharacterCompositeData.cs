@@ -17,9 +17,10 @@ public class CharacterCompositeData
     // Restraint set information, Updates to all ONLINE PLAYERS (even when u are offline)
     public CharacterWardrobeData WardrobeData { get; set; } = new();
 
-    // Stores all of the puppeteer alias data for a user (stored per-pair) (currently isn't but i need to fit it) Updates to all ONLINE PLAYERS
-    public CharacterAliasData AliasData { get; set; } = new();
+    // Stores the list of alias triggers for all pairs, but when sending and receiving
+    // only the pair we care about is handled. (makes it so we can push in bulk)
+    public Dictionary<string, CharacterAliasData> AliasData { get; set; } = new();
 
     // stores the list of patterns you have in your toybox, and info for them (will also store trigger information) Updates to all ONLINE PLAYERS
-    public CharacterToyboxInfo PatternData { get; set; } = new();
+    public CharacterToyboxData ToyboxData { get; set; } = new();
 }
