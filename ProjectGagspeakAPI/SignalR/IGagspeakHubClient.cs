@@ -44,6 +44,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveOtherDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
     void OnUserReceiveOwnDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
     void OnUserReceiveOtherDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
+    void OnUserReceiveOwnDataAlias(Action<OnlineUserCharaAliasDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
     void OnUserReceiveOtherDataAlias(Action<OnlineUserCharaAliasDataDto> act); // update client with another UserPair's latest aliasList data.
     void OnUserReceiveOwnDataToybox(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
     void OnUserReceiveOtherDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
