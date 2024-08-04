@@ -27,78 +27,30 @@ public interface IGagspeakHub
     Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
 
     #region Permission Callbacks
-    /// <summary>
-    /// Whenever we push a update to our own client global permissions, it must be validated by the server.
-    /// <para>
-    /// This is received by the server whenever we have successfully updated our pushed change to the server,
-    /// informing us that we can now update our global permissions client-side.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update all of the userPair's global permissions. </summary>
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
 
-    /// <summary>
-    /// Whenever we push a update to our own unique pair permissions 
-    /// for an online user-pair, it must be validated by the server.
-    /// <para>
-    /// The server will send a callback to other pairs that the update is for 
-    /// the pair, while it will return to us an update self-perm.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update all of the userPair's permissions. </summary>
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
 
-    /// <summary>
-    /// Whenever we push a update to our own unique pair access permissions 
-    /// for an online user-pair, it must be validated by the server.
-    /// <para>
-    /// The server will send a callback to other pairs that the update is for 
-    /// the pair, while it will return to us an update self-perm.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update all of the userPair's access permissions. </summary>
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
 
-    /// <summary>
-    /// A special call received by a paired user once they establish a preset 
-    /// update for their permissions, sending you them in bulk.
-    /// <para>
-    /// This is only sent to you by the user who defined this preset for you, 
-    /// and only called back to your user.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update all of the userPair's permissions. </summary>
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto);
     
-    /// <summary>
-    /// Receives a callback from the server to update the global permissions of another pair.
-    /// <para>
-    /// You will only receive this callback when this userpair has updated their global permissions.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update another userPair's global permissions. </summary>
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
     
-    /// <summary>
-    /// Receives a callback from the server to update the unique permissions of another pair.
-    /// <para>
-    /// You will only receive this callback when this userpair has updated their unique permissions for you.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update another userPair's unique permissions. </summary>
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
     
-    /// <summary>
-    /// Receives a callback from the server to update the unique access permissions of another pair.
-    /// <para>
-    /// You will only receive this callback when this userpair has updated their unique access permissions for you.
-    /// </para>
-    /// </summary>
+    /// <summary> Receive callback to update another userPair's access permissions. </summary>
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
     #endregion Permission Callbacks
 
     #region CharacterData Update Callbacks
-    /// <summary>
-    /// Receives callback from server to update the collective data of a userpair.
-    /// <para>
-    /// This is typically, and intended to only be called, whenever a pair is 
-    /// either added or initially called once you go online.
-    /// </para>
-    /// </summary>
+    /// <summary> Push composite data to all paired users when you first go online. </summary>
     Task Client_UserReceiveCharacterDataComposite(OnlineUserCompositeDataDto dto);
 
 
@@ -117,6 +69,7 @@ public interface IGagspeakHub
     Task Client_UserReceiveOtherDataAppearance(OnlineUserCharaAppearanceDataDto dto);
 
 
+
     /// <summary> Callback to forcefully update Client's own Wardrobe data. </summary>
     Task Client_UserReceiveOwnDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
 
@@ -124,8 +77,13 @@ public interface IGagspeakHub
     Task Client_UserReceiveOtherDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
 
 
-    /// <summary> Callback to forcefully update Client's own Alias data. </summary>
+
+    /// <summary> Callback to update Client's own Alias data. (should only be re </summary>
+    Task Client_UserReceiveOwnDataAlias(OnlineUserCharaAliasDataDto dto);
+
+    /// <summary> Callback to forcefully update another pair's alias data. </summary>
     Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
+
 
 
     /// <summary> Callback to forcefully update Client's own Toybox data. </summary>
