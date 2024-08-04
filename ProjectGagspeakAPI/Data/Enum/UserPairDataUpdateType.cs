@@ -43,6 +43,7 @@ public enum DataUpdateKind
     /* ------------------------------ */
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
     /* ------------------------------ */
+    IpcUpdateVisible, // Only allow Client owning Data to modify this.
     IpcMoodleFromNonRecipientMoodleListAdded, // EX: Client Caller Applying Moodle to UserPair from Client Callers MoodleList
     IpcMoodleFromRecipientMoodleListAdded, // EX: Client Caller Applying Moodle to UserPair from Recipient MoodleList
     
