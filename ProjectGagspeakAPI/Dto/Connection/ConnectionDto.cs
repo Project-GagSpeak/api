@@ -28,4 +28,10 @@ public record ConnectionDto(UserData User)
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
     public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
 
+    public string WardrobeActiveSetName { get; set; } = ""; // the name of the user's active outfit
+    public string WardrobeActiveSetAssigner { get; set; } = ""; // person who Enabled the set.
+    public bool WardrobeActiveSetLocked { get; set; } = false; // the lock status of the user's active outfit
+    public string WardrobeActiveSetLockAssigner { get; set; } = ""; // person who Locked the set.
+    public string ToyboxActivePatternName { get; set; } = ""; // the name of the user's actively running pattern
+
 }
