@@ -39,7 +39,7 @@ public enum DataUpdateKind
     WardrobeRestraintApplied,
     WardrobeRestraintLocked,
     WardrobeRestraintUnlocked,
-    WardrobeRestraintRemoved, // Wording is weird. Removed means taken off, not Deleted.
+    WardrobeRestraintDisabled, // Wording is weird. Removed means taken off, not Deleted.
     /* ------------------------------ */
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
     /* ------------------------------ */
