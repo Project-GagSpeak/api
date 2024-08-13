@@ -49,6 +49,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveOwnDataToybox(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
     void OnUserReceiveOtherDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
 
+    void OnGlobalChatMessage(Action<GlobalChatMessageDto> act); // sends message to gagspeak global chat group.
     void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
     void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online
     void OnUserUpdateProfile(Action<UserDto> act); // send to a client that one of their paired users has updated their profile
