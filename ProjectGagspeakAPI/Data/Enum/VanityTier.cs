@@ -7,8 +7,8 @@ public enum CkSupporterTier
 {
     NoRole = 0,
     IllustriousSupporter = 1,
-    EsteemedPatron = 2,
-    ServerBooster = 3,
+    ServerBooster = 2,
+    EsteemedPatron = 3,
     DistinguishedConnoisseur = 4,
     KinkporiumMistress = 5,
 }
