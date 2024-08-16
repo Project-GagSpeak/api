@@ -41,6 +41,7 @@ public enum DataUpdateKind
     WardrobeRestraintUnlocked,
     WardrobeRestraintDisabled, // Wording is weird. Removed means taken off, not Deleted.
     /* ------------------------------ */
+    PuppeteerPlayerNameRegistered, // Only allow Client owning Data to modify this.
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
     /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.

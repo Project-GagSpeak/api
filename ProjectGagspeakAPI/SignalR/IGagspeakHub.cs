@@ -85,7 +85,6 @@ public interface IGagspeakHub
     Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
 
 
-
     /// <summary> Callback to forcefully update Client's own Toybox data. </summary>
     Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
 
@@ -163,6 +162,7 @@ public interface IGagspeakHub
     /// </summary>
     Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
 
+
     /// <summary>
     /// Pushes data relevant to the toybox module to the server, updating other paired clients.
     /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
@@ -194,7 +194,8 @@ public interface IGagspeakHub
     /// </summary>
     Task UserPushPairDataWardrobeUpdate(OnlineUserCharaWardrobeDataDto dto);
 
-    /* ----- Yes there is intentionally no PushAliasData here. Nobody except the client of the Alias List should be able to modify it. ----- */
+    /// <summary> Should ONLY ever be used and accepted for a name registration call. </summary>
+    Task UserPushPairDataAliasStorageUpdate(OnlineUserCharaAliasDataDto dto);
 
     /// <summary>
     /// Pushes an updated version of a pair's Toybox DTO.
