@@ -14,7 +14,7 @@ namespace GagspeakAPI.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 5;
+    const int ApiVersion = 6;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
