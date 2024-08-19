@@ -5,6 +5,7 @@ using GagspeakAPI.Dto.Permissions;
 using GagspeakAPI.Dto.Toybox;
 using GagspeakAPI.Dto.UserPair;
 using GagspeakAPI.Dto.Toybox;
+using GagspeakAPI.Dto.IPC;
 
 namespace GagspeakAPI.SignalR;
 
@@ -28,6 +29,11 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
     void OnUserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
     void OnUpdateUserIndividualPairStatusDto(Action<UserIndividualPairStatusDto> act); // pair status update
+
+    void OnUserApplyMoodlesByGuid(Action<ApplyMoodlesByGuidDto> act);
+    void OnUserApplyMoodlesByStatus(Action<ApplyMoodlesByStatusDto> act);
+    void OnUserRemoveMoodles(Action<RemoveMoodlesDto> act);
+    void OnUserClearMoodles(Action<UserDto> act);
 
     void OnUserUpdateSelfPairPermsGlobal(Action<UserGlobalPermChangeDto> act); // pair global permission
     void OnUserUpdateSelfPairPerms(Action<UserPairPermChangeDto> act); // pair permission update

@@ -1,4 +1,4 @@
-﻿using GagspeakAPI.Dto.User;
+using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.Permissions;
 
 namespace GagspeakAPI.Data.Comparer;

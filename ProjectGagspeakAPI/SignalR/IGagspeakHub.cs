@@ -4,6 +4,7 @@ using GagspeakAPI.Dto.UserPair;
 using GagspeakAPI.Data.Enum;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.Toybox;
+using GagspeakAPI.Dto.IPC;
 
 namespace GagspeakAPI.SignalR;
 
@@ -26,71 +27,35 @@ public interface IGagspeakHub
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
 
-    #region Permission Callbacks
-    /// <summary> Receive callback to update all of the userPair's global permissions. </summary>
+    /// <summary> Callbacks to update moodles. </summary>
+    Task Client_UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
+    Task Client_UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
+    Task Client_UserRemoveMoodles(RemoveMoodlesDto dto);
+    Task Client_UserClearMoodles(UserDto dto);
+
+
+    /// <summary> Callbacks to update permissions. </summary>
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
-
-    /// <summary> Receive callback to update all of the userPair's permissions. </summary>
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
-
-    /// <summary> Receive callback to update all of the userPair's access permissions. </summary>
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
-
-    /// <summary> Receive callback to update all of the userPair's permissions. </summary>
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto);
-    
-    /// <summary> Receive callback to update another userPair's global permissions. </summary>
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
-    
-    /// <summary> Receive callback to update another userPair's unique permissions. </summary>
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
-    
-    /// <summary> Receive callback to update another userPair's access permissions. </summary>
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
-    #endregion Permission Callbacks
 
-    #region CharacterData Update Callbacks
-    /// <summary> Push composite data to all paired users when you first go online. </summary>
+
+    /// <summary> Callbacks to update own or pair data. </summary>
     Task Client_UserReceiveCharacterDataComposite(OnlineUserCompositeDataDto dto);
-
-
-    /// <summary> Callback to forcefully update Client's own IPC data. </summary>
     Task Client_UserReceiveOwnDataIpc(OnlineUserCharaIpcDataDto dto);
-
-    /// <summary> Callback to forcefully update a paired user's IPC data. </summary>
     Task Client_UserReceiveOtherDataIpc(OnlineUserCharaIpcDataDto dto);
-
-
-
-    /// <summary> Callback to forcefully update Client's own Appearance data. </summary>
     Task Client_UserReceiveOwnDataAppearance(OnlineUserCharaAppearanceDataDto dto);
-
-    /// <summary> Callback to forcefully update a paired user's Appearance data. </summary>
     Task Client_UserReceiveOtherDataAppearance(OnlineUserCharaAppearanceDataDto dto);
-
-
-
-    /// <summary> Callback to forcefully update Client's own Wardrobe data. </summary>
     Task Client_UserReceiveOwnDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-
-    /// <summary> Callback to forcefully update a paired user's Wardrobe data. </summary>
     Task Client_UserReceiveOtherDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-
-
-
-    /// <summary> Callback to update Client's own Alias data. (should only be re </summary>
     Task Client_UserReceiveOwnDataAlias(OnlineUserCharaAliasDataDto dto);
-
-    /// <summary> Callback to forcefully update another pair's alias data. </summary>
     Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
-
-
-    /// <summary> Callback to forcefully update Client's own Toybox data. </summary>
     Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
-
-    /// <summary> Callback to forcefully update a paired user's Toybox data. </summary>
     Task Client_UserReceiveOtherDataToybox(OnlineUserCharaToyboxDataDto dto);
-    #endregion CharacterData Update Callbacks
 
     #region Generic Callbacks
     Task Client_GlobalChatMessage(GlobalChatMessageDto dto); /* Obtain global chat message from server */
@@ -113,6 +78,20 @@ public interface IGagspeakHub
     Task UserReportProfile(UserProfileReportDto userDto); // hopefully this is never used x-x...
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
     #endregion Generic Interactions
+
+    #region IPCTransfer
+    /// <summary> Applies the specified moodles to the pair's Status Manager. </summary>
+    Task UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
+
+    /// <summary> Applies the specified moodles to the pair's Status Manager from our own. </summary>
+    Task UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
+
+    /// <summary> Removes the specified moodles from the pair's Status Manager. </summary>
+    Task UserRemoveMoodles(RemoveMoodlesDto dto);
+
+    /// <summary> Clears all Statuses in the pairs Status Manager for them. </summary>
+    Task UserClearMoodles(UserDto dto);
+    #endregion IPCTransfer
 
     #region Client Push Own Data Updates
     /// <summary>
@@ -172,9 +151,7 @@ public interface IGagspeakHub
 
     #region Client Update Other UserPair Data
     /// <summary>
-    /// Pushes an updated version of the pair's current IPC data to the server.
-    /// <para> Once server handles update, it is pushed to all pairs of the pair, including us. </para>
-    /// <para> (Mainly for injecting new modifications from stored data) </para>
+    /// NOT SURE WHY WE WOULD EVER USE THIS AT THE MOMENT YET.
     /// </summary>
     Task UserPushPairDataIpcUpdate(OnlineUserCharaIpcDataDto dto);
 

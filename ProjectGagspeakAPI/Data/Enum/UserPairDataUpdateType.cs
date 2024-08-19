@@ -34,30 +34,23 @@ public enum DataUpdateKind
     AppearanceGagRemovedLayerOne,
     AppearanceGagRemovedLayerTwo,
     AppearanceGagRemovedLayerThree,
+    
     /* ------------------------------ */
     WardrobeRestraintOutfitsUpdated, // Only allow Client owning Data to modify this.
     WardrobeRestraintApplied,
     WardrobeRestraintLocked,
     WardrobeRestraintUnlocked,
     WardrobeRestraintDisabled, // Wording is weird. Removed means taken off, not Deleted.
+    
     /* ------------------------------ */
     PuppeteerPlayerNameRegistered, // Only allow Client owning Data to modify this.
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
+    
     /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.
-    IpcMoodleFromNonRecipientMoodleListAdded, // EX: Client Caller Applying Moodle to UserPair from Client Callers MoodleList
-    IpcMoodleFromRecipientMoodleListAdded, // EX: Client Caller Applying Moodle to UserPair from Recipient MoodleList
-    
-    IpcMoodlePresetFromNonRecipientMoodleListAdded, // EX: Client Caller Applying MoodlePreset to UserPair from Client Callers MoodlePresetList
-    IpcMoodlePresetFromRecipientMoodleListAdded, // EX: Client Caller Applying MoodlePreset to UserPair from Recipient MoodlePresetList
-    
-    IpcMoodleFromNonRecipientMoodleListRemoved, // EX: Client Caller Removing Moodle from UserPair from Client Callers MoodleList
-    IpcMoodleFromRecipientMoodleListRemoved, // EX: Client Caller Removing Moodle from UserPair from Recipient MoodleList
-    
-    IpcMoodlePresetFromNonRecipientMoodleListRemoved, // EX: Client Caller Removing MoodlePreset from UserPair from Client Callers MoodlePresetList
-    IpcMoodlePresetFromRecipientMoodleListRemoved, // EX: Client Caller Removing MoodlePreset from UserPair from Recipient MoodlePresetList
 
-    IpcMoodlesCleared,
+    
+
     /* ------------------------------ */
     ToyboxPatternListUpdated,
     ToyboxPatternActivated,
