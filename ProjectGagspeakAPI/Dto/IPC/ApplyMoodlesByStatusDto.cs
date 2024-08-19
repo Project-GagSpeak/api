@@ -10,4 +10,4 @@ namespace GagspeakAPI.Dto.IPC;
 /// This pair will then call to their moodles client to apply these statuses.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ApplyMoodlesByStatusDto(UserData RecipientUser, List<MoodlesStatusInfo> Statuses, IpcToggleType Type) : UserDto(RecipientUser);
+public record ApplyMoodlesByStatusDto(UserData User, List<MoodlesStatusInfo> Statuses, IpcToggleType Type) : UserDto(User);

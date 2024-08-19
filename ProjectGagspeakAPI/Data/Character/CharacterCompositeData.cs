@@ -8,9 +8,6 @@ namespace GagspeakAPI.Data.Character;
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharacterCompositeData
 {
-    // IPC Data (Moodles), Updates to all VISIBLE PLAYERS
-    public CharacterIPCData IPCData { get; set; } = new();
-
     // Gag Information, Updates to all ONLINE PLAYERS (even when u are offline)
     public CharacterAppearanceData AppearanceData { get; set; } = new();
 

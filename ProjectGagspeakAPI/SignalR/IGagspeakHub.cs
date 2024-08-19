@@ -81,16 +81,16 @@ public interface IGagspeakHub
 
     #region IPCTransfer
     /// <summary> Applies the specified moodles to the pair's Status Manager. </summary>
-    Task UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
+    Task<bool> UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
 
     /// <summary> Applies the specified moodles to the pair's Status Manager from our own. </summary>
-    Task UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
+    Task<bool> UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
 
     /// <summary> Removes the specified moodles from the pair's Status Manager. </summary>
-    Task UserRemoveMoodles(RemoveMoodlesDto dto);
+    Task<bool> UserRemoveMoodles(RemoveMoodlesDto dto);
 
     /// <summary> Clears all Statuses in the pairs Status Manager for them. </summary>
-    Task UserClearMoodles(UserDto dto);
+    Task<bool> UserClearMoodles(UserDto dto);
     #endregion IPCTransfer
 
     #region Client Push Own Data Updates

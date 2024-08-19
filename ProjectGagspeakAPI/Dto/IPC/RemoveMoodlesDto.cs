@@ -8,4 +8,4 @@ namespace GagspeakAPI.Dto.User;
 /// Notifies the RecipientUser to removes the listed Moodles from their status manager.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record RemoveMoodlesDto(UserData RecipientUser, List<Guid> Statuses) : UserDto(RecipientUser);
+public record RemoveMoodlesDto(UserData User, List<Guid> Statuses) : UserDto(User);
