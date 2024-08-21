@@ -18,7 +18,7 @@ public record AlarmInfo
     public string PatternToPlay { get; set; } = string.Empty;
 
     /// <summary> How long the pattern is played for. </summary>
-    public string PatternDuration { get; set; } = "00:00";
+    public TimeSpan PatternDuration { get; set; } = TimeSpan.Zero;
 
     /// <summary> What days of the week does that pattern go off? </summary>
     public List<DayOfWeek> RepeatFrequency { get; set; } = [];

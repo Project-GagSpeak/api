@@ -15,7 +15,7 @@ public record PatternInfo
     public string Description = string.Empty;
 
     /// <summary> The duration of the pattern </summary>
-    public string Duration = string.Empty;
+    public TimeSpan Duration = TimeSpan.Zero;
 
     /// <summary> If the pattern is active </summary>
     public bool IsActive = false;
