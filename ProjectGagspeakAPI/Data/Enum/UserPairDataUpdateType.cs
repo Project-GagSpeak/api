@@ -16,6 +16,8 @@ namespace GagspeakAPI.Data.Enum;
 /// </summary>
 public enum DataUpdateKind
 {
+    /* Used to know when a dummy enum is passed in */
+    None,
     /* ------------------------------ */
     FullDataUpdate, // called during initializations and sign-offs
     /* ------------------------------ */
@@ -49,7 +51,10 @@ public enum DataUpdateKind
     /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.
 
-    
+    IpcMoodlesStatusManagerChanged,
+    IpcMoodlesStatusesUpdated,
+    IpcMoodlesPresetsUpdated,   
+    IpcMoodlesCleared,
 
     /* ------------------------------ */
     ToyboxPatternListUpdated,
