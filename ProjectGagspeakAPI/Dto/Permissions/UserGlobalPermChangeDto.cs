@@ -16,5 +16,4 @@ namespace GagspeakAPI.Dto.Permissions;
 /// </para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserGlobalPermChangeDto(UserData User, KeyValuePair<string, object> ChangedPermission)
-    : UserDto(User);
+public record UserGlobalPermChangeDto(UserData User, KeyValuePair<string, object> ChangedPermission) : UserDto(User);

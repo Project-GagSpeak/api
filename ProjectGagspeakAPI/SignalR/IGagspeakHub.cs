@@ -38,9 +38,10 @@ public interface IGagspeakHub
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
-    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto);
+    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); // ONLY EVER USED WHEN ADDING A NEW PAIR.
+    Task Client_UserUpdateAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateAllUniquePermissions(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdateOtherPairPermsGlobalAll(UserAllGlobalPermChangeDto dto);
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
 
@@ -82,7 +83,7 @@ public interface IGagspeakHub
 
     #region IPCTransfer
     /// <summary> Applies the specified moodles to the pair's Status Manager. </summary>
-    Task<bool> UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
+    Task<bool> UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto); // this doesnt need to be bool anymore.
 
     /// <summary> Applies the specified moodles to the pair's Status Manager from our own. </summary>
     Task<bool> UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
@@ -184,13 +185,9 @@ public interface IGagspeakHub
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates
-    /// <summary>
-    /// Pushes the collective permissions of edit access, unique pair perms, and global perms to another pair.
-    /// <para> 
-    /// This should only be called upon setting a preset for a player, to avoid spamming the server.
-    /// </para>
-    /// </summary>
-    Task UserPushAllPerms(UserPairUpdateAllPermsDto dto);
+    /// <summary> ONLY CALLED UPON WHEN SELECTING A PRESET OR USING A SAFEWORD </summary>
+    Task UserPushAllGlobalPerms(UserAllGlobalPermChangeDto dto);
+    Task UserPushAllUniquePerms(UserPairUpdateAllUniqueDto dto);
 
     /// <summary>
     /// Push an update of your own global permissions to the server, and update other pairs with your change.
