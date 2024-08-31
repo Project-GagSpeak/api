@@ -35,12 +35,14 @@ public interface IGagspeakHub
 
 
     /// <summary> Callbacks to update permissions. </summary>
+    Task Client_UserUpdateSelfAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateSelfAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); // ONLY EVER USED WHEN ADDING A NEW PAIR.
-    Task Client_UserUpdateAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
-    Task Client_UserUpdateAllUniquePermissions(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateOtherAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateOtherAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);

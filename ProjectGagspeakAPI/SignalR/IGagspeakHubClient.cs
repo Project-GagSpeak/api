@@ -35,6 +35,8 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserRemoveMoodles(Action<RemoveMoodlesDto> act);
     void OnUserClearMoodles(Action<UserDto> act);
 
+    void OnUserUpdateSelfAllGlobalPerms(Action<UserAllGlobalPermChangeDto> act);
+    void OnUserUpdateSelfAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
     void OnUserUpdateSelfPairPermsGlobal(Action<UserGlobalPermChangeDto> act); // pair global permission
     void OnUserUpdateSelfPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
     void OnUserUpdateSelfPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
