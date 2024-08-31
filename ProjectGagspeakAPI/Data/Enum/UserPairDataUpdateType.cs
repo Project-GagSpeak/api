@@ -18,6 +18,7 @@ public enum DataUpdateKind
 {
     /* Used to know when a dummy enum is passed in */
     None,
+    Safeword,
     /* ------------------------------ */
     FullDataUpdate, // called during initializations and sign-offs
     /* ------------------------------ */

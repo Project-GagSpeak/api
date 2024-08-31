@@ -41,8 +41,8 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserUpdateSelfPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
     void OnUserUpdateSelfPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
     void OnUserUpdateOtherAllPairPerms(Action<UserPairUpdateAllPermsDto> act); // pair permission all update
-    void OnUserUpdateOtherPairPermsGlobalAll(Action<UserAllGlobalPermChangeDto> act);
-    void OnUserUpdateAllUniquePermissions(Action<UserPairUpdateAllUniqueDto> act);
+    void OnUserUpdateOtherAllGlobalPerms(Action<UserAllGlobalPermChangeDto> act);
+    void OnUserUpdateOtherAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
     void OnUserUpdateOtherPairPermsGlobal(Action<UserGlobalPermChangeDto> act); // pair permission global update
     void OnUserUpdateOtherPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
     void OnUserUpdateOtherPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
