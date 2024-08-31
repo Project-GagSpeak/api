@@ -40,6 +40,7 @@ public interface IGagspeakHub
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto);
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
+    Task Client_UserUpdateOtherPairPermsGlobalAll(UserAllGlobalPermChangeDto dto);
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
 

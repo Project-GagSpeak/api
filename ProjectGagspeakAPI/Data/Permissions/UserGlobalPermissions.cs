@@ -11,6 +11,7 @@ public record UserGlobalPermissions
     // main global permissions
     public string Safeword { get; set; } = "NONE SET";          // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool SafewordUsed { get; set; } = false;             // DO NOT ALLOW THIS TO BE MODIFABLE
+    public bool HardcoreSafewordUsed { get; set; } = false;     // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool CommandsFromFriends { get; set; } = false;      // PROFILE VIEWABLE OPT-IN || If commands can be sent from friends
     public bool CommandsFromParty { get; set; } = false;        // PROFILE VIEWABLE OPT-IN || if commands can be sent from party members
     public bool LiveChatGarblerActive { get; set; } = false;    // if the live chat garbler is active
