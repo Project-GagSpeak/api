@@ -54,7 +54,8 @@ public record UserPairPermissions
     public bool AllowForcedFollow { get; set; } = false;     // if you give player permission
     public bool IsForcedToFollow { get; set; } = false;      // if the player has activated it
     public bool AllowForcedSit { get; set; } = false;        // if you give player permission
-    public bool IsForcedToSit { get; set; } = false;         // if the player has activated it 
+    public bool IsForcedToSit { get; set; } = false;         // if the player has activated it
+    public bool IsForcedToGroundSit { get; set; } = false;      // if you give player permission
     public bool AllowForcedToStay { get; set; } = false;     // if you give player permission
     public bool IsForcedToStay { get; set; } = false;        // if the player has activated it
     public bool AllowBlindfold { get; set; } = false;       // if you give player permission
