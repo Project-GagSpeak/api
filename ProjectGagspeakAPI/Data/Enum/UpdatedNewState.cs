@@ -4,7 +4,7 @@ namespace GagspeakAPI.Data.Enum;
 /// The wording in here is to make it universal across
 /// restraint sets and blindfolds. (among other things)
 /// </summary
-public enum UpdatedNewState
+public enum NewState
 {
     Disabled = 0,
     Enabled = 1,
