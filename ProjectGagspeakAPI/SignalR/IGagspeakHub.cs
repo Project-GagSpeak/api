@@ -82,6 +82,7 @@ public interface IGagspeakHub
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
 
     Task<bool> UploadPattern(PatternUploadDto dto);
+    Task<bool> RemovePattern(Guid patternId);
     Task<bool> LikePattern(Guid patternId);
     Task<string> DownloadPattern(Guid patternId);
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
