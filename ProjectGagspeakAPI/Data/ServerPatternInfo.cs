@@ -22,6 +22,8 @@ public record ServerPatternInfo
 
     public int Likes = 0;
 
+    public bool Looping = false;
+
     public TimeSpan Length = TimeSpan.Zero;
 
     public DateTime UploadedDate = DateTime.MinValue;
@@ -31,4 +33,6 @@ public record ServerPatternInfo
     public bool UsesRotations = false;
     
     public bool UsesOscillation = false;
+
+    public bool HasLiked = false;
 }
