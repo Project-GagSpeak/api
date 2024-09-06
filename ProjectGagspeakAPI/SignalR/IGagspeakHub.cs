@@ -5,6 +5,8 @@ using GagspeakAPI.Data.Enum;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.Toybox;
 using GagspeakAPI.Dto.IPC;
+using GagspeakAPI.Dto.Patterns;
+using GagspeakAPI.Data;
 
 namespace GagspeakAPI.SignalR;
 
@@ -14,7 +16,7 @@ namespace GagspeakAPI.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 7;
+    const int ApiVersion = 9;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
@@ -78,6 +80,12 @@ public interface IGagspeakHub
     Task UserDelete(); // delete this users account from the servers database
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
+
+    Task<bool> UploadPattern(PatternUploadDto dto);
+    Task<bool> LikePattern(Guid patternId);
+    Task<string> DownloadPattern(Guid patternId);
+    Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
+
     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
     Task UserReportProfile(UserProfileReportDto userDto); // hopefully this is never used x-x...
     Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
