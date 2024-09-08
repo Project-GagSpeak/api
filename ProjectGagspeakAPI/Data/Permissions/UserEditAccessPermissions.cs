@@ -1,5 +1,4 @@
 using MessagePack;
-using System.ComponentModel.DataAnnotations;
 
 namespace GagspeakAPI.Data.Permissions;
 
@@ -7,8 +6,6 @@ namespace GagspeakAPI.Data.Permissions;
 public record UserEditAccessPermissions
 {
     // unique permissions stored here:
-    public bool CommandsFromFriendsAllowed { get; set; } = false; // Global
-    public bool CommandsFromPartyAllowed { get; set; } = false; // Global
     public bool LiveChatGarblerActiveAllowed { get; set; } = false; // Global
     public bool LiveChatGarblerLockedAllowed { get; set; } = false; // Global
     public bool GagFeaturesAllowed { get; set; } = false;
@@ -46,14 +43,11 @@ public record UserEditAccessPermissions
     // unique permissions for the toybox
     public bool ToyboxEnabledAllowed { get; set; } = false; // Global
     public bool LockToyboxUIAllowed { get; set; } = false; // Global
-    public bool ToyIsActiveAllowed { get; set; } = false; // Global
     public bool SpatialVibratorAudioAllowed { get; set; } = false; // Global
-    public bool ChangeToyStateAllowed { get; set; } = false;
-    public bool CanControlIntensityAllowed { get; set; } = false;
-    public bool VibratorAlarmsAllowed { get; set; } = false;
-    public bool VibratorAlarmsToggleAllowed { get; set; } = false;
-    public bool CanUseRealtimeVibeRemoteAllowed { get; set; } = false;
+    public bool CanToggleToyStateAllowed { get; set; } = false;
+    public bool CanUseVibeRemoteAllowed { get; set; } = false;
+    public bool CanToggleAlarmsAllowed { get; set; } = false;
     public bool CanExecutePatternsAllowed { get; set; } = false;
-    public bool CanExecuteTriggersAllowed { get; set; } = false;
+    public bool CanToggleTriggersAllowed { get; set; } = false;
     public bool CanSendTriggersAllowed { get; set; } = false;
 }
