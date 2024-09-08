@@ -3,6 +3,8 @@ namespace GagspeakAPI.Data.VibeServer;
 public enum TriggerDirection
 {
     Self,
+    SelfToOther,
     Other,
-    Both,
+    OtherToSelf,
+    Any,
 }

@@ -1,7 +1,22 @@
+namespace GagspeakAPI.Data.Enum;
+
+// Only ones we care about for GagSpeak.
+public enum LimitedActionEffectType : byte
+{
+    Miss = 1,
+    Damage = 3,
+    Heal = 4,
+    BlockedDamage = 5,
+    ParriedDamage = 6,
+    Knockback = 32,
+    Attract1 = 33, //Here is an issue bout knockback. some is 32 some is 33.
+    Shirk = 62, // temp filler from what i understand.
+    Interrupt = 75,
+}
+
+
 // ActionEffectTypes from ReceiveActionEffect calls.
 // https://github.com/NightmareXIV/ECommons/blob/master/ECommons/Hooks/ActionEffectTypes/ActionEffectType.cs
-
-namespace GagspeakAPI.Data.Enum;
 public enum ActionEffectType : byte
 {
     Nothing = 0,
