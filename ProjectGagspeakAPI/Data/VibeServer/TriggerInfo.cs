@@ -17,6 +17,9 @@ public record TriggerInfo
     /// <summary> if the trigger is currently active. </summary>
     public bool Enabled { get; set; } = false;
 
+    /// <summary> Unique Identifier for the trigger. </summary>
+    public Guid Identifier { get; set; } = Guid.Empty;
+
     /// <summary> The name of the trigger. </summary>
     public string Name { get; set; } = string.Empty;
 

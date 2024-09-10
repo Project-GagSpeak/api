@@ -1,4 +1,5 @@
 namespace GagspeakAPI.Data.Enum;
+
 public enum PresetName : byte
 {
     NoneSelected,

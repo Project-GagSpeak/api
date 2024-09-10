@@ -17,3 +17,6 @@ global using MoodlesStatusInfo = (
     bool NoExpire,
     bool AsPermanent
 );
+
+global using IPCProfileDataTuple = (System.Guid UniqueId, string Name, string VirtualPath, string CharacterName, bool IsEnabled);
+

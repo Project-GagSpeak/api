@@ -1,3 +1,4 @@
+using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Character;
@@ -21,7 +22,7 @@ public record CharacterAppearanceData
 /// Represents a gag slot with various attributes.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record GagSlot
+public record GagSlot : IPadlockable
 {
     public string GagType { get; set; } = "None";
     public string Padlock { get; set; } = "None";

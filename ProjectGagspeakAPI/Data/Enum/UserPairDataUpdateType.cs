@@ -29,15 +29,15 @@ public enum DataUpdateKind
     AppearanceGagLockedLayerOne,
     AppearanceGagLockedLayerTwo,
     AppearanceGagLockedLayerThree,
-    
+
     AppearanceGagUnlockedLayerOne,
     AppearanceGagUnlockedLayerTwo,
     AppearanceGagUnlockedLayerThree,
-    
+
     AppearanceGagRemovedLayerOne,
     AppearanceGagRemovedLayerTwo,
     AppearanceGagRemovedLayerThree,
-    
+
     /* ------------------------------ */
     WardrobeRestraintOutfitsUpdated, // Only allow Client owning Data to modify this.
     WardrobeRestraintApplied,
@@ -48,7 +48,18 @@ public enum DataUpdateKind
     /* ------------------------------ */
     PuppeteerPlayerNameRegistered, // Only allow Client owning Data to modify this.
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
-    
+
+    /* ------------------------------ */
+    ToyboxPatternListUpdated,
+    ToyboxPatternExecuted,
+    ToyboxPatternStopped,
+
+    ToyboxAlarmListUpdated, // Only allow Client owning Data to modify this.
+    ToyboxAlarmToggled,
+
+    ToyboxTriggerListUpdated, // Only allow Client owning Data to modify this.
+    ToyboxTriggerToggled, // when any trigger in the trigger list is activated or deactivated.
+
     /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.
 
@@ -56,15 +67,4 @@ public enum DataUpdateKind
     IpcMoodlesStatusesUpdated,
     IpcMoodlesPresetsUpdated,   
     IpcMoodlesCleared,
-
-    /* ------------------------------ */
-    ToyboxPatternListUpdated,
-    ToyboxPatternActivated,
-    ToyboxPatternDeactivated,
-
-    ToyboxAlarmListUpdated, // Only allow Client owning Data to modify this.
-    ToyboxAlarmToggled,
-
-    ToyboxTriggerListUpdated, // Only allow Client owning Data to modify this.
-    ToyboxTriggerActiveStatusChanged, // when any trigger in the trigger list is activated or deactivated.
 }

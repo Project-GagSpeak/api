@@ -8,6 +8,9 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public record PatternInfo
 {
+    /// <summary> The Unique Identifier for the Pattern </summary>
+    public Guid Identifier = Guid.Empty;
+
     /// <summary> The name of the pattern </summary>
     public string Name = string.Empty;
 
@@ -16,9 +19,6 @@ public record PatternInfo
 
     /// <summary> The duration of the pattern </summary>
     public TimeSpan Duration = TimeSpan.Zero;
-
-    /// <summary> If the pattern is active </summary>
-    public bool IsActive = false;
 
     /// <summary> If the pattern should loop </summary>
     public bool ShouldLoop = false;

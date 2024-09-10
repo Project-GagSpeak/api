@@ -8,6 +8,9 @@ public record AlarmInfo
     /// <summary> if the alarm is currently active. </summary>
     public bool Enabled { get; set; } = false;
 
+    /// <summary> Unique Identifier for the alarm. </summary>
+    public Guid Identifier { get; set; } = Guid.Empty;
+
     /// <summary> The name of the alarm. </summary>
     public string Name { get; set; } = string.Empty;
 
@@ -15,7 +18,7 @@ public record AlarmInfo
     public DateTimeOffset SetTimeUTC { get; set; } = DateTimeOffset.MinValue;
 
     /// <summary> The Pattern that plays when the alarm goes off. </summary>
-    public string PatternToPlay { get; set; } = string.Empty;
+    public Guid PatternToPlay { get; set; } = Guid.Empty;
 
     /// <summary> How long the pattern is played for. </summary>
     public TimeSpan PatternDuration { get; set; } = TimeSpan.Zero;
