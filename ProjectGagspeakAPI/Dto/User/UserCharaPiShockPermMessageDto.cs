@@ -11,4 +11,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// DTO for handling updating the shock permissions. Can be global, ownPair, or otherPair.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaPiShockPermMessageDto(List<UserData> recipients, PiShockPermissions shockPerms, DataUpdateKind UpdateKind);
+public record UserCharaPiShockPermMessageDto(List<UserData> Recipients, PiShockPermissions ShockPermissions, DataUpdateKind UpdateKind);
