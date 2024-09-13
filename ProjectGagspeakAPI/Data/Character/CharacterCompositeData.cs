@@ -1,3 +1,4 @@
+using GagspeakAPI.Data.Permissions;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Character;
@@ -20,4 +21,11 @@ public class CharacterCompositeData
 
     // stores the list of patterns you have in your toybox, and info for them (will also store trigger information) Updates to all ONLINE PLAYERS
     public CharacterToyboxData ToyboxData { get; set; } = new();
+
+    // global shock permissions
+    public PiShockPermissions GlobalShockPermissions { get; set; } = new(false,false,false,-1,-1);
+
+    // pair shock permissions
+    public Dictionary<string, PiShockPermissions> PairShockPermissions { get; set; } = new();
+
 }

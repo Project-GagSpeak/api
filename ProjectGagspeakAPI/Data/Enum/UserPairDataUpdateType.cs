@@ -61,6 +61,11 @@ public enum DataUpdateKind
     ToyboxTriggerToggled, // when any trigger in the trigger list is activated or deactivated.
 
     /* ------------------------------ */
+    PiShockGlobalUpdated,
+    PiShockOwnPermsForPairUpdated,
+    PiShockPairPermsForUserUpdated,
+
+    /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.
 
     IpcMoodlesStatusManagerChanged,

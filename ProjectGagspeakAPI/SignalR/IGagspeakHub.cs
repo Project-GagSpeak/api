@@ -7,6 +7,7 @@ using GagspeakAPI.Dto.Toybox;
 using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Patterns;
 using GagspeakAPI.Data;
+using GagspeakAPI.Data.Permissions;
 
 namespace GagspeakAPI.SignalR;
 
@@ -62,8 +63,10 @@ public interface IGagspeakHub
     Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
     Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
     Task Client_UserReceiveOtherDataToybox(OnlineUserCharaToyboxDataDto dto);
+    Task Client_UserReceiveDataPiShock(OnlineUserCharaPiShockPermDto dto);
 
     #region Generic Callbacks
+    Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
     Task Client_GlobalChatMessage(GlobalChatMessageDto dto); /* Obtain global chat message from server */
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
@@ -86,6 +89,8 @@ public interface IGagspeakHub
     Task<bool> LikePattern(Guid patternId);
     Task<string> DownloadPattern(Guid patternId);
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
+
+    Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
 
     Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
     Task UserReportProfile(UserProfileReportDto userDto); // hopefully this is never used x-x...
@@ -160,6 +165,12 @@ public interface IGagspeakHub
     /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
     /// </summary>
     Task UserPushDataToybox(UserCharaToyboxDataMessageDto dto);
+
+    /// <summary>
+    /// Updates other online users with this pairs latest PiShock global or unique pair permissions.
+    /// We can determine the type on the server with the combination of userData and the updateKind.
+    /// </summary>
+    Task UserPushPiShockUpdate(UserCharaPiShockPermMessageDto dto);
     #endregion Client Push Own Data Updates
 
     #region Client Update Other UserPair Data
@@ -193,6 +204,7 @@ public interface IGagspeakHub
     /// <para> This is called whenever we toggle a pairs trigger, alarm, or pattern. </para>
     /// </summary>
     Task UserPushPairDataToyboxUpdate(OnlineUserCharaToyboxDataDto dto);
+
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates
@@ -244,5 +256,4 @@ public interface IGagspeakHub
     /// </summary>
     Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto);
     #endregion Permission Updates
-
 }

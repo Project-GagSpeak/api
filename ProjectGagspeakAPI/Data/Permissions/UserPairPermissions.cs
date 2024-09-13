@@ -48,8 +48,11 @@ public record UserPairPermissions
     public bool CanToggleAlarms { get; set; } = false; // if the client pair can toggle alarms on your toy.
     public bool CanSendAlarms { get; set; } = false; // if the client pair can send alarms to your toy.
     public bool CanToggleTriggers { get; set; } = false; // if the client pair can use triggers on your toy.
+    public string ShockCollarShareCode { get; set; } = ""; // the share Code for the shock collar unique to this user.
+    public TimeSpan MaxVibrateDuration { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
 
-    // unique hardcore permissions.
+
+    // unique hardcore permissions. (only allow the ALLOW permissions to be set by the user).
     public bool AllowForcedFollow { get; set; } = false;     // if you give player permission
     public bool IsForcedToFollow { get; set; } = false;      // if the player has activated it
     public bool AllowForcedSit { get; set; } = false;        // if you give player permission

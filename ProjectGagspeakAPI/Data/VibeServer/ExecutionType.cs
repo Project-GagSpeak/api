@@ -1,6 +1,6 @@
 namespace GagspeakAPI.Data.VibeServer;
 
-public enum VibrationExecutionType
+public enum TriggerActionType
 {
     Vibration,
     PatternPlayback,

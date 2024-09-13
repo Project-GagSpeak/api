@@ -37,6 +37,12 @@ public record UserGlobalPermissions
     public bool ToyboxEnabled { get; set; } = false;            // PROFILE VIEWABLE OPT-IN || If the user's toybox component is active
     public bool LockToyboxUI { get; set; } = false;             // if the user's toybox UI is locked
     public bool ToyIsActive { get; set; } = false;              // if the user's toy is active
-    public int ToyIntensity { get; set; } = 0;                 // the intensity of the user's toy
-    public bool SpatialVibratorAudio { get; set; } = false;    // if the user's toybox local audio is active
+    public bool ShockCollarIsActive { get; set; } = false;      // if the user's shock collar is active
+    public int ToyIntensity { get; set; } = 0;                  // the intensity of the user's toy
+    public bool SpatialVibratorAudio { get; set; } = false;     // if the user's toybox local audio is active
+
+    // Share Code for global shock collar permissions.
+    // NOTE: UniquePairPermissions share codes override global codes. Global Codes also ONLY work for
+    public string GlobalShockShareCode { get; set; } = "";
+    public TimeSpan GlobalShockVibrateDuration { get; set; } = TimeSpan.Zero;
 }
