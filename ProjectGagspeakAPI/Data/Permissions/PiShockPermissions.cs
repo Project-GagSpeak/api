@@ -11,6 +11,8 @@ public class PiShockPermissions
     public int MaxIntensity { get; init; }
     public TimeSpan MaxShockDuration { get; init; }
 
+    public float MaxShockDurationFloat => (float)MaxShockDuration.TotalMilliseconds;
+
     public PiShockPermissions(bool shocks, bool vibrations, bool beeps, int intensityLimit, int durationLimit)
     {
         AllowShocks = shocks;
