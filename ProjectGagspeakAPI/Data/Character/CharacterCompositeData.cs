@@ -23,7 +23,7 @@ public class CharacterCompositeData
     public CharacterToyboxData ToyboxData { get; set; } = new();
 
     // global shock permissions
-    public PiShockPermissions GlobalShockPermissions { get; set; } = new(false,false,false,-1,-1);
+    public PiShockPermissions GlobalShockPermissions { get; set; } = new();
 
     // pair shock permissions
     public Dictionary<string, PiShockPermissions> PairShockPermissions { get; set; } = new();

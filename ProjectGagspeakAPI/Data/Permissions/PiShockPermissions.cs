@@ -5,34 +5,25 @@ namespace GagspeakAPI.Data.Permissions;
 [MessagePackObject(keyAsPropertyName: true)]
 public class PiShockPermissions
 {
-    public bool AllowShocks { get; init; }
-    public bool AllowVibrations { get; init; }
-    public bool AllowBeeps { get; init; }
-    public int MaxIntensity { get; init; }
-    public TimeSpan MaxShockDuration { get; init; }
+    public bool AllowShocks { get; set; } = false;
+    public bool AllowVibrations { get; set; } = false;
+    public bool AllowBeeps { get; set; } = false;
+    public int MaxIntensity { get; set; } = -1;
+    public int MaxDuration { get; set; } = -1;
 
-    public PiShockPermissions(bool shocks, bool vibrations, bool beeps, int intensityLimit, int durationLimit)
+    public TimeSpan GetTimespanFromDuration()
     {
-        AllowShocks = shocks;
-        AllowVibrations = vibrations;
-        AllowBeeps = beeps;
-        MaxIntensity = intensityLimit;
-        MaxShockDuration = GetTimespanFromDuration(durationLimit);
-    }
-
-    private TimeSpan GetTimespanFromDuration(int duration)
-    {
-        if (duration > 15 && duration < 100)
+        if (MaxDuration > 15 && MaxDuration < 100)
         {
             return TimeSpan.Zero; // invalid range.
         }
-        else if (duration >= 100 && duration <= 15000)
+        else if (MaxDuration >= 100 && MaxDuration <= 15000)
         {
-            return TimeSpan.FromMilliseconds(duration); // convert to milliseconds
+            return TimeSpan.FromMilliseconds(MaxDuration); // convert to milliseconds
         }
         else
         {
-            return TimeSpan.FromSeconds(duration); // convert to seconds
+            return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
         }
     }
 }
