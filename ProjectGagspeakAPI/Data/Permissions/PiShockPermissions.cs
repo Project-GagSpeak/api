@@ -26,4 +26,5 @@ public class PiShockPermissions
             return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
         }
     }
+
 }

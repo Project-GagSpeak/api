@@ -10,7 +10,6 @@ public enum LimitedActionEffectType : byte
     ParriedDamage = 6,
     Knockback = 32,
     Attract1 = 33, //Here is an issue bout knockback. some is 32 some is 33.
-    Shirk = 62, // temp filler from what i understand.
     Interrupt = 75,
 }
 
