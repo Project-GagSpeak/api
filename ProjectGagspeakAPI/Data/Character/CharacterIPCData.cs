@@ -1,11 +1,10 @@
 using MessagePack;
+#pragma warning disable CS0659
 
 namespace GagspeakAPI.Data.Character;
 
 /// <summary>
-/// Stores Information about the Player's Moodles & Customize+ Data.
-/// 
-/// FOR MOODLES:
+/// Stores Information about the Player's Moodles Data
 /// - Stores Status Manager String
 /// - Stores all active Moodle Statuses on the player, with the status info.
 /// - Stores the GUID's of their Presets and the associated Moodles Statuses of those presets by GUID.
@@ -25,21 +24,18 @@ public class CharacterIPCData
     /// <summary> List of player's Presets, and the Status GUID's the preset contains </summary>
     public List<(Guid, List<Guid>)> MoodlesPresets { get; set; } = new();
 
-    /// <summary> Contains overview about the list of our Customize+ Presets. </summary>
-    public IList<IPCProfileDataTuple> ProfilesList { get; set; } = new List<IPCProfileDataTuple>();
-
     /// <summary> Equals Override to ensure things are the same. </summary>
     public override bool Equals(object? obj)
     {
         // return false if object is not characterIPCData
         if (obj is CharacterIPCData data)
         {
-            return MoodlesData == data.MoodlesData 
+            return MoodlesData == data.MoodlesData
                 && MoodlesDataStatuses.SequenceEqual(data.MoodlesDataStatuses)
                 && MoodlesStatuses.SequenceEqual(data.MoodlesStatuses)
-                && MoodlesPresets.SequenceEqual(data.MoodlesPresets)
-                && ProfilesList.SequenceEqual(data.ProfilesList);
+                && MoodlesPresets.SequenceEqual(data.MoodlesPresets);
         }
         return false;
     }
 }
+#pragma warning restore CS0659
