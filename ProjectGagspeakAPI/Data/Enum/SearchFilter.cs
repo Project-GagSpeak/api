@@ -14,7 +14,6 @@ public enum SearchFilter
     // TODO: Move this to supported Types enum later.
     UsesVibration,
     UsesRotation,
-    UsesOscillation,
 }
 
 public enum SearchSort
@@ -27,5 +26,4 @@ public enum SupportedTypes
 {
     Vibration,
     Rotation,
-    Oscillation,
 }

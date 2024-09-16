@@ -7,4 +7,5 @@ public enum TriggerKind
     HealthPercent,
     RestraintSet,
     GagState,
+    SocialAction,
 }
