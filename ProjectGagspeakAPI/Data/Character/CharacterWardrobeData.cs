@@ -16,7 +16,7 @@ public class CharacterWardrobeData : IPadlockable
 	public string ActiveSetName { get; set; } = string.Empty;
 	public string ActiveSetDescription { get; set; } = string.Empty;
 	public string ActiveSetEnabledBy { get; set; } = string.Empty;
-    public string Padlock { get; set; } = Padlocks.None.ToString(); // Type of padlock used to lock the set.
+    public string Padlock { get; set; } = Padlocks.None.ToName(); // Type of padlock used to lock the set.
 	public string Password { get; set; } = ""; // password bound to the set's lock type.
 	public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
 	public string Assigner { get; set; } = "SelfApplied"; // UID that locked the set.
