@@ -1,3 +1,4 @@
+using GagspeakAPI.Data.Enum;
 using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 
@@ -25,7 +26,7 @@ public record CharacterAppearanceData
 public record GagSlot : IPadlockable
 {
     public string GagType { get; set; } = "None";
-    public string Padlock { get; set; } = "None";
+    public string Padlock { get; set; } = Padlocks.None.ToName();
     public string Password { get; set; } = "";
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;
     public string Assigner { get; set; } = "";

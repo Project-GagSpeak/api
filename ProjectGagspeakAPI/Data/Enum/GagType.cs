@@ -58,7 +58,7 @@ public enum GagType
     SensoryDeprivationHood,
     SockStuffingGag,
     SpiderGag,
-    TenticleGag,
+    TentacleGag,
     WebGag,
-    WiffleGag,
+    WhiffleGag,
 }
