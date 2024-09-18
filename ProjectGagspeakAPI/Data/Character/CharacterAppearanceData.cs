@@ -17,6 +17,11 @@ public record CharacterAppearanceData
         new GagSlot(), // Slot 2
         new GagSlot()  // Slot 3
     };
+
+    public override string ToString()
+    {
+        return $"\n{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
+    }
 }
 
 /// <summary>
@@ -30,4 +35,9 @@ public record GagSlot : IPadlockable
     public string Password { get; set; } = "";
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;
     public string Assigner { get; set; } = "";
+
+    public override string ToString()
+    {
+        return $"GagSlot {{ GagType = {GagType}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
+    }
 }

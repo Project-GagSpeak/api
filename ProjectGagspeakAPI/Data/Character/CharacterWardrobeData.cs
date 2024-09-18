@@ -20,4 +20,10 @@ public class CharacterWardrobeData : IPadlockable
 	public string Password { get; set; } = ""; // password bound to the set's lock type.
 	public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
 	public string Assigner { get; set; } = "SelfApplied"; // UID that locked the set.
+
+    // override the toString command.
+    public override string ToString()
+    {
+        return $"{{ OutfitNames = {string.Join(", ", OutfitNames)}, ActiveSetName = {ActiveSetName}, ActiveSetDescription = {ActiveSetDescription}, ActiveSetEnabledBy = {ActiveSetEnabledBy}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
+    }
 }
