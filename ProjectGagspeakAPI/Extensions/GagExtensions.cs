@@ -1,7 +1,8 @@
-using GagspeakAPI.Data.Enum;
-using GagspeakAPI.Data.VibeServer;
+using GagspeakAPI.Enums;
 
-public static partial class EnumNameExtensions
+namespace GagspeakAPI.Extensions;
+
+public static partial class EnumToName
 {
     public const string None = "None";
     public const string BallGag = "Ball Gag";

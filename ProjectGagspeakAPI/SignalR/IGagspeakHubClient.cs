@@ -1,4 +1,4 @@
-using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Enums;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.Connection;
 using GagspeakAPI.Dto.Permissions;

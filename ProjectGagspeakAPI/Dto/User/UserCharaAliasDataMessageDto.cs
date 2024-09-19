@@ -1,6 +1,6 @@
 using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
-using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.User;

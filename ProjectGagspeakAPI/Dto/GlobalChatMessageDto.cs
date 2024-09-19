@@ -2,7 +2,7 @@ using GagspeakAPI.Data.Character;
 using MessagePack;
 using global::GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
-using GagspeakAPI.Data.VibeServer;
+using GagspeakAPI.Data;
 
 namespace GagspeakAPI.Dto.Toybox;
 

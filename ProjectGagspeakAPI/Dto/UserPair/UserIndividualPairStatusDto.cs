@@ -1,5 +1,5 @@
 ﻿using GagspeakAPI.Data;
-using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Enums;
 using GagspeakAPI.Dto.User;
 using MessagePack;
 

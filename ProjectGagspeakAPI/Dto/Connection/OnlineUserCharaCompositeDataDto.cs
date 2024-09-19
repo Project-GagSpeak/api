@@ -2,7 +2,7 @@ using GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.Character;
 using MessagePack;
-using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Dto.Connection;
 

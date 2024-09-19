@@ -1,6 +1,6 @@
 using GagspeakAPI.Data;
 using MessagePack;
-using ProjectGagspeakAPI.Data.VibeServer;
+using ProjectGagspeakAPI.Data;
 
 namespace GagspeakAPI.Data.Character;
 

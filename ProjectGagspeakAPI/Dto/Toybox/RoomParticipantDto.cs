@@ -1,5 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.VibeServer;
+using GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
 using MessagePack;
 

@@ -1,6 +1,6 @@
-using GagspeakAPI.Data.Enum;
+using GagspeakAPI.Enums;
 
-namespace GagspeakAPI.Data.Extensions;
+namespace GagspeakAPI.Extensions;
 public static class UpdateKindExtensions
 {
     public static NewState ToNewState(this DataUpdateKind kind)
