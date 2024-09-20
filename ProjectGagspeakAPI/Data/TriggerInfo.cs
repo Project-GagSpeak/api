@@ -1,7 +1,7 @@
 using GagspeakAPI.Enums;
 using MessagePack;
 
-namespace ProjectGagspeakAPI.Data;
+namespace GagspeakAPI.Data;
 
 /// <summary>
 /// This outlines the basic overview of a set trigger the client has.

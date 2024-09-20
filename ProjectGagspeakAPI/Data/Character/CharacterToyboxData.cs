@@ -1,6 +1,6 @@
 using GagspeakAPI.Data;
 using MessagePack;
-using ProjectGagspeakAPI.Data;
+using GagspeakAPI.Data;
 
 namespace GagspeakAPI.Data.Character;
 

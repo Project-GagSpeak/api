@@ -1,6 +1,6 @@
 using MessagePack;
 
-namespace ProjectGagspeakAPI.Data;
+namespace GagspeakAPI.Data;
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record AlarmInfo
