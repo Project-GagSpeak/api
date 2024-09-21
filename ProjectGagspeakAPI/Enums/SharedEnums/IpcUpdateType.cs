@@ -7,6 +7,5 @@ public enum IpcToggleType
 {
     MoodlesStatus,
     MoodlesPreset,
-    // C+ ??
 }
 
