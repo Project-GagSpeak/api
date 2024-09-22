@@ -3,7 +3,7 @@
 
 namespace GagspeakAPI.Enums;
 
-public enum ActiveActionButton
+public enum InteractionType
 {
     None,
     ApplyGag,
@@ -26,5 +26,12 @@ public enum ActiveActionButton
     ToggleTrigger,
     ShockAction,
     VibrateAction,
-    BeepAction
+    BeepAction,
+    BulkUpdate,
+    ForcedFollow,
+    ForcedSit,
+    ForcedStay,
+    ForcedBlindfold,
+    ForcedPermChange,
+    VibeControl,
 }

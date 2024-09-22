@@ -146,4 +146,70 @@ public static partial class EnumToName
             _ => "UNK"
         };
     }
+
+    public static string ToName(this LoggerType type)
+    {
+        return type switch
+        {
+            LoggerType.None => "None",
+            LoggerType.Mediator => "Mediator",
+            LoggerType.IpcGagSpeak => "Ipc Provider",
+            LoggerType.IpcCustomize => "Customize+",
+            LoggerType.IpcGlamourer => "Glamourer",
+            LoggerType.IpcMare => "Mare",
+            LoggerType.IpcMoodles => "Moodles",
+            LoggerType.IpcPenumbra => "Penumbra",
+
+            LoggerType.HardcoreActions => "Actions",
+            LoggerType.HardcoreMovement => "Movements",
+            LoggerType.HardcorePrompt => "Prompts",
+
+            LoggerType.GarblerCore => "GarblerCore",
+
+            LoggerType.GagManagement => "Gag Handling",
+            LoggerType.PadlockManagement => "Padlock Handling",
+
+            LoggerType.ClientPlayerData => "Client Data",
+            LoggerType.GameObjects => "Game Objects",
+            LoggerType.PairManagement => "Pair Handling",
+            LoggerType.OnlinePairs => "Online Pairs",
+            LoggerType.VisiblePairs => "Visible Pairs",
+            LoggerType.PrivateRoom => "Private Rooms",
+
+            LoggerType.Notification => "Notifications",
+            LoggerType.Profiles => "Profiles",
+            LoggerType.Cosmetics => "Cosmetics",
+            LoggerType.GlobalChat => "Global Chat",
+            LoggerType.ContextDtr => "Context DTR",
+            LoggerType.PatternHub => "Pattern Hub",
+            LoggerType.Safeword => "Safeword",
+
+            LoggerType.Restraints => "Restraints",
+            LoggerType.Puppeteer => "Puppeteer",
+
+            LoggerType.ToyboxDevices => "Devices",
+            LoggerType.ToyboxPatterns => "Patterns",
+            LoggerType.ToyboxTriggers => "Triggers",
+            LoggerType.ToyboxAlarms => "Alarms",
+            LoggerType.VibeControl => "Vibe Control",
+
+            LoggerType.ChatDetours => "Chat Detours",
+            LoggerType.ActionEffects => "Action Effects",
+            LoggerType.SpatialAudioController => "Spatial Audio",
+            LoggerType.SpatialAudioLogger => "Spatial Logger",
+
+            LoggerType.UiCore => "UI Core",
+            LoggerType.UserPairDrawer => "User Pair Drawer",
+            LoggerType.Permissions => "Permissions",
+            LoggerType.Simulation => "Simulation",
+
+            LoggerType.PiShock => "PiShock",
+            LoggerType.ApiCore => "API Core",
+            LoggerType.Callbacks => "Callbacks",
+            LoggerType.Health => "Health",
+            LoggerType.HubFactory => "Hub Factory",
+            LoggerType.JwtTokens => "JWT Tokens",
+            _ => "UNK"
+        };
+    }
 }

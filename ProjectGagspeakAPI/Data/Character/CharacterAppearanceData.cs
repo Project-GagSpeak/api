@@ -20,7 +20,7 @@ public record CharacterAppearanceData
 
     public override string ToString()
     {
-        return $"\n{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
+        return $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
     }
 }
 
