@@ -1,5 +1,10 @@
 namespace GagspeakAPI.Enums;
-
+public enum GagLayer // will probably delete this file
+{
+    UnderLayer = 0,
+    MiddleLayer = 1,
+    TopLayer = 2,
+}
 
 public enum GagType
 {

@@ -1,11 +1,5 @@
 namespace GagspeakAPI.Enums;
-public enum DurationTimeUnit
-{
-    Seconds,
-    Minutes,
-    Hours,
-    Days
-}
+
 public enum AchievementType
 {
     Orders,
@@ -61,6 +55,21 @@ public enum UnlocksEvent
     EasterEggFound,
     ChocoboRaceFinished,
 
+}
+
+public enum DurationTimeUnit
+{
+    Seconds,
+    Minutes,
+    Hours,
+    Days
+}
+public enum DeepDungeonType
+{
+    Unknown,
+    PalaceOfTheDead,
+    HeavenOnHigh,
+    EurekaOrthos,
 }
 
 public enum HardcorePairActionKind
