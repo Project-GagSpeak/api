@@ -1,6 +1,6 @@
 namespace GagspeakAPI.Enums;
 
-public enum AchievementType
+public enum AchievementModuleKind
 {
     Orders,
     Gags,
@@ -11,6 +11,18 @@ public enum AchievementType
     Remotes,
     Generic,
     Secrets,
+}
+
+public enum AchievementType
+{
+    Progress, 
+    Duration,
+    Conditional,
+    TimedProgress,
+    ConditionalProgress,
+    ConditionalDuration,
+
+
 }
 
 public enum UnlocksEvent
