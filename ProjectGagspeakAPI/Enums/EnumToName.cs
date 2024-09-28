@@ -152,6 +152,7 @@ public static partial class EnumToName
         return type switch
         {
             LoggerType.None => "None",
+            LoggerType.Achievements => "Achievements",
             LoggerType.Mediator => "Mediator",
             LoggerType.IpcGagSpeak => "Ipc Provider",
             LoggerType.IpcCustomize => "Customize+",

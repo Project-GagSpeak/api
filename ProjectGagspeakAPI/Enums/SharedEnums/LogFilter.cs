@@ -3,6 +3,7 @@ namespace GagspeakAPI.Enums;
 public enum LoggerType
 {
     None,
+    Achievements,
     Mediator,
     // interop
     IpcGagSpeak,
