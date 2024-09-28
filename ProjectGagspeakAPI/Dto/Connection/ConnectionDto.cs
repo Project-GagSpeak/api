@@ -28,4 +28,5 @@ public record ConnectionDto(UserData User)
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
     public CharacterAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
     public CharacterActiveStateData CharacterActiveStateData { get; set; } = new(); // The user's active state data
+    public string UserAchievements { get; set; } = string.Empty; // The user's achievements
 }
