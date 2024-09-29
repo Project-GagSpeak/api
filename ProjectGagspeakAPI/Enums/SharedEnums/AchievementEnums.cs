@@ -18,9 +18,11 @@ public enum AchievementType
     Progress, 
     Duration,
     Conditional,
+    Threshold,
     TimedProgress,
     ConditionalProgress,
-    ConditionalDuration,
+    TimeLimitConditional,
+    RequiredTimeConditional, // formerly conditional duration
 
 
 }
@@ -30,11 +32,13 @@ public enum UnlocksEvent
     OrderAction, // for finished, failed, and created actions.
     
     GagAction, // Contains the layer, type, and if it was self applied.
+    PairGagAction,
     GagUnlockGuessFailed,
 
-    RestraintApplied, // Contains the set idx applied, set name, and if it was self applied.
+    RestraintUpdated, // for dye changes
+    RestraintApplicationChanged,
+    PairRestraintApplied,
     RestraintLockChange,
-    RestraintUnlockGuessFailed,
     PairRestraintLockChange,
 
     PuppeteerMessageSend,
