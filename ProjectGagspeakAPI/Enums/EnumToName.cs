@@ -1,3 +1,5 @@
+using GagspeakAPI.Data.IPC;
+
 namespace GagspeakAPI.Enums;
 public static partial class EnumToName
 {
@@ -36,6 +38,26 @@ public static partial class EnumToName
         Padlocks.TimerPasswordPadlock => "Timer Password Padlock",
         Padlocks.OwnerPadlock => "Owner Padlock",
         Padlocks.OwnerTimerPadlock => "Owner Timer Padlock",
+        _ => "UNK"
+    };
+
+    public static string ToName(this IpcToggleType toggleType)
+    => toggleType switch
+    {
+        IpcToggleType.MoodlesStatus => "Moodle Status",
+        IpcToggleType.MoodlesPreset => "Moodle Preset",
+        _ => "UNK"
+    };
+
+    public static string ToName(this Precedence precedence)
+    => precedence switch
+    {
+        Precedence.VeryLow => "Very Low",
+        Precedence.Low => "Low",
+        Precedence.Default => "Default",
+        Precedence.High => "High",
+        Precedence.VeryHigh => "Very High",
+        Precedence.Highest => "Highest",
         _ => "UNK"
     };
 

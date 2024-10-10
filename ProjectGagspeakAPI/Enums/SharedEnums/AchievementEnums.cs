@@ -34,6 +34,7 @@ public enum UnlocksEvent
     GagAction, // Contains the layer, type, and if it was self applied.
     PairGagAction,
     GagUnlockGuessFailed,
+    GagRemoval,
 
     RestraintUpdated, // for dye changes
     RestraintApplicationChanged,
@@ -62,7 +63,7 @@ public enum UnlocksEvent
     //////// Generics & Secrets Below /////////
     ChatMessageSent, // chat type, message, and sender.
     PuppeteerEmoteSent, // emote used in string value.
-    PlayerEmoteExecuted, // contains emote used in string value.
+    EmoteExecuted, // contains emote used in string value.
     TutorialCompleted,
     PairAdded,
     PresetApplied,
@@ -70,6 +71,7 @@ public enum UnlocksEvent
     CursedDungeonLootFound,
     EasterEggFound,
     ChocoboRaceFinished,
+    PlayersInProximity,
 
 }
 
