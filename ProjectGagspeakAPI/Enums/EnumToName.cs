@@ -26,7 +26,6 @@ public static partial class EnumToName
     };
 
 
-
     public static string ToName(this Padlocks padlock)
     => padlock switch
     {
@@ -38,6 +37,8 @@ public static partial class EnumToName
         Padlocks.TimerPasswordPadlock => "Timer Password Padlock",
         Padlocks.OwnerPadlock => "Owner Padlock",
         Padlocks.OwnerTimerPadlock => "Owner Timer Padlock",
+        Padlocks.DevotionalPadlock => "Devotional Padlock",
+        Padlocks.DevotionalTimerPadlock => "Devotional Timer Padlock",
         Padlocks.MimicPadlock => "Mimic Padlock",
         _ => "UNK"
     };
@@ -73,6 +74,9 @@ public static partial class EnumToName
         "Timer Password Padlock" => Padlocks.TimerPasswordPadlock,
         "Owner Padlock" => Padlocks.OwnerPadlock,
         "Owner Timer Padlock" => Padlocks.OwnerTimerPadlock,
+        "Devotional Padlock" => Padlocks.DevotionalPadlock,
+        "Devotional Timer Padlock" => Padlocks.DevotionalTimerPadlock,
+        "Mimic Padlock" => Padlocks.MimicPadlock,
         // handle outdated calls where they were translated by ToString()
         "MetalPadlock" => Padlocks.MetalPadlock,
         "CombinationPadlock" => Padlocks.CombinationPadlock,
@@ -83,7 +87,6 @@ public static partial class EnumToName
         "OwnerTimerPadlock" => Padlocks.OwnerTimerPadlock,
         _ => Padlocks.None
     };
-
 
     public static string ToName(this TriggerActionType triggerActionType)
     {
@@ -183,6 +186,7 @@ public static partial class EnumToName
             LoggerType.IpcMare => "Mare",
             LoggerType.IpcMoodles => "Moodles",
             LoggerType.IpcPenumbra => "Penumbra",
+            LoggerType.Appearance => "Appearance",
 
             LoggerType.HardcoreActions => "Actions",
             LoggerType.HardcoreMovement => "Movements",
@@ -207,6 +211,7 @@ public static partial class EnumToName
             LoggerType.ContextDtr => "Context DTR",
             LoggerType.PatternHub => "Pattern Hub",
             LoggerType.Safeword => "Safeword",
+            LoggerType.CursedLoot => "Cursed Loot",
 
             LoggerType.Restraints => "Restraints",
             LoggerType.Puppeteer => "Puppeteer",

@@ -12,6 +12,7 @@ public enum LoggerType
     IpcMare,
     IpcMoodles,
     IpcPenumbra,
+    Appearance,
     // hardcore
     HardcoreActions,
     HardcoreMovement,
@@ -35,6 +36,7 @@ public enum LoggerType
     ContextDtr,
     PatternHub,
     Safeword,
+    CursedLoot,
     // wardrobe & puppeteer
     Restraints,
     Puppeteer,
