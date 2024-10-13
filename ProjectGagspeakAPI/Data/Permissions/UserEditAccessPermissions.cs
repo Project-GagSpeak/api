@@ -10,6 +10,7 @@ public record UserEditAccessPermissions
     public bool LiveChatGarblerLockedAllowed { get; set; } = false; // Global
     public bool GagFeaturesAllowed { get; set; } = false;
     public bool OwnerLocksAllowed { get; set; } = false;
+    public bool DevotionalLocksAllowed { get; set; } = false;
     public bool ExtendedLockTimesAllowed { get; set; } = false;
     public bool MaxLockTimeAllowed { get; set; } = false;
 
