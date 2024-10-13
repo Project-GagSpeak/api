@@ -5,10 +5,11 @@ namespace GagspeakAPI.Enums;
 /// </summary
 public enum GlamourUpdateType
 {
-    UpdateAllGags, 
+    EquipOrStain,
+    Safeword,
     JobChange,
     RefreshAll,
+    ReapplyAll,
     ZoneChange,
     Login,
-    Safeword,
 }

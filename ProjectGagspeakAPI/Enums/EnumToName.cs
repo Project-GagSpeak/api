@@ -38,6 +38,7 @@ public static partial class EnumToName
         Padlocks.TimerPasswordPadlock => "Timer Password Padlock",
         Padlocks.OwnerPadlock => "Owner Padlock",
         Padlocks.OwnerTimerPadlock => "Owner Timer Padlock",
+        Padlocks.MimicPadlock => "Mimic Padlock",
         _ => "UNK"
     };
 
