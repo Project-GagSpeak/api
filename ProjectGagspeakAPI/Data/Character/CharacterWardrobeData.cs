@@ -24,6 +24,6 @@ public class CharacterWardrobeData : IPadlockable
     // override the toString command.
     public override string ToString()
     {
-        return $"{{ OutfitNames = {string.Join(", ", OutfitNames)}, ActiveSetName = {ActiveSetName}, ActiveSetDescription = {ActiveSetDescription}, ActiveSetEnabledBy = {ActiveSetEnabledBy}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
+        return $"ActiveSetName = {ActiveSetName}, ActiveSetDescription = {ActiveSetDescription}, ActiveSetEnabledBy = {ActiveSetEnabledBy}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner}";
     }
 }
