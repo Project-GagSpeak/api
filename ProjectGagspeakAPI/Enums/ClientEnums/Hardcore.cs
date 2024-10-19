@@ -3,13 +3,17 @@ namespace GagspeakAPI.Enums;
 /// <summary>
 /// Enum outlining the type of hardcore property that can be on a restraint set.
 /// </summary
-public enum HardcoreActionType
+public enum HardcoreAction
 {
+    None,
     ForcedFollow,
     ForcedSit,
-    ForcedGroundSit,
+    ForcedGroundsit,
     ForcedStay,
-    ForcedBlindfold
+    ForcedBlindfold,
+    ChatboxHiding,
+    ChatInputHiding,
+    ChatInputBlocking,
 }
 
 public enum HardcoreChangeType

@@ -90,14 +90,6 @@ public enum DeepDungeonType
     EurekaOrthos,
 }
 
-public enum HardcorePairActionKind
-{
-    ForcedFollow,
-    ForcedSit,
-    ForcedStay,
-    ForcedBlindfold,
-}
-
 public enum PatternInteractionKind
 {
     Published,

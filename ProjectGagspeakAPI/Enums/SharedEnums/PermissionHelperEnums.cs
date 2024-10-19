@@ -1,4 +1,4 @@
-﻿namespace GagspeakAPI.Enums;
+namespace GagspeakAPI.Enums;
 
 /// <summary>
 /// Determines the state of a object in GagSpeak.
@@ -10,3 +10,4 @@ public enum NewState
     Locked = 2,
     Unlocked = 3,
 }
+
