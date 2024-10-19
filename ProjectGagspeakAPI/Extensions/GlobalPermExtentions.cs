@@ -16,6 +16,8 @@ public static class GlobalPermExtentions
     }
 
     public static bool IsSitting(this UserGlobalPermissions p) => !string.IsNullOrEmpty(p.ForcedSit) || !string.IsNullOrEmpty(p.ForcedGroundsit);
+    public static bool IsNormalSitting(this UserGlobalPermissions p) => !string.IsNullOrEmpty(p.ForcedSit);
+    public static bool IsGroundSitting(this UserGlobalPermissions p) => !string.IsNullOrEmpty(p.ForcedGroundsit);
     public static bool IsSitDevotional(this UserGlobalPermissions p) => p.ForcedSit.EndsWith(Globals.DevotedString) || p.ForcedGroundsit.EndsWith(Globals.DevotedString);
     public static string SitUID(this UserGlobalPermissions p)
     {
