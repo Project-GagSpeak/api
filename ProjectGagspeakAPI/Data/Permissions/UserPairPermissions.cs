@@ -54,14 +54,12 @@ public record UserPairPermissions
 
 
     // unique hardcore permissions. (only allow the ALLOW permissions to be set by the user).
-    public bool AllowForcedFollow { get; set; } = false;     // if you give player permission
-    public bool IsForcedToFollow { get; set; } = false;      // if the player has activated it
-    public bool AllowForcedSit { get; set; } = false;        // if you give player permission
-    public bool IsForcedToSit { get; set; } = false;         // if the player has activated it
-    public bool IsForcedToGroundSit { get; set; } = false;      // if you give player permission
-    public bool AllowForcedToStay { get; set; } = false;     // if you give player permission
-    public bool IsForcedToStay { get; set; } = false;        // if the player has activated it
-    public bool AllowBlindfold { get; set; } = false;       // if you give player permission
-    public bool ForceLockFirstPerson { get; set; } = false; // if you force first person view
-    public bool IsBlindfolded { get; set; } = false;      // if the player has activated it
+    public bool DevotionalStatesForPair { get; set; } = false; // Treats any State toggled by this pair like a Devotional Padlock.
+    public bool AllowForcedFollow { get; set; } = false;
+    public bool AllowForcedSit { get; set; } = false;
+    public bool AllowForcedToStay { get; set; } = false;
+    public bool AllowBlindfold { get; set; } = false;
+    public bool AllowHidingChatboxes { get; set; } = false;
+    public bool AllowHidingChatInput { get; set; } = false;
+    public bool AllowChatInputBlocking { get; set; } = false;
 }

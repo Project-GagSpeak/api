@@ -32,7 +32,6 @@ public record UserGlobalPermissions
     // global moodles modifiable permissions
     public bool MoodlesEnabled { get; set; } = false;           // PROFILE VIEWABLE OPT-IN || If the user's moodles component is active
 
-
     // global toybox modifiable permissions
     public bool ToyboxEnabled { get; set; } = false;            // PROFILE VIEWABLE OPT-IN || If the user's toybox component is active
     public bool LockToyboxUI { get; set; } = false;             // if the user's toybox UI is locked
@@ -41,8 +40,18 @@ public record UserGlobalPermissions
     public int ToyIntensity { get; set; } = 0;                  // the intensity of the user's toy
     public bool SpatialVibratorAudio { get; set; } = false;     // if the user's toybox local audio is active
 
-    // Share Code for global shock collar permissions.
-    // NOTE: UniquePairPermissions share codes override global codes. Global Codes also ONLY work for
+    // global hardcore permissions (only modifiable by GlobalPerm User)
     public string GlobalShockShareCode { get; set; } = "";
     public TimeSpan GlobalShockVibrateDuration { get; set; } = TimeSpan.Zero;
+
+    // global hardcore permissions (readonly for everyone)
+    // Contains the UID who applied it when active. If Devotional, will have    |pairlocked    appended.
+    public string ForcedFollow { get; set; } = string.Empty;
+    public string ForcedSit { get; set; } = string.Empty;
+    public string ForcedGroundsit { get; set; } = string.Empty;
+    public string ForcedStay { get; set; } = string.Empty;
+    public string ForcedBlindfold { get; set; } = string.Empty;
+    public string ChatboxesHidden { get; set; } = string.Empty;
+    public string ChatInputHidden { get; set; } = string.Empty;
+    public string ChatInputBlocked { get; set; } = string.Empty;
 }
