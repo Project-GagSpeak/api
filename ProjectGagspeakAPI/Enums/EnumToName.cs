@@ -3,6 +3,16 @@ using GagspeakAPI.Data.IPC;
 namespace GagspeakAPI.Enums;
 public static partial class EnumToName
 {
+    public static string ToName(this InteractionFilter filterKind)
+    => filterKind switch
+    {
+        InteractionFilter.All => "All",
+        InteractionFilter.Applier => "Nick/Alias/UID",
+        InteractionFilter.Interaction => "Interaction Type",
+        InteractionFilter.Content => "Content Details",
+        _ => "UNK"
+    };
+
     public static string ToName(this RevertStyle revertStyle)
     => revertStyle switch
     { 
@@ -66,6 +76,44 @@ public static partial class EnumToName
         "OwnerPadlock" => Padlocks.OwnerPadlock,
         "OwnerTimerPadlock" => Padlocks.OwnerTimerPadlock,
         _ => Padlocks.None
+    };
+
+    public static string ToName(this InteractionType interactionType)
+    => interactionType switch
+    {
+        InteractionType.None => "None",
+        InteractionType.ApplyGag => "Gag Applied",
+        InteractionType.LockGag => "Gag Locked",
+        InteractionType.UnlockGag => "Gag Unlocked",
+        InteractionType.RemoveGag => "Gag Removed",
+        InteractionType.ApplyRestraint => "Restraint Applied",
+        InteractionType.LockRestraint => "Restraint Locked",
+        InteractionType.UnlockRestraint => "Restraint Unlocked",
+        InteractionType.RemoveRestraint => "Restraint Removed",
+        InteractionType.ApplyPairMoodle => "Moodle Applied",
+        InteractionType.ApplyPairMoodlePreset => "Moodle Preset Applied",
+        InteractionType.ApplyOwnMoodle => "Moodle Applied",
+        InteractionType.ApplyOwnMoodlePreset => "Moodle Preset Applied",
+        InteractionType.RemoveMoodle => "Moodle Removed",
+        InteractionType.ClearMoodle => "Moodle Cleared",
+        InteractionType.ToggleAlarm => "Alarm Toggled",
+        InteractionType.ActivatePattern => "Pattern Activated",
+        InteractionType.StopPattern => "Pattern Stopped",
+        InteractionType.ToggleTrigger => "Trigger Toggled",
+        InteractionType.ShockAction => "Shock Action",
+        InteractionType.VibrateAction => "Vibrate Action",
+        InteractionType.BeepAction => "Beep Action",
+        InteractionType.BulkUpdate => "Bulk Update",
+        InteractionType.ForcedFollow => "Forced Follow",
+        InteractionType.ForcedSit => "Forced Sit",
+        InteractionType.ForcedStay => "Forced Stay",
+        InteractionType.ForcedBlindfold => "Forced Blindfold",
+        InteractionType.ForcedChatVisibility => "Chat Visibility",
+        InteractionType.ForcedChatInputVisibility => "Chat Input Visibility",
+        InteractionType.ForcedChatInputBlock => "Chat Input Block",        
+        InteractionType.ForcedPermChange => "Forced Perm Change",
+        InteractionType.VibeControl => "Vibe Control",
+        _ => "UNK"
     };
 
     public static string ToName(this IpcToggleType toggleType)

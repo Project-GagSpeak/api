@@ -21,6 +21,7 @@ public enum AchievementType
     Threshold,
     TimedProgress,
     ConditionalProgress,
+    ConditionalThreshold,
     TimeLimitConditional,
     RequiredTimeConditional, // formerly conditional duration
 
@@ -72,6 +73,7 @@ public enum UnlocksEvent
     EasterEggFound,
     ChocoboRaceFinished,
     PlayersInProximity,
+    CutsceneInturrupted,
 
 }
 
