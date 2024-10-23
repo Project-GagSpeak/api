@@ -56,11 +56,14 @@ public enum UnlocksEvent
     AlarmToggled,
     PvpPlayerSlain,
     ClientSlain,
+    ClientOneHp,
 
     HardcoreForcedPairAction,
 
     RemoteOpened,
     VibeRoomCreated,
+
+    VibratorsToggled,
 
     //////// Generics & Secrets Below /////////
     ChatMessageSent, // chat type, message, and sender.
