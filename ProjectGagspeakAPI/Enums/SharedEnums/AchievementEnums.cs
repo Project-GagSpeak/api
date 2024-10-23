@@ -43,8 +43,9 @@ public enum UnlocksEvent
     RestraintLockChange,
     PairRestraintLockChange,
 
-    PuppeteerMessageSend,
     PuppeteerAccessGiven, // true == all permissions, false == emote permissions. (yes, im lazy)
+    PuppeteerOrderSent, // when you make another pair execute an emote.
+    PuppeteerEmoteRecieved, // when you recieve an emote order from another pair.
 
     PatternAction,
     DeviceConnected,
@@ -63,7 +64,6 @@ public enum UnlocksEvent
 
     //////// Generics & Secrets Below /////////
     ChatMessageSent, // chat type, message, and sender.
-    PuppeteerEmoteSent, // emote used in string value.
     EmoteExecuted, // contains emote used in string value.
     TutorialCompleted,
     PairAdded,
@@ -75,6 +75,17 @@ public enum UnlocksEvent
     PlayersInProximity,
     CutsceneInturrupted,
 
+    // For certain achievements requiring special conditions
+    SoldSlave,
+    AuctionedOff,
+}
+
+public enum PuppeteerMsgType
+{
+    GenericOrder,
+    GrovelOrder,
+    SulkOrder,
+    DanceOrder,
 }
 
 public enum DurationTimeUnit

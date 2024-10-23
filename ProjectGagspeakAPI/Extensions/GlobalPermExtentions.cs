@@ -9,7 +9,7 @@ public static class GlobalPermExtentions
     public static string FollowUID(this UserGlobalPermissions p) => p.ForcedFollow.Replace(Globals.DevotedString, string.Empty);
     public static bool CanToggleFollow(this UserGlobalPermissions p, string uid)
     {
-        if (p.ForcedFollow == string.Empty || !p.ForcedFollow.EndsWith(Globals.DevotedString))
+        if (string.IsNullOrEmpty(p.ForcedFollow) || !p.ForcedFollow.EndsWith(Globals.DevotedString))
             return true;
         else
             return p.FollowUID() == uid;
