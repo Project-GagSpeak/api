@@ -29,22 +29,20 @@ public static class ToStringHelpers
         return result;
     }
 
-    public static string ParseToString(this PatternInfo data)
+    public static string ParseToString(this PatternDto data)
     {
         string result = ">> ";
         result += $"[Name:: {data.Name}]";
-        result += $"[Desc:: {data.Description}]";
         result += $"[Length:: {data.Duration}]";
         result += $"[Loops?:: {data.ShouldLoop}]";
         return result;
     }
 
-    public static string ParseToString(this TriggerInfo data)
+    public static string ParseToString(this TriggerDto data)
     {
         string result = ">> ";
         result += $"[Enabled:: {data.Enabled}]";
         result += $"[Name:: {data.Name}]";
-        result += $"[Desc:: {data.Description}]";
 
         switch (data.Type)
         {
@@ -67,19 +65,16 @@ public static class ToStringHelpers
                 result += "[Type:: On Social Act]";
                 break;
         }
-        result += $"[User Access:: " + string.Join(',', data.CanViewAndToggleTrigger) + "]";
         return result;
     }
 
-    public static string ParseToString(this AlarmInfo data)
+    public static string ParseToString(this AlarmDto data)
     {
         string result = ">> ";
         result += $"[Name:: {data.Name}]";
         result += $"[Enabled:: {data.Enabled}]";
         result += $"[Time (UTC):: {data.SetTimeUTC}]";
-        result += $"[Pattern:: {data.PatternToPlay}]";
-        result += $"[Length:: {data.PatternDuration}]";
-        result += $"[Days Set:: " + string.Join(',', data.RepeatFrequency) + "]";
+        result += $"[Pattern:: {data.PatternThatPlays}]";
         return result;
     }
 

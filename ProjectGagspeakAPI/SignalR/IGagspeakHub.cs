@@ -77,13 +77,13 @@ public interface IGagspeakHub
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
     #region Generic Interactions
-    Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
     Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
     Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
     Task UserDelete(); // delete this users account from the servers database
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
 
+    Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
     Task<bool> UploadPattern(PatternUploadDto dto);
     Task<bool> RemovePattern(Guid patternId);
     Task<bool> LikePattern(Guid patternId);
