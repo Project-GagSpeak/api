@@ -7,8 +7,7 @@ public enum HardcoreAction
 {
     None,
     ForcedFollow,
-    ForcedSit,
-    ForcedGroundsit,
+    ForcedEmoteState,
     ForcedStay,
     ForcedBlindfold,
     ChatboxHiding,

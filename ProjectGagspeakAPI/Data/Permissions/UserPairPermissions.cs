@@ -57,6 +57,7 @@ public record UserPairPermissions
     public bool DevotionalStatesForPair { get; set; } = false; // Treats any State toggled by this pair like a Devotional Padlock.
     public bool AllowForcedFollow { get; set; } = false;
     public bool AllowForcedSit { get; set; } = false;
+    public bool AllowForcedEmote { get; set; } = false;
     public bool AllowForcedToStay { get; set; } = false;
     public bool AllowBlindfold { get; set; } = false;
     public bool AllowHidingChatboxes { get; set; } = false;

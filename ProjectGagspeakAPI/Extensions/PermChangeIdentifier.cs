@@ -12,12 +12,9 @@ public static class PermChangeIdentifier
             case nameof(UserGlobalPermissions.ForcedFollow):
                 return currentPermissions.ForcedFollow != (string)changedValue ?
                        HardcoreAction.ForcedFollow: HardcoreAction.None;
-            case nameof(UserGlobalPermissions.ForcedSit):
-                return currentPermissions.ForcedSit != (string)changedValue ?
-                       HardcoreAction.ForcedSit : HardcoreAction.None;
-            case nameof(UserGlobalPermissions.ForcedGroundsit):
-                return currentPermissions.ForcedGroundsit != (string)changedValue ?
-                       HardcoreAction.ForcedGroundsit : HardcoreAction.None;
+            case nameof(UserGlobalPermissions.ForcedEmoteState):
+                return currentPermissions.ForcedEmoteState != (string)changedValue ?
+                       HardcoreAction.ForcedEmoteState : HardcoreAction.None;
             case nameof(UserGlobalPermissions.ForcedStay):
                 return currentPermissions.ForcedStay != (string)changedValue ?
                        HardcoreAction.ForcedStay : HardcoreAction.None;
