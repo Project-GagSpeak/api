@@ -31,7 +31,7 @@ public enum InteractionType
     BeepAction, // ???? Forgot where this happens
     BulkUpdate, //
     ForcedFollow, //
-    ForcedSit, //
+    ForcedEmoteState, //
     ForcedStay, //
     ForcedBlindfold, //
     ForcedChatVisibility, //

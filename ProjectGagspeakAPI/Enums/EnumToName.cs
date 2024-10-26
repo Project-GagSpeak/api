@@ -82,10 +82,12 @@ public static partial class EnumToName
     => interactionType switch
     {
         InteractionType.None => "None",
+        InteractionType.SwappedGag => "Gag Swapped",
         InteractionType.ApplyGag => "Gag Applied",
         InteractionType.LockGag => "Gag Locked",
         InteractionType.UnlockGag => "Gag Unlocked",
         InteractionType.RemoveGag => "Gag Removed",
+        InteractionType.SwappedRestraint=> "Restraint Swapped",
         InteractionType.ApplyRestraint => "Restraint Applied",
         InteractionType.LockRestraint => "Restraint Locked",
         InteractionType.UnlockRestraint => "Restraint Unlocked",
@@ -105,7 +107,7 @@ public static partial class EnumToName
         InteractionType.BeepAction => "Beep Action",
         InteractionType.BulkUpdate => "Bulk Update",
         InteractionType.ForcedFollow => "Forced Follow",
-        InteractionType.ForcedSit => "Forced Sit",
+        InteractionType.ForcedEmoteState => "Forced Emote State",
         InteractionType.ForcedStay => "Forced Stay",
         InteractionType.ForcedBlindfold => "Forced Blindfold",
         InteractionType.ForcedChatVisibility => "Chat Visibility",

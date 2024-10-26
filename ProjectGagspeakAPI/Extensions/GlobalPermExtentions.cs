@@ -26,11 +26,15 @@ public static class GlobalPermExtensions
     public static bool IsAnySitting(this UserGlobalPermissions p) =>
         p.ForcedEmoteState.Split('|') is { Length: >= 2 } parts && AnySitIdList.Contains(parts[1]);
     public static string EmoteStateUID(this UserGlobalPermissions p) => p.ForcedEmoteState.Split('|')[0];
-    public static bool IsEmoteStateDevotional(this UserGlobalPermissions p) => p.ForcedEmoteState.EndsWith(Globals.DevotedString);
+    public static bool CanToggleEmoteState(this UserGlobalPermissions p, string uid)
+    {
+        if (p.ForcedEmoteState.NullOrEmpty() || !p.ForcedEmoteState.IsPermDevotional()) return true;
+        return p.ForcedEmoteState.HardcorePermUID() == uid;
+    }
     public static EmoteState ExtractEmoteState(this UserGlobalPermissions p)
     {
         var parts = p.ForcedEmoteState.Split('|');
-        return new EmoteState { UID = parts[0], EmoteID = ushort.Parse(parts[1]), CyclePoseByte = byte.Parse(parts[2]), Devotional = parts.Length > 3 };
+        return new EmoteState(parts[0], ushort.Parse(parts[1]), byte.Parse(parts[2]), parts.Length > 3);
     }
 
 
@@ -72,9 +76,17 @@ public static class GlobalPermExtensions
     public static bool NullOrEmpty(this string s) => string.IsNullOrEmpty(s);
     public struct EmoteState
     {
-        public string UID;
-        public ushort EmoteID;
-        public byte CyclePoseByte;
-        public bool Devotional;
+        public string UID { get; init; }
+        public ushort EmoteID { get; init; }
+        public byte CyclePoseByte { get; init; }
+        public bool Devotional { get; init; }
+
+        public EmoteState(string uid = "", ushort emoteId = 0, byte cyclePoseByte = 0, bool devotional = false)
+        {
+            UID = uid;
+            EmoteID = emoteId;
+            CyclePoseByte = cyclePoseByte;
+            Devotional = devotional;
+        }
     }
 }
