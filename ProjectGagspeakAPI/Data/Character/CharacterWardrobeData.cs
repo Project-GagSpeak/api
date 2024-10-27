@@ -19,7 +19,7 @@ public class CharacterWardrobeData : IPadlockable
     public string Padlock { get; set; } = Padlocks.None.ToName(); // Type of padlock used to lock the set.
 	public string Password { get; set; } = ""; // password bound to the set's lock type.
 	public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
-	public string Assigner { get; set; } = Globals.SelfApplied; // UID that locked the set.
+	public string Assigner { get; set; } = ""; // UID that locked the set.
 
     // override the toString command.
     public override string ToString()
