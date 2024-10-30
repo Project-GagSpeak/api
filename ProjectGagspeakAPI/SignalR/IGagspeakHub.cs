@@ -93,9 +93,9 @@ public interface IGagspeakHub
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
 
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server
-    Task<UserProfileDto> UserGetProfile(UserDto dto); // get the profile of a user
-    Task UserReportProfile(UserProfileReportDto userDto); // hopefully this is never used x-x...
-    Task UserSetProfile(UserProfileDto userMiniProfile); // set the profile of the client
+    Task<UserKinkPlateDto> UserGetKinkPlate(UserDto dto); // get the profile of a user
+    Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
+    Task UserSetKinkPlate(UserKinkPlateDto userKinkPlate); // set the profile of the client
     #endregion Generic Interactions
 
     #region IPCTransfer

@@ -7,4 +7,4 @@ namespace GagspeakAPI.Dto.User;
 /// Holds information about the user who's profile is being reported, and why it was reported.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserProfileReportDto(UserData User, string ProfileReport) : UserDto(User);
+public record UserKinkPlateReportDto(UserData User, string ProfileReport) : UserDto(User);
