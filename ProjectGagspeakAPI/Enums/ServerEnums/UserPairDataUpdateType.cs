@@ -40,7 +40,6 @@ public enum DataUpdateKind
     AppearanceGagRemovedLayerThree,
 
     /* ------------------------------ */
-    WardrobeRestraintOutfitsUpdated, // Only allow Client owning Data to modify this.
     WardrobeRestraintApplied,
     WardrobeRestraintLocked,
     WardrobeRestraintUnlocked,
@@ -51,20 +50,10 @@ public enum DataUpdateKind
     PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
 
     /* ------------------------------ */
-    ToyboxPatternListUpdated,
     ToyboxPatternExecuted,
     ToyboxPatternStopped,
-
-    ToyboxAlarmListUpdated, // Only allow Client owning Data to modify this.
     ToyboxAlarmToggled,
-
-    ToyboxTriggerListUpdated, // Only allow Client owning Data to modify this.
     ToyboxTriggerToggled, // when any trigger in the trigger list is activated or deactivated.
-
-    /* ------------------------------ */
-    PiShockGlobalUpdated,
-    PiShockOwnPermsForPairUpdated,
-    PiShockPairPermsForUserUpdated,
 
     /* ------------------------------ */
     IpcUpdateVisible, // Only allow Client owning Data to modify this.

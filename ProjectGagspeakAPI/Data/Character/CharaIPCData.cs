@@ -10,7 +10,7 @@ namespace GagspeakAPI.Data.Character;
 /// - Stores the GUID's of their Presets and the associated Moodles Statuses of those presets by GUID.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharacterIPCData
+public class CharaIPCData
 {
     /// <summary> Last Known StatusManager compressed in base64 string. (for easy setting) </summary>
     public string MoodlesData { get; set; } = string.Empty;
@@ -28,7 +28,7 @@ public class CharacterIPCData
     public override bool Equals(object? obj)
     {
         // return false if object is not characterIPCData
-        if (obj is CharacterIPCData data)
+        if (obj is CharaIPCData data)
         {
             return MoodlesData == data.MoodlesData
                 && MoodlesDataStatuses.SequenceEqual(data.MoodlesDataStatuses)

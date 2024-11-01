@@ -1,4 +1,4 @@
-using GagspeakAPI.Data;
+﻿using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
 using GagspeakAPI.Enums;
 using MessagePack;
@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.User;
 /// DTO for handling the updating of our own data to our online user pairs.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaAliasDataMessageDto(UserData RecipientUser, CharacterAliasData AliasData, DataUpdateKind UpdateKind);
+public record UserCharaAppearanceDataMessageDto(List<UserData> Recipients, CharaAppearanceData AppearanceData, DataUpdateKind UpdateKind);

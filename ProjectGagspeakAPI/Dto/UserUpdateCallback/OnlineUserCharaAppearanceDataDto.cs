@@ -11,4 +11,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <para><b>User == The user Updated (can be client caller or other pair)</b></para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaAppearanceDataDto(UserData User, CharacterAppearanceData AppearanceData, DataUpdateKind UpdateKind) : UserDto(User);
+public record OnlineUserCharaAppearanceDataDto(UserData User, CharaAppearanceData AppearanceData, DataUpdateKind UpdateKind) : UserDto(User);

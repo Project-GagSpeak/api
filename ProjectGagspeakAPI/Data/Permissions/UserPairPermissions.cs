@@ -50,6 +50,11 @@ public record UserPairPermissions
     public bool CanSendAlarms { get; set; } = false; // if the client pair can send alarms to your toy.
     public bool CanToggleTriggers { get; set; } = false; // if the client pair can use triggers on your toy.
     public string ShockCollarShareCode { get; set; } = ""; // the share Code for the shock collar unique to this user.
+    public bool AllowShocks { get; set; } = false; // If we allow shocks from this pair.
+    public bool AllowVibrations { get; set; } = false; // If we allow vibrations from this pair.
+    public bool AllowBeeps { get; set; } = false; // If we allow beeps from this pair.
+    public int MaxIntensity { get; set; } = -1; // the max intensity of the shock, vibration, or beep.
+    public int MaxDuration { get; set; } = -1; // the max duration of the shock, vibration, or beep.
     public TimeSpan MaxVibrateDuration { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
 
 
@@ -60,7 +65,24 @@ public record UserPairPermissions
     public bool AllowForcedEmote { get; set; } = false;
     public bool AllowForcedToStay { get; set; } = false;
     public bool AllowBlindfold { get; set; } = false;
-    public bool AllowHidingChatboxes { get; set; } = false;
+    public bool AllowHidingChatBoxes { get; set; } = false;
     public bool AllowHidingChatInput { get; set; } = false;
     public bool AllowChatInputBlocking { get; set; } = false;
+
+    // member helper for PiShock functions.
+    public TimeSpan GetTimespanFromDuration()
+    {
+        if (MaxDuration > 15 && MaxDuration < 100)
+        {
+            return TimeSpan.Zero; // invalid range.
+        }
+        else if (MaxDuration >= 100 && MaxDuration <= 15000)
+        {
+            return TimeSpan.FromMilliseconds(MaxDuration); // convert to milliseconds
+        }
+        else
+        {
+            return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
+        }
+    }
 }

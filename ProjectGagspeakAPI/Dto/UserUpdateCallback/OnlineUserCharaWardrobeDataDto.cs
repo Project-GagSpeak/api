@@ -14,4 +14,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <param name="WardrobeData"> The updated wardrobe data.</param>
 /// <param name="UpdateKind"> The kind of update this change makes.</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaWardrobeDataDto(UserData User, CharacterWardrobeData WardrobeData, UserData Enactor, DataUpdateKind UpdateKind) : UserDto(User);
+public record OnlineUserCharaWardrobeDataDto(UserData User, CharaWardrobeData WardrobeData, UserData Enactor, DataUpdateKind UpdateKind) : UserDto(User);

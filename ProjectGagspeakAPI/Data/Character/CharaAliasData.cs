@@ -7,7 +7,7 @@ namespace GagspeakAPI.Data.Character;
 /// CharacterData class stores all of the user's settings, permissions, and apperance data
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharacterAliasData
+public class CharaAliasData
 {
     public string CharacterName { get; set; } = string.Empty;
     public string CharacterWorld { get; set; } = string.Empty;

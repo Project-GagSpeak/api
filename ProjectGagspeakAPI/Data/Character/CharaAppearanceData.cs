@@ -8,7 +8,7 @@ namespace GagspeakAPI.Data.Character;
 /// Represents character appearance data including multiple gag slots.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CharacterAppearanceData
+public record CharaAppearanceData
 {
     // Fixed size array of GagSlots
     public GagSlot[] GagSlots { get; init; } = new GagSlot[3]
@@ -19,9 +19,7 @@ public record CharacterAppearanceData
     };
 
     public override string ToString()
-    {
-        return $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
-    }
+        => $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
 }
 
 /// <summary>
@@ -37,7 +35,5 @@ public record GagSlot : IPadlockable
     public string Assigner { get; set; } = "";
 
     public override string ToString()
-    {
-        return $"GagSlot {{ GagType = {GagType}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
-    }
+        => $"GagSlot {{ GagType = {GagType}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
 }

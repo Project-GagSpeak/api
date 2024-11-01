@@ -38,14 +38,14 @@ public interface IGagspeakHub
 
 
     /// <summary> Callbacks to update permissions. </summary>
-    Task Client_UserUpdateSelfAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
-    Task Client_UserUpdateSelfAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateSelfAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
+    Task Client_UserUpdateSelfAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
     Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
     Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); // ONLY EVER USED WHEN ADDING A NEW PAIR.
-    Task Client_UserUpdateOtherAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
-    Task Client_UserUpdateOtherAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD AND PRESET APPLICATION.
+    Task Client_UserUpdateOtherAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
+    Task Client_UserUpdateOtherAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
     Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
     Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
     Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
@@ -63,7 +63,8 @@ public interface IGagspeakHub
     Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
     Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
     Task Client_UserReceiveOtherDataToybox(OnlineUserCharaToyboxDataDto dto);
-    Task Client_UserReceiveDataPiShock(OnlineUserCharaPiShockPermDto dto);
+    Task Client_UserReceiveOwnLightStorage(OnlineUserStorageUpdateDto dto);
+    Task Client_UserReceiveOtherLightStorage(OnlineUserStorageUpdateDto dto);
 
     #region Generic Callbacks
     Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
@@ -127,29 +128,11 @@ public interface IGagspeakHub
     
     /// <summary>
     /// Pushes a player's appearance data to the server, updating paired online clients.
-    /// <para>
-    /// Information pushed includes info about current gags, locks, passwords, timers, and assigners 
-    /// </para>
-    /// <para><b> Of Note: Because timers are in DateTimeOffsetUTC format, we will not need to worry update data messing up timers. </b></para>
     /// </summary>
     Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto);
 
     /// <summary>
-    /// Pushes a player's wardrobe data to the server, updating paired online clients.
-    /// <para> 
-    /// Information pushed includes the list of restraint sets by name, and info about the active set. 
-    /// </para>
-    /// <para>
-    /// <b> For another client pair to update someone else's restraint set, the following must be true: </b>
-    /// <list type="bullet">
-    /// <item> Cannot activate a set if a set is currently active. </item>
-    /// <item> Cannot lock a set if it is not the currently active set. </item>
-    /// <item> Cannot unlock a set if you were not the one who locked it. (maybe add exceptions to this later idk) </item>
-    /// <item> Time To lock cannot exceed the player's set max allowed lock time. </item>
-    /// </list>
-    /// If any of these are violated, do not push update to server.
-    /// </para>
-    /// <para><b> Be Careful that you do not introduce feedback loops when updating changes. </b></para>
+    /// Pushes a player's active restraint set data to the server, updating paired online clients.
     /// </summary>
     Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto);
 
@@ -160,26 +143,20 @@ public interface IGagspeakHub
     /// </summary>
     Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
 
-
     /// <summary>
-    /// Pushes data relevant to the toybox module to the server, updating other paired clients.
-    /// <para> Pushes generic summarized data about the list of patterns, triggers, and alarms. </para>
+    /// Push data relevant to the active toybox items currently on your player.
     /// </summary>
     Task UserPushDataToybox(UserCharaToyboxDataMessageDto dto);
 
     /// <summary>
-    /// Updates other online users with this pairs latest PiShock global or unique pair permissions.
-    /// We can determine the type on the server with the combination of userData and the updateKind.
+    /// Update other users with your latest GagSpeak storage in light format, giving them access to view your created interactable items.
     /// </summary>
-    Task UserPushPiShockUpdate(UserCharaPiShockPermMessageDto dto);
+    Task UserPushDataLightStorage(UserCharaStorageUpdateDto dto);
+
+
     #endregion Client Push Own Data Updates
 
     #region Client Update Other UserPair Data
-    /// <summary>
-    /// NOT SURE WHY WE WOULD EVER USE THIS AT THE MOMENT YET.
-    /// </summary>
-    Task UserPushPairDataIpcUpdate(OnlineUserCharaIpcDataDto dto);
-
     /// <summary>
     /// Pushes an updated state of the pair's appearance data after we made modifications to it, to the server.
     /// <para> Once server handles update, it is pushed to all pairs of the pair, including us. </para>
@@ -209,25 +186,21 @@ public interface IGagspeakHub
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates
-    /// <summary> ONLY CALLED UPON WHEN SELECTING A PRESET OR USING A SAFEWORD </summary>
     Task UserPushAllGlobalPerms(UserAllGlobalPermChangeDto dto);
     Task UserPushAllUniquePerms(UserPairUpdateAllUniqueDto dto);
 
     /// <summary>
     /// Push an update of your own global permissions to the server, and update other pairs with your change.
-    /// <para> Manages the synchronization of pairs viewing on one another permissions that are set. </para>
     /// </summary>
     Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto);
 
     /// <summary>
     /// Push an update of your own unique permissions for a specific pair to the server. 
-    /// <para> This change is also pushed to the pair you made it for. </para>
     /// </summary>
     Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto);
 
     /// <summary>
     /// Push an update of your own access permissions for a specific pair to the server.
-    /// <para> This change is also pushed to the pair you made it for. </para>
     /// </summary>
     Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto);
 

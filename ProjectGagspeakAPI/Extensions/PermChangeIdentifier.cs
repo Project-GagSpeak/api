@@ -21,8 +21,8 @@ public static class PermChangeIdentifier
             case nameof(UserGlobalPermissions.ForcedBlindfold):
                 return currentPermissions.ForcedBlindfold != (string)changedValue ?
                        HardcoreAction.ForcedBlindfold : HardcoreAction.None;
-            case nameof(UserGlobalPermissions.ChatboxesHidden):
-                return currentPermissions.ChatboxesHidden != (string)changedValue ?
+            case nameof(UserGlobalPermissions.ChatBoxesHidden):
+                return currentPermissions.ChatBoxesHidden != (string)changedValue ?
                        HardcoreAction.ChatboxHiding : HardcoreAction.None;
             case nameof(UserGlobalPermissions.ChatInputHidden):
                 return currentPermissions.ChatInputHidden != (string)changedValue ?

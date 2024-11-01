@@ -52,11 +52,11 @@ public static class GlobalPermExtensions
         return p.ForcedFollow.HardcorePermUID() == uid;
     }
 
-    public static bool IsChatHidden(this UserGlobalPermissions p) => !p.ChatboxesHidden.NullOrEmpty();
+    public static bool IsChatHidden(this UserGlobalPermissions p) => !p.ChatBoxesHidden.NullOrEmpty();
     public static bool CanToggleChatHidden(this UserGlobalPermissions p, string uid)
     {
-        if (p.ChatboxesHidden.NullOrEmpty() || !p.ChatboxesHidden.IsPermDevotional()) return true;
-        return p.ChatboxesHidden.HardcorePermUID() == uid;
+        if (p.ChatBoxesHidden.NullOrEmpty() || !p.ChatBoxesHidden.IsPermDevotional()) return true;
+        return p.ChatBoxesHidden.HardcorePermUID() == uid;
     }
 
     public static bool IsChatInputHidden(this UserGlobalPermissions p) => !p.ChatInputHidden.NullOrEmpty();
@@ -73,7 +73,6 @@ public static class GlobalPermExtensions
         return p.ChatInputBlocked.HardcorePermUID() == uid;
     }
 
-    public static bool NullOrEmpty(this string s) => string.IsNullOrEmpty(s);
     public struct EmoteState
     {
         public string UID { get; init; }
