@@ -1,9 +1,11 @@
+using MessagePack;
+
 namespace GagspeakAPI.Data;
 
 /// <summary>
 /// A basic authentication class to validate that the information from the client when they attempt to connect is correct.
 /// </summary>
-[Serializable]
+[MessagePackObject(keyAsPropertyName: true)]
 public record HardcoreTraits
 {
     /// <summary> Any action which typically involves fast leg movement is restricted </summary>
