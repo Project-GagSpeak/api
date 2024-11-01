@@ -1,5 +1,50 @@
 namespace GagspeakAPI.Data.IPC;
 
+public enum CorePluginTexture
+{
+    Logo256,
+    Logo256bg,
+    SupporterBooster,
+    SupporterTier1,
+    SupporterTier2,
+    SupporterTier3,
+    SupporterTier4,
+    AchievementLineSplit,
+    Achievement,
+    Blindfolded,
+    ChatBlocked,
+    Clock,
+    CursedLoot,
+    ForcedEmote,
+    ForcedStay,
+    Gagged,
+    Leash,
+    Restrained,
+    RestrainedArmsLegs,
+    ShockCollar,
+    SightLoss,
+    Stimulated,
+    Vibrator,
+    Weighty,
+    ArrowSpin,
+    CircleDot,
+    Power,
+    Play,
+    Stop,
+
+}
+
+public enum ProfileComponent
+{
+    Plate,
+    ProfilePicture,
+    Description,
+    GagSlot,
+    Padlock,
+    BlockedSlots,
+    BlockedSlot
+}
+
 // 5 for each
 public enum ProfileStyleBG
 {
@@ -54,20 +99,5 @@ public enum ProfileStyleOverlay
     School,
     Demonic,
     Drool,
-}
-
-public enum CorePluginTexture
-{
-    Logo256,
-    Logo256bg,
-    SupporterBooster,
-    SupporterTier1,
-    SupporterTier2,
-    SupporterTier3,
-    SupporterTier4
-}
-
-public enum CosmeticTexture
-{
 }
 
