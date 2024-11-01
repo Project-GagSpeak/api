@@ -64,4 +64,5 @@ public enum LoggerType
     Health,
     HubFactory,
     JwtTokens,
+    Textures,
 }

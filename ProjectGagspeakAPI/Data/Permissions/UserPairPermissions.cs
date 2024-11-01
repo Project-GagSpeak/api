@@ -70,6 +70,7 @@ public record UserPairPermissions
     public bool AllowChatInputBlocking { get; set; } = false;
 
     // member helper for PiShock functions.
+    public bool HasValidShareCode() => MaxIntensity != -1;
     public TimeSpan GetTimespanFromDuration()
     {
         if (MaxDuration > 15 && MaxDuration < 100)

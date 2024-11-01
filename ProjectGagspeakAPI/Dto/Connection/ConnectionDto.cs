@@ -21,7 +21,7 @@ public record ConnectionDto(UserData User)
     public int ServerVersion { get; set; }                            // The version of the gagspeak server
     // if possible we could get a fetch for composite data? idk
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
-    public CharaAppearanceData CharacterAppearanceData { get; set; } = new(); // The user's gag appearance data
+    public CharaAppearanceData CharaAppearanceData { get; set; } = new(); // The user's gag appearance data
     public CharaActiveStateData CharacterActiveStateData { get; set; } = new(); // The user's active state data
     public string UserAchievements { get; set; } = string.Empty; // The user's achievements
 }

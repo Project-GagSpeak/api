@@ -39,6 +39,7 @@ public enum InteractionType
     ForcedChatInputBlock, //
     ForcedPermChange, //
     VibeControl,
+    PiShockUpdate,
 }
 
 public enum InteractionFilter
