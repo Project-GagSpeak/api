@@ -37,8 +37,10 @@ public enum CorePluginTexture
 public enum ProfileComponent
 {
     Plate,
+    PlateLight,
     ProfilePicture,
     Description,
+    DescriptionLight,
     GagSlot,
     Padlock,
     BlockedSlots,

@@ -9,9 +9,11 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinkPlateContent
 {
+    public bool PublicPlate { get; set; } = false;
     public bool Flagged { get; set; } = false;
     public bool Disabled { get; set; } = false;
     public string Description { get; set; } = string.Empty;
+    public int ChosenTitleId { get; set; } = 0; // Identifier for the achievement they have chosen a title for. 0 is nothing.
 
     public ProfileStyleBG PlateBackground { get; set; } = ProfileStyleBG.Default;
     public ProfileStyleBorder PlateBorder { get; set; } = ProfileStyleBorder.Default;
