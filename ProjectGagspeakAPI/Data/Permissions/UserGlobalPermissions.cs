@@ -1,4 +1,5 @@
 using GagspeakAPI.Enums;
+using GagspeakAPI.Extensions;
 using MessagePack;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -60,7 +61,7 @@ public record UserGlobalPermissions
     public int MaxDuration { get; set; } = -1;
     public TimeSpan GlobalShockVibrateDuration { get; set; } = TimeSpan.Zero;
 
-    public bool HasValidShareCode() => MaxIntensity != -1;
+    public bool HasValidShareCode() => !GlobalShockShareCode.NullOrEmpty() && MaxDuration > 0;
     public TimeSpan GetTimespanFromDuration()
     {
         if (MaxDuration > 15 && MaxDuration < 100)

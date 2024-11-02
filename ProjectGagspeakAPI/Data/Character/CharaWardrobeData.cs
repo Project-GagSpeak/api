@@ -18,6 +18,8 @@ public class CharaWardrobeData : IPadlockable
 	public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
 	public string Assigner { get; set; } = ""; // UID that locked the set.
 
+    public List<Guid> ActiveCursedItems { get; set; } = new List<Guid>(); // List of cursed items that are currently active.
+
     public override string ToString()
     {
         return $"ActiveId = {ActiveSetId}, EnabledBy = {ActiveSetEnabledBy}, " +

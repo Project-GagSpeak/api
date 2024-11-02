@@ -1,3 +1,4 @@
+using GagspeakAPI.Extensions;
 using MessagePack;
 using System.ComponentModel.DataAnnotations;
 
@@ -49,14 +50,6 @@ public record UserPairPermissions
     public bool CanToggleAlarms { get; set; } = false; // if the client pair can toggle alarms on your toy.
     public bool CanSendAlarms { get; set; } = false; // if the client pair can send alarms to your toy.
     public bool CanToggleTriggers { get; set; } = false; // if the client pair can use triggers on your toy.
-    public string ShockCollarShareCode { get; set; } = ""; // the share Code for the shock collar unique to this user.
-    public bool AllowShocks { get; set; } = false; // If we allow shocks from this pair.
-    public bool AllowVibrations { get; set; } = false; // If we allow vibrations from this pair.
-    public bool AllowBeeps { get; set; } = false; // If we allow beeps from this pair.
-    public int MaxIntensity { get; set; } = -1; // the max intensity of the shock, vibration, or beep.
-    public int MaxDuration { get; set; } = -1; // the max duration of the shock, vibration, or beep.
-    public TimeSpan MaxVibrateDuration { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
-
 
     // unique hardcore permissions. (only allow the ALLOW permissions to be set by the user).
     public bool DevotionalStatesForPair { get; set; } = false; // Treats any State toggled by this pair like a Devotional Padlock.
@@ -69,8 +62,16 @@ public record UserPairPermissions
     public bool AllowHidingChatInput { get; set; } = false;
     public bool AllowChatInputBlocking { get; set; } = false;
 
+    public string ShockCollarShareCode { get; set; } = ""; // the share Code for the shock collar unique to this user.
+    public bool AllowShocks { get; set; } = false; // If we allow shocks from this pair.
+    public bool AllowVibrations { get; set; } = false; // If we allow vibrations from this pair.
+    public bool AllowBeeps { get; set; } = false; // If we allow beeps from this pair.
+    public int MaxIntensity { get; set; } = -1; // the max intensity of the shock, vibration, or beep.
+    public int MaxDuration { get; set; } = -1; // the max duration of the shock, vibration, or beep.
+    public TimeSpan MaxVibrateDuration { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
+
     // member helper for PiShock functions.
-    public bool HasValidShareCode() => MaxIntensity != -1;
+    public bool HasValidShareCode() => !ShockCollarShareCode.NullOrEmpty() && MaxDuration > 0;
     public TimeSpan GetTimespanFromDuration()
     {
         if (MaxDuration > 15 && MaxDuration < 100)

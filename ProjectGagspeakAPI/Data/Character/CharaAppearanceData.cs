@@ -18,7 +18,7 @@ public record CharaAppearanceData
         new GagSlot()  // Slot 3
     };
 
-    public override string ToString()
+    public string ToGagString()
         => $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
 }
 

@@ -44,6 +44,8 @@ public enum DataUpdateKind
     WardrobeRestraintLocked,
     WardrobeRestraintUnlocked,
     WardrobeRestraintDisabled, // Wording is weird. Removed means taken off, not Deleted.
+    CursedItemApplied,
+    CursedItemRemoved,
     
     /* ------------------------------ */
     PuppeteerPlayerNameRegistered, // Only allow Client owning Data to modify this.
