@@ -13,6 +13,7 @@ public record KinkPlateContent
     public bool Flagged { get; set; } = false;
     public bool Disabled { get; set; } = false;
     public string Description { get; set; } = string.Empty;
+    public int CompletedAchievementsTotal { get; set; } = 0;
     public int ChosenTitleId { get; set; } = 0; // Identifier for the achievement they have chosen a title for. 0 is nothing.
 
     public ProfileStyleBG PlateBackground { get; set; } = ProfileStyleBG.Default;

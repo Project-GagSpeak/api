@@ -288,6 +288,7 @@ public static partial class EnumToName
             LoggerType.Health => "Health",
             LoggerType.HubFactory => "Hub Factory",
             LoggerType.JwtTokens => "JWT Tokens",
+            LoggerType.Textures => "Textures",
             _ => "UNK"
         };
     }
