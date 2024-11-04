@@ -19,6 +19,9 @@ public record KinkPlateContent
     public ProfileStyleBG PlateBackground { get; set; } = ProfileStyleBG.Default;
     public ProfileStyleBorder PlateBorder { get; set; } = ProfileStyleBorder.Default;
 
+    public ProfileStyleBG PlateLightBackground { get; set; } = ProfileStyleBG.Default;
+    public ProfileStyleBorder PlateLightBorder { get; set; } = ProfileStyleBorder.Default;
+
     public ProfileStyleBorder ProfilePictureBorder { get; set; } = ProfileStyleBorder.Default;
     public ProfileStyleOverlay ProfilePictureOverlay { get; set; } = ProfileStyleOverlay.Default;
 
