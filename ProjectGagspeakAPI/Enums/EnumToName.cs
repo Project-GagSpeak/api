@@ -31,7 +31,8 @@ public static partial class EnumToName
         + Environment.NewLine + "- If no Automation for Job/Gearset, reverts to Base Game.",
         RevertStyle.RevertEquipToGame => "Only Gear is reset to Base Game State, while Customization is Kept.",
         RevertStyle.RevertEquipToAutomation => "Only Gear is reset to current Job/Gearset Automation, while Customization is kept."
-        + Environment.NewLine + "- If no Automation for Job/Gearset, reverts to Base Game.",
+        + "--SEP--THIS DOES NOT CURRENTLY WORK AS GLAMOURER API DOES NOT PLAY NICE WITH THIS CONCEPT "
+        + "--SEP--I did my best to make it possible but couldn't. Sorry. This Option will use Revert To Automation instead.",
         _ => "UNK"
     };
 
@@ -199,9 +200,9 @@ public static partial class EnumToName
         return type switch
         {
             TriggerDirection.Self => "From Self",
-            TriggerDirection.SelfToOther => "Done onto others",
+            TriggerDirection.SelfToOther => "From you to others",
             TriggerDirection.Other => "From Others",
-            TriggerDirection.OtherToSelf => "From others onto You",
+            TriggerDirection.OtherToSelf => "From others to You",
             TriggerDirection.Any => "Any Filter",
             _ => "UNK"
         };
@@ -218,7 +219,6 @@ public static partial class EnumToName
             LimitedActionEffectType.ParriedDamage => "Damage Parried",
             LimitedActionEffectType.Attract1 => "Rescue Used",
             LimitedActionEffectType.Knockback => "Pushed Back",
-            LimitedActionEffectType.Interrupt => "Interrupt Applied",
             _ => "UNK"
         };
     }
