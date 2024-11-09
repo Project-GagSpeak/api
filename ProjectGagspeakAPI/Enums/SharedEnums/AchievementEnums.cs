@@ -24,8 +24,6 @@ public enum AchievementType
     ConditionalThreshold,
     TimeLimitConditional,
     RequiredTimeConditional, // formerly conditional duration
-
-
 }
 
 public enum UnlocksEvent
@@ -65,7 +63,6 @@ public enum UnlocksEvent
 
     VibratorsToggled,
 
-    //////// Generics & Secrets Below /////////
     ChatMessageSent, // chat type, message, and sender.
     EmoteExecuted, // contains emote used in string value.
     TutorialCompleted,
