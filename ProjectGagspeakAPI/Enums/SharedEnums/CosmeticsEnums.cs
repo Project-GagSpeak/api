@@ -47,6 +47,13 @@ public enum ProfileComponent
     BlockedSlot
 }
 
+public enum StyleKind
+{
+    Background,
+    Border,
+    Overlay,
+}
+
 // 5 for each
 public enum ProfileStyleBG
 {

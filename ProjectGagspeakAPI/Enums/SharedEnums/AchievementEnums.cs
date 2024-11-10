@@ -44,6 +44,7 @@ public enum UnlocksEvent
     PuppeteerAccessGiven, // true == all permissions, false == emote permissions. (yes, im lazy)
     PuppeteerOrderSent, // when you make another pair execute an emote.
     PuppeteerEmoteRecieved, // when you recieve an emote order from another pair.
+    PuppeteerOrderRecieved, // when you recieve an order from another pair.
 
     PatternAction,
     DeviceConnected,
