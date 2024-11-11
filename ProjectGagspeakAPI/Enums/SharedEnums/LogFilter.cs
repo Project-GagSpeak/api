@@ -3,8 +3,11 @@ namespace GagspeakAPI.Enums;
 public enum LoggerType
 {
     None,
+    // Foundation
     Achievements,
-    Mediator,
+    AchievementEvents,
+    AchievementInfo,
+
     // interop
     IpcGagSpeak,
     IpcCustomize,
@@ -12,45 +15,57 @@ public enum LoggerType
     IpcMare,
     IpcMoodles,
     IpcPenumbra,
-    Appearance,
+
+    // State Managers
+    AppearanceState,
+    ToyboxState,
+    Mediator,
+    GarblerCore,
+
+    // Update Monitors
+    ToyboxAlarms,
+    ActionsNotifier,
+    KinkPlateMonitor,
+    EmoteMonitor,
+    ChatDetours,
+    ActionEffects,
+    SpatialAudioLogger,
+
     // hardcore
     HardcoreActions,
     HardcoreMovement,
     HardcorePrompt,
-    // MuffleCore
-    GarblerCore,
-    // PlayerData
-    GagManagement,
-    PadlockManagement,
+
+    // PlayerData & Modules.
     ClientPlayerData,
-    GameObjects,
+    GagHandling,
+    PadlockHandling,
+    Restraints,
+    Puppeteer,
+    CursedLoot,
+    ToyboxDevices,
+    ToyboxPatterns,
+    ToyboxTriggers,
+    VibeControl,
+
+    // Pair Data
     PairManagement,
+    PairInfo,
+    PairDataTransfer,
+    PairHandlers,
     OnlinePairs,
     VisiblePairs,
-    PrivateRoom,
+    PrivateRooms,
+    GameObjects,
+
     // services
-    Notification,
-    Profiles,
     Cosmetics,
+    Textures,
     GlobalChat,
     ContextDtr,
     PatternHub,
     Safeword,
-    CursedLoot,
-    // wardrobe & puppeteer
-    Restraints,
-    Puppeteer,
-    // toybox
-    ToyboxDevices,
-    ToyboxPatterns,
-    ToyboxTriggers,
-    ToyboxAlarms,
-    VibeControl,
-    // update monitoring.
-    ChatDetours,
-    ActionEffects,
-    SpatialAudioController,
-    SpatialAudioLogger,
+
     // UI
     UiCore,
     UserPairDrawer,
@@ -61,8 +76,7 @@ public enum LoggerType
     PiShock,
     ApiCore,
     Callbacks,
-    Health,
     HubFactory,
+    Health,
     JwtTokens,
-    Textures,
 }

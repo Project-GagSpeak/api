@@ -229,53 +229,59 @@ public static partial class EnumToName
         {
             LoggerType.None => "None",
             LoggerType.Achievements => "Achievements",
-            LoggerType.Mediator => "Mediator",
+            LoggerType.AchievementEvents => "Events",
+            LoggerType.AchievementInfo => "Achievement Info",
+
             LoggerType.IpcGagSpeak => "Ipc Provider",
             LoggerType.IpcCustomize => "Customize+",
             LoggerType.IpcGlamourer => "Glamourer",
             LoggerType.IpcMare => "Mare",
             LoggerType.IpcMoodles => "Moodles",
             LoggerType.IpcPenumbra => "Penumbra",
-            LoggerType.Appearance => "Appearance",
+
+            LoggerType.AppearanceState => "Appearance",
+            LoggerType.ToyboxState => "Toybox",
+            LoggerType.Mediator => "Mediator",
+            LoggerType.GarblerCore => "GarblerCore",
+
+            LoggerType.ToyboxAlarms => "Alarms",
+            LoggerType.ActionsNotifier => "Actions Notifier",
+            LoggerType.KinkPlateMonitor => "KinkPlates™",
+            LoggerType.EmoteMonitor => "Emote Monitor",
+            LoggerType.ChatDetours => "Chat Detours",
+            LoggerType.ActionEffects => "Action Effects",
+            LoggerType.SpatialAudioLogger => "Spatial Logger",
 
             LoggerType.HardcoreActions => "Actions",
             LoggerType.HardcoreMovement => "Movements",
             LoggerType.HardcorePrompt => "Prompts",
 
-            LoggerType.GarblerCore => "GarblerCore",
-
-            LoggerType.GagManagement => "Gag Handling",
-            LoggerType.PadlockManagement => "Padlock Handling",
-
             LoggerType.ClientPlayerData => "Client Data",
-            LoggerType.GameObjects => "Game Objects",
-            LoggerType.PairManagement => "Pair Handling",
+            LoggerType.GagHandling => "Gag Handling",
+            LoggerType.PadlockHandling => "Padlock Handling",
+            LoggerType.Restraints => "Restraints",
+            LoggerType.Puppeteer => "Puppeteer",
+            LoggerType.CursedLoot => "Cursed Loot",
+            LoggerType.ToyboxDevices => "Devices",
+            LoggerType.ToyboxPatterns => "Patterns",
+            LoggerType.ToyboxTriggers => "Triggers",
+            LoggerType.VibeControl => "Vibe Control",
+
+            LoggerType.PairManagement => "Pair Management",
+            LoggerType.PairInfo => "Pair Info",
+            LoggerType.PairDataTransfer => "Pair Data",
+            LoggerType.PairHandlers => "Pair Handlers",
             LoggerType.OnlinePairs => "Online Pairs",
             LoggerType.VisiblePairs => "Visible Pairs",
-            LoggerType.PrivateRoom => "Private Rooms",
+            LoggerType.PrivateRooms => "Private Rooms",
+            LoggerType.GameObjects => "Game Objects",
 
-            LoggerType.Notification => "Notifications",
-            LoggerType.Profiles => "Profiles",
             LoggerType.Cosmetics => "Cosmetics",
+            LoggerType.Textures => "Textures",
             LoggerType.GlobalChat => "Global Chat",
             LoggerType.ContextDtr => "Context DTR",
             LoggerType.PatternHub => "Pattern Hub",
             LoggerType.Safeword => "Safeword",
-            LoggerType.CursedLoot => "Cursed Loot",
-
-            LoggerType.Restraints => "Restraints",
-            LoggerType.Puppeteer => "Puppeteer",
-
-            LoggerType.ToyboxDevices => "Devices",
-            LoggerType.ToyboxPatterns => "Patterns",
-            LoggerType.ToyboxTriggers => "Triggers",
-            LoggerType.ToyboxAlarms => "Alarms",
-            LoggerType.VibeControl => "Vibe Control",
-
-            LoggerType.ChatDetours => "Chat Detours",
-            LoggerType.ActionEffects => "Action Effects",
-            LoggerType.SpatialAudioController => "Spatial Audio",
-            LoggerType.SpatialAudioLogger => "Spatial Logger",
 
             LoggerType.UiCore => "UI Core",
             LoggerType.UserPairDrawer => "User Pair Drawer",
@@ -288,7 +294,6 @@ public static partial class EnumToName
             LoggerType.Health => "Health",
             LoggerType.HubFactory => "Hub Factory",
             LoggerType.JwtTokens => "JWT Tokens",
-            LoggerType.Textures => "Textures",
             _ => "UNK"
         };
     }
