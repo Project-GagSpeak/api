@@ -45,7 +45,7 @@ public static class GlobalPermExtensions
         return p.ForcedStay.HardcorePermUID() == uid;
     }
 
-    public static bool IsBlindfolded(this UserGlobalPermissions p) => !p.ForcedBlindfold.NullOrEmpty();
+    public static bool IsBlindfolded(this UserGlobalPermissions? p) => p is null ? false : !p.ForcedBlindfold.NullOrEmpty();
     public static bool CanToggleBlindfold(this UserGlobalPermissions p, string uid)
     {
         if (p.ForcedBlindfold.NullOrEmpty() || !p.ForcedBlindfold.IsPermDevotional()) return true;

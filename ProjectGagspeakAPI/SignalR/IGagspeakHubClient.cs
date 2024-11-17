@@ -1,11 +1,10 @@
-using GagspeakAPI.Enums;
-using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.Connection;
+using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Permissions;
 using GagspeakAPI.Dto.Toybox;
+using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.UserPair;
-using GagspeakAPI.Dto.Toybox;
-using GagspeakAPI.Dto.IPC;
+using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.SignalR;
 

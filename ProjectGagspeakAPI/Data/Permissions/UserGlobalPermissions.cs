@@ -1,8 +1,5 @@
-using GagspeakAPI.Enums;
 using GagspeakAPI.Extensions;
 using MessagePack;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GagspeakAPI.Data.Permissions;
 
@@ -10,7 +7,6 @@ namespace GagspeakAPI.Data.Permissions;
 public record UserGlobalPermissions
 {
     // main global permissions
-    public string Safeword { get; set; } = "NONE SET";          // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool SafewordUsed { get; set; } = false;             // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool HardcoreSafewordUsed { get; set; } = false;     // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool LiveChatGarblerActive { get; set; } = false;    // if the live chat garbler is active
