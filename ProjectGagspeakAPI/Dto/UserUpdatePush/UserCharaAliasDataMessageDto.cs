@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.User;
 /// DTO for handling the updating of our own data to our online user pairs.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaAliasDataMessageDto(UserData RecipientUser, CharaAliasData AliasData, DataUpdateKind UpdateKind);
+public record UserCharaAliasDataMessageDto(UserData RecipientUser, CharaAliasData AliasData, PuppeteerUpdateType Type);

@@ -1,67 +1,57 @@
 namespace GagspeakAPI.Enums;
 
-
-/// <summary>
-/// <b>Very important Enumerator that determines the type of modification being
-/// made to a user's character data.</b>
-/// <para>
-/// This allows us to scope directly to what we need to modify, instead of
-/// changing the whole table-row every update.
-/// </para>
-/// <b>IMPORTANT: </b> This allows us to verify permission access server-side, 
-/// and throw error if the user is trying to modify something they shouldn't be.
-/// <para> 
-/// This effectively prevents modified client-side forks from exploiting
-/// changes to other user's where they shouldnt be able to.
-/// </para>
-/// </summary>
-public enum DataUpdateKind
+public enum GagUpdateType
 {
-    /* Used to know when a dummy enum is passed in */
     None,
     Safeword,
-    /* ------------------------------ */
-    FullDataUpdate, // called during initializations and sign-offs
-    /* ------------------------------ */
-    AppearanceGagAppliedLayerOne,
-    AppearanceGagAppliedLayerTwo,
-    AppearanceGagAppliedLayerThree,
+    FullDataUpdate,
+    GagApplied,
+    GagLocked,
+    GagUnlocked,
+    GagRemoved,
+}
 
-    AppearanceGagLockedLayerOne,
-    AppearanceGagLockedLayerTwo,
-    AppearanceGagLockedLayerThree,
-
-    AppearanceGagUnlockedLayerOne,
-    AppearanceGagUnlockedLayerTwo,
-    AppearanceGagUnlockedLayerThree,
-
-    AppearanceGagRemovedLayerOne,
-    AppearanceGagRemovedLayerTwo,
-    AppearanceGagRemovedLayerThree,
-
-    /* ------------------------------ */
-    WardrobeRestraintApplied,
-    WardrobeRestraintLocked,
-    WardrobeRestraintUnlocked,
-    WardrobeRestraintDisabled, // Wording is weird. Removed means taken off, not Deleted.
+public enum WardrobeUpdateType
+{
+    None,
+    Safeword,
+    FullDataUpdate,
+    RestraintApplied,
+    RestraintLocked,
+    RestraintUnlocked,
+    RestraintDisabled,
     CursedItemApplied,
     CursedItemRemoved,
-    
-    /* ------------------------------ */
-    PuppeteerPlayerNameRegistered, // Only allow Client owning Data to modify this.
-    PuppeteerAliasListUpdated, // Only allow Client owning Data to modify this.
+}
 
-    /* ------------------------------ */
-    ToyboxPatternExecuted,
-    ToyboxPatternStopped,
-    ToyboxAlarmToggled,
-    ToyboxTriggerToggled, // when any trigger in the trigger list is activated or deactivated.
+public enum PuppeteerUpdateType
+{
+    None,
+    Safeword,
+    FullDataUpdate,
+    PlayerNameRegistered,
+    AliasListUpdated,
+}
 
-    /* ------------------------------ */
-    IpcUpdateVisible, // Only allow Client owning Data to modify this.
+public enum ToyboxUpdateType
+{
+    None,
+    Safeword,
+    FullDataUpdate,
+    PatternExecuted,
+    PatternStopped,
+    AlarmToggled,
+    TriggerToggled,
+}
 
-    IpcMoodlesStatusManagerChanged,
-    IpcMoodlesStatusesUpdated,
-    IpcMoodlesPresetsUpdated,   
-    IpcMoodlesCleared,
+public enum IpcUpdateType
+{
+    None,
+    Safeword,
+    FullDataUpdate,
+    UpdateVisible,
+    MoodlesStatusManagerChanged,
+    MoodlesStatusesUpdated,
+    MoodlesPresetsUpdated,
+    MoodlesCleared,
 }

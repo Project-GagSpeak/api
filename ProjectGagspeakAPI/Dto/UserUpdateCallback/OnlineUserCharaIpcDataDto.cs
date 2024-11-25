@@ -1,4 +1,4 @@
-﻿using GagspeakAPI.Data;
+using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
 using GagspeakAPI.Enums;
 using GagspeakAPI.Dto.User;
@@ -11,4 +11,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <para><b>User == The user Updated (can be client caller or other pair)</b></para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaIpcDataDto(UserData User, CharaIPCData IPCData, DataUpdateKind UpdateKind) : UserDto(User);
+public record OnlineUserCharaIpcDataDto(UserData User, CharaIPCData IPCData, IpcUpdateType Type) : UserDto(User);

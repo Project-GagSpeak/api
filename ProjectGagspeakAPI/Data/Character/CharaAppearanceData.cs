@@ -20,6 +20,16 @@ public record CharaAppearanceData
 
     public string ToGagString()
         => $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
+
+    public CharaAppearanceData DeepCloneData()
+    {
+        var clone = new CharaAppearanceData();
+        for (var i = 0; i < GagSlots.Length; i++)
+        {
+            clone.GagSlots[i] = GagSlots[i].DeepCloneData();
+        }
+        return clone;
+    }
 }
 
 /// <summary>
@@ -36,4 +46,14 @@ public record GagSlot : IPadlockable
 
     public override string ToString()
         => $"GagSlot {{ GagType = {GagType}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
+
+    public GagSlot DeepCloneData()
+        => new GagSlot
+        {
+            GagType = GagType,
+            Padlock = Padlock,
+            Password = Password,
+            Timer = Timer,
+            Assigner = Assigner
+        };
 }
