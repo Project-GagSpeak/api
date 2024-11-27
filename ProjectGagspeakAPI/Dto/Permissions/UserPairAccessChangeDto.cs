@@ -12,5 +12,8 @@ namespace GagspeakAPI.Dto.Permissions;
 /// </para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserPairAccessChangeDto(UserData User, KeyValuePair<string, object> ChangedAccessPermission)
-    : UserDto(User);
+public record UserPairAccessChangeDto(UserData User, UserData Enactor, KeyValuePair<string, object> ChangedAccessPermission) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}

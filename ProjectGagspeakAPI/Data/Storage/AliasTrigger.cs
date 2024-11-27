@@ -8,12 +8,23 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public record AliasTrigger
 {
-    /// <summary> If this alias trigger is enabled </summary>
+    /// <summary> 
+    /// If this alias trigger is enabled 
+    /// </summary>
     public bool Enabled { get; set; } = false;
 
-    /// <summary> The input command that triggers the output command </summary>
+    /// <summary>
+    /// The label for the alias trigger
+    /// </summary>
+    public string AliasLabel { get; set; } = string.Empty;
+
+    /// <summary> 
+    /// The input command that triggers the output command 
+    /// </summary>
     public string InputCommand { get; set; } = string.Empty;
 
-    /// <summary> The output command that is triggered by the input command </summary>
+    /// <summary>
+    /// The output command that is triggered by the input command 
+    /// </summary>
     public string OutputCommand { get; set; } = string.Empty;
 }

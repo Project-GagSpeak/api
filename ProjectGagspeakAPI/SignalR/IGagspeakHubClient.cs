@@ -34,36 +34,25 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserRemoveMoodles(Action<RemoveMoodlesDto> act);
     void OnUserClearMoodles(Action<UserDto> act);
 
-    void OnUserUpdateSelfAllGlobalPerms(Action<UserAllGlobalPermChangeDto> act);
-    void OnUserUpdateSelfAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
-    void OnUserUpdateSelfPairPermsGlobal(Action<UserGlobalPermChangeDto> act); // pair global permission
-    void OnUserUpdateSelfPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
-    void OnUserUpdateSelfPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
-    void OnUserUpdateOtherAllPairPerms(Action<UserPairUpdateAllPermsDto> act); // pair permission all update
-    void OnUserUpdateOtherAllGlobalPerms(Action<UserAllGlobalPermChangeDto> act);
-    void OnUserUpdateOtherAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
-    void OnUserUpdateOtherPairPermsGlobal(Action<UserGlobalPermChangeDto> act); // pair permission global update
-    void OnUserUpdateOtherPairPerms(Action<UserPairPermChangeDto> act); // pair permission update
-    void OnUserUpdateOtherPairPermAccess(Action<UserPairAccessChangeDto> act); // pair permission access update
+    void OnUserUpdateAllPerms(Action<UserPairUpdateAllPermsDto> act);
+    void OnUserUpdateAllGlobalPerms(Action<UserPairUpdateAllGlobalPermsDto> act);
+    void OnUserUpdateAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
+    void OnUserUpdatePairPermsGlobal(Action<UserGlobalPermChangeDto> act);
+    void OnUserUpdatePairPerms(Action<UserPairPermChangeDto> act);
+    void OnUserUpdatePairPermAccess(Action<UserPairAccessChangeDto> act);
 
-    void OnUserReceiveCharacterDataComposite(Action<OnlineUserCompositeDataDto> act); // send to a client that one of their paired users has updated their character data (composite)
-    void OnUserReceiveOwnDataIpc(Action<OnlineUserCharaIpcDataDto> act); // send to a client that one of their paired users has updated their character data (ipc)
-    void OnUserReceiveOtherDataIpc(Action<OnlineUserCharaIpcDataDto> act);
-    void OnUserReceiveOwnDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act); // send to a client that one of their paired users has updated their character data (appearance)
-    void OnUserReceiveOtherDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
-    void OnUserReceiveOwnDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
-    void OnUserReceiveOtherDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
-    void OnUserReceiveOwnDataAlias(Action<OnlineUserCharaAliasDataDto> act); // send to a client that one of their paired users has updated their character data (alias)
-    void OnUserReceiveOtherDataAlias(Action<OnlineUserCharaAliasDataDto> act); // update client with another UserPair's latest aliasList data.
-    void OnUserReceiveOwnDataToybox(Action<OnlineUserCharaToyboxDataDto> act); // send to a client that one of their paired users has updated their character data (pattern)
-    void OnUserReceiveOtherDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
-    void OnUserReceiveOwnLightStorage(Action<OnlineUserStorageUpdateDto> act); // send to a client that one of their paired users has updated their character data (pattern)
-    void OnUserReceiveOtherLightStorage(Action<OnlineUserStorageUpdateDto> act);
+    void OnUserReceiveDataComposite(Action<OnlineUserCompositeDataDto> act);
+    void OnUserReceiveDataIpc(Action<OnlineUserCharaIpcDataDto> act);
+    void OnUserReceiveDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
+    void OnUserReceiveDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
+    void OnUserReceiveDataAlias(Action<OnlineUserCharaAliasDataDto> act);
+    void OnUserReceiveDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
+    void OnUserReceiveLightStorage(Action<OnlineUserStorageUpdateDto> act);
 
     void OnUserReceiveShockInstruction(Action<ShockCollarActionDto> act);
-    void OnGlobalChatMessage(Action<GlobalChatMessageDto> act); // sends message to gagspeak global chat group.
-    void OnUserSendOffline(Action<UserDto> act); // send to a client that one of their paired users is offline
-    void OnUserSendOnline(Action<OnlineUserIdentDto> act); // send to a client that one of their paired users is online
-    void OnUserUpdateProfile(Action<UserDto> act); // send to a client that one of their paired users has updated their profile
-    void OnDisplayVerificationPopup(Action<VerificationDto> act); // send to a client to display a verification popup
+    void OnGlobalChatMessage(Action<GlobalChatMessageDto> act);
+    void OnUserSendOffline(Action<UserDto> act);
+    void OnUserSendOnline(Action<OnlineUserIdentDto> act);
+    void OnUserUpdateProfile(Action<UserDto> act);
+    void OnDisplayVerificationPopup(Action<VerificationDto> act);
 }

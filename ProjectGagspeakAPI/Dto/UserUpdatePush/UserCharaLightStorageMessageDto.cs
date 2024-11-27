@@ -10,4 +10,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// Updates other users with the User's latest Storage Data information.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaStorageUpdateDto(List<UserData> Recipients, CharaStorageData LightStorage);
+public record UserCharaLightStorageMessageDto(List<UserData> Recipients, CharaStorageData LightStorage);

@@ -9,14 +9,15 @@ namespace GagspeakAPI.Dto.Connection;
 /// <summary>
 /// DTO for handling updated to a pair or self's Wardrobe data
 /// </summary>
-/// <param name="enactor">The user who initiated the update.</param>
 /// <param name="User"> The User that will be affected by this change.</param>
 /// <param name="WardrobeData"> The updated wardrobe data.</param>
-/// <param name="UpdateKind"> The kind of update this change makes.</param>
+/// <param name="Enactor"> The user that initiated this change.</param>
+/// <param name="Type"> The kind of update this change makes.</param>
+/// <param name="PreviousLock"> The previous lock state of the wardrobe.</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaWardrobeDataDto(
-    UserData User, 
-    CharaWardrobeData WardrobeData, 
-    UserData Enactor,
-    WardrobeUpdateType Type,
-    Padlocks PreviousLock) : UserDto(User);
+public record OnlineUserCharaWardrobeDataDto(UserData User, UserData Enactor, CharaWardrobeData WardrobeData, 
+    WardrobeUpdateType Type, Padlocks PreviousLock) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}

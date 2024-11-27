@@ -38,33 +38,21 @@ public interface IGagspeakHub
 
 
     /// <summary> Callbacks to update permissions. </summary>
-    Task Client_UserUpdateSelfAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
-    Task Client_UserUpdateSelfAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
-    Task Client_UserUpdateSelfPairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdateSelfPairPerms(UserPairPermChangeDto dto);
-    Task Client_UserUpdateSelfPairPermAccess(UserPairAccessChangeDto dto);
-    Task Client_UserUpdateOtherAllPairPerms(UserPairUpdateAllPermsDto dto); // ONLY EVER USED WHEN ADDING A NEW PAIR.
-    Task Client_UserUpdateOtherAllGlobalPerms(UserAllGlobalPermChangeDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
-    Task Client_UserUpdateOtherAllUniquePerms(UserPairUpdateAllUniqueDto dto); // ONLY USED IN SAFEWORD / PISHOCK / PRESET APPLICATION.
-    Task Client_UserUpdateOtherPairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdateOtherPairPerms(UserPairPermChangeDto dto);
-    Task Client_UserUpdateOtherPairPermAccess(UserPairAccessChangeDto dto);
-
+    Task Client_UserUpdateAllPerms(UserPairUpdateAllPermsDto dto);
+    Task Client_UserUpdateAllGlobalPerms(UserPairUpdateAllGlobalPermsDto dto);
+    Task Client_UserUpdateAllUniquePerms(UserPairUpdateAllUniqueDto dto);
+    Task Client_UserUpdatePairPermsGlobal(UserGlobalPermChangeDto dto);
+    Task Client_UserUpdatePairPerms(UserPairPermChangeDto dto);
+    Task Client_UserUpdatePairPermAccess(UserPairAccessChangeDto dto);
 
     /// <summary> Callbacks to update own or pair data. </summary>
-    Task Client_UserReceiveCharacterDataComposite(OnlineUserCompositeDataDto dto);
-    Task Client_UserReceiveOwnDataIpc(OnlineUserCharaIpcDataDto dto);
-    Task Client_UserReceiveOtherDataIpc(OnlineUserCharaIpcDataDto dto);
-    Task Client_UserReceiveOwnDataAppearance(OnlineUserCharaAppearanceDataDto dto);
-    Task Client_UserReceiveOtherDataAppearance(OnlineUserCharaAppearanceDataDto dto);
-    Task Client_UserReceiveOwnDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-    Task Client_UserReceiveOtherDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-    Task Client_UserReceiveOwnDataAlias(OnlineUserCharaAliasDataDto dto);
-    Task Client_UserReceiveOtherDataAlias(OnlineUserCharaAliasDataDto dto);
-    Task Client_UserReceiveOwnDataToybox(OnlineUserCharaToyboxDataDto dto);
-    Task Client_UserReceiveOtherDataToybox(OnlineUserCharaToyboxDataDto dto);
-    Task Client_UserReceiveOwnLightStorage(OnlineUserStorageUpdateDto dto);
-    Task Client_UserReceiveOtherLightStorage(OnlineUserStorageUpdateDto dto);
+    Task Client_UserReceiveDataComposite(OnlineUserCompositeDataDto dto);
+    Task Client_UserReceiveDataIpc(OnlineUserCharaIpcDataDto dto);
+    Task Client_UserReceiveDataAppearance(OnlineUserCharaAppearanceDataDto dto);
+    Task Client_UserReceiveDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+    Task Client_UserReceiveDataAlias(OnlineUserCharaAliasDataDto dto);
+    Task Client_UserReceiveDataToybox(OnlineUserCharaToyboxDataDto dto);
+    Task Client_UserReceiveLightStorage(OnlineUserStorageUpdateDto dto);
 
     #region Generic Callbacks
     Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
@@ -92,7 +80,6 @@ public interface IGagspeakHub
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
 
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
-
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server
     Task<UserKinkPlateDto> UserGetKinkPlate(UserDto dto); // get the profile of a user
     Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
@@ -137,9 +124,7 @@ public interface IGagspeakHub
     Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto);
 
     /// <summary>
-    /// Pushes a player's alias data to the server, updating the userpair of the client that should be updated.
-    /// <para> Information pushed includes the list of triggers the client has set for the corresponding user. </para>
-    /// <para> The information is pushed to the recipient user whenever the clients trigger list is modified in any way, keeping them up to date. </para>
+    /// Pushes your alias data to the server, updating paired online clients.
     /// </summary>
     Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
 
@@ -151,7 +136,7 @@ public interface IGagspeakHub
     /// <summary>
     /// Update other users with your latest GagSpeak storage in light format, giving them access to view your created interactable items.
     /// </summary>
-    Task UserPushDataLightStorage(UserCharaStorageUpdateDto dto);
+    Task UserPushDataLightStorage(UserCharaLightStorageMessageDto dto);
 
 
     #endregion Client Push Own Data Updates
@@ -186,7 +171,7 @@ public interface IGagspeakHub
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates
-    Task UserPushAllGlobalPerms(UserAllGlobalPermChangeDto dto);
+    Task UserPushAllGlobalPerms(UserPairUpdateAllGlobalPermsDto dto);
     Task UserPushAllUniquePerms(UserPairUpdateAllUniqueDto dto);
 
     /// <summary>

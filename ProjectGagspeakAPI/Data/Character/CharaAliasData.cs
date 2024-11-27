@@ -9,7 +9,7 @@ namespace GagspeakAPI.Data.Character;
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaAliasData
 {
-    public string CharacterName { get; set; } = string.Empty;
-    public string CharacterWorld { get; set; } = string.Empty;
+    public bool HasNameStored { get; set; } = false;
+    public string ListenerName { get; set; } = string.Empty;
     public List<AliasTrigger> AliasList { get; set; } = new List<AliasTrigger>();
 }

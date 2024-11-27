@@ -9,4 +9,8 @@ namespace GagspeakAPI.Dto.Permissions;
 /// ONLY CALLED BY SELF
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserAllGlobalPermChangeDto(UserData User, UserGlobalPermissions GlobalPermissions) : UserDto(User);
+public record UserPairUpdateAllGlobalPermsDto(UserData User, UserData Enactor, UserGlobalPermissions GlobalPermissions) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}

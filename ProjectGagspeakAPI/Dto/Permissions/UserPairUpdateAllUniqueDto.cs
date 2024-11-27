@@ -10,4 +10,8 @@ namespace GagspeakAPI.Dto.Permissions;
 /// Only used by Safeword and preset selections.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserPairUpdateAllUniqueDto(UserData User, UserPairPermissions UniquePerms, UserEditAccessPermissions UniqueAccessPerms) : UserDto(User);
+public record UserPairUpdateAllUniqueDto(UserData User, UserData Enactor, UserPairPermissions UniquePerms, UserEditAccessPermissions UniqueAccessPerms) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}

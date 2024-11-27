@@ -11,9 +11,9 @@ namespace GagspeakAPI.Dto.Connection;
 /// <para><b>User == The user Updated (can be client caller or other pair)</b></para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaAppearanceDataDto(
-    UserData User, 
-    CharaAppearanceData AppearanceData,
-    GagLayer UpdatedLayer,
-    GagUpdateType Type,
-    Padlocks PreviousPadlock) : UserDto(User);
+public record OnlineUserCharaAppearanceDataDto(UserData User, UserData Enactor, CharaAppearanceData AppearanceData, 
+    GagLayer UpdatedLayer, GagUpdateType Type, Padlocks PreviousPadlock) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}

@@ -10,4 +10,8 @@ namespace GagspeakAPI.Dto.Connection;
 /// Updates other users with the User's latest Storage Data information.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserStorageUpdateDto(UserData User, CharaStorageData LightStorage) : UserDto(User);
+public record OnlineUserStorageUpdateDto(UserData User, UserData Enactor, CharaStorageData LightStorage) : UserDto(User)
+{
+    [IgnoreMember]
+    public bool IsFromSelf => User.UID == Enactor.UID;
+}
