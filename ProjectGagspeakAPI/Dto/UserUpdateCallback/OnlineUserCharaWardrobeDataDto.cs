@@ -16,8 +16,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <param name="PreviousLock"> The previous lock state of the wardrobe.</param>
 [MessagePackObject(keyAsPropertyName: true)]
 public record OnlineUserCharaWardrobeDataDto(UserData User, UserData Enactor, CharaWardrobeData WardrobeData, 
-    WardrobeUpdateType Type, Padlocks PreviousLock) : UserDto(User)
-{
-    [IgnoreMember]
-    public bool IsFromSelf => User.UID == Enactor.UID;
-}
+    WardrobeUpdateType Type, Padlocks PreviousLock, UpdateDir Direction) : UserDto(User);

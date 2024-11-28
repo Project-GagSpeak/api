@@ -2,6 +2,7 @@ using GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.Permissions;
 using MessagePack;
+using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Dto.Permissions;
 
@@ -10,8 +11,5 @@ namespace GagspeakAPI.Dto.Permissions;
 /// Only used by Safeword and preset selections.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserPairUpdateAllUniqueDto(UserData User, UserData Enactor, UserPairPermissions UniquePerms, UserEditAccessPermissions UniqueAccessPerms) : UserDto(User)
-{
-    [IgnoreMember]
-    public bool IsFromSelf => User.UID == Enactor.UID;
-}
+public record UserPairUpdateAllUniqueDto(UserData User, UserData Enactor, UserPairPermissions UniquePerms, 
+    UserEditAccessPermissions UniqueAccessPerms, UpdateDir Direction) : UserDto(User);

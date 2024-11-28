@@ -12,8 +12,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record OnlineUserCharaAppearanceDataDto(UserData User, UserData Enactor, CharaAppearanceData AppearanceData, 
-    GagLayer UpdatedLayer, GagUpdateType Type, Padlocks PreviousPadlock) : UserDto(User)
-{
-    [IgnoreMember]
-    public bool IsFromSelf => User.UID == Enactor.UID;
-}
+    GagLayer UpdatedLayer, GagUpdateType Type, Padlocks PreviousPadlock, UpdateDir Direction) : UserDto(User);

@@ -11,8 +11,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <para><b>User == The user Updated (should be client caller)</b></para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record OnlineUserCharaAliasDataDto(UserData User, UserData Enactor, CharaAliasData AliasData, PuppeteerUpdateType Type) : UserDto(User)
-{
-    [IgnoreMember]
-    public bool IsFromSelf => User.UID == Enactor.UID;
-}
+public record OnlineUserCharaAliasDataDto(UserData User, UserData Enactor, CharaAliasData AliasData, PuppeteerUpdateType Type, UpdateDir Direction) : UserDto(User);

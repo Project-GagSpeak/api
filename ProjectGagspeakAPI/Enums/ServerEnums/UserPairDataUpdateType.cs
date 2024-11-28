@@ -1,5 +1,11 @@
 namespace GagspeakAPI.Enums;
 
+public enum UpdateDir
+{
+    Own,
+    Other,
+}
+
 public enum GagUpdateType
 {
     None,

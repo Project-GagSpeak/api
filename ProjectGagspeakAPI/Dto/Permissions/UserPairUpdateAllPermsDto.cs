@@ -2,6 +2,7 @@ using GagspeakAPI.Data;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Data.Permissions;
 using MessagePack;
+using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Dto.Permissions;
 
@@ -17,9 +18,5 @@ namespace GagspeakAPI.Dto.Permissions;
 /// </para>
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserPairUpdateAllPermsDto(UserData User, UserData Enactor, UserGlobalPermissions GlobalPermissions, UserPairPermissions PairPermissions,
-    UserEditAccessPermissions EditAccessPermissions) : UserDto(User)
-{
-    [IgnoreMember]
-    public bool IsFromSelf => User.UID == Enactor.UID;
-}
+public record UserPairUpdateAllPermsDto(UserData User, UserData Enactor, UserGlobalPermissions GlobalPermissions, 
+    UserPairPermissions PairPermissions, UserEditAccessPermissions EditAccessPermissions, UpdateDir Direction) : UserDto(User);
