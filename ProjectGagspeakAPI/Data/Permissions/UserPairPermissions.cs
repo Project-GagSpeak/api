@@ -87,4 +87,13 @@ public record UserPairPermissions
             return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
         }
     }
+
+    public void PuppetPerms(out bool canSit, out bool canEmote, out bool canAll, out char startChar, out char endChar)
+    {
+        canSit = AllowSitRequests;
+        canEmote = AllowMotionRequests;
+        canAll = AllowAllRequests;
+        startChar = StartChar;
+        endChar = EndChar;
+    }
 }

@@ -19,10 +19,10 @@ public record LightTrigger
     /// <summary> 
     /// The type of trigger it is. 
     /// </summary>
-    public TriggerKind Type { get; set; } = TriggerKind.Chat;
+    public TriggerKind Type { get; set; } = TriggerKind.SpellAction;
 
     /// <summary> 
     /// The Action done when trigger is fired. 
     /// </summary>
-    public TriggerActionKind ActionOnTrigger { get; set; } = TriggerActionKind.SexToy;
+    public ActionExecutionType ActionOnTrigger { get; set; } = ActionExecutionType.SexToy;
 }

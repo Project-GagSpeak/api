@@ -74,4 +74,11 @@ public record UserGlobalPermissions
         }
     }
 
+    public void PuppetPerms(out bool canSit, out bool canEmote, out bool canAll)
+    {
+        canSit = GlobalAllowSitRequests;
+        canEmote = GlobalAllowMotionRequests;
+        canAll = GlobalAllowAllRequests;
+    }
+
 }

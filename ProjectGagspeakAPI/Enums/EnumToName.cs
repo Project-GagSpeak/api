@@ -148,16 +148,16 @@ public static partial class EnumToName
             _ => "UNK"
         };
     }
-    public static string ToName(this TriggerActionKind triggerActionKind)
+    public static string ToName(this ActionExecutionType triggerActionKind)
     {
         return triggerActionKind switch
         {
-            TriggerActionKind.SexToy => "Sex Toy (Lovense Device)",
-            TriggerActionKind.ShockCollar => "Shock Collar",
-            TriggerActionKind.Restraint => "Apply Restraint",
-            TriggerActionKind.Gag => "Apply Gag",
-            TriggerActionKind.Moodle => "Apply Moodle",
-            TriggerActionKind.MoodlePreset => "Apply Moodle Preset",
+            ActionExecutionType.TextOutput => "Text Output",
+            ActionExecutionType.SexToy => "Sex Toy",
+            ActionExecutionType.ShockCollar => "Shock Collar",
+            ActionExecutionType.Restraint => "Apply Restraint",
+            ActionExecutionType.Gag => "Apply Gag",
+            ActionExecutionType.Moodle => "Apply Moodle",
             _ => "UNK"
         };
     }
@@ -185,7 +185,6 @@ public static partial class EnumToName
     {
         return type switch
         {
-            TriggerKind.Chat => "Chat Trigger",
             TriggerKind.SpellAction => "Action Trigger",
             TriggerKind.HealthPercent => "Health% Trigger",
             TriggerKind.RestraintSet => "Restraint Trigger",

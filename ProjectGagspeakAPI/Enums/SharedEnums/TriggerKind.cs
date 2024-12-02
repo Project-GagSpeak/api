@@ -2,7 +2,7 @@ namespace GagspeakAPI.Enums;
 
 public enum TriggerKind
 {
-    Chat,
+    // originally chat trigger was here, will need to shift during migration
     SpellAction,
     HealthPercent,
     RestraintSet,
