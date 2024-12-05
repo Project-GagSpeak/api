@@ -27,6 +27,9 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUpdateSystemInfo(Action<SystemInfoDto> act); // update client with the system info
     void OnUserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
     void OnUserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
+    void OnUserAddPairRequest(Action<UserPairRequestDto> act); // send a pair request to the client
+    void OnUserRemovePairRequest(Action<UserPairRequestDto> act); // remove a pair request from the client
+    
     void OnUpdateUserIndividualPairStatusDto(Action<UserIndividualPairStatusDto> act); // pair status update
 
     void OnUserApplyMoodlesByGuid(Action<ApplyMoodlesByGuidDto> act);

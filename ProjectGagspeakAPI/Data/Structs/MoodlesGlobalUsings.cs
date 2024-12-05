@@ -15,8 +15,16 @@ global using MoodlesStatusInfo = (
     int Minutes,
     int Seconds,
     bool NoExpire,
-    bool AsPermanent
+    bool AsPermanent,
+    System.Guid StatusOnDispell,
+    string CustomVFXPath,
+    bool StackOnReapply
 );
 
-global using IPCProfileDataTuple = (System.Guid UniqueId, string Name, string VirtualPath, string CharacterName, bool IsEnabled);
-
+global using IPCProfileDataTuple = (
+    System.Guid UniqueId,
+    string Name,
+    string VirtualPath,
+    System.Collections.Generic.List<(string Name, ushort WorldId, byte CharacterType, ushort CharacterSubType)> Characters,
+    int Priority,
+    bool IsEnabled);
