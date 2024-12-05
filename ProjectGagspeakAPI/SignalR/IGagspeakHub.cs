@@ -28,7 +28,10 @@ public interface IGagspeakHub
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); /* Updates the client with the servers current system information */
     Task Client_UserAddClientPair(UserPairDto dto); /* sends to a connected user to add the specified user to their pair list */
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
-    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto); /* informs a client of a paired user's updated individual pair status */
+
+    /// <summary> Callbacks in regards to Kinkster Pairing Requests. </summary>
+    Task Client_UserAddPairRequest(UserPairRequestDto dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
+    Task Client_UserRemovePairRequest(UserPairRequestDto dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
 
     /// <summary> Callbacks to update moodles. </summary>
     Task Client_UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
@@ -66,17 +69,25 @@ public interface IGagspeakHub
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
     #region Generic Interactions
-    Task UserAddPair(UserDto user); // add another user as a pair to the users paired list
+    Task UserSendPairRequest(UserDto user); // Sends a pairing request to another Kinkster, creating a new entry.
+    Task UserCancelPairRequest(UserDto user); // The UserDto of the User we wish to cancel the pair request to.
+    Task UserAcceptIncPairRequest(UserDto user); // Accepts a Kinkster Pairing Request offered by another Kinkster.
+    Task UserRejectIncPairRequest(UserDto user); // Rejects a Kinkster Pairing Request offered by another Kinkster.
+
     Task UserRemovePair(UserDto userDto); // remove a user from the paired list of the client
     Task UserDelete(); // delete this users account from the servers database
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs(); // get the current online users paired with this client
     Task<List<UserPairDto>> UserGetPairedClients(); // get the current paired users of this client
+    Task<List<UserPairRequestDto>> UserGetPairRequests(); // Grab the initial pair Requests that are both outgoing from us and incoming.
 
     Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
     Task<bool> UploadPattern(PatternUploadDto dto);
     Task<bool> RemovePattern(Guid patternId);
     Task<bool> LikePattern(Guid patternId);
     Task<string> DownloadPattern(Guid patternId);
+    // Upload Moodle TBD - Need to figure out how to handle this. Using strings or tuples, what is more future proof? idk.
+    Task<bool> RemoveMoodle(Guid moodleId);
+    Task<bool> LikeMoodle(Guid moodleId);
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
 
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
