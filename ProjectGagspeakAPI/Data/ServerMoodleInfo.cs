@@ -9,6 +9,16 @@ namespace GagspeakAPI.Data;
 public record ServerMoodleInfo
 {
     /// <summary>
+    /// The person who uploaded this pattern's UID.
+    /// </summary>
+    public string CreatorUID = string.Empty;
+
+    /// <summary>
+    /// The Author of this server's Moodle
+    /// </summary>
+    public string Author = string.Empty;
+
+    /// <summary>
     /// How many likes does this have?
     /// </summary>
     public int Likes = 0;
@@ -17,11 +27,6 @@ public record ServerMoodleInfo
     /// If we have liked the Moodle.
     /// </summary>
     public bool HasLikedMoodle = false;
-
-    /// <summary>
-    /// The Author of this server's Moodle
-    /// </summary>
-    public string Author = string.Empty;
 
     /// <summary>
     /// The tags for an associated MoodleStatus on the server.
