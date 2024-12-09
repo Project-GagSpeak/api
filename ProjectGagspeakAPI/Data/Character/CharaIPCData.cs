@@ -22,7 +22,7 @@ public class CharaIPCData
     public List<MoodlesStatusInfo> MoodlesStatuses { get; set; } = new();
 
     /// <summary> List of player's Presets, and the Status GUID's the preset contains </summary>
-    public List<(Guid, List<Guid>)> MoodlesPresets { get; set; } = new();
+    public List<MoodlePresetInfo> MoodlesPresets { get; set; } = new();
 
     /// <summary> Equals Override to ensure things are the same. </summary>
     public override bool Equals(object? obj)

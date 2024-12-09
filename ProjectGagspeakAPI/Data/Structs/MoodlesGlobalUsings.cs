@@ -21,6 +21,13 @@ global using MoodlesStatusInfo = (
     bool StackOnReapply
 );
 
+global using MoodlePresetInfo = (
+    System.Guid GUID,
+    System.Collections.Generic.List<System.Guid> Statuses,
+    GagspeakAPI.Data.IPC.PresetApplicationType ApplicationType,
+    string Title
+);
+
 global using IPCProfileDataTuple = (
     System.Guid UniqueId,
     string Name,

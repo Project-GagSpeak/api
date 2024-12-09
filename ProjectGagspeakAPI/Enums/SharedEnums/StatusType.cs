@@ -6,6 +6,13 @@ public enum StatusType
     Special
 }
 
+public enum PresetApplicationType
+{
+    IgnoreExisting, 
+    UpdateExisting, 
+    ReplaceAll
+}
+
 /// <summary>
 /// Equipment Slot Enum pulled from Penumbra.GameData.Enums namespace.
 /// We use this to determine the slot we apply things to.
