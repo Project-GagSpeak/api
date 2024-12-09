@@ -1,19 +1,19 @@
 namespace GagspeakAPI.Enums;
 
-public enum SearchFilter
+public enum ResultFilter
 {
     Downloads,
     Likes,
     MostRecent,
-    Author,
-    DurationTiny, // under a minute
-    DurationShort, // 5 minutes or less
-    DurationMedium, // 5 to 20 minutes
-    DurationLong, // under an hour
-    DurationExtraLong, // over an hour
-    // TODO: Move this to supported Types enum later.
-    UsesVibration,
-    UsesRotation,
+}
+
+public enum DurationLength
+{
+    Tiny, // under a minute
+    Short, // 5 minutes or less
+    Medium, // 5 to 20 minutes
+    Long, // under an hour
+    ExtraLong, // over an hour
 }
 
 public enum SearchSort

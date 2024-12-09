@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.Patterns;
 /// Search for patterns on the server.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PatternSearchDto(string SearchString, List<string> Tags, SearchFilter Filter, SearchSort Sort);
+public record PatternSearchDto(string SearchString, HashSet<string> Tags, ResultFilter Filter, DurationLength Length, SupportedTypes Types, SearchSort Sort);

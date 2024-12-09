@@ -60,6 +60,7 @@ public interface IGagspeakHub
     #region Generic Callbacks
     Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
     Task Client_GlobalChatMessage(GlobalChatMessageDto dto); /* Obtain global chat message from server */
+    Task Client_PairChatMessage(PairChatMessageDto dto); /* Obtain chat message from a joined group */
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
     Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
@@ -69,7 +70,7 @@ public interface IGagspeakHub
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
     #region Generic Interactions
-    Task UserSendPairRequest(UserDto user); // Sends a pairing request to another Kinkster, creating a new entry.
+    Task UserSendPairRequest(UserPairSendRequestDto sendRequestDto); // Sends a pairing request to another Kinkster, creating a new entry.
     Task UserCancelPairRequest(UserDto user); // The UserDto of the User we wish to cancel the pair request to.
     Task UserAcceptIncPairRequest(UserDto user); // Accepts a Kinkster Pairing Request offered by another Kinkster.
     Task UserRejectIncPairRequest(UserDto user); // Rejects a Kinkster Pairing Request offered by another Kinkster.
@@ -81,14 +82,18 @@ public interface IGagspeakHub
     Task<List<UserPairRequestDto>> UserGetPairRequests(); // Grab the initial pair Requests that are both outgoing from us and incoming.
 
     Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
+    Task SendPairChat(PairChatMessageDto dto); // Sends a message to the GagspeakPairChat with another user.
     Task<bool> UploadPattern(PatternUploadDto dto);
-    Task<bool> RemovePattern(Guid patternId);
-    Task<bool> LikePattern(Guid patternId);
+    Task<bool> UploadMoodle(MoodleUploadDto dto);
     Task<string> DownloadPattern(Guid patternId);
-    // Upload Moodle TBD - Need to figure out how to handle this. Using strings or tuples, what is more future proof? idk.
-    Task<bool> RemoveMoodle(Guid moodleId);
+    // no need to download moodles here.
+    Task<bool> LikePattern(Guid patternId);
     Task<bool> LikeMoodle(Guid moodleId);
+    Task<bool> RemovePattern(Guid patternId);
+    Task<bool> RemoveMoodle(Guid moodleId);
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
+    Task<List<ServerMoodleInfo>> SearchMoodles(MoodleSearchDto moodleSearchDto);
+    Task<List<string>> FetchSearchTags(); // Grab all current search tags stored in the share hubs.
 
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server
