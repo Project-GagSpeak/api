@@ -1,5 +1,3 @@
-using GagspeakAPI.Dto.User;
-using GagspeakAPI.Data;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.Patterns;
