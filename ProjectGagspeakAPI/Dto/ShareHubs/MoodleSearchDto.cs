@@ -9,4 +9,4 @@ namespace GagspeakAPI.Dto.Patterns;
 /// Search for patterns on the server.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodleSearchDto(string SearchString, List<string> Tags, ResultFilter Filter, SearchSort Sort);
+public record MoodleSearchDto(string SearchString, HashSet<string> Tags, ResultFilter Filter, SearchSort Sort);

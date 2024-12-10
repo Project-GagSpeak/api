@@ -4,11 +4,12 @@ public enum ResultFilter
 {
     Downloads,
     Likes,
-    MostRecent,
+    DatePosted,
 }
 
 public enum DurationLength
 {
+    Any, // Any damn length
     Tiny, // under a minute
     Short, // 5 minutes or less
     Medium, // 5 to 20 minutes

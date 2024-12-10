@@ -8,4 +8,4 @@ namespace GagspeakAPI.Dto.Patterns;
 /// Uploads a pattern to the server.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodleUploadDto(UserData Publisher, ServerMoodleInfo MoodleInfo) : UserDto(Publisher);
+public record MoodleUploadDto(string AuthorName, HashSet<string> Tags, MoodlesStatusInfo MoodleInfo);

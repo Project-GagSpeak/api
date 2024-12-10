@@ -16,7 +16,7 @@ public record ServerPatternInfo
     
     public string Author = string.Empty;
 
-    public List<string> Tags = new List<string>();
+    public HashSet<string> Tags = new HashSet<string>();
 
     public int Downloads = 0;
 
@@ -31,8 +31,6 @@ public record ServerPatternInfo
     public bool UsesVibrations = false;
 
     public bool UsesRotations = false;
-    
-    public bool UsesOscillation = false;
 
     public bool HasLiked = false;
 }

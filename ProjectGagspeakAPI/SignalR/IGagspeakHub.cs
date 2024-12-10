@@ -93,7 +93,7 @@ public interface IGagspeakHub
     Task<bool> RemoveMoodle(Guid moodleId);
     Task<List<ServerPatternInfo>> SearchPatterns(PatternSearchDto patternSearchDto);
     Task<List<ServerMoodleInfo>> SearchMoodles(MoodleSearchDto moodleSearchDto);
-    Task<List<string>> FetchSearchTags(); // Grab all current search tags stored in the share hubs.
+    Task<HashSet<string>> FetchSearchTags(); // Grab all current search tags stored in the share hubs.
 
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server

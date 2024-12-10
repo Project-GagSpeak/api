@@ -1,8 +1,21 @@
 using GagspeakAPI.Data.IPC;
+using System.Net.NetworkInformation;
 
 namespace GagspeakAPI.Enums;
 public static partial class EnumToName
 {
+    public static string ToName(this DurationLength duration)
+    => duration switch
+    {
+        DurationLength.Any => "Any Time",
+        DurationLength.Tiny => "≤ 1min",
+        DurationLength.Short => "≤ 5min",
+        DurationLength.Medium => "5-20min",
+        DurationLength.Long => "≤ 1hour",
+        DurationLength.ExtraLong => "≥ 1hour",
+        _ => "UNK"
+    };
+
     public static string ToName(this InteractionFilter filterKind)
     => filterKind switch
     {
