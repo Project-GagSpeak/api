@@ -54,7 +54,6 @@ public interface IGagspeakHubClient : IGagspeakHub
 
     void OnUserReceiveShockInstruction(Action<ShockCollarActionDto> act);
     void OnGlobalChatMessage(Action<GlobalChatMessageDto> act);
-    void OnPairChatMessage(Action<PairChatMessageDto> act);
     void OnUserSendOffline(Action<UserDto> act);
     void OnUserSendOnline(Action<OnlineUserIdentDto> act);
     void OnUserUpdateProfile(Action<UserDto> act);
