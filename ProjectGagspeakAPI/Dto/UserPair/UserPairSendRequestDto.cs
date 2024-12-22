@@ -1,7 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Enums;
 using GagspeakAPI.Dto.User;
-using GagspeakAPI.Data.Permissions;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.UserPair;

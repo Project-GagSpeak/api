@@ -60,7 +60,6 @@ public interface IGagspeakHub
     #region Generic Callbacks
     Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
     Task Client_GlobalChatMessage(GlobalChatMessageDto dto); /* Obtain global chat message from server */
-    Task Client_PairChatMessage(PairChatMessageDto dto); /* Obtain chat message from a joined group */
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
     Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
@@ -82,7 +81,6 @@ public interface IGagspeakHub
     Task<List<UserPairRequestDto>> UserGetPairRequests(); // Grab the initial pair Requests that are both outgoing from us and incoming.
 
     Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
-    Task SendPairChat(PairChatMessageDto dto); // Sends a message to the GagspeakPairChat with another user.
     Task<bool> UploadPattern(PatternUploadDto dto);
     Task<bool> UploadMoodle(MoodleUploadDto dto);
     Task<string> DownloadPattern(Guid patternId);
