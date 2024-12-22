@@ -20,11 +20,6 @@ public record ConnectionDto(UserData User)
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0); // The current version of the client
     public int ServerVersion { get; set; } // The version of the gagspeak server
 
-    // If the connection is from a primary account or a secondary account.
-    // (Ideally this should be handled in auth by adding an additional paramater of if we expect connection
-    //  with primary or not, but I dont have time to mess with that right now)
-    public bool IsPrimaryAccount { get; set; } = true;
-
     // Generic serverside data for the user.
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
     public CharaAppearanceData CharaAppearanceData { get; set; } = new(); // The user's gag appearance data
