@@ -49,7 +49,7 @@ public static class GlobalPermExtensions
     public static bool CanToggleBlindfold(this UserGlobalPermissions p, string uid)
     {
         if (p.ForcedBlindfold.NullOrEmpty() || !p.ForcedBlindfold.IsPermDevotional()) return true;
-        return p.ForcedFollow.HardcorePermUID() == uid;
+        return p.ForcedBlindfold.HardcorePermUID() == uid;
     }
 
     public static bool IsChatHidden(this UserGlobalPermissions p) => !p.ChatBoxesHidden.NullOrEmpty();
