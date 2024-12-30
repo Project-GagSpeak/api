@@ -4,10 +4,22 @@ using MessagePack;
 namespace GagspeakAPI.Dto.User;
 
 /// <summary>
-/// The Record DTO for the User's KinkPlate.
+/// The record containing the full kinkplate data.
+/// Used when fetching KinkPlate Information via getters / func returns.
 /// </summary>
-/// <param name="User">The UserData (UID) that this profile belongs to.</param>
-/// <param name="ProfileInfo">The Additional Information that structures the KinkPlate</param>
-/// <param name="ProfilePictureBase64">The profile picture embedded in the profile</param>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserKinkPlateDto(UserData User, KinkPlateContent Info, string? ProfilePictureBase64) : UserDto(User);
+
+/// <summary>
+/// The record containing the generic content of the kinkplate.
+/// Used for updating the contents only, without the base64 image.
+/// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record UserKinkPlateContentDto(UserData User, KinkPlateContent Info) : UserDto(User);
+
+/// <summary>
+/// The record containing the generic content of the kinkplate.
+/// Used for updating the image only.
+/// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record UserKinkPlatePictureDto(UserData User, string ProfilePictureBase64) : UserDto(User);

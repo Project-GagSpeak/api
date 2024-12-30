@@ -97,7 +97,8 @@ public interface IGagspeakHub
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server
     Task<UserKinkPlateDto> UserGetKinkPlate(UserDto dto); // get the profile of a user
     Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
-    Task UserSetKinkPlate(UserKinkPlateDto userKinkPlate); // set the profile of the client
+    Task UserSetKinkPlateContent(UserKinkPlateContentDto kinkPlateContentDto); // set profile content of own kinkplate.
+    Task UserSetKinkPlatePicture(UserKinkPlatePictureDto kinkPlatePictureDto); // set profile picture of own kinkplate.
     #endregion Generic Interactions
 
     #region IPCTransfer
