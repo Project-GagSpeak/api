@@ -57,7 +57,7 @@ public enum UnlocksEvent
     ClientSlain,
     ClientOneHp,
 
-    HardcoreForcedPairAction,
+    HardcoreAction,
 
     RemoteOpened,
     VibeRoomCreated,

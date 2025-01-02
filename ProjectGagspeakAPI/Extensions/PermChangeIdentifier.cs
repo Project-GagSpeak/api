@@ -5,33 +5,33 @@ namespace GagspeakAPI.Extensions;
 
 public static class PermChangeIdentifier
 {
-    public static HardcoreAction GetHardcoreChange(this UserGlobalPermissions currentPermissions, string changedPermission, object changedValue)
+    public static InteractionType GetHardcoreChange(this UserGlobalPermissions currentPermissions, string changedPermission, object changedValue)
     {
         switch (changedPermission)
         {
             case nameof(UserGlobalPermissions.ForcedFollow):
                 return currentPermissions.ForcedFollow != (string)changedValue ?
-                       HardcoreAction.ForcedFollow: HardcoreAction.None;
+                       InteractionType.ForcedFollow: InteractionType.None;
             case nameof(UserGlobalPermissions.ForcedEmoteState):
                 return currentPermissions.ForcedEmoteState != (string)changedValue ?
-                       HardcoreAction.ForcedEmoteState : HardcoreAction.None;
+                       InteractionType.ForcedEmoteState : InteractionType.None;
             case nameof(UserGlobalPermissions.ForcedStay):
                 return currentPermissions.ForcedStay != (string)changedValue ?
-                       HardcoreAction.ForcedStay : HardcoreAction.None;
+                       InteractionType.ForcedStay : InteractionType.None;
             case nameof(UserGlobalPermissions.ForcedBlindfold):
                 return currentPermissions.ForcedBlindfold != (string)changedValue ?
-                       HardcoreAction.ForcedBlindfold : HardcoreAction.None;
+                       InteractionType.ForcedBlindfold : InteractionType.None;
             case nameof(UserGlobalPermissions.ChatBoxesHidden):
                 return currentPermissions.ChatBoxesHidden != (string)changedValue ?
-                       HardcoreAction.ChatboxHiding : HardcoreAction.None;
+                       InteractionType.ForcedChatVisibility : InteractionType.None;
             case nameof(UserGlobalPermissions.ChatInputHidden):
                 return currentPermissions.ChatInputHidden != (string)changedValue ?
-                       HardcoreAction.ChatInputHiding : HardcoreAction.None;
+                       InteractionType.ForcedChatInputVisibility : InteractionType.None;
             case nameof(UserGlobalPermissions.ChatInputBlocked):
                 return currentPermissions.ChatInputBlocked != (string)changedValue ?
-                       HardcoreAction.ChatInputBlocking : HardcoreAction.None;
+                       InteractionType.ForcedChatInputBlock : InteractionType.None;
             default:
-                return HardcoreAction.None;
+                return InteractionType.None;
         }
     }
 
