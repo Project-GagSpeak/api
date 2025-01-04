@@ -11,7 +11,15 @@ public static class LockHelperExtensions
 {
     public static readonly HashSet<Padlocks> AllLocksWithMimic = Enum.GetValues<Padlocks>().ToHashSet();
     public static readonly HashSet<Padlocks> AllLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.MimicPadlock).ToHashSet();
-    public static readonly HashSet<Padlocks> TwoRowLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.TimerPasswordPadlock).ToHashSet();
+    public static readonly HashSet<Padlocks> TwoRowLocks = new()
+    {
+        Padlocks.CombinationPadlock,
+        Padlocks.PasswordPadlock,
+        Padlocks.TimerPadlock,
+        Padlocks.TimerPasswordPadlock,
+        Padlocks.OwnerTimerPadlock,
+        Padlocks.DevotionalTimerPadlock
+    };
 
     public static readonly HashSet<Padlocks> PermanentLocks = new()
     {
@@ -47,6 +55,7 @@ public static class LockHelperExtensions
         Padlocks.DevotionalTimerPadlock
     };
 
+    public static bool IsTwoRowLock(this Padlocks padlock) => TwoRowLocks.Contains(padlock);
     public static bool IsPermanentLock(this Padlocks padlock) => PermanentLocks.Contains(padlock);
     public static bool IsPasswordLock(this Padlocks padlock) => PasswordPadlocks.Contains(padlock);
     public static bool IsTimerLock(this Padlocks padlock) => TimerLocks.Contains(padlock) || padlock == Padlocks.MimicPadlock || padlock == Padlocks.FiveMinutesPadlock;
