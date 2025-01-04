@@ -6,12 +6,8 @@ namespace GagspeakAPI.Data.Permissions;
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserGlobalPermissions
 {
-    // main global permissions
-    public bool SafewordUsed { get; set; } = false;             // DO NOT ALLOW THIS TO BE MODIFABLE
-    public bool HardcoreSafewordUsed { get; set; } = false;     // DO NOT ALLOW THIS TO BE MODIFABLE
     public bool LiveChatGarblerActive { get; set; } = false;    // if the live chat garbler is active
     public bool LiveChatGarblerLocked { get; set; } = false;    // if the live chat garbler is locked in an active state.
-
 
     // wardrobe global modifiable permissions
     public bool WardrobeEnabled { get; set; } = false;          // PROFILE VIEWABLE OPT-IN || If the user's wardrobe component is active
@@ -25,6 +21,7 @@ public record UserGlobalPermissions
     public bool GlobalAllowSitRequests { get; set; } = false;   // PROFILE VIEWABLE OPT-IN || If user allows sit requests
     public bool GlobalAllowMotionRequests { get; set; } = false;// PROFILE VIEWABLE OPT-IN || If the user allows motion requests
     public bool GlobalAllowAllRequests { get; set; } = false;   // PROFILE VIEWABLE OPT-IN || READONLY || If the user allows all requests
+    public bool GlobalAllowAliasRequests { get; set; } = false; // PROFILE VIEWABLE OPT-IN || READONLY || If the user allows alias requests
 
     // global moodles modifiable permissions
     public bool MoodlesEnabled { get; set; } = false;           // PROFILE VIEWABLE OPT-IN || If the user's moodles component is active
