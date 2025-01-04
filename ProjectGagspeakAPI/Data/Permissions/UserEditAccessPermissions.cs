@@ -8,11 +8,16 @@ public record UserEditAccessPermissions
     // unique permissions stored here:
     public bool LiveChatGarblerActiveAllowed { get; set; } = false; // Global
     public bool LiveChatGarblerLockedAllowed { get; set; } = false; // Global
-    public bool GagFeaturesAllowed { get; set; } = false;
+
+    public bool PermanentLocksAllowed { get; set; } = false;
     public bool OwnerLocksAllowed { get; set; } = false;
     public bool DevotionalLocksAllowed { get; set; } = false;
-    public bool ExtendedLockTimesAllowed { get; set; } = false;
-    public bool MaxLockTimeAllowed { get; set; } = false;
+
+    public bool ApplyGagsAllowed { get; set; } = false;
+    public bool LockGagsAllowed { get; set; } = false;
+    public bool MaxGagTimeAllowed { get; set; } = false;
+    public bool UnlockGagsAllowed { get; set; } = false;
+    public bool RemoveGagsAllowed { get; set; } = false;
 
     // unique permissions for the wardrobe
     public bool WardrobeEnabledAllowed { get; set; } = false; // Global
@@ -26,9 +31,10 @@ public record UserEditAccessPermissions
 
     // unique permissions for the puppeteer
     public bool PuppeteerEnabledAllowed { get; set; } = false; // Global
-    public bool AllowSitRequestsAllowed { get; set; } = false;
-    public bool AllowMotionRequestsAllowed { get; set; } = false;
-    public bool AllowAllRequestsAllowed { get; set; } = false;
+    public bool SitRequestsAllowed { get; set; } = false;
+    public bool MotionRequestsAllowed { get; set; } = false;
+    public bool AliasRequestsAllowed { get; set; } = false;
+    public bool AllRequestsAllowed { get; set; } = false;
 
     // unique Moodles permissions
     public bool MoodlesEnabledAllowed { get; set; } = false; // Global
