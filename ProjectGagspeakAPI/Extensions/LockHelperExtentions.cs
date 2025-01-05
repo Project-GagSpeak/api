@@ -12,6 +12,16 @@ public static class LockHelperExtensions
 {
     public static readonly HashSet<Padlocks> AllLocksWithMimic = Enum.GetValues<Padlocks>().ToHashSet();
     public static readonly HashSet<Padlocks> AllLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.MimicPadlock).ToHashSet();
+    public static readonly HashSet<Padlocks> ClientLocks = new()
+    {
+        Padlocks.None,
+        Padlocks.MetalPadlock,
+        Padlocks.CombinationPadlock,
+        Padlocks.PasswordPadlock,
+        Padlocks.TimerPadlock,
+        Padlocks.TimerPasswordPadlock,
+    };
+
     public static readonly HashSet<Padlocks> TwoRowLocks = new()
     {
         Padlocks.CombinationPadlock,
@@ -32,6 +42,7 @@ public static class LockHelperExtensions
 
     public static readonly HashSet<Padlocks> PasswordPadlocks = new()
     {
+        Padlocks.CombinationPadlock,
         Padlocks.PasswordPadlock,
         Padlocks.TimerPasswordPadlock
     };
@@ -166,11 +177,11 @@ public static class LockHelperExtensions
     {
         if (item is CharaWardrobeData)
         {
-            if (!perms.UnlockRestraintSets) return (false, "You don't have permission to unlock padlocks.");
+            if (!perms.UnlockRestraintSets) return (false, "You don't have permission to unlock restraint padlocks.");
         }
         else if (item is GagSlot)
         {
-            if (!perms.UnlockGags) return (false, "You don't have permission to unlock padlocks.");
+            if (!perms.UnlockGags) return (false, "You don't have permission to unlock gag padlocks.");
         }
 
         var padlock = item.Padlock.ToPadlock();
@@ -188,10 +199,10 @@ public static class LockHelperExtensions
             { Padlocks.CombinationPadlock, () => pass == guessedPass },
             { Padlocks.PasswordPadlock, () => pass == guessedPass },
             { Padlocks.TimerPasswordPadlock, () => pass == guessedPass },
-            { Padlocks.OwnerPadlock, () => itemOwner.UID == unlockerUID },
-            { Padlocks.OwnerTimerPadlock, () => itemOwner.UID == unlockerUID },
-            { Padlocks.DevotionalPadlock, () => itemOwner.UID == unlockerUID && itemOwner.UID == assigner },
-            { Padlocks.DevotionalTimerPadlock, () => itemOwner.UID == unlockerUID && itemOwner.UID == assigner }
+            { Padlocks.OwnerPadlock, () => perms.OwnerLocks },
+            { Padlocks.OwnerTimerPadlock, () => perms.OwnerLocks },
+            { Padlocks.DevotionalPadlock, () => assigner == unlockerUID },
+            { Padlocks.DevotionalTimerPadlock, () => assigner == unlockerUID }
         };
 
         var unlockMessages = new Dictionary<Padlocks, string>
@@ -210,10 +221,10 @@ public static class LockHelperExtensions
             return (false, unlockMessages[padlock]);
 
         // Reset the padlock data
-        item.Padlock = Padlocks.None.ToName();
-        item.Password = string.Empty;
+        item.Padlock = padlock.ToName();
+        item.Password = guessedPass;
         item.Timer = DateTimeOffset.MinValue;
-        item.Assigner = string.Empty;
+        item.Assigner = unlockerUID;
 
         return (true, string.Empty);
     }
