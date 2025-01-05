@@ -17,6 +17,11 @@ public record LightRestraintData
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
+    /// The description of the restraint set.
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
+
+    /// <summary>
     /// The Slots that this set affects when enabled. 
     /// Will only contain information for slots marked as enabled or with a set item.
     /// </summary>

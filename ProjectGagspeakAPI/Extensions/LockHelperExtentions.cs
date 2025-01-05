@@ -1,4 +1,5 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.Data.Character;
 using GagspeakAPI.Data.Interfaces;
 using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Enums;
@@ -66,17 +67,10 @@ public static class LockHelperExtensions
     // This function will be used to determine what locks can be applied to a user based on the permissions of the user.
     public static IEnumerable<Padlocks> GetLocksForPair(UserPairPermissions permissions)
     {
-        // if we have no lock permissions return only Padlock.None.
-        if (!permissions.LockGags) return new HashSet<Padlocks> { Padlocks.None };
-
-        // Otherwise, calculate the locks.
         var allowedLocks = new HashSet<Padlocks>(AllLocks);
-
-        // exclude if we are missing permissions.
         if (!permissions.PermanentLocks) allowedLocks.ExceptWith(PermanentLocks);
         if (!permissions.OwnerLocks) allowedLocks.ExceptWith(OwnerLocks);
         if (!permissions.DevotionalLocks) allowedLocks.ExceptWith(DevotionalLocks);
-
         return allowedLocks;
     }
 
@@ -99,22 +93,32 @@ public static class LockHelperExtensions
     /// </returns>
     public static (bool isValid, string logMsg) VerifyLock<T>(ref T item, Padlocks lockDesired, string pass, string time, string assigner, UserPairPermissions perms) where T : IPadlockable
     {
-        // return invalid failure if lock gags permission is false or if the lock type is none.
-        if (!perms.LockGags) return (false, "You don't have permission to apply locks.");
+        var maxLockTime = TimeSpan.Zero;
+        if (item is CharaWardrobeData)
+        {
+            if (!perms.LockRestraintSets) return (false, "You don't have permission to apply locks.");
+            maxLockTime = perms.MaxAllowedRestraintTime;
+        }
+        else if (item is GagSlot)
+        {
+            if (!perms.LockGags) return (false, "You don't have permission to apply locks.");
+            maxLockTime = perms.MaxGagTime;
+        }
+
         if (lockDesired is Padlocks.None) return (false, "No padlock selected.");
-        
+
         // construct the operations performed to evaluate the lock.
         var lockValidations = new Dictionary<Padlocks, Func<bool>>
         {
             { Padlocks.MetalPadlock, () => true },
             { Padlocks.CombinationPadlock, () => IsValidCombo(pass) && perms.PermanentLocks },
             { Padlocks.PasswordPadlock, () => IsValidPass(pass) && perms.PermanentLocks },
-            { Padlocks.TimerPadlock, () => IsValidTime(time, perms.MaxGagTime) },
-            { Padlocks.TimerPasswordPadlock, () => IsValidPass(pass) && IsValidTime(time, perms.MaxGagTime) },
+            { Padlocks.TimerPadlock, () => IsValidTime(time, maxLockTime) },
+            { Padlocks.TimerPasswordPadlock, () => IsValidPass(pass) && IsValidTime(time, maxLockTime) },
             { Padlocks.OwnerPadlock, () => perms.OwnerLocks && perms.PermanentLocks },
-            { Padlocks.OwnerTimerPadlock, () => perms.OwnerLocks && IsValidTime(time, perms.MaxGagTime) },
+            { Padlocks.OwnerTimerPadlock, () => perms.OwnerLocks && IsValidTime(time, maxLockTime) },
             { Padlocks.DevotionalPadlock, () => perms.DevotionalLocks && perms.PermanentLocks },
-            { Padlocks.DevotionalTimerPadlock, () => perms.DevotionalLocks && IsValidTime(time, perms.MaxGagTime) }
+            { Padlocks.DevotionalTimerPadlock, () => perms.DevotionalLocks && IsValidTime(time, maxLockTime) }
         };
 
         // construct the messages to return if the lock is invalid.
@@ -125,7 +129,7 @@ public static class LockHelperExtensions
             { Padlocks.TimerPadlock, "Invalid time entered!" },
             { Padlocks.TimerPasswordPadlock, "Invalid password or time entered!" },
             { Padlocks.OwnerPadlock, "Owner Locks not allowed, or pair doesn't allow permanent locks!" },
-            { Padlocks.OwnerTimerPadlock, "Owner Locks not allowed, or time entered is too long!" },
+            { Padlocks.OwnerTimerPadlock, "Owner Locks not allowed, or time entered was too long!" },
             { Padlocks.DevotionalPadlock, "Devotional Locks not allowed, or pair doesn't allow permanent locks!" },
             { Padlocks.DevotionalTimerPadlock, "Devotional Locks not allowed, or time entered is too long!" }
         };
@@ -160,7 +164,14 @@ public static class LockHelperExtensions
     /// </returns>
     public static (bool isValid, string logMsg) VerifyUnlock<T>(ref T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions perms) where T : IPadlockable
     {
-        if (!perms.LockGags) return (false, "You don't have permission to unlock locks.");
+        if (item is CharaWardrobeData)
+        {
+            if (!perms.UnlockRestraintSets) return (false, "You don't have permission to unlock padlocks.");
+        }
+        else if (item is GagSlot)
+        {
+            if (!perms.UnlockGags) return (false, "You don't have permission to unlock padlocks.");
+        }
 
         var padlock = item.Padlock.ToPadlock();
         if (padlock == Padlocks.None) return (false, "No padlock selected.");
@@ -208,13 +219,34 @@ public static class LockHelperExtensions
     }
 
     /// <summary> Validates if within allowed time. </summary>
-    private static bool IsValidTime(string time, TimeSpan maxTime) => TimeSpan.TryParse(time, out var ts) && ts <= maxTime;
+    private static bool IsValidTime(string time, TimeSpan maxTime) => TryParseTimeSpan(time, out var ts) && ts <= maxTime;
 
     /// <summary> Validates a 20 character password with no spaces </summary>
     public static bool IsValidPass(string password) => !string.IsNullOrWhiteSpace(password) && password.Length <= 20 && !password.Contains(" ");
 
     /// <summary> Validates a 4 digit combination </summary>
     public static bool IsValidCombo(string combination) => int.TryParse(combination, out _) && combination.Length == 4;
+
+
+    public static bool TryParseTimeSpan(string input, out TimeSpan result)
+    {
+        result = TimeSpan.Zero;
+        var regex = new Regex(@"(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?");
+        var match = regex.Match(input);
+
+        if (!match.Success)
+        {
+            return false;
+        }
+
+        int days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
+        int hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
+        int minutes = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
+        int seconds = match.Groups[4].Success ? int.Parse(match.Groups[4].Value) : 0;
+
+        result = new TimeSpan(days, hours, minutes, seconds);
+        return true;
+    }
 
     public static DateTimeOffset GetEndTimeUTC(string input)
     {

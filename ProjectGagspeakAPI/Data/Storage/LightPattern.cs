@@ -15,6 +15,11 @@ public record LightPattern
     /// </summary>
     public string Name = string.Empty;
 
+    /// <summary>
+    /// the description of the pattern
+    /// </summary>
+    public string Description = string.Empty;
+
     /// <summary> 
     /// The duration of the pattern 
     /// </summary>

@@ -25,4 +25,19 @@ public class CharaWardrobeData : IPadlockable
         return $"ActiveId = {ActiveSetId}, EnabledBy = {ActiveSetEnabledBy}, " +
             $"Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner}";
     }
+
+    public CharaWardrobeData DeepCloneData()
+    {
+        var clone = new CharaWardrobeData
+        {
+            ActiveSetId = ActiveSetId,
+            ActiveSetEnabledBy = ActiveSetEnabledBy,
+            Padlock = Padlock,
+            Password = Password,
+            Timer = Timer,
+            Assigner = Assigner,
+            ActiveCursedItems = new List<Guid>(ActiveCursedItems)
+        };
+        return clone;
+    }
 }

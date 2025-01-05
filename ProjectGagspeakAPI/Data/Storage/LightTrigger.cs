@@ -11,10 +11,20 @@ public record LightTrigger
     /// </summary>
     public Guid Identifier = Guid.Empty;
 
+    /// <summary>
+    /// The priority this trigger has over others doing the same thing.
+    /// </summary>
+    public int Priority { get; set; } = 0;
+
     /// <summary> 
     /// The name of the trigger. 
     /// </summary>
     public string Name { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The description of the trigger.
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
 
     /// <summary> 
     /// The type of trigger it is. 

@@ -55,9 +55,10 @@ public static partial class EnumToName
     {
         Padlocks.None => "None",
         Padlocks.MetalPadlock => "Metal Padlock",
+        Padlocks.FiveMinutesPadlock => "5 Minutes Padlock",
         Padlocks.CombinationPadlock => "Combination Padlock",
         Padlocks.PasswordPadlock => "Password Padlock",
-        Padlocks.FiveMinutesPadlock => "5 Minutes Padlock",
+        Padlocks.TimerPadlock => "Timer Padlock",
         Padlocks.TimerPasswordPadlock => "Timer Password Padlock",
         Padlocks.OwnerPadlock => "Owner Padlock",
         Padlocks.OwnerTimerPadlock => "Owner Timer Padlock",
@@ -72,9 +73,10 @@ public static partial class EnumToName
     {
         "None" => Padlocks.None,
         "Metal Padlock" => Padlocks.MetalPadlock,
+        "5 Minutes Padlock" => Padlocks.FiveMinutesPadlock,
         "Combination Padlock" => Padlocks.CombinationPadlock,
         "Password Padlock" => Padlocks.PasswordPadlock,
-        "5 Minutes Padlock" => Padlocks.FiveMinutesPadlock,
+        "Timer Padlock" => Padlocks.TimerPadlock,
         "Timer Password Padlock" => Padlocks.TimerPasswordPadlock,
         "Owner Padlock" => Padlocks.OwnerPadlock,
         "Owner Timer Padlock" => Padlocks.OwnerTimerPadlock,
