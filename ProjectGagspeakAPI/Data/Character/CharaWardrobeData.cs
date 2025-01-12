@@ -26,6 +26,9 @@ public class CharaWardrobeData : IPadlockable
             $"Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner}";
     }
 
+    public bool IsLocked() => Padlock != Padlocks.None.ToName();
+    public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
+
     public CharaWardrobeData DeepCloneData()
     {
         var clone = new CharaWardrobeData

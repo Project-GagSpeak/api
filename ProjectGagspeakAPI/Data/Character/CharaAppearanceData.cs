@@ -56,4 +56,7 @@ public record GagSlot : IPadlockable
             Timer = Timer,
             Assigner = Assigner
         };
+
+    public bool IsLocked() => Padlock != Padlocks.None.ToName();
+    public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
 }

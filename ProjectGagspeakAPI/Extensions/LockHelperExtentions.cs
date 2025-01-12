@@ -10,6 +10,7 @@ namespace GagspeakAPI.Extensions;
 
 public static class LockHelperExtensions
 {
+    #region DefinedPadlockGroups
     public static readonly HashSet<Padlocks> AllLocksWithMimic = Enum.GetValues<Padlocks>().ToHashSet();
     public static readonly HashSet<Padlocks> AllLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.MimicPadlock).ToHashSet();
     public static readonly HashSet<Padlocks> ClientLocks = new()
@@ -66,6 +67,7 @@ public static class LockHelperExtensions
         Padlocks.DevotionalPadlock,
         Padlocks.DevotionalTimerPadlock
     };
+    #endregion DefinedPadlockGroups
 
     public static bool IsTwoRowLock(this Padlocks padlock) => TwoRowLocks.Contains(padlock);
     public static bool IsPermanentLock(this Padlocks padlock) => PermanentLocks.Contains(padlock);
@@ -85,148 +87,166 @@ public static class LockHelperExtensions
         return allowedLocks;
     }
 
+    public static string ToFlagString(this PadlockReturnCode errorCode)
+    {
+        List<string> flagNames = new List<string>();
+        // Iterate over each power of 2 (bit flags)
+        foreach (PadlockReturnCode flag in Enum.GetValues(typeof(PadlockReturnCode)))
+        {
+            // Skip the "None" flag, as it indicates no flags are set
+            if (flag == PadlockReturnCode.Success) continue;
+
+            // Check if the flag is set using bitwise AND
+            if ((errorCode & flag) == flag) flagNames.Add(flag.ToString());
+        }
+        return flagNames.Count > 0 ? string.Join(", ", flagNames) : PadlockReturnCode.Success.ToString();
+    }
+
     /// <summary>
-    /// A static helper method to validate the desired application of a lock to an item, and if so, to apply updates to its data.
-    /// <para>
-    /// It is recommended whatever is passed in should be a deepClone and not the raw data, as this method will modify the data.
-    /// </para>
+    /// Static helper for validating Padlock Locking action. Recommend passing in deep clone of data, as it is modified inside the function if valid.
     /// </summary>
-    /// <typeparam name="T">An Active Restraint Data or GagPadlock.</typeparam>
-    /// <param name="item">The Restraint/GagPadlock we are wanting to check against for data.</param>
-    /// <param name="lockDesired">The new Padlock we wish to set it to.</param>
-    /// <param name="pass">The new password we wish to set for the lock.</param>
-    /// <param name="time">the time we want to lock it for.</param>
-    /// <param name="assign">the UID that is attempting to make this change.</param>
-    /// <param name="perms">the permissions that the pair has set for us.</param>
     /// <returns>
     /// If the verification was successful, and any error string if possible. 
     /// If Valid, item will be updated with its new information to send off.
     /// </returns>
-    public static (bool isValid, string logMsg) VerifyLock<T>(ref T item, Padlocks lockDesired, string pass, string time, string assigner, UserPairPermissions perms) where T : IPadlockable
+    public static PadlockReturnCode VerifyLock<T>(ref T item, Padlocks lockDesired, string pass, string time, string assignerUID, UserPairPermissions? perms = null) where T : IPadlockable
     {
-        var maxLockTime = TimeSpan.Zero;
-        if (item is CharaWardrobeData)
-        {
-            if (!perms.LockRestraintSets) return (false, "You don't have permission to apply locks.");
-            maxLockTime = perms.MaxAllowedRestraintTime;
-        }
-        else if (item is GagSlot)
-        {
-            if (!perms.LockGags) return (false, "You don't have permission to apply locks.");
-            maxLockTime = perms.MaxGagTime;
-        }
+        var maxLockTime = perms is not null ? GetMaxLockTime(item, perms) : TimeSpan.MaxValue;
+        var validationResult = ValidateLock(lockDesired, pass, time, maxLockTime, perms);
 
-        if (lockDesired is Padlocks.None) return (false, "No padlock selected.");
-
-        // construct the operations performed to evaluate the lock.
-        var lockValidations = new Dictionary<Padlocks, Func<bool>>
-        {
-            { Padlocks.MetalPadlock, () => true },
-            { Padlocks.CombinationPadlock, () => IsValidCombo(pass) && perms.PermanentLocks },
-            { Padlocks.PasswordPadlock, () => IsValidPass(pass) && perms.PermanentLocks },
-            { Padlocks.TimerPadlock, () => IsValidTime(time, maxLockTime) },
-            { Padlocks.TimerPasswordPadlock, () => IsValidPass(pass) && IsValidTime(time, maxLockTime) },
-            { Padlocks.OwnerPadlock, () => perms.OwnerLocks && perms.PermanentLocks },
-            { Padlocks.OwnerTimerPadlock, () => perms.OwnerLocks && IsValidTime(time, maxLockTime) },
-            { Padlocks.DevotionalPadlock, () => perms.DevotionalLocks && perms.PermanentLocks },
-            { Padlocks.DevotionalTimerPadlock, () => perms.DevotionalLocks && IsValidTime(time, maxLockTime) }
-        };
-
-        // construct the messages to return if the lock is invalid.
-        var lockMessages = new Dictionary<Padlocks, string>
-        {
-            { Padlocks.CombinationPadlock, "Invalid combination entered or Permanent Locks not allowed!" },
-            { Padlocks.PasswordPadlock, "Invalid password entered or Permanent Locks not allowed!" },
-            { Padlocks.TimerPadlock, "Invalid time entered!" },
-            { Padlocks.TimerPasswordPadlock, "Invalid password or time entered!" },
-            { Padlocks.OwnerPadlock, "Owner Locks not allowed, or pair doesn't allow permanent locks!" },
-            { Padlocks.OwnerTimerPadlock, "Owner Locks not allowed, or time entered was too long!" },
-            { Padlocks.DevotionalPadlock, "Devotional Locks not allowed, or pair doesn't allow permanent locks!" },
-            { Padlocks.DevotionalTimerPadlock, "Devotional Locks not allowed, or time entered is too long!" }
-        };
-
-        // try and get if the validation is successful, and if not, return the message.
-        if (lockValidations.TryGetValue(lockDesired, out var validation) && !validation())
-            return (false, lockMessages[lockDesired]);
+        // return the error if any was given.
+        if (validationResult != PadlockReturnCode.Success)
+            return validationResult;
 
         // otherwise, update the lock data
         item.Padlock = lockDesired.ToName();
-        item.Assigner = assigner;
-
-        // Add timer and/or password if necessary.
-        if (lockDesired.IsTimerLock()) item.Timer = GetEndTimeUTC(time);
-        if (lockDesired.IsPasswordLock()) item.Password = pass;
-
-        return (true, string.Empty);
+        item.Timer = lockDesired.IsTimerLock() ? GetEndTimeUTC(time) : DateTimeOffset.UtcNow;
+        item.Password = lockDesired.IsPasswordLock() ? pass : string.Empty;
+        item.Assigner = assignerUID;
+        return PadlockReturnCode.Success;
     }
 
+    public static PadlockReturnCode VerifyUnlock<T>(ref T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    {
+        var validationResult = ValidateUnlock(item, itemOwner, guessedPass, unlockerUID, perms);
+
+        // return the error if any was given.
+        if (validationResult != PadlockReturnCode.Success)
+            return validationResult;
+
+        // otherwise, update the lock data
+        item.Padlock = Padlocks.None.ToName();
+        item.Timer = DateTimeOffset.MinValue;
+        item.Password = string.Empty;
+        item.Assigner = string.Empty;
+        return PadlockReturnCode.Success;
+    }
 
     /// <summary>
-    /// A static helper method to validate the desired unlocking of a lock from an item, and if so, to apply updates to its data.
+    /// Helper function for the pair-based lock validation.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="item">The RestraintSet / GagLock we are trying to unlock.</param>
-    /// <param name="itemOwner">The UserData of the pair we are trying to unlock this from.</param>
-    /// <param name="guessedPass">the password we have guessed, if any.</param>
-    /// <param name="perms">the permissions that the pair has set for us.</param>
     /// <returns>
-    /// If the verification was successful, and any error string if possible. 
-    /// If Valid, item will be updated with its new information to send off.
+    /// The maximum allowed time for timer padlocks.
     /// </returns>
-    public static (bool isValid, string logMsg) VerifyUnlock<T>(ref T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions perms) where T : IPadlockable
+    private static TimeSpan GetMaxLockTime<T>(T item, UserPairPermissions perms) where T : IPadlockable
     {
-        if (item is CharaWardrobeData)
-        {
-            if (!perms.UnlockRestraintSets) return (false, "You don't have permission to unlock restraint padlocks.");
-        }
-        else if (item is GagSlot)
-        {
-            if (!perms.UnlockGags) return (false, "You don't have permission to unlock gag padlocks.");
-        }
+        // Determine the max lock time based on the item type.
+        if (item is CharaWardrobeData) return perms.MaxAllowedRestraintTime;
+        if (item is GagSlot) return perms.MaxGagTime;
+        return TimeSpan.Zero;
+    }
 
-        var padlock = item.Padlock.ToPadlock();
-        if (padlock == Padlocks.None) return (false, "No padlock selected.");
+    private static PadlockReturnCode ValidateLock(Padlocks lockDesired, string pass, string time, TimeSpan maxLockTime, UserPairPermissions? perms = null)
+    {
+        var returnCode = PadlockReturnCode.Success;
 
-        // ref the password and assigner.
-        var pass = item.Password;
-        var assigner = item.Assigner;
+        // append returned flags based on the validation.
+        if (lockDesired is Padlocks.None) 
+            return returnCode |= PadlockReturnCode.NoPadlockSelected;
 
-        var unlockValidations = new Dictionary<Padlocks, Func<bool>>
+        var validationRules = new Dictionary<Padlocks, Func<PadlockReturnCode>>
         {
-            { Padlocks.MetalPadlock, () => true },
-            { Padlocks.FiveMinutesPadlock, () => true },
-            { Padlocks.TimerPadlock, () => itemOwner.UID != unlockerUID },
-            { Padlocks.CombinationPadlock, () => pass == guessedPass },
-            { Padlocks.PasswordPadlock, () => pass == guessedPass },
-            { Padlocks.TimerPasswordPadlock, () => pass == guessedPass },
-            { Padlocks.OwnerPadlock, () => perms.OwnerLocks },
-            { Padlocks.OwnerTimerPadlock, () => perms.OwnerLocks },
-            { Padlocks.DevotionalPadlock, () => assigner == unlockerUID },
-            { Padlocks.DevotionalTimerPadlock, () => assigner == unlockerUID }
+            { Padlocks.MetalPadlock, () => PadlockReturnCode.Success },
+            { Padlocks.FiveMinutesPadlock, () => PadlockReturnCode.Success },
+            { Padlocks.CombinationPadlock, () =>
+                !IsValidCombo(pass) ? PadlockReturnCode.InvalidCombination :
+                (perms != null && !perms.PermanentLocks) ? PadlockReturnCode.PermanentRestricted : PadlockReturnCode.Success },
+            { Padlocks.PasswordPadlock, () =>
+                !IsValidPass(pass) ? PadlockReturnCode.InvalidPassword :
+                (perms != null && !perms.PermanentLocks) ? PadlockReturnCode.PermanentRestricted : PadlockReturnCode.Success },
+            { Padlocks.TimerPadlock, () =>
+                !IsValidTime(time, maxLockTime) ? PadlockReturnCode.InvalidTime : PadlockReturnCode.Success },
+            { Padlocks.TimerPasswordPadlock, () =>
+                !IsValidPass(pass) ? PadlockReturnCode.InvalidPassword :
+                !IsValidTime(time, maxLockTime) ? PadlockReturnCode.InvalidTime : PadlockReturnCode.Success },
+            { Padlocks.OwnerPadlock, () =>
+                perms == null ? PadlockReturnCode.OwnerRestricted :
+                !perms.OwnerLocks ? PadlockReturnCode.OwnerRestricted :
+                !perms.PermanentLocks ? PadlockReturnCode.PermanentRestricted : PadlockReturnCode.Success },
+            { Padlocks.OwnerTimerPadlock, () =>
+                perms == null ? PadlockReturnCode.OwnerRestricted :
+                !perms.OwnerLocks ? PadlockReturnCode.OwnerRestricted :
+                !IsValidTime(time, maxLockTime) ? PadlockReturnCode.InvalidTime : PadlockReturnCode.Success },
+            { Padlocks.DevotionalPadlock, () =>
+                perms == null ? PadlockReturnCode.DevotionalRestricted :
+                !perms.DevotionalLocks ? PadlockReturnCode.DevotionalRestricted :
+                !perms.PermanentLocks ? PadlockReturnCode.PermanentRestricted : PadlockReturnCode.Success },
+            { Padlocks.DevotionalTimerPadlock, () =>
+                perms == null ? PadlockReturnCode.DevotionalRestricted :
+                !perms.DevotionalLocks ? PadlockReturnCode.DevotionalRestricted :
+                !IsValidTime(time, maxLockTime) ? PadlockReturnCode.InvalidTime : PadlockReturnCode.Success }
         };
 
-        var unlockMessages = new Dictionary<Padlocks, string>
+        // Check if validation rules exist for the padlock and return the corresponding error code
+        if (validationRules.TryGetValue(lockDesired, out var validate)) 
+            returnCode = validate();
+
+        return returnCode;
+    }
+
+    private static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    {
+        var returnCode = PadlockReturnCode.Success;
+
+        if (item is CharaWardrobeData && perms is not null && !perms.UnlockRestraintSets) 
+            return returnCode |= PadlockReturnCode.UnlockingRestricted;
+        
+        if (item is GagSlot && perms is not null && !perms.UnlockGags) 
+            return returnCode |= PadlockReturnCode.UnlockingRestricted;
+
+        var validationRules = new Dictionary<Padlocks, Func<PadlockReturnCode>>
         {
-            { Padlocks.TimerPadlock, "You can't unlock a timer padlock applied to you." },
-            { Padlocks.CombinationPadlock, "Invalid combination entered." },
-            { Padlocks.PasswordPadlock, "Invalid password entered." },
-            { Padlocks.TimerPasswordPadlock, "Invalid password entered." },
-            { Padlocks.OwnerPadlock, "You don't have permission to unlock this padlock." },
-            { Padlocks.OwnerTimerPadlock, "You don't have permission to unlock this padlock." },
-            { Padlocks.DevotionalPadlock, "You don't have permission to unlock this padlock." },
-            { Padlocks.DevotionalTimerPadlock, "You don't have permission to unlock this padlock." }
+            { Padlocks.MetalPadlock, () => PadlockReturnCode.Success },
+            { Padlocks.FiveMinutesPadlock, () => PadlockReturnCode.Success },
+            { Padlocks.TimerPadlock, () =>
+                itemOwner.UID == unlockerUID ? PadlockReturnCode.UnlockingRestricted : PadlockReturnCode.Success },
+            { Padlocks.CombinationPadlock, () =>
+                item.Password != guessedPass ? PadlockReturnCode.InvalidCombination : PadlockReturnCode.Success },
+            { Padlocks.PasswordPadlock, () =>
+                item.Password != guessedPass ? PadlockReturnCode.InvalidPassword : PadlockReturnCode.Success },
+            { Padlocks.TimerPasswordPadlock, () =>
+                item.Password != guessedPass ? PadlockReturnCode.InvalidPassword : PadlockReturnCode.Success },
+            { Padlocks.OwnerPadlock, () =>
+                perms is null ? PadlockReturnCode.OwnerRestricted :
+                !perms.OwnerLocks ? PadlockReturnCode.OwnerRestricted : PadlockReturnCode.Success },
+            { Padlocks.OwnerTimerPadlock, () =>
+                perms is null ? PadlockReturnCode.OwnerRestricted :
+                !perms.OwnerLocks ? PadlockReturnCode.OwnerRestricted : PadlockReturnCode.Success },
+            { Padlocks.DevotionalPadlock, () =>
+                perms is null ? PadlockReturnCode.DevotionalRestricted :
+                !perms.DevotionalLocks ? PadlockReturnCode.DevotionalRestricted :
+                item.Assigner != unlockerUID ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success },
+            { Padlocks.DevotionalTimerPadlock, () =>
+                perms is null ? PadlockReturnCode.DevotionalRestricted :
+                !perms.DevotionalLocks ? PadlockReturnCode.DevotionalRestricted :
+                item.Assigner != unlockerUID ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success }
         };
 
-        if (unlockValidations.TryGetValue(padlock, out var validation) && !validation())
-            return (false, unlockMessages[padlock]);
+        // Check if validation rules exist for the padlock and return the corresponding error code
+        if (validationRules.TryGetValue(item.Padlock.ToPadlock(), out var validate)) 
+            returnCode = validate();
 
-        // Reset the padlock data
-        item.Padlock = padlock.ToName();
-        item.Password = guessedPass;
-        item.Timer = DateTimeOffset.MinValue;
-        item.Assigner = unlockerUID;
-
-        return (true, string.Empty);
+        return returnCode;
     }
 
     /// <summary> Validates if within allowed time. </summary>
