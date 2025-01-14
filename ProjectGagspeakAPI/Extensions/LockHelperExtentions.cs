@@ -149,7 +149,7 @@ public static class GsPadlockEx
     /// <returns>
     /// The maximum allowed time for timer padlocks.
     /// </returns>
-    private static TimeSpan GetMaxLockTime<T>(T item, UserPairPermissions perms) where T : IPadlockable
+    public static TimeSpan GetMaxLockTime<T>(T item, UserPairPermissions perms) where T : IPadlockable
     {
         // Determine the max lock time based on the item type.
         if (item is CharaWardrobeData) return perms.MaxAllowedRestraintTime;
@@ -157,7 +157,7 @@ public static class GsPadlockEx
         return TimeSpan.Zero;
     }
 
-    private static PadlockReturnCode ValidateLock(Padlocks lockDesired, string pass, string time, TimeSpan maxLockTime, UserPairPermissions? perms = null)
+    public static PadlockReturnCode ValidateLock(Padlocks lockDesired, string pass, string time, TimeSpan maxLockTime, UserPairPermissions? perms = null)
     {
         var returnCode = PadlockReturnCode.Success;
 
@@ -205,7 +205,7 @@ public static class GsPadlockEx
         return returnCode;
     }
 
-    private static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    public static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
     {
         var returnCode = PadlockReturnCode.Success;
 

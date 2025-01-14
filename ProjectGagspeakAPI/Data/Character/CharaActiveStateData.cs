@@ -7,7 +7,7 @@ namespace GagspeakAPI.Data.Character;
 /// CharacterData class stores all of the user's settings, permissions, and apperance data
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CharaActiveStateData
+public record CharaActiveSetData
 {
     public Guid ActiveSetId { get; set; } = Guid.Empty; // the ID of the user's active outfit
 	public string ActiveSetEnabler { get; set; } = ""; // person who Enabled the set.

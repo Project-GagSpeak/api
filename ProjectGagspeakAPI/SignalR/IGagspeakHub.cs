@@ -53,7 +53,7 @@ public interface IGagspeakHub
     Task Client_UserReceiveDataIpc(OnlineUserCharaIpcDataDto dto);
     Task Client_UserReceiveDataAppearance(OnlineUserCharaAppearanceDataDto dto);
     Task Client_UserReceiveDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-    Task Client_UserReceiveDataTimedItems(OnlineUserCharaOrdersDataDto dto);
+    Task Client_UserReceiveDataOrders(OnlineUserCharaOrdersDataDto dto);
     Task Client_UserReceiveDataAlias(OnlineUserCharaAliasDataDto dto);
     Task Client_UserReceiveDataToybox(OnlineUserCharaToyboxDataDto dto);
     Task Client_UserReceiveLightStorage(OnlineUserStorageUpdateDto dto);

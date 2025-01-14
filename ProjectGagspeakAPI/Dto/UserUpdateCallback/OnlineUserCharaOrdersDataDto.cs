@@ -16,4 +16,4 @@ namespace GagspeakAPI.Dto.Connection;
 /// <param name="AffectedId">The GUID affected by this change.</param>
 [MessagePackObject(keyAsPropertyName: true)]
 public record OnlineUserCharaOrdersDataDto(UserData User, UserData Enactor, 
-    CharaOrdersData OrdersData, OrdersUpdateType Type, Guid AffectedItem, UpdateDir Direction) : UserDto(User);
+    CharaOrdersData OrdersData, OrdersUpdateType Type, string AffectedItem, UpdateDir Direction) : UserDto(User);

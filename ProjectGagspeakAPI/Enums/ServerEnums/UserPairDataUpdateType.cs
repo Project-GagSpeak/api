@@ -34,10 +34,9 @@ public enum WardrobeUpdateType
 public enum OrdersUpdateType
 {
     None,
+    Safeword,
     FullDataUpdate,
-    CursedItemApplied,
-    CursedItemRemoved,
-    OrderEnabled,
+    OrderAssigned,
     OrderProgressMade,
     OrderCompleted,
     OrderDisabled,
