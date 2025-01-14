@@ -29,15 +29,17 @@ public enum AchievementType
 public enum UnlocksEvent
 {
     OrderAction, // for finished, failed, and created actions.
-    
-    GagAction, // Contains the layer, type, and if it was self applied.
-    PairGagAction,
+
+    // Contains the layer, type, assigner.
+    GagStateChange,
+    PairGagStateChange,
+    GagLockStateChange,
+    PairGagLockStateChange,
     GagUnlockGuessFailed,
-    GagRemoval,
 
     RestraintUpdated, // for dye changes
-    RestraintApplicationChanged,
-    PairRestraintApplied,
+    RestraintStateChange,
+    PairRestraintStateChange,
     RestraintLockChange,
     PairRestraintLockChange,
 

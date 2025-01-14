@@ -53,6 +53,7 @@ public interface IGagspeakHub
     Task Client_UserReceiveDataIpc(OnlineUserCharaIpcDataDto dto);
     Task Client_UserReceiveDataAppearance(OnlineUserCharaAppearanceDataDto dto);
     Task Client_UserReceiveDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
+    Task Client_UserReceiveDataTimedItems(OnlineUserCharaOrdersDataDto dto);
     Task Client_UserReceiveDataAlias(OnlineUserCharaAliasDataDto dto);
     Task Client_UserReceiveDataToybox(OnlineUserCharaToyboxDataDto dto);
     Task Client_UserReceiveLightStorage(OnlineUserStorageUpdateDto dto);
@@ -122,35 +123,12 @@ public interface IGagspeakHub
     /// </summary>
     Task UserPushData(UserCharaCompositeDataMessageDto dto);
 
-    /// <summary>
-    /// pushes IPC data to the server, updating paired online clients
-    /// <para> Currently only includes the moodles IPC string, as C+ is stored locally. </para>
-    /// </summary>
     Task UserPushDataIpc(UserCharaIpcDataMessageDto dto);
-    
-    /// <summary>
-    /// Pushes a player's appearance data to the server, updating paired online clients.
-    /// </summary>
     Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto);
-
-    /// <summary>
-    /// Pushes a player's active restraint set data to the server, updating paired online clients.
-    /// </summary>
     Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto);
-
-    /// <summary>
-    /// Pushes your alias data to the server, updating paired online clients.
-    /// </summary>
+    Task UserPushDataOrders(UserCharaOrdersDataMessageDto dto);
     Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
-
-    /// <summary>
-    /// Push data relevant to the active toybox items currently on your player.
-    /// </summary>
     Task UserPushDataToybox(UserCharaToyboxDataMessageDto dto);
-
-    /// <summary>
-    /// Update other users with your latest GagSpeak storage in light format, giving them access to view your created interactable items.
-    /// </summary>
     Task UserPushDataLightStorage(UserCharaLightStorageMessageDto dto);
 
 

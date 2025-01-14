@@ -8,4 +8,5 @@ public enum TriggerKind
     RestraintSet = 2,
     GagState =3,
     SocialAction = 4,
+    EmoteAction = 5,
 }

@@ -18,7 +18,7 @@ public class CharaWardrobeData : IPadlockable
 	public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
 	public string Assigner { get; set; } = ""; // UID that locked the set.
 
-    public List<Guid> ActiveCursedItems { get; set; } = new List<Guid>(); // List of cursed items that are currently active.
+    public HashSet<Guid> ActiveCursedItems { get; set; } = new HashSet<Guid>(); // List of cursed items that are currently active.
 
     public override string ToString()
     {
@@ -39,7 +39,7 @@ public class CharaWardrobeData : IPadlockable
             Password = Password,
             Timer = Timer,
             Assigner = Assigner,
-            ActiveCursedItems = new List<Guid>(ActiveCursedItems)
+            ActiveCursedItems = new HashSet<Guid>(ActiveCursedItems)
         };
         return clone;
     }

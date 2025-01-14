@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace GagspeakAPI.Extensions;
 
-public static class LockHelperExtensions
+public static class GsPadlockEx
 {
     #region DefinedPadlockGroups
     public static readonly HashSet<Padlocks> AllLocksWithMimic = Enum.GetValues<Padlocks>().ToHashSet();
@@ -17,6 +17,7 @@ public static class LockHelperExtensions
     {
         Padlocks.None,
         Padlocks.MetalPadlock,
+        Padlocks.FiveMinutesPadlock,
         Padlocks.CombinationPadlock,
         Padlocks.PasswordPadlock,
         Padlocks.TimerPadlock,
@@ -120,7 +121,7 @@ public static class LockHelperExtensions
 
         // otherwise, update the lock data
         item.Padlock = lockDesired.ToName();
-        item.Timer = lockDesired.IsTimerLock() ? GetEndTimeUTC(time) : DateTimeOffset.UtcNow;
+        item.Timer = lockDesired.IsTimerLock() ? (lockDesired is Padlocks.FiveMinutesPadlock ? DateTimeOffset.UtcNow.AddMinutes(5) : time.GetEndTimeUTC()) : DateTimeOffset.UtcNow;
         item.Password = lockDesired.IsPasswordLock() ? pass : string.Empty;
         item.Assigner = assignerUID;
         return PadlockReturnCode.Success;
@@ -279,7 +280,7 @@ public static class LockHelperExtensions
         return true;
     }
 
-    public static DateTimeOffset GetEndTimeUTC(string input)
+    public static DateTimeOffset GetEndTimeUTC(this string input)
     {
         // Match days, hours, minutes, and seconds in the input string
         var match = Regex.Match(input, @"^(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$");
@@ -302,7 +303,13 @@ public static class LockHelperExtensions
         return DateTimeOffset.UtcNow;
     }
 
-    public static string TimeSpanToString(TimeSpan timeSpan)
+    public static string GetEndTimeOffsetString(this DateTimeOffset endTime)
+    {
+        var timeSpan = endTime - DateTimeOffset.UtcNow;
+        return timeSpan.ToGsRemainingTime();
+    }
+
+    public static string ToGsRemainingTime(this TimeSpan timeSpan)
     {
         var sb = new StringBuilder();
         if (timeSpan.Days > 0) sb.Append($"{timeSpan.Days}d ");
@@ -310,6 +317,22 @@ public static class LockHelperExtensions
         if (timeSpan.Minutes > 0) sb.Append($"{timeSpan.Minutes}m ");
         if (timeSpan.Seconds > 0 || sb.Length == 0) sb.Append($"{timeSpan.Seconds}s ");
         return sb.ToString();
+    }
+
+    public static string ToGsRemainingTimeFancy(this DateTimeOffset lockEndTime)
+    {
+        TimeSpan remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
+        // if the remaining timespan is not a negative value, output the time.
+        if (remainingTime.TotalSeconds <= 0)
+            return "Expired";
+
+        var sb = new StringBuilder();
+        if (remainingTime.Days > 0) sb.Append($"{remainingTime.Days}d ");
+        if (remainingTime.Hours > 0) sb.Append($"{remainingTime.Hours}h ");
+        if (remainingTime.Minutes > 0) sb.Append($"{remainingTime.Minutes}m ");
+        if (remainingTime.Seconds > 0 || sb.Length == 0) sb.Append($"{remainingTime.Seconds}s ");
+        string remainingTimeStr = sb.ToString().Trim();
+        return remainingTimeStr + " left..";
     }
 
 

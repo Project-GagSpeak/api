@@ -15,6 +15,7 @@ public enum GagUpdateType
     GagLocked,
     GagUnlocked,
     GagRemoved,
+    MimicGagApplied,
 }
 
 public enum WardrobeUpdateType
@@ -28,6 +29,18 @@ public enum WardrobeUpdateType
     RestraintDisabled,
     CursedItemApplied,
     CursedItemRemoved,
+}
+
+public enum OrdersUpdateType
+{
+    None,
+    FullDataUpdate,
+    CursedItemApplied,
+    CursedItemRemoved,
+    OrderEnabled,
+    OrderProgressMade,
+    OrderCompleted,
+    OrderDisabled,
 }
 
 public enum PuppeteerUpdateType

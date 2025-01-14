@@ -18,7 +18,7 @@ namespace GagspeakAPI.Dto.UserPair;
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserPairDto(UserData User, 
-    IndividualPairStatus IndividualPairStatus,
+    IndividualPairStatus IndividualPairStatus, // Depricated, and no longer used.
     UserPairPermissions OwnPairPerms, 
     UserEditAccessPermissions OwnEditAccessPerms, 
     UserGlobalPermissions OtherGlobalPerms, 

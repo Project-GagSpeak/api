@@ -23,7 +23,17 @@ public class CharaStorageData
     /// <summary>
     /// Blindfold Affected Item
     /// </summary>
+    public AppliedSlot CollarItem { get; set; } = new AppliedSlot();
+
+    /// <summary>
+    /// Blindfold Affected Item
+    /// </summary>
     public AppliedSlot BlindfoldItem { get; set; } = new AppliedSlot();
+
+    /// <summary>
+    /// Lightweight Order Storage
+    /// </summary>
+    public List<LightOrder> Orders { get; set; } = new List<LightOrder>();
 
     /// <summary>
     /// Lightweight CursedItems Storage

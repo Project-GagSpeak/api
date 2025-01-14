@@ -9,12 +9,9 @@ namespace GagspeakAPI.Dto.User;
 /// DTO for handling the updating of our own data to our online user pairs.
 /// </summary>
 /// <param name="Recipients">The recipients of the update.</param>
-/// <param name="WardrobeData">the wardrobe data to update.</param>
+/// <param name="OrdersData">the orders info to update.</param>
 /// <param name="Type">What kind of update interaction is occuring.</param>
-/// <param name="PreviousLock">The Previous lock before the change. Used for unlock helpers.</param>
+/// <param name="AffectedItem">The item that was affected when the change was made, if any (may not even be needed).</param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserCharaWardrobeDataMessageDto(
-    List<UserData> Recipients, 
-    CharaWardrobeData WardrobeData,
-    WardrobeUpdateType Type,
-    string AffectedItem);
+public record UserCharaOrdersDataMessageDto(
+    List<UserData> Recipients, CharaOrdersData OrdersData, OrdersUpdateType Type, string AffectedItem);

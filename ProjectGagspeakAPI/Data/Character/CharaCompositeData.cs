@@ -15,6 +15,9 @@ public class CharaCompositeData
     // Restraint set information, Updates to all ONLINE PLAYERS (even when u are offline)
     public CharaWardrobeData WardrobeData { get; set; } = new();
 
+    // Orders Data
+    public CharaOrdersData OrdersData { get; set; } = new();
+
     // Stores the list of alias triggers for all pairs, but when sending and receiving
     // only the pair we care about is handled. (makes it so we can push in bulk)
     public Dictionary<string, CharaAliasData> AliasData { get; set; } = new();

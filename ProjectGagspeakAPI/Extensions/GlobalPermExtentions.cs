@@ -33,6 +33,11 @@ public static class GlobalPermExtensions
     }
     public static EmoteState ExtractEmoteState(this UserGlobalPermissions p)
     {
+        // Handle empty case.
+        if (string.IsNullOrEmpty(p.ForcedEmoteState))
+            return new EmoteState();
+
+        // Handle valid case.
         var parts = p.ForcedEmoteState.Split('|');
         return new EmoteState(parts[0], ushort.Parse(parts[1]), byte.Parse(parts[2]), parts.Length > 3);
     }
@@ -80,7 +85,15 @@ public static class GlobalPermExtensions
         public byte CyclePoseByte { get; init; }
         public bool Devotional { get; init; }
 
-        public EmoteState(string uid = "", ushort emoteId = 0, byte cyclePoseByte = 0, bool devotional = false)
+        public EmoteState()
+        {
+            UID = string.Empty;
+            EmoteID = 0;
+            CyclePoseByte = 0;
+            Devotional = false;
+        }
+
+        public EmoteState(string uid, ushort emoteId, byte cyclePoseByte, bool devotional)
         {
             UID = uid;
             EmoteID = emoteId;

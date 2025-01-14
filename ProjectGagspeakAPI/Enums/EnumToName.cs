@@ -205,6 +205,7 @@ public static partial class EnumToName
             TriggerKind.RestraintSet => "Restraint Trigger",
             TriggerKind.GagState => "GagState Trigger",
             TriggerKind.SocialAction => "Social Action",
+            TriggerKind.EmoteAction => "Emote Action",
             _ => "UNK"
         };
     }
