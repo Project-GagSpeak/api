@@ -1,3 +1,4 @@
+using GagspeakAPI.Data.Interfaces;
 using GagspeakAPI.Enums;
 using MessagePack;
 
@@ -7,7 +8,7 @@ namespace GagspeakAPI.Data.Character;
 /// CharacterData class stores all of the user's settings, permissions, and apperance data
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CharaActiveSetData
+public record CharaActiveSetData : IPadlockable
 {
     public Guid ActiveSetId { get; set; } = Guid.Empty; // the ID of the user's active outfit
 	public string ActiveSetEnabler { get; set; } = ""; // person who Enabled the set.
@@ -15,4 +16,7 @@ public record CharaActiveSetData
     public string Password { get; set; } = ""; // password bound to the set's lock type.
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow; // timer placed on the set's lock
     public string Assigner { get; set; } = ""; // UID that locked the set.
+
+    public bool IsLocked() => Padlock != Padlocks.None.ToName();
+    public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
 }

@@ -24,8 +24,8 @@ public record ConnectionDto(UserData User)
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
     public CharaAppearanceData GagData { get; set; } = new(); // The user's gag appearance data
     public CharaActiveSetData ActiveRestraintData { get; set; } = new(); // The user's active state data
-    public IEnumerable<PublishedPattern> PublishedPatterns { get; set; } = Enumerable.Empty<PublishedPattern>();
-    public IEnumerable<PublishedMoodle> PublishedMoodles { get; set; } = Enumerable.Empty<PublishedMoodle>();
-    public IEnumerable<string> ActiveAccountUidList { get; set; } = Enumerable.Empty<string>(); // All account UID's (for server.json sync)
+    public List<PublishedPattern> PublishedPatterns { get; set; } = new();
+    public List<PublishedMoodle> PublishedMoodles { get; set; } = new();
+    public List<string> ActiveAccountUidList { get; set; } = new();
     public string UserAchievements { get; set; } = string.Empty; // The user's achievements
 }

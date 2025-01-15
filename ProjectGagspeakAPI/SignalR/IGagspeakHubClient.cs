@@ -48,6 +48,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveDataIpc(Action<OnlineUserCharaIpcDataDto> act);
     void OnUserReceiveDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
     void OnUserReceiveDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
+    void OnUserReceiveDataOrders(Action<OnlineUserCharaOrdersDataDto> act);
     void OnUserReceiveDataAlias(Action<OnlineUserCharaAliasDataDto> act);
     void OnUserReceiveDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
     void OnUserReceiveLightStorage(Action<OnlineUserStorageUpdateDto> act);
