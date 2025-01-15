@@ -11,4 +11,5 @@ public interface IPadlockable
     // helper func to check if the padlock is locked.
     bool IsLocked();
     bool HasTimerExpired();
+    bool Equals(object? obj);
 }

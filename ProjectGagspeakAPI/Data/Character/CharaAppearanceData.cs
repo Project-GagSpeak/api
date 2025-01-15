@@ -49,17 +49,6 @@ public record GagSlot : IPadlockable
         => $"GagSlot {{ GagType = {GagType}, Padlock = {Padlock}, Password = {Password}, Timer = {Timer}, Assigner = {Assigner} }}";
 
     public GagSlot() { }
-
-    public GagSlot(string gagType, string padlock, string password, DateTimeOffset timer, string assigner)
-    {
-        GagType = gagType;
-        Padlock = padlock;
-        Password = password;
-        Timer = timer;
-        Assigner = assigner;
-    }
-
-
     public GagSlot DeepCloneData()
         => new GagSlot
         {
