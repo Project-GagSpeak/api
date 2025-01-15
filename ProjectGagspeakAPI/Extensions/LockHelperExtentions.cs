@@ -103,44 +103,31 @@ public static class GsPadlockEx
         return flagNames.Count > 0 ? string.Join(", ", flagNames) : PadlockReturnCode.Success.ToString();
     }
 
-    /// <summary>
-    /// Static helper for validating Padlock Locking action. Recommend passing in deep clone of data, as it is modified inside the function if valid.
-    /// </summary>
-    /// <returns>
-    /// If the verification was successful, and any error string if possible. 
-    /// If Valid, item will be updated with its new information to send off.
-    /// </returns>
-    public static PadlockReturnCode VerifyLock<T>(ref T item, Padlocks lockDesired, string pass, string time, string assignerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    public static PadlockReturnCode ValidateLockUpdate<T>(T item, Padlocks lockDesired, string pass, string time, string assignerUID, UserPairPermissions? perms = null) where T : IPadlockable
     {
         var maxLockTime = perms is not null ? GetMaxLockTime(item, perms) : TimeSpan.MaxValue;
-        var validationResult = ValidateLock(lockDesired, pass, time, maxLockTime, perms);
-
-        // return the error if any was given.
-        if (validationResult != PadlockReturnCode.Success)
-            return validationResult;
-
-        // otherwise, update the lock data
-        item.Padlock = lockDesired.ToName();
-        item.Timer = lockDesired.IsTimerLock() ? (lockDesired is Padlocks.FiveMinutesPadlock ? DateTimeOffset.UtcNow.AddMinutes(5) : time.GetEndTimeUTC()) : DateTimeOffset.UtcNow;
-        item.Password = lockDesired.IsPasswordLock() ? pass : string.Empty;
-        item.Assigner = assignerUID;
-        return PadlockReturnCode.Success;
+        return ValidateLock(lockDesired, pass, time, maxLockTime, perms);
     }
 
-    public static PadlockReturnCode VerifyUnlock<T>(ref T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    public static void PerformLockUpdate<T>(ref T padlockItem, Padlocks lockType, string pass, string time, string enactorUid) where T : IPadlockable
     {
-        var validationResult = ValidateUnlock(item, itemOwner, guessedPass, unlockerUID, perms);
+        padlockItem.Padlock = lockType.ToName();
+        padlockItem.Timer = lockType.IsTimerLock() ? time.GetEndTimeUTC() : DateTimeOffset.UtcNow;
+        padlockItem.Password = lockType.IsPasswordLock() ? pass : string.Empty;
+        padlockItem.Assigner = enactorUid;
+    }
 
-        // return the error if any was given.
-        if (validationResult != PadlockReturnCode.Success)
-            return validationResult;
+    public static PadlockReturnCode ValidateUnlockUpdate<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    {
+        return ValidateUnlock(item, itemOwner, guessedPass, unlockerUID, perms);
+    }
 
-        // otherwise, update the lock data
-        item.Padlock = Padlocks.None.ToName();
-        item.Timer = DateTimeOffset.MinValue;
-        item.Password = string.Empty;
-        item.Assigner = string.Empty;
-        return PadlockReturnCode.Success;
+    public static void PerformUnlockUpdate<T>(ref T padlockItem) where T : IPadlockable
+    {
+        padlockItem.Padlock = Padlocks.None.ToName();
+        padlockItem.Timer = DateTimeOffset.MinValue;
+        padlockItem.Password = string.Empty;
+        padlockItem.Assigner = string.Empty;
     }
 
     /// <summary>
@@ -157,7 +144,7 @@ public static class GsPadlockEx
         return TimeSpan.Zero;
     }
 
-    public static PadlockReturnCode ValidateLock(Padlocks lockDesired, string pass, string time, TimeSpan maxLockTime, UserPairPermissions? perms = null)
+    private static PadlockReturnCode ValidateLock(Padlocks lockDesired, string pass, string time, TimeSpan maxLockTime, UserPairPermissions? perms = null)
     {
         var returnCode = PadlockReturnCode.Success;
 
@@ -205,7 +192,7 @@ public static class GsPadlockEx
         return returnCode;
     }
 
-    public static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
+    private static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string unlockerUID, UserPairPermissions? perms = null) where T : IPadlockable
     {
         var returnCode = PadlockReturnCode.Success;
 
