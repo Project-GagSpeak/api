@@ -31,7 +31,7 @@ public enum CorePluginTexture
     Power,
     Play,
     Stop,
-
+    CatpatSecret,
 }
 
 public enum ProfileComponent
