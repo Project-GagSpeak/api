@@ -263,7 +263,7 @@ public static class GsPadlockEx
     public static bool TryParseTimeSpan(string input, out TimeSpan result)
     {
         result = TimeSpan.Zero;
-        var regex = new Regex(@"(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?");
+        var regex = new Regex(@"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
         var match = regex.Match(input);
 
         if (!match.Success)
@@ -283,7 +283,7 @@ public static class GsPadlockEx
     public static DateTimeOffset GetEndTimeUTC(this string input)
     {
         // Match days, hours, minutes, and seconds in the input string
-        var match = Regex.Match(input, @"^(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$");
+        var match = Regex.Match(input, @"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
 
         if (match.Success)
         {
