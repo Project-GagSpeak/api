@@ -8,54 +8,41 @@ public enum UpdateDir
 
 public enum GagUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
-    GagApplied,
-    GagLocked,
-    GagUnlocked,
-    GagRemoved,
-    MimicGagApplied,
+    Applied,
+    AppliedCursed,
+    Locked,
+    Unlocked,
+    Removed,
 }
 
 public enum WardrobeUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
-    RestraintApplied,
-    RestraintLocked,
-    RestraintUnlocked,
-    RestraintDisabled,
-    CursedItemApplied,
-    CursedItemRemoved,
+    Applied,
+    Locked,
+    Unlocked,
+    Disabled,
 }
 
 public enum OrdersUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
-    OrderAssigned,
-    OrderProgressMade,
-    OrderCompleted,
-    OrderDisabled,
+    FullUpdate,
+    Added,
+    Assigned,
+    Progressed,
+    Completed,
+    Failed,
+    Removed,
 }
 
 public enum PuppeteerUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
+    FullUpdate,
     PlayerNameRegistered,
     AliasListUpdated,
 }
 
 public enum ToyboxUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
     PatternExecuted,
     PatternStopped,
     AlarmToggled,
@@ -64,12 +51,10 @@ public enum ToyboxUpdateType
 
 public enum IpcUpdateType
 {
-    None,
-    Safeword,
-    FullDataUpdate,
+    FullUpdate,
     UpdateVisible,
-    MoodlesStatusManagerChanged,
-    MoodlesStatusesUpdated,
-    MoodlesPresetsUpdated,
-    MoodlesCleared,
+    StatusManagerChanged,
+    StatusesUpdated,
+    PresetsUpdated,
+    ClearedMoodles,
 }

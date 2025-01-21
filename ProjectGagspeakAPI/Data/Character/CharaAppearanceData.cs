@@ -9,7 +9,7 @@ namespace GagspeakAPI.Data.Character;
 /// Represents character appearance data including multiple gag slots.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CharaAppearanceData
+public record CharaGagData
 {
     // Fixed size array of GagSlots
     public GagSlot[] GagSlots { get; init; } = new GagSlot[3]
@@ -22,9 +22,9 @@ public record CharaAppearanceData
     public string ToGagString()
         => $"{string.Join("\n", GagSlots.Select(g => g.ToString()))}";
 
-    public CharaAppearanceData DeepCloneData()
+    public CharaGagData DeepCloneData()
     {
-        var clone = new CharaAppearanceData();
+        var clone = new CharaGagData();
         for (var i = 0; i < GagSlots.Length; i++)
         {
             clone.GagSlots[i] = GagSlots[i].DeepCloneData();
@@ -39,7 +39,7 @@ public record CharaAppearanceData
 [MessagePackObject(keyAsPropertyName: true)]
 public record GagSlot : IPadlockable
 {
-    public string GagType { get; set; } = "None";
+    public string GagType { get; set; } = GagspeakAPI.Enums.GagType.None.GagName();
     public string Padlock { get; set; } = Padlocks.None.ToName();
     public string Password { get; set; } = "";
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;

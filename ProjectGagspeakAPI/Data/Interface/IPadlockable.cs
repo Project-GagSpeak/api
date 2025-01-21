@@ -7,9 +7,11 @@ public interface IPadlockable
     string Password { get; set; } // Stored Password
     DateTimeOffset Timer { get; set; } // Timer in UTC
     string Assigner { get; set; } // Assigner Name
+}
 
+public interface IPadlockHelper
+{
     // helper func to check if the padlock is locked.
     bool IsLocked();
     bool HasTimerExpired();
-    bool Equals(object? obj);
 }

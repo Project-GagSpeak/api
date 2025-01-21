@@ -8,6 +8,7 @@ using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Patterns;
 using GagspeakAPI.Data;
 using GagspeakAPI.Data.Permissions;
+using GagspeakAPI.Dto;
 
 namespace GagspeakAPI.SignalR;
 
@@ -39,7 +40,6 @@ public interface IGagspeakHub
     Task Client_UserRemoveMoodles(RemoveMoodlesDto dto);
     Task Client_UserClearMoodles(UserDto dto);
 
-
     /// <summary> Callbacks to update permissions. </summary>
     Task Client_UserUpdateAllPerms(UserPairUpdateAllPermsDto dto);
     Task Client_UserUpdateAllGlobalPerms(UserPairUpdateAllGlobalPermsDto dto);
@@ -50,22 +50,21 @@ public interface IGagspeakHub
 
     /// <summary> Callbacks to update own or pair data. </summary>
     Task Client_UserReceiveDataComposite(OnlineUserCompositeDataDto dto);
-    Task Client_UserReceiveDataIpc(OnlineUserCharaIpcDataDto dto);
-    Task Client_UserReceiveDataAppearance(OnlineUserCharaAppearanceDataDto dto);
-    Task Client_UserReceiveDataWardrobe(OnlineUserCharaWardrobeDataDto dto);
-    Task Client_UserReceiveDataOrders(OnlineUserCharaOrdersDataDto dto);
-    Task Client_UserReceiveDataAlias(OnlineUserCharaAliasDataDto dto);
-    Task Client_UserReceiveDataToybox(OnlineUserCharaToyboxDataDto dto);
+    Task Client_UserReceiveDataIpc(OnlineUserIpcDataDto dto);
+    Task Client_UserReceiveDataAppearance(OnlineUserGagDataDto dto);
+    Task Client_UserReceiveDataWardrobe(OnlineUserRestraintDataDto dto);
+    Task Client_UserReceiveDataCursedLoot(OnlineUserCursedLootDataDto dto);
+    Task Client_UserReceiveDataOrders(OnlineUserOrdersDataDto dto);
+    Task Client_UserReceiveDataAlias(OnlineUserAliasDataDto dto);
+    Task Client_UserReceiveDataToybox(OnlineUserToyboxDataDto dto);
     Task Client_UserReceiveLightStorage(OnlineUserStorageUpdateDto dto);
 
-    #region Generic Callbacks
     Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
     Task Client_GlobalChatMessage(GlobalChatMessageDto dto); /* Obtain global chat message from server */
     Task Client_UserSendOffline(UserDto dto); /* Sent to client who should be informed of another paired user's logout */
     Task Client_UserSendOnline(OnlineUserIdentDto dto); /* inform client of a paired user's login to servers. No CharacterData attached */
     Task Client_UserUpdateProfile(UserDto dto); /* informs a client that a connected user has updated their profile */
     Task Client_DisplayVerificationPopup(VerificationDto dto); /* Displays a verification popup to this client. Triggered by discord bot */
-    #endregion Generic Callbacks
 
     Task<ConnectionDto> GetConnectionDto(); // Get the connection details of the client to the serve
 
@@ -82,10 +81,10 @@ public interface IGagspeakHub
     Task<List<UserPairRequestDto>> UserGetPairRequests(); // Grab the initial pair Requests that are both outgoing from us and incoming.
 
     Task SendGlobalChat(GlobalChatMessageDto dto); // Sends a message to the GagspeakGlobalChat.
+
     Task<bool> UploadPattern(PatternUploadDto dto);
     Task<bool> UploadMoodle(MoodleUploadDto dto);
     Task<string> DownloadPattern(Guid patternId);
-    // no need to download moodles here.
     Task<bool> LikePattern(Guid patternId);
     Task<bool> LikeMoodle(Guid moodleId);
     Task<bool> RemovePattern(Guid patternId);
@@ -96,6 +95,7 @@ public interface IGagspeakHub
 
     Task UserShockActionOnPair(ShockCollarActionDto dto); // send a shock action to a paired user
     Task UserUpdateAchievementData(UserAchievementsDto userAchievementData); // Provides the latest achievement data to the server
+
     Task<UserKinkPlateDto> UserGetKinkPlate(UserDto dto); // get the profile of a user
     Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
     Task UserSetKinkPlateContent(UserKinkPlateContentDto kinkPlateContentDto); // set profile content of own kinkplate.
@@ -103,33 +103,22 @@ public interface IGagspeakHub
     #endregion Generic Interactions
 
     #region IPCTransfer
-    /// <summary> Applies the specified moodles to the pair's Status Manager. </summary>
-    Task<bool> UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto); // this doesnt need to be bool anymore.
-
-    /// <summary> Applies the specified moodles to the pair's Status Manager from our own. </summary>
+    Task<bool> UserApplyMoodlesByGuid(ApplyMoodlesByGuidDto dto);
     Task<bool> UserApplyMoodlesByStatus(ApplyMoodlesByStatusDto dto);
-
-    /// <summary> Removes the specified moodles from the pair's Status Manager. </summary>
     Task<bool> UserRemoveMoodles(RemoveMoodlesDto dto);
-
-    /// <summary> Clears all Statuses in the pairs Status Manager for them. </summary>
     Task<bool> UserClearMoodles(UserDto dto);
     #endregion IPCTransfer
 
     #region Client Push Own Data Updates
-    /// <summary>
-    /// Pushes the compiled information from all other modules DTO at once.
-    /// <para> Meant for a bulk send in a send online push for initial updates. </para>
-    /// </summary>
-    Task UserPushData(UserCharaCompositeDataMessageDto dto);
-
-    Task UserPushDataIpc(UserCharaIpcDataMessageDto dto);
-    Task UserPushDataAppearance(UserCharaAppearanceDataMessageDto dto);
-    Task UserPushDataWardrobe(UserCharaWardrobeDataMessageDto dto);
-    Task UserPushDataOrders(UserCharaOrdersDataMessageDto dto);
-    Task UserPushDataAlias(UserCharaAliasDataMessageDto dto);
-    Task UserPushDataToybox(UserCharaToyboxDataMessageDto dto);
-    Task UserPushDataLightStorage(UserCharaLightStorageMessageDto dto);
+    Task UserPushData(PushCompositeDataMessageDto dto);
+    Task UserPushDataIpc(PushIpcDataUpdateDto dto);
+    Task UserPushDataGags(PushGagDataUpdateDto dto);
+    Task UserPushDataRestraint(PushRestraintDataUpdateDto dto);
+    Task<bool> UserPushDataCursedLoot(PushCursedLootDataUpdateDto dto);
+    Task UserPushDataOrders(PushOrdersDataUpdateDto dto);
+    Task UserPushDataAlias(PushAliasDataUpdateDto dto);
+    Task UserPushDataToybox(PushToyboxDataUpdateDto dto);
+    Task UserPushDataLightStorage(PushLightStorageMessageDto dto);
 
 
     #endregion Client Push Own Data Updates
@@ -140,7 +129,7 @@ public interface IGagspeakHub
     /// <para> Once server handles update, it is pushed to all pairs of the pair, including us. </para>
     /// <para><b> Of Note: Because timers are in DateTimeOffsetUTC format, we will not need to worry update data messing up timers. </b></para>
     /// </summary>
-    Task UserPushPairDataAppearanceUpdate(OnlineUserCharaAppearanceDataDto dto);
+    Task UserPushPairDataGags(PushPairGagDataUpdateDto dto);
 
     /// <summary>
     /// Pushes an updated version of a pair's Wardrobe DTO.
@@ -149,37 +138,24 @@ public interface IGagspeakHub
     /// should be the labels about the active sets, and the active set information.
     /// </para>
     /// </summary>
-    Task UserPushPairDataWardrobeUpdate(OnlineUserCharaWardrobeDataDto dto);
+    Task UserPushPairDataRestraint(PushPairRestraintDataUpdateDto dto);
 
     /// <summary> Should ONLY ever be used and accepted for a name registration call. </summary>
-    Task UserPushPairDataAliasStorageUpdate(OnlineUserCharaAliasDataDto dto);
+    Task UserPushPairDataAliasStorage(PushPairAliasDataUpdateDto dto);
 
     /// <summary>
     /// Pushes an updated version of a pair's Toybox DTO.
     /// <para> Pushes an updated version of the information from a pairs toybox data. </para>
     /// <para> This is called whenever we toggle a pairs trigger, alarm, or pattern. </para>
     /// </summary>
-    Task UserPushPairDataToyboxUpdate(OnlineUserCharaToyboxDataDto dto);
-
+    Task UserPushPairDataToybox(PushPairToyboxDataUpdateDto dto);
     #endregion Client Update Other UserPair Data
 
     #region Permission Updates
     Task UserPushAllGlobalPerms(UserPairUpdateAllGlobalPermsDto dto);
     Task UserPushAllUniquePerms(UserPairUpdateAllUniqueDto dto);
-
-    /// <summary>
-    /// Push an update of your own global permissions to the server, and update other pairs with your change.
-    /// </summary>
     Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto);
-
-    /// <summary>
-    /// Push an update of your own unique permissions for a specific pair to the server. 
-    /// </summary>
     Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto);
-
-    /// <summary>
-    /// Push an update of your own access permissions for a specific pair to the server.
-    /// </summary>
     Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto);
 
     /// <summary>

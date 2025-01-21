@@ -14,5 +14,5 @@ public class CharaAliasData
     public List<AliasTrigger> AliasList { get; set; } = new List<AliasTrigger>();
 
     [IgnoreMember]
-    public string ExtractedListernerName => HasNameStored ? ListenerName : "Not Yet Listening!";
+    public string ExtractedListenerName => HasNameStored ? ListenerName : "Not Yet Listening!";
 }

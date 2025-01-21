@@ -1,7 +1,8 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.Dto.User;
 using MessagePack;
 
-namespace GagspeakAPI.Dto.User;
+namespace GagspeakAPI.Dto;
 
 /// <summary>
 /// The Data storing the compressed string of achievement data from the user.

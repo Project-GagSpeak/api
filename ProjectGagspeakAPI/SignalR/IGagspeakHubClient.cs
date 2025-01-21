@@ -1,3 +1,4 @@
+using GagspeakAPI.Dto;
 using GagspeakAPI.Dto.Connection;
 using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Permissions;
@@ -22,13 +23,13 @@ namespace GagspeakAPI.SignalR;
 public interface IGagspeakHubClient : IGagspeakHub
 {
     // to view function purposes, be sure to inspect the IGagspeakHub interface class comments.
-    void OnReceiveServerMessage(Action<MessageSeverity, string> act); // send message to client
-    void OnReceiveHardReconnectMessage(Action<MessageSeverity, string, ServerState> act); // send message to client forcing a reconnection
-    void OnUpdateSystemInfo(Action<SystemInfoDto> act); // update client with the system info
-    void OnUserAddClientPair(Action<UserPairDto> act); // once a pair is bidirectional, send to the client the userpairDto as validation
-    void OnUserRemoveClientPair(Action<UserDto> act); // if either end of a bidirectional pair removes one another, remove the pairing.
-    void OnUserAddPairRequest(Action<UserPairRequestDto> act); // send a pair request to the client
-    void OnUserRemovePairRequest(Action<UserPairRequestDto> act); // remove a pair request from the client
+    void OnReceiveServerMessage(Action<MessageSeverity, string> act);
+    void OnReceiveHardReconnectMessage(Action<MessageSeverity, string, ServerState> act);
+    void OnUpdateSystemInfo(Action<SystemInfoDto> act);
+    void OnUserAddClientPair(Action<UserPairDto> act);
+    void OnUserRemoveClientPair(Action<UserDto> act);
+    void OnUserAddPairRequest(Action<UserPairRequestDto> act);
+    void OnUserRemovePairRequest(Action<UserPairRequestDto> act);
     
     void OnUpdateUserIndividualPairStatusDto(Action<UserIndividualPairStatusDto> act); // pair status update
 
@@ -45,12 +46,12 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserUpdatePairPermAccess(Action<UserPairAccessChangeDto> act);
 
     void OnUserReceiveDataComposite(Action<OnlineUserCompositeDataDto> act);
-    void OnUserReceiveDataIpc(Action<OnlineUserCharaIpcDataDto> act);
-    void OnUserReceiveDataAppearance(Action<OnlineUserCharaAppearanceDataDto> act);
-    void OnUserReceiveDataWardrobe(Action<OnlineUserCharaWardrobeDataDto> act);
-    void OnUserReceiveDataOrders(Action<OnlineUserCharaOrdersDataDto> act);
-    void OnUserReceiveDataAlias(Action<OnlineUserCharaAliasDataDto> act);
-    void OnUserReceiveDataToybox(Action<OnlineUserCharaToyboxDataDto> act);
+    void OnUserReceiveDataIpc(Action<OnlineUserIpcDataDto> act);
+    void OnUserReceiveDataAppearance(Action<OnlineUserGagDataDto> act);
+    void OnUserReceiveDataWardrobe(Action<OnlineUserRestraintDataDto> act);
+    void OnUserReceiveDataOrders(Action<OnlineUserOrdersDataDto> act);
+    void OnUserReceiveDataAlias(Action<OnlineUserAliasDataDto> act);
+    void OnUserReceiveDataToybox(Action<OnlineUserToyboxDataDto> act);
     void OnUserReceiveLightStorage(Action<OnlineUserStorageUpdateDto> act);
 
     void OnUserReceiveShockInstruction(Action<ShockCollarActionDto> act);

@@ -1,12 +1,7 @@
-using GagspeakAPI.Enums;
-using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Character;
 
-/// <summary>
-/// Represents character appearance data including multiple gag slots.
-/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaOrdersData
 {

@@ -22,7 +22,7 @@ public record ConnectionDto(UserData User)
 
     // Generic serverside data for the user.
     public UserGlobalPermissions UserGlobalPermissions { get; set; } = new(); // The user's global permissions
-    public CharaAppearanceData GagData { get; set; } = new(); // The user's gag appearance data
+    public CharaGagData GagData { get; set; } = new(); // The user's gag appearance data
     public CharaActiveSetData ActiveRestraintData { get; set; } = new(); // The user's active state data
     public List<PublishedPattern> PublishedPatterns { get; set; } = new();
     public List<PublishedMoodle> PublishedMoodles { get; set; } = new();

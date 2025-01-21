@@ -10,14 +10,9 @@ namespace GagspeakAPI.Data.Character;
 public class CharaToyboxData
 {
     /// <summary>
-    /// the identifier being changed if used in an update call.
-    /// </summary>
-    public Guid InteractionId { get; set; } = Guid.Empty;
-
-    /// <summary>
     /// Gets the GUID of the active pattern.
     /// </summary>
-    public Guid ActivePatternId { get; set; } = Guid.Empty;
+    public Guid ActivePattern { get; set; } = Guid.Empty;
 
     /// <summary>
     /// Gets the GUID's of all alarms currently active.

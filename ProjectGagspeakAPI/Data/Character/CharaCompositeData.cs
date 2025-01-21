@@ -10,13 +10,13 @@ namespace GagspeakAPI.Data.Character;
 public class CharaCompositeData
 {
     // Gag Information, Updates to all ONLINE PLAYERS (even when u are offline)
-    public CharaAppearanceData AppearanceData { get; set; } = new();
+    public CharaGagData GagData { get; set; } = new();
 
     // Restraint set information, Updates to all ONLINE PLAYERS (even when u are offline)
-    public CharaWardrobeData WardrobeData { get; set; } = new();
+    public CharaActiveSetData RestraintData { get; set; } = new();
 
-    // Orders Data
-    public CharaOrdersData OrdersData { get; set; } = new();
+    // May be reworked in the future? (Feels temporary)
+    public List<Guid> ActiveCursedItems { get; set; } = new();
 
     // Stores the list of alias triggers for all pairs, but when sending and receiving
     // only the pair we care about is handled. (makes it so we can push in bulk)
