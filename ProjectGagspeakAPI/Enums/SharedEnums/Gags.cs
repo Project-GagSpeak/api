@@ -1,14 +1,19 @@
 namespace GagspeakAPI.Enums;
-public enum GagLayer // will probably delete this file
+public enum GagLayer
 {
     UnderLayer = 0,
     MiddleLayer = 1,
     TopLayer = 2,
 }
 
+public static class GagEx
+{
+    public static int ToIndex(this GagLayer layer) => (int)layer;
+}
+
 public enum GagType
 {
-    None, // No gag
+    None,
     BallGag,
     BallGagMask,
     BambooGag,

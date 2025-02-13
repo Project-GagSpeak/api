@@ -5,39 +5,52 @@ namespace GagspeakAPI.Enums;
 
 public enum InteractionType
 {
-    None,
-    SwappedGag, //
-    ApplyGag, //
-    LockGag, //
-    UnlockGag, //
-    RemoveGag, //
-    SwappedRestraint, //
-    ApplyRestraint, //
-    LockRestraint, //
-    UnlockRestraint, //
-    RemoveRestraint, //
-    ApplyPairMoodle, //
-    ApplyPairMoodlePreset, //
-    ApplyOwnMoodle, //
-    ApplyOwnMoodlePreset, //
-    RemoveMoodle, //
-    ClearMoodle, //
-    ToggleAlarm, //
-    ActivatePattern, //
-    StopPattern, //
-    ToggleTrigger, //
+    None,    
+    SwappedRestraint,
+    ApplyRestraint,
+    LockRestraint,
+    UnlockRestraint,
+    RemoveRestraint,
+    
+    SwappedRestriction,
+    ApplyRestriction,
+    LockRestriction,
+    UnlockRestriction,
+    RemoveRestriction,
+
+    SwappedGag,
+    ApplyGag,
+    LockGag,
+    UnlockGag,
+    RemoveGag,
+
+    ApplyPairMoodle,
+    ApplyPairMoodlePreset,
+    ApplyOwnMoodle,
+    ApplyOwnMoodlePreset,
+    RemoveMoodle,
+    ClearMoodle,
+    
+    SwitchPattern,
+    StartPattern,
+    StopPattern,
+    ToggleAlarm,
+    ToggleTrigger,
+    
     ShockAction, // ???? Forgot where this happens
     VibrateAction, // ???? Forgot where this happens
     BeepAction, // ???? Forgot where this happens
-    BulkUpdate, //
-    ForcedFollow, //
-    ForcedEmoteState, //
-    ForcedStay, //
-    ForcedBlindfold, //
-    ForcedChatVisibility, //
-    ForcedChatInputVisibility, //
-    ForcedChatInputBlock, //
-    ForcedPermChange, //
+    
+    BulkUpdate,
+    
+    ForcedFollow,
+    ForcedEmoteState,
+    ForcedStay,
+    ForcedChatVisibility,
+    ForcedChatInputVisibility,
+    ForcedChatInputBlock,
+    ForcedPermChange,
+    
     VibeControl,
     PiShockUpdate,
 }

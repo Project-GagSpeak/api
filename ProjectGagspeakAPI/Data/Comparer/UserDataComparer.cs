@@ -22,24 +22,3 @@ public class UserDataComparer : IEqualityComparer<UserData>
         return obj.UID.GetHashCode();
     }
 }
-
-public class PrivateRoomUserComparer : IEqualityComparer<PrivateRoomUser>
-{
-    private static PrivateRoomUserComparer _instance = new();
-
-    private PrivateRoomUserComparer()
-    { }
-
-    public static PrivateRoomUserComparer Instance => _instance;
-
-    public bool Equals(PrivateRoomUser? x, PrivateRoomUser? y)
-    {
-        if (x == null || y == null) return false;
-        return x.UserUID.Equals(y.UserUID, StringComparison.Ordinal);
-    }
-
-    public int GetHashCode(PrivateRoomUser obj)
-    {
-        return obj.UserUID.GetHashCode();
-    }
-}

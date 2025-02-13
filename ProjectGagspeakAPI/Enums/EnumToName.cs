@@ -1,6 +1,3 @@
-using GagspeakAPI.Data.IPC;
-using System.Net.NetworkInformation;
-
 namespace GagspeakAPI.Enums;
 public static partial class EnumToName
 {
@@ -25,30 +22,6 @@ public static partial class EnumToName
         InteractionFilter.Content => "Content Details",
         _ => "UNK"
     };
-
-    public static string ToName(this RevertStyle revertStyle)
-    => revertStyle switch
-    { 
-        RevertStyle.RevertToGame => "to Game",
-        RevertStyle.RevertToAutomation => "to Automation",
-        RevertStyle.RevertEquipToGame => "to Game State",
-        RevertStyle.RevertEquipToAutomation => "to Automation",
-        _ => "UNK"
-    };
-
-    public static string ToHelpText(this RevertStyle revertStyle)
-    => revertStyle switch
-    {
-        RevertStyle.RevertToGame => "Full Appearance is reset to Base Game State.",
-        RevertStyle.RevertToAutomation => "Full Appearance is reset to current Job/Gearset Automation."
-        + Environment.NewLine + "- If no Automation for Job/Gearset, reverts to Base Game.",
-        RevertStyle.RevertEquipToGame => "Only Gear is reset to Base Game State, while Customization is Kept.",
-        RevertStyle.RevertEquipToAutomation => "Only Gear is reset to current Job/Gearset Automation, while Customization is kept."
-        + "--SEP--THIS DOES NOT CURRENTLY WORK AS GLAMOURER API DOES NOT PLAY NICE WITH THIS CONCEPT "
-        + "--SEP--I did my best to make it possible but couldn't. Sorry. This Option will use Revert To Automation instead.",
-        _ => "UNK"
-    };
-
 
     public static string ToName(this Padlocks padlock)
     => padlock switch
@@ -103,6 +76,11 @@ public static partial class EnumToName
         InteractionType.LockGag => "Gag Locked",
         InteractionType.UnlockGag => "Gag Unlocked",
         InteractionType.RemoveGag => "Gag Removed",
+        InteractionType.SwappedRestriction => "Restriction Swapped",
+        InteractionType.ApplyRestriction => "Restriction Applied",
+        InteractionType.LockRestriction => "Restriction Locked",
+        InteractionType.UnlockRestriction => "Restriction Unlocked",
+        InteractionType.RemoveRestriction => "Restriction Removed",
         InteractionType.SwappedRestraint=> "Restraint Swapped",
         InteractionType.ApplyRestraint => "Restraint Applied",
         InteractionType.LockRestraint => "Restraint Locked",
@@ -115,7 +93,8 @@ public static partial class EnumToName
         InteractionType.RemoveMoodle => "Moodle Removed",
         InteractionType.ClearMoodle => "Moodle Cleared",
         InteractionType.ToggleAlarm => "Alarm Toggled",
-        InteractionType.ActivatePattern => "Pattern Activated",
+        InteractionType.SwitchPattern => "Pattern Switched",
+        InteractionType.StartPattern => "Pattern Started",
         InteractionType.StopPattern => "Pattern Stopped",
         InteractionType.ToggleTrigger => "Trigger Toggled",
         InteractionType.ShockAction => "Shock Action",
@@ -125,20 +104,11 @@ public static partial class EnumToName
         InteractionType.ForcedFollow => "Forced Follow",
         InteractionType.ForcedEmoteState => "Forced Emote State",
         InteractionType.ForcedStay => "Forced Stay",
-        InteractionType.ForcedBlindfold => "Forced Blindfold",
         InteractionType.ForcedChatVisibility => "Chat Visibility",
         InteractionType.ForcedChatInputVisibility => "Chat Input Visibility",
         InteractionType.ForcedChatInputBlock => "Chat Input Block",        
         InteractionType.ForcedPermChange => "Forced Perm Change",
         InteractionType.VibeControl => "Vibe Control",
-        _ => "UNK"
-    };
-
-    public static string ToName(this IpcToggleType toggleType)
-    => toggleType switch
-    {
-        IpcToggleType.MoodlesStatus => "Moodle Status",
-        IpcToggleType.MoodlesPreset => "Moodle Preset",
         _ => "UNK"
     };
 

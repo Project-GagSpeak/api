@@ -2,15 +2,12 @@ using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary>
-/// Generic Pattern Info retrieved from search results.
-/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record ServerPatternInfo
 {
     public Guid Identifier = Guid.Empty;
 
-    public string Name = "UNK PATTERN NAME";
+    public string Label = "UNK PATTERN NAME";
 
     public string Description = string.Empty;
     

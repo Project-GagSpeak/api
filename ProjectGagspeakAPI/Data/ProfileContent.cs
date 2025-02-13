@@ -1,10 +1,9 @@
-using GagspeakAPI.Data.IPC;
+using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary>
-/// The content stored within a users profile that indicates their selected cosmetics and information.
+/// <summary> Kinkplate Content stored in a Kinksters profile, storing the selected cosmetic info.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinkPlateContent

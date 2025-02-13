@@ -1,25 +1,16 @@
+using GagspeakAPI.Data;
 using GagspeakAPI.Dto;
 using GagspeakAPI.Dto.Connection;
 using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Permissions;
-using GagspeakAPI.Dto.Toybox;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.UserPair;
+using GagspeakAPI.Dto.VibeRoom;
 using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.SignalR;
 
-/// <summary>
-/// 
-/// The interface for the GagspeakHubClient
-/// 
-/// <para>
-/// 
-/// Because this interface inherits from the IGagspeakHub,
-/// it will have all the methods from the IGagspeakHub
-/// 
-/// </para>
-/// </summary>
+/// <summary> All OnCallback actions. </summary>
 public interface IGagspeakHubClient : IGagspeakHub
 {
     // to view function purposes, be sure to inspect the IGagspeakHub interface class comments.
@@ -30,31 +21,40 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserRemoveClientPair(Action<UserDto> act);
     void OnUserAddPairRequest(Action<UserPairRequestDto> act);
     void OnUserRemovePairRequest(Action<UserPairRequestDto> act);
-    
-    void OnUpdateUserIndividualPairStatusDto(Action<UserIndividualPairStatusDto> act); // pair status update
 
     void OnUserApplyMoodlesByGuid(Action<ApplyMoodlesByGuidDto> act);
     void OnUserApplyMoodlesByStatus(Action<ApplyMoodlesByStatusDto> act);
     void OnUserRemoveMoodles(Action<RemoveMoodlesDto> act);
     void OnUserClearMoodles(Action<UserDto> act);
 
-    void OnUserUpdateAllPerms(Action<UserPairUpdateAllPermsDto> act);
-    void OnUserUpdateAllGlobalPerms(Action<UserPairUpdateAllGlobalPermsDto> act);
-    void OnUserUpdateAllUniquePerms(Action<UserPairUpdateAllUniqueDto> act);
+    void OnUserUpdateAllPerms(Action<BulkUpdatePermsAllDto> act);
+    void OnUserUpdateAllGlobalPerms(Action<BulkUpdatePermsGlobalDto> act);
+    void OnUserUpdateAllUniquePerms(Action<BulkUpdatePermsUniqueDto> act);
     void OnUserUpdatePairPermsGlobal(Action<UserGlobalPermChangeDto> act);
     void OnUserUpdatePairPerms(Action<UserPairPermChangeDto> act);
     void OnUserUpdatePairPermAccess(Action<UserPairAccessChangeDto> act);
 
     void OnUserReceiveDataComposite(Action<OnlineUserCompositeDataDto> act);
-    void OnUserReceiveDataIpc(Action<OnlineUserIpcDataDto> act);
-    void OnUserReceiveDataAppearance(Action<OnlineUserGagDataDto> act);
-    void OnUserReceiveDataWardrobe(Action<OnlineUserRestraintDataDto> act);
-    void OnUserReceiveDataOrders(Action<OnlineUserOrdersDataDto> act);
-    void OnUserReceiveDataAlias(Action<OnlineUserAliasDataDto> act);
-    void OnUserReceiveDataToybox(Action<OnlineUserToyboxDataDto> act);
-    void OnUserReceiveLightStorage(Action<OnlineUserStorageUpdateDto> act);
+    void OnUserReceiveDataIpc(Action<CallbackIpcDataDto> act);
+    void OnUserReceiveDataGags(Action<CallbackGagDataDto> act);
+    void OnUserReceiveDataRestrictions(Action<CallbackRestrictionDataDto> act);
+    void OnUserReceiveDataRestraint(Action<CallbackRestraintDataDto> act);
+    void OnUserReceiveDataCursedLoot(Action<CallbackCursedLootDto> act);
+    void OnUserReceiveDataOrders(Action<CallbackOrdersDataDto> act);
+    void OnUserReceiveDataAlias(Action<CallbackAliasDataDto> act);
+    void OnUserReceiveDataToybox(Action<CallbackToyboxDataDto> act);
+    void OnUserReceiveLightStorage(Action<CallbackLightStorageDto> act);
 
     void OnUserReceiveShockInstruction(Action<ShockCollarActionDto> act);
+
+    void OnRoomJoin(Action<VibeRoomKinksterFullDto> act);
+    void OnRoomLeave(Action<VibeRoomKinksterFullDto> act);
+    void OnRoomReceiveDeviceUpdate(Action<UserData, DeviceInfo> act);
+    void OnRoomReceiveDataStream(Action<SexToyDataStreamCallbackDto> act);
+    void OnRoomUserAccessGranted(Action<UserData> act);
+    void OnRoomUserAccessRevoked(Action<UserData> act);
+    void OnRoomReceiveChatMessage(Action<UserData, string> act);
+
     void OnGlobalChatMessage(Action<GlobalChatMessageDto> act);
     void OnUserSendOffline(Action<UserDto> act);
     void OnUserSendOnline(Action<OnlineUserIdentDto> act);

@@ -1,4 +1,4 @@
-namespace GagspeakAPI.Data.IPC;
+namespace GagspeakAPI.Enums;
 
 public enum CorePluginTexture
 {

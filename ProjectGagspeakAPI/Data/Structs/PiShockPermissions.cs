@@ -1,6 +1,3 @@
-using GagspeakAPI.Data.Character;
-using GagspeakAPI.Data.IPC;
-
 namespace GagspeakAPI.Data.Struct;
 public readonly struct PiShockPermissions
 {

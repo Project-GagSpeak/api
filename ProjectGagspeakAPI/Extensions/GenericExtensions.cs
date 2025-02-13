@@ -1,5 +1,3 @@
-using GagspeakAPI.Enums;
-
 namespace GagspeakAPI.Extensions;
 
 public static class GenericExtensions

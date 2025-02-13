@@ -3,12 +3,7 @@ using MessagePack;
 
 namespace GagspeakAPI.Data.Character;
 
-/// <summary>
-/// Stores Information about the Player's Moodles Data
-/// - Stores Status Manager String
-/// - Stores all active Moodle Statuses on the player, with the status info.
-/// - Stores the GUID's of their Presets and the associated Moodles Statuses of those presets by GUID.
-/// </summary>
+/// <summary> Stores Information about the Player's Moodles Data </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaIPCData
 {

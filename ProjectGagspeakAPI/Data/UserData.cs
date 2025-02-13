@@ -3,16 +3,9 @@ using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary>
-/// Data object that represents the core information about a user that we ususually want to obtain.
-/// <para>
-/// If possible, consider adding the CKVanityTier to the user object as we will want to fetch that info from most players.
-/// </para>
-/// </summary>
-/// <param name="UID">the user identification</param>
-/// <param name="Alias">the alias UID of the user if one is set.</param>
+/// <summary> The primary record used to represent a kinkster. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserData(string UID, string? Alias = null, CkSupporterTier? SupporterTier = CkSupporterTier.NoRole, DateTime? createdOn = null)
+public record UserData(string UID, string? Alias = null, CkSupporterTier? Tier = CkSupporterTier.NoRole, DateTime? CreatedOn = null)
 {
     [IgnoreMember]
     public string AliasOrUID => string.IsNullOrWhiteSpace(Alias) ? UID : Alias;

@@ -2,7 +2,6 @@ using GagspeakAPI.Data;
 using GagspeakAPI.Data.Character;
 using GagspeakAPI.Data.Interfaces;
 using GagspeakAPI.Data.Permissions;
-using GagspeakAPI.Data.Struct;
 using GagspeakAPI.Enums;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -91,7 +90,7 @@ public static class GsPadlockEx
 
     public static string ToFlagString(this PadlockReturnCode errorCode)
     {
-        List<string> flagNames = new List<string>();
+        var flagNames = new List<string>();
         // Iterate over each power of 2 (bit flags)
         foreach (PadlockReturnCode flag in Enum.GetValues(typeof(PadlockReturnCode)))
         {
@@ -104,38 +103,39 @@ public static class GsPadlockEx
         return flagNames.Count > 0 ? string.Join(", ", flagNames) : PadlockReturnCode.Success.ToString();
     }
 
-    public static PadlockReturnCode ValidateLockUpdate<T>(T item, Padlocks lockDesired, string pass, string time, UserPairPermissions? perms = null) where T : IPadlockable
+    public static PadlockReturnCode ValidateLockUpdate<T>(T item, Padlocks lockDesired, string pass, string time, UserPairPermissions? perms = null) where T : IPadlockableRestriction
     {
         var maxLockTime = perms is not null ? GetMaxLockTime(item, perms) : TimeSpan.MaxValue;
         return ValidateLock(lockDesired, pass, time, maxLockTime, perms?.PermanentLocks ?? true, perms?.OwnerLocks ?? false, perms?.DevotionalLocks ?? false);
     }
 
-    public static void PerformLockUpdate<T>(ref T padlockItem, Padlocks lockType, string pass, string time, string enactorUid) where T : IPadlockable
+    public static void PerformLockUpdate<T>(ref T padlockItem, Padlocks lockType, string pass, string time, string enactorUid) where T : IPadlockableRestriction
     {
-        padlockItem.Padlock = lockType.ToName();
+        padlockItem.Padlock = lockType;
         padlockItem.Timer = lockType.IsTimerLock() ? time.GetEndTimeUTC() : DateTimeOffset.UtcNow;
         padlockItem.Password = lockType.IsPasswordLock() ? pass : string.Empty;
-        padlockItem.Assigner = enactorUid;
+        padlockItem.PadlockAssigner = enactorUid;
     }
 
-    public static PadlockReturnCode ValidateUnlockUpdate<T>(T item, UserData itemOwner, string guessedPass, string enactorUid, UserPairPermissions? perms = null) where T : IPadlockable
+    public static PadlockReturnCode ValidateUnlockUpdate<T>(T item, UserData itemOwner, string guessedPass, string enactorUid, UserPairPermissions? perms = null) where T : IPadlockableRestriction
     {
         return ValidateUnlock(item, itemOwner, guessedPass, enactorUid, perms?.OwnerLocks ?? false, perms?.DevotionalLocks ?? false);
     }
 
-    public static void PerformUnlockUpdate<T>(ref T padlockItem) where T : IPadlockable
+    public static void PerformUnlockUpdate<T>(ref T padlockItem) where T : IPadlockableRestriction
     {
-        padlockItem.Padlock = Padlocks.None.ToName();
+        padlockItem.Padlock = Padlocks.None;
         padlockItem.Timer = DateTimeOffset.MinValue;
         padlockItem.Password = string.Empty;
-        padlockItem.Assigner = string.Empty;
+        padlockItem.PadlockAssigner = string.Empty;
     }
 
-    public static TimeSpan GetMaxLockTime<T>(T item, UserPairPermissions perms) where T : IPadlockable
+    public static TimeSpan GetMaxLockTime<T>(T item, UserPairPermissions perms) where T : IPadlockableRestriction
     {
         // Determine the max lock time based on the item type.
-        if (item is CharaActiveSetData) return perms.MaxAllowedRestraintTime;
-        if (item is GagSlot) return perms.MaxGagTime;
+        if (item is CharaActiveRestraint) return perms.MaxRestraintTime;
+        if (item is CharaActiveRestrictions) return perms.MaxRestrictionTime;
+        if (item is CharaActiveGags) return perms.MaxGagTime;
         return TimeSpan.Zero;
     }
 
@@ -262,7 +262,7 @@ public static class GsPadlockEx
         return returnCode;
     }
 
-    public static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string enactorUid, bool allowOwner, bool allowDevotional) where T : IPadlockable
+    public static PadlockReturnCode ValidateUnlock<T>(T item, UserData itemOwner, string guessedPass, string enactorUid, bool allowOwner, bool allowDevotional) where T : IPadlockableRestriction
     {
         var returnCode = PadlockReturnCode.Success;
 
@@ -280,12 +280,16 @@ public static class GsPadlockEx
             { Padlocks.TimerPasswordPadlock, () => item.Password != guessedPass ? PadlockReturnCode.InvalidPassword : PadlockReturnCode.Success },
             { Padlocks.OwnerPadlock, () => allowOwner ? PadlockReturnCode.Success : PadlockReturnCode.OwnerRestricted },
             { Padlocks.OwnerTimerPadlock, () => allowOwner ? PadlockReturnCode.Success : PadlockReturnCode.OwnerRestricted },
-            { Padlocks.DevotionalPadlock, () => !allowDevotional ? PadlockReturnCode.DevotionalRestricted : item.Assigner != enactorUid ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success },
-            { Padlocks.DevotionalTimerPadlock, () => !allowDevotional ? PadlockReturnCode.DevotionalRestricted : item.Assigner != enactorUid ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success }
+            { Padlocks.DevotionalPadlock, () => !allowDevotional 
+                ? PadlockReturnCode.DevotionalRestricted : item.PadlockAssigner != enactorUid 
+                    ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success },
+            { Padlocks.DevotionalTimerPadlock, () => !allowDevotional 
+                ? PadlockReturnCode.DevotionalRestricted : item.PadlockAssigner != enactorUid 
+                    ? PadlockReturnCode.NotLockAssigner : PadlockReturnCode.Success }
         };
 
         // Check if validation rules exist for the padlock and return the corresponding error code
-        if (validationRules.TryGetValue(item.Padlock.ToPadlock(), out var validate)) 
+        if (validationRules.TryGetValue(item.Padlock, out var validate)) 
             returnCode = validate();
 
         return returnCode;
@@ -312,10 +316,10 @@ public static class GsPadlockEx
             return false;
         }
 
-        int days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
-        int hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
-        int minutes = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
-        int seconds = match.Groups[4].Success ? int.Parse(match.Groups[4].Value) : 0;
+        var days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
+        var hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
+        var minutes = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
+        var seconds = match.Groups[4].Success ? int.Parse(match.Groups[4].Value) : 0;
 
         result = new TimeSpan(days, hours, minutes, seconds);
         return true;
@@ -329,13 +333,13 @@ public static class GsPadlockEx
         if (match.Success)
         {
             // Parse days, hours, minutes, and seconds 
-            int.TryParse(match.Groups[1].Value, out int days);
-            int.TryParse(match.Groups[2].Value, out int hours);
-            int.TryParse(match.Groups[3].Value, out int minutes);
-            int.TryParse(match.Groups[4].Value, out int seconds);
+            int.TryParse(match.Groups[1].Value, out var days);
+            int.TryParse(match.Groups[2].Value, out var hours);
+            int.TryParse(match.Groups[3].Value, out var minutes);
+            int.TryParse(match.Groups[4].Value, out var seconds);
 
             // Create a TimeSpan from the parsed values
-            TimeSpan duration = new TimeSpan(days, hours, minutes, seconds);
+            var duration = new TimeSpan(days, hours, minutes, seconds);
             // Add the duration to the current DateTime to get a DateTimeOffset
             return DateTimeOffset.UtcNow.Add(duration);
         }
@@ -362,7 +366,7 @@ public static class GsPadlockEx
 
     public static string ToGsRemainingTimeFancy(this DateTimeOffset lockEndTime)
     {
-        TimeSpan remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
+        var remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
         // if the remaining timespan is not a negative value, output the time.
         if (remainingTime.TotalSeconds <= 0)
             return "Expired";
@@ -372,7 +376,7 @@ public static class GsPadlockEx
         if (remainingTime.Hours > 0) sb.Append($"{remainingTime.Hours}h ");
         if (remainingTime.Minutes > 0) sb.Append($"{remainingTime.Minutes}m ");
         if (remainingTime.Seconds > 0 || sb.Length == 0) sb.Append($"{remainingTime.Seconds}s ");
-        string remainingTimeStr = sb.ToString().Trim();
+        var remainingTimeStr = sb.ToString().Trim();
         return remainingTimeStr + " left..";
     }
 

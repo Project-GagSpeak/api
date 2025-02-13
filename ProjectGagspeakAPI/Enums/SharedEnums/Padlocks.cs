@@ -17,9 +17,7 @@ public enum Padlocks
     MimicPadlock,           // Mimic Padlock, a Timed Padlock that Cannot be unlocked. (Only Applied by Mimics)
 };
 
-/// <summary>
-/// Flag-Based enumerable to identify what errors occur in padlock validation.
-/// </summary>
+/// <summary> Flag-Based enumerable to identify what errors occur in padlock validation. </summary>
 [Flags]
 public enum PadlockReturnCode
 {

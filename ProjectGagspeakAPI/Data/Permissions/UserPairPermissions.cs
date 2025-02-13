@@ -6,7 +6,6 @@ namespace GagspeakAPI.Data.Permissions;
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserPairPermissions
 {
-    // unique permissions stored here:
     public bool IsPaused { get; set; } = false;  // if the pair is paused, a unique unmodifiable permission by other pairs.
 
     // Advanced Lock Permissions
@@ -21,10 +20,17 @@ public record UserPairPermissions
     public bool UnlockGags { get; set; } = false; // if the client pair can unlock gags from you.
     public bool RemoveGags { get; set; } = false; // if the client pair can remove gags from you.
 
+    // Restriction Permissions
+    public bool ApplyRestrictions { get; set; } = false; // if the client pair can apply restrictions to you.
+    public bool LockRestrictions { get; set; } = false; // if the client pair can lock restrictions on you.
+    public TimeSpan MaxRestrictionTime { get; set; } = TimeSpan.Zero; // the max time the client pair can lock restrictions on you.
+    public bool UnlockRestrictions { get; set; } = false; // if the client pair can unlock restrictions from you.
+    public bool RemoveRestrictions { get; set; } = false; // if the client pair can remove restrictions from you.
+
     // unique permissions for the wardrobe
     public bool ApplyRestraintSets { get; set; } = false; // if the client pair can apply your restraint sets.
     public bool LockRestraintSets { get; set; } = false;  // if the client pair can lock your restraint sets
-    public TimeSpan MaxAllowedRestraintTime { get; set; } = TimeSpan.Zero; // the max time the client pair can lock your restraint sets
+    public TimeSpan MaxRestraintTime { get; set; } = TimeSpan.Zero; // the max time the client pair can lock your restraint sets
     public bool UnlockRestraintSets { get; set; } = false; // if the client pair can unlock your restraint sets
     public bool RemoveRestraintSets { get; set; } = false; // if the client pair can remove your restraint sets.
 
@@ -48,13 +54,12 @@ public record UserPairPermissions
     public bool AllowRemovingMoodles { get; set; } = false; // if the client pair can remove moodles from you
 
     // unique permissions for the toybox
-    public bool CanToggleToyState { get; set; } = false;   // if the client pair can turn your toy on and off.
-    public bool CanUseVibeRemote { get; set; } = false; // if the client pair can use the real-time vibe remote on your toy.
-    public bool CanExecutePatterns { get; set; } = false; // if the client pair can use patterns on your toy.
-    public bool CanStopPatterns { get; set; } = false; // if the client pair can stop patterns on your toy.
-    public bool CanToggleAlarms { get; set; } = false; // if the client pair can toggle alarms on your toy.
-    public bool CanSendAlarms { get; set; } = false; // if the client pair can send alarms to your toy.
-    public bool CanToggleTriggers { get; set; } = false; // if the client pair can use triggers on your toy.
+    public bool CanToggleToyState { get; set; } = false;   // If True, this pair can toggle your toys states.
+    public bool CanUseRemoteOnToys { get; set; } = false;  // If True, this pair can connect a remote to your toys.
+    public bool CanExecutePatterns { get; set; } = false;  // if the client pair can use patterns on your toy.
+    public bool CanStopPatterns { get; set; } = false;     // if the client pair can stop patterns on your toy.
+    public bool CanToggleAlarms { get; set; } = false;     // if the client pair can toggle alarms on your toy.
+    public bool CanToggleTriggers { get; set; } = false;   // if the client pair can use triggers on your toy.
 
     // unique hardcore permissions. (only allow the ALLOW permissions to be set by the user).
     public bool InHardcore { get; set; } = false; // if the user is in hardcore mode with this paired user
@@ -63,7 +68,7 @@ public record UserPairPermissions
     public bool AllowForcedSit { get; set; } = false;
     public bool AllowForcedEmote { get; set; } = false;
     public bool AllowForcedToStay { get; set; } = false;
-    public bool AllowBlindfold { get; set; } = false;
+    public bool AllowGarbleChannelEditing { get; set; } = false;
     public bool AllowHidingChatBoxes { get; set; } = false;
     public bool AllowHidingChatInput { get; set; } = false;
     public bool AllowChatInputBlocking { get; set; } = false;

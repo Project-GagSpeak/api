@@ -1,6 +1,7 @@
 using GagspeakAPI.Data;
 using GagspeakAPI.Data.IPC;
 using GagspeakAPI.Dto.User;
+using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.IPC;
@@ -10,4 +11,4 @@ namespace GagspeakAPI.Dto.IPC;
 /// This pair will then call to their moodles client to apply these statuses.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ApplyMoodlesByStatusDto(UserData User, List<MoodlesStatusInfo> Statuses, IpcToggleType Type) : UserDto(User);
+public record ApplyMoodlesByStatusDto(UserData User, List<MoodlesStatusInfo> Statuses, MoodleType Type) : UserDto(User);

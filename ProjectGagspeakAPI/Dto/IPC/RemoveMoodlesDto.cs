@@ -1,8 +1,8 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.IPC;
+using GagspeakAPI.Dto.User;
 using MessagePack;
 
-namespace GagspeakAPI.Dto.User;
+namespace GagspeakAPI.Dto.IPC;
 
 /// <summary>
 /// Notifies the RecipientUser to removes the listed Moodles from their status manager.

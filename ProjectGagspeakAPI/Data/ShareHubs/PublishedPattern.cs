@@ -10,7 +10,7 @@ public record PublishedPattern
 {
     public Guid Identifier = Guid.Empty;
 
-    public string Name = "UNK PATTERN NAME";
+    public string Label = "UNK PATTERN NAME";
 
     public string Description = string.Empty;
     

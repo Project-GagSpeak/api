@@ -6,8 +6,8 @@ namespace GagspeakAPI.Data.Permissions;
 public record UserEditAccessPermissions
 {
     // unique permissions stored here:
-    public bool LiveChatGarblerActiveAllowed { get; set; } = false; // Global
-    public bool LiveChatGarblerLockedAllowed { get; set; } = false; // Global
+    public bool ChatGarblerActiveAllowed { get; set; } = false; // Global
+    public bool ChatGarblerLockedAllowed { get; set; } = false; // Global
 
     public bool PermanentLocksAllowed { get; set; } = false;
     public bool OwnerLocksAllowed { get; set; } = false;
@@ -21,11 +21,19 @@ public record UserEditAccessPermissions
 
     // unique permissions for the wardrobe
     public bool WardrobeEnabledAllowed { get; set; } = false; // Global
-    public bool ItemAutoEquipAllowed { get; set; } = false; // Global
-    public bool RestraintSetAutoEquipAllowed { get; set; } = false; // Global
+    public bool GagVisualsAllowed { get; set; } = false; // Global
+    public bool RestrictionVisualsAllowed { get; set; } = false; // Global
+    public bool RestraintSetVisualsAllowed { get; set; } = false; // Global
+
+    public bool ApplyRestrictionsAllowed { get; set; } = false;
+    public bool LockRestrictionsAllowed { get; set; } = false;
+    public bool MaxRestrictionTimeAllowed { get; set; } = false;
+    public bool UnlockRestrictionsAllowed { get; set; } = false;
+    public bool RemoveRestrictionsAllowed { get; set; } = false;
+
     public bool ApplyRestraintSetsAllowed { get; set; } = false;
     public bool LockRestraintSetsAllowed { get; set; } = false;
-    public bool MaxAllowedRestraintTimeAllowed { get; set; } = false;
+    public bool MaxRestraintTimeAllowed { get; set; } = false;
     public bool UnlockRestraintSetsAllowed { get; set; } = false;
     public bool RemoveRestraintSetsAllowed { get; set; } = false;
 
@@ -36,26 +44,24 @@ public record UserEditAccessPermissions
     public bool AliasRequestsAllowed { get; set; } = false;
     public bool AllRequestsAllowed { get; set; } = false;
 
-    // unique Moodles permissions
-    public bool MoodlesEnabledAllowed { get; set; } = false; // Global
-    public bool AllowPositiveStatusTypesAllowed { get; set; } = false;
-    public bool AllowNegativeStatusTypesAllowed { get; set; } = false;
-    public bool AllowSpecialStatusTypesAllowed { get; set; } = false;
+    // Moodles
+    public bool PositiveStatusTypesAllowed { get; set; } = false;
+    public bool NegativeStatusTypesAllowed { get; set; } = false;
+    public bool SpecialStatusTypesAllowed { get; set; } = false;
     public bool PairCanApplyOwnMoodlesToYouAllowed { get; set; } = false;
     public bool PairCanApplyYourMoodlesToYouAllowed { get; set; } = false;
     public bool MaxMoodleTimeAllowed { get; set; } = false;
-    public bool AllowPermanentMoodlesAllowed { get; set; } = false;
-    public bool AllowRemovingMoodlesAllowed { get; set; } = false;
+    public bool PermanentMoodlesAllowed { get; set; } = false;
+    public bool RemovingMoodlesAllowed { get; set; } = false;
 
     // unique permissions for the toybox
     public bool ToyboxEnabledAllowed { get; set; } = false; // Global
     public bool LockToyboxUIAllowed { get; set; } = false; // Global
-    public bool SpatialVibratorAudioAllowed { get; set; } = false; // Global
+    public bool SpatialAudioAllowed { get; set; } = false; // Global
     public bool CanToggleToyStateAllowed { get; set; } = false;
-    public bool CanUseVibeRemoteAllowed { get; set; } = false;
+    public bool CanUseRemoteOnToysAllowed { get; set; } = false;
     public bool CanExecutePatternsAllowed { get; set; } = false;
     public bool CanStopPatternsAllowed { get; set; } = false;
     public bool CanToggleAlarmsAllowed { get; set; } = false;
-    public bool CanSendAlarmsAllowed { get; set; } = false;
     public bool CanToggleTriggersAllowed { get; set; } = false;
 }

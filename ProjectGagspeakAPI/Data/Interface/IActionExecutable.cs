@@ -22,7 +22,7 @@ public interface IExecutableAction
     /// <summary>
     /// The Priority of the item with the executable action kind.
     /// </summary>
-    public string Name { get; set; }
+    public string Label { get; set; }
 
     /// <summary>
     /// The Data for the preferrred executable action kind.
@@ -118,7 +118,7 @@ public class MoodleAction : IActionGS
     /// <summary>
     /// If a status or preset.
     /// </summary>
-    public IpcToggleType MoodleType { get; set; } = IpcToggleType.MoodlesStatus;
+    public MoodleType MoodleType { get; set; } = MoodleType.Status;
 
     /// <summary>
     /// Can represent a status or preset id.

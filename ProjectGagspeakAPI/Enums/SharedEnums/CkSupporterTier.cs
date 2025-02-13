@@ -1,9 +1,7 @@
-﻿namespace GagspeakAPI.Enums;
+namespace GagspeakAPI.Enums;
 
 
-/// <summary>
-/// Enum determining which tier vanity supporter the user is, if any.
-/// </summary
+/// <summary> Vanity Tier, if any. </summary>
 public enum CkSupporterTier
 {
     NoRole = 0,
