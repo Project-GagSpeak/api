@@ -124,25 +124,16 @@ public static partial class EnumToName
         _ => "UNK"
     };
 
-    public static string ToName(this TriggerActionType triggerActionType)
-    {
-        return triggerActionType switch
-        {
-            TriggerActionType.Vibration => "Vibration",
-            TriggerActionType.PatternPlayback => "Pattern",
-            _ => "UNK"
-        };
-    }
-    public static string ToName(this ActionExecutionType triggerActionKind)
+    public static string ToName(this InvokableActionType triggerActionKind)
     {
         return triggerActionKind switch
         {
-            ActionExecutionType.TextOutput => "Text Output",
-            ActionExecutionType.SexToy => "Sex Toy",
-            ActionExecutionType.ShockCollar => "Shock Collar",
-            ActionExecutionType.Restraint => "Apply Restraint",
-            ActionExecutionType.Gag => "Apply Gag",
-            ActionExecutionType.Moodle => "Apply Moodle",
+            InvokableActionType.TextOutput => "Text Output",
+            InvokableActionType.SexToy => "Sex Toy",
+            InvokableActionType.ShockCollar => "Shock Collar",
+            InvokableActionType.Restraint => "Apply Restraint",
+            InvokableActionType.Gag => "Apply Gag",
+            InvokableActionType.Moodle => "Apply Moodle",
             _ => "UNK"
         };
     }

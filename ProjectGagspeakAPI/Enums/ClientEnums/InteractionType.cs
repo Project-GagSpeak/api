@@ -30,7 +30,12 @@ public enum InteractionType
     ApplyOwnMoodlePreset,
     RemoveMoodle,
     ClearMoodle,
-    
+
+    ListenerName,
+    AliasList,
+    GlobalTrigger,
+    PairTrigger,
+
     SwitchPattern,
     StartPattern,
     StopPattern,

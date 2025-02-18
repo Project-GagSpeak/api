@@ -1,5 +1,6 @@
 using GagspeakAPI.Data.Character;
 using GagspeakAPI.Enums;
+using System.Text.RegularExpressions;
 
 namespace GagspeakAPI.Extensions;
 
@@ -58,13 +59,23 @@ public static class GagDataEx
         return -1;
     }
 
+    public static int FindFirstUnlocked(this CharaActiveGags gagData)
+    {
+        for (var i = 0; i < gagData.GagSlots.Length; i++)
+            if (gagData.GagSlots[i].IsLocked() is false)
+                return i;
+
+        return -1;
+    }
+
+
     /// <summary> Finds the index of the outermost active gag slot in the character's appearance data. </summary>
     /// <param name="gagData">The character appearance data to search.</param>
     /// <returns>The index of the outermost active slot, or -1 if no active slots are found.</returns>
     public static int FindOutermostActive(this CharaActiveGags gagData)
     {
         for (var i = gagData.GagSlots.Length - 1; i >= 0; i--)
-            if (gagData.GagSlots[i].GagItem is not GagType.None)
+            if (gagData.GagSlots[i].GagItem is not GagType.None && gagData.GagSlots[i].IsLocked() is false)
                 return i;
         return -1;
     }
@@ -76,7 +87,35 @@ public static class GagDataEx
     public static int FindOutermostActive(this CharaActiveGags gagData, GagType match)
     {
         for (var i = gagData.GagSlots.Length - 1; i >= 0; i--)
+            if (gagData.GagSlots[i].GagItem == match && gagData.GagSlots[i].IsLocked() is false)
+                return i;
+
+        return -1;
+    }
+
+    public static int FindOutermostLocked(this CharaActiveGags gagData)
+    {
+        for (var i = gagData.GagSlots.Length - 1; i >= 0; i--)
+            if (gagData.GagSlots[i].IsLocked())
+                return i;
+
+        return -1;
+    }
+
+    public static int FindOutermostLocked(this CharaActiveGags gagData, GagType match)
+    {
+        for (var i = gagData.GagSlots.Length - 1; i >= 0; i--)
             if (gagData.GagSlots[i].GagItem == match)
+                return i;
+
+        return -1;
+    }
+
+
+    public static int FindOutermostActiveUnlocked(this CharaActiveRestrictions restrictions)
+    {
+        for (var i = restrictions.Restrictions.Length - 1; i >= 0; i--)
+            if (restrictions.Restrictions[i].IsLocked() is false && restrictions.Restrictions[i].Identifier != Guid.Empty)
                 return i;
 
         return -1;

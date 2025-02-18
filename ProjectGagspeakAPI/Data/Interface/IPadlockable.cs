@@ -8,17 +8,18 @@ public interface IPadlockableRestriction
     string Password { get; set; }
     DateTimeOffset Timer { get; set; }
     string PadlockAssigner { get; set; }
-}
 
-public interface IRestrictionValidator
-{
     /// <summary> Retrieves if the padlock is locked. </summary>
-    /// <returns> True if Padlock is not Padlock.ToPadlock().None. </returns>
+    /// <returns> True if Padlock is not Padlock.None </returns>
     bool IsLocked();
 
     /// <summary> Retrieves if the timer has expired. </summary>
     /// <returns> True if DateTimeOffset.UtcNow is >= Timer </returns>
     bool HasTimerExpired();
+}
+
+public interface IRestrictionValidator
+{
 
     /// <summary> Validates if the padlock can be applied. </summary>
     bool CanApply();

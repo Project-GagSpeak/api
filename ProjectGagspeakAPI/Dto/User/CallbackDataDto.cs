@@ -41,8 +41,8 @@ public record CallbackRestraintDataDto(UserData User, UserData Enactor, CharaAct
 [MessagePackObject(keyAsPropertyName: true)] // Should not need an update type for this, just track latest data and last interacted.
 public record CallbackCursedLootDto(UserData User, List<Guid> NewActiveItems) : UserDto(User)
 {
-    // List should already be in its updated state with this item.
     public Guid LastInteractedItem { get; init; } = Guid.Empty;
+    public DateTimeOffset ReleaseTime { get; init; } = DateTimeOffset.MinValue;
 }
 
 

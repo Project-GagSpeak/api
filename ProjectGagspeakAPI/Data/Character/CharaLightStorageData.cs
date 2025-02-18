@@ -12,7 +12,7 @@ public class CharaLightStorageData
     /// <summary> The GagRestrictionItems that are set to Enabled. </summary>
     public Dictionary<GagType, AppliedSlot> GagItems { get; internal init; } = [];
     public LightRestriction[] Restrictions { get; internal init; } = [];
-    public LightRestriction[] Restraints  { get; internal init; } = [];
+    public LightRestraintSet[] Restraints  { get; internal init; } = [];
     public LightCursedItem[]  CursedItems { get; internal init; } = [];
     public LightPattern[]     Patterns    { get; internal init; } = [];
     public LightAlarm[]       Alarms      { get; internal init; } = [];
@@ -23,15 +23,22 @@ public class CharaLightStorageData
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightGag(AppliedSlot SlotData, RestraintFlags Flags)
 {
-    List<string> TraitAllowances { get; init; } = [];
+    public string[] TraitAllowances { get; init; } = [];
 }
-
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightRestriction(Guid Id, string Label, string Desc, RestraintFlags Flags)
 {
+    public AppliedSlot AffectedSlot { get; init; } = new();
+    public string[] TraitAllowances { get; init; } = [];
+}
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightRestraintSet(Guid Id, string Label, string Desc, RestraintFlags Flags)
+{
     public List<AppliedSlot> AffectedSlots { get; init; } = [];
-    public List<string> TraitAllowances { get; init; } = [];
+    public string[] TraitAllowances { get; init; } = [];
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
@@ -50,7 +57,7 @@ public record LightAlarm(Guid Id, string Label, DateTimeOffset SetTimeUTC, Guid 
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightTrigger(Guid Id, int Priority, string Label, string Desc, TriggerKind Type, ActionExecutionType ActionOnTrigger);
+public record LightTrigger(Guid Id, int Priority, string Label, string Desc, TriggerKind Type, InvokableActionType ActionOnTrigger);
 
 
 [MessagePackObject]

@@ -1,3 +1,4 @@
+using GagspeakAPI.Enums;
 using GagspeakAPI.Extensions;
 using MessagePack;
 
@@ -38,10 +39,7 @@ public record UserPairPermissions
     public string TriggerPhrase { get; set; } = "";    // the end char that is the right enclosing bracket character for commands.
     public char StartChar { get; set; } = '(';          // the start char that is the left enclosing bracket character for commands.
     public char EndChar { get; set; } = ')';            // the end char that is the right enclosing bracket character for commands.
-    public bool SitRequests { get; set; } = false;   // if the client pair can request to sit on you.
-    public bool MotionRequests { get; set; } = false; // if the client pair can request to move you.
-    public bool AliasRequests { get; set; } = false; // if the client pair can request alias triggers.
-    public bool AllRequests { get; set; } = false;   // if the client pair can request to do anything.
+    public PuppeteerPerms PuppetPerms { get; set; } = 0;
 
     // unique Moodles permissions
     public bool AllowPositiveStatusTypes { get; set; } = false; // if the client pair can give you positive moodles
@@ -97,15 +95,5 @@ public record UserPairPermissions
         {
             return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
         }
-    }
-
-    public void PuppetPerms(out bool canSit, out bool canEmote, out bool canAlias, out bool canAll, out char startChar, out char endChar)
-    {
-        canSit = SitRequests;
-        canEmote = MotionRequests;
-        canAlias = AliasRequests;
-        canAll = AllRequests;
-        startChar = StartChar;
-        endChar = EndChar;
     }
 }

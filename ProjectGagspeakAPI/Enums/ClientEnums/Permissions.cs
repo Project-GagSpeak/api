@@ -1,5 +1,18 @@
 namespace GagspeakAPI.Enums;
 
+// flags enum for the kind of permissions given.
+[Flags]
+public enum PuppeteerPerms
+{
+    None    = 0x00, //   no actions are allowed.
+    Sit     = 0x01, //   /sit, /groundsit, /cpose allowed.
+    Emotes  = 0x02, //   any emote is allowed.
+    Alias   = 0x04, //   alias actions enabled can be used.
+    All     = 0x08, //   all actions are allowed.
+}
+
+
+
 public enum PermissionType 
 {
     Global,                   // Use GlobalPerms & PairPermEditAccess

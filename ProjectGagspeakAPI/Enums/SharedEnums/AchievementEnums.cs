@@ -78,7 +78,6 @@ public enum UnlocksEvent
     PresetApplied,
     GlobalSent,
     CursedDungeonLootFound,
-    EasterEggFound,
     ChocoboRaceFinished,
     PlayersInProximity,
     CutsceneInturrupted,

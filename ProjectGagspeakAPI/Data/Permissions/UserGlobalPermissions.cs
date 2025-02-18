@@ -1,3 +1,4 @@
+using GagspeakAPI.Enums;
 using GagspeakAPI.Extensions;
 using MessagePack;
 
@@ -20,10 +21,7 @@ public record UserGlobalPermissions
     // global puppeteer modifiable permissions.
     public bool PuppeteerEnabled { get; set; } = false;         // PROFILE VIEWABLE OPT-IN || If the user's puppeteer component is active
     public string GlobalTriggerPhrase { get; set; } = "";       // PROFILE VIEWABLE OPT-IN || Global trigger phrase for the user
-    public bool GlobalSitRequests { get; set; } = false;        // PROFILE VIEWABLE OPT-IN || If user allows sit requests
-    public bool GlobalMotionRequests { get; set; } = false;     // PROFILE VIEWABLE OPT-IN || If the user allows motion requests
-    public bool GlobalAliasRequests { get; set; } = false;      // PROFILE VIEWABLE OPT-IN || READONLY || If the user allows alias requests
-    public bool GlobalAllRequests { get; set; } = false;        // PROFILE VIEWABLE OPT-IN || READONLY || If the user allows all requests
+    public PuppeteerPerms PuppetPerms { get; set; } = 0;
 
     // global toybox modifiable permissions
     public bool ToyboxEnabled { get; set; } = false;            // PROFILE VIEWABLE OPT-IN || If the user's toybox component is active
@@ -66,13 +64,4 @@ public record UserGlobalPermissions
             return TimeSpan.FromSeconds(MaxDuration); // convert to seconds
         }
     }
-
-    public void PuppetPerms(out bool canSit, out bool canEmote, out bool canAlias, out bool canAll)
-    {
-        canSit = GlobalSitRequests;
-        canEmote = GlobalMotionRequests;
-        canAlias = GlobalAliasRequests;
-        canAll = GlobalAllRequests;
-    }
-
 }

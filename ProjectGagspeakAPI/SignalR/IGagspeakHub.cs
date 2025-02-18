@@ -3,6 +3,7 @@ using GagspeakAPI.Dto;
 using GagspeakAPI.Dto.Connection;
 using GagspeakAPI.Dto.IPC;
 using GagspeakAPI.Dto.Permissions;
+using GagspeakAPI.Dto.Sharehub;
 using GagspeakAPI.Dto.User;
 using GagspeakAPI.Dto.UserPair;
 using GagspeakAPI.Dto.VibeRoom;
@@ -151,16 +152,16 @@ public interface IGagspeakHub
 
 
     #region Data & Permission Changes
-    // -------- Client Change Own Data >> Update to Pairs -------- //
+    // -------- Client Change Own Data >> Update to Pairs (Bool returns help with InvokableActions -------- //
     Task UserPushData(PushCompositeDataMessageDto dto);
     Task UserPushDataIpc(PushIpcDataUpdateDto dto);
-    Task UserPushDataGags(PushGagDataUpdateDto dto);
-    Task UserPushDataRestrictions(PushRestrictionDataUpdateDto dto);
-    Task UserPushDataRestraint(PushRestraintDataUpdateDto dto);
+    Task<bool> UserPushDataGags(PushGagDataUpdateDto dto);
+    Task<bool> UserPushDataRestrictions(PushRestrictionDataUpdateDto dto);
+    Task<bool> UserPushDataRestraint(PushRestraintDataUpdateDto dto);
     Task<bool> UserPushDataCursedLoot(PushCursedLootDataUpdateDto dto);
-    Task UserPushDataOrders(PushOrdersDataUpdateDto dto);
-    Task UserPushDataAlias(PushAliasDataUpdateDto dto);
-    Task UserPushDataToybox(PushToyboxDataUpdateDto dto);
+    Task<bool> UserPushDataOrders(PushOrdersDataUpdateDto dto);
+    Task<bool> UserPushDataAlias(PushAliasDataUpdateDto dto);
+    Task<bool> UserPushDataToybox(PushToyboxDataUpdateDto dto);
     Task UserPushDataLightStorage(PushLightStorageMessageDto dto);
 
 

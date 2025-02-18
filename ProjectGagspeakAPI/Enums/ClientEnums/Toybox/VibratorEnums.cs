@@ -1,6 +1,6 @@
 namespace GagspeakAPI.Enums;
 
-public enum VibratorMode
+public enum VibratorEnums
 {
     Simulated,
     Actual,

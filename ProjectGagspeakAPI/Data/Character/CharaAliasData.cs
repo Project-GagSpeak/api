@@ -30,38 +30,37 @@ public record AliasTrigger
     public string InputCommand { get; set; } = string.Empty;
 
     /// <summary> Stores executions with unique types. </summary>
-    public Dictionary<ActionExecutionType, IActionGS> Executions { get; set; } = new();
+    public Dictionary<InvokableActionType, InvokableGsAction> Executions { get; set; } = new();
 
-    /// <summary> Retrieves the Text Output for the AliasTrigger. (Possibly Remove) </summary>
-    public string GetTextOutput()
+    public AliasTrigger() { }
+
+    public AliasTrigger(AliasTrigger other, bool keepId)
     {
-        if (Executions.TryGetValue(ActionExecutionType.TextOutput, out IActionGS? action))
-            return (action as TextAction)?.OutputCommand ?? string.Empty;
-        // we failed, return empty.
-        return string.Empty;
+        Identifier = keepId ? other.Identifier : Guid.NewGuid();
+        Enabled = other.Enabled;
+        Label = other.Label;
+        InputCommand = other.InputCommand;
+        Executions = other.Executions.ToDictionary(x => x.Key, x => x.Value);
     }
 
-    /// <summary> Useful for knowing what actions are already added. </summary>
-    public IEnumerable<ActionExecutionType> CurrentTypes() => Executions.Keys;
-
     /// <summary> Useful for combos displaying new kinds of actions that can be added. </summary>
-    public IEnumerable<ActionExecutionType> UnregisteredTypes()
-        => Enum.GetValues<ActionExecutionType>().Except(Executions.Keys).Except(new[] { ActionExecutionType.SexToy });
+    public IEnumerable<InvokableActionType> UnregisteredTypes()
+        => Enum.GetValues<InvokableActionType>().Except(Executions.Keys).Except(new[] { InvokableActionType.SexToy });
 
     /// <summary> Useful for knowing if any singular type is already present in the dictionary. </summary>
-    public bool HasActionType(ActionExecutionType actionType) => Executions.ContainsKey(actionType);
+    public bool HasActionType(InvokableActionType actionType) => Executions.ContainsKey(actionType);
 
     /// <summary> Appends the action to the dictionary. A helper function. </summary>
-    public void AddActionForType(ActionExecutionType type)
+    public void AddActionForType(InvokableActionType type)
     {
         Executions[type] = type switch
         {
-            ActionExecutionType.TextOutput => new TextAction(),
-            ActionExecutionType.Gag => new GagAction(),
-            ActionExecutionType.Restraint => new RestraintAction(),
-            ActionExecutionType.Moodle => new MoodleAction(),
-            ActionExecutionType.ShockCollar => new PiShockAction(),
-            ActionExecutionType.SexToy => new SexToyAction(),
+            InvokableActionType.TextOutput => new TextAction(),
+            InvokableActionType.Gag => new GagAction(),
+            InvokableActionType.Restraint => new RestraintAction(),
+            InvokableActionType.Moodle => new MoodleAction(),
+            InvokableActionType.ShockCollar => new PiShockAction(),
+            InvokableActionType.SexToy => new SexToyAction(),
             _ => throw new Exception("Invalid Execution Type")
         };
     }
