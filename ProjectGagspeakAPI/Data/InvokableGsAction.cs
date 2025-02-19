@@ -15,7 +15,7 @@ public abstract record InvokableGsAction
 public record TextAction : InvokableGsAction
 {
     public override InvokableActionType ExecutionType => InvokableActionType.TextOutput;
-    public string OutputCommand { get; init; } = string.Empty;
+    public string OutputCommand { get; set; } = string.Empty;
     public TextAction() { }
     public TextAction(TextAction other) : base(other) 
         => OutputCommand = other.OutputCommand;
@@ -25,9 +25,9 @@ public record GagAction : InvokableGsAction
 {
     public override InvokableActionType ExecutionType => InvokableActionType.Gag;
     public int LayerIdx { get; init; } = -1; // -1 means pick any available.
-    public NewState NewState { get; init; } = NewState.Enabled;
-    public GagType GagType { get; init; } = GagType.BallGag;
-    public Padlocks Padlock { get; init; } = Padlocks.None;
+    public NewState NewState { get; set; } = NewState.Enabled;
+    public GagType GagType { get; set; } = GagType.BallGag;
+    public Padlocks Padlock { get; set; } = Padlocks.None;
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
     public GagAction() { }
@@ -39,9 +39,9 @@ public record RestrictionAction : InvokableGsAction
 {
     public override InvokableActionType ExecutionType => InvokableActionType.Restriction;
     public int LayerIdx { get; init; } = -1; // -1 means pick any available.
-    public NewState NewState { get; init; } = NewState.Enabled;
-    public Guid RestrictionId { get; init; } = Guid.Empty;
-    public Padlocks Padlock { get; init; } = Padlocks.None;
+    public NewState NewState { get; set; } = NewState.Enabled;
+    public Guid RestrictionId { get; set; } = Guid.Empty;
+    public Padlocks Padlock { get; set; } = Padlocks.None;
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
     public RestrictionAction() { }
@@ -52,9 +52,9 @@ public record RestrictionAction : InvokableGsAction
 public record RestraintAction : InvokableGsAction
 {
     public override InvokableActionType ExecutionType => InvokableActionType.Restraint;
-    public NewState NewState { get; init; } = NewState.Enabled;
-    public Guid RestrictionId { get; init; } = Guid.Empty;
-    public Padlocks Padlock { get; init; } = Padlocks.None;
+    public NewState NewState { get; set; } = NewState.Enabled;
+    public Guid RestrictionId { get; set; } = Guid.Empty;
+    public Padlocks Padlock { get; set; } = Padlocks.None;
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
     public RestraintAction() { }

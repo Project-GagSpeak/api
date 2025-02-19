@@ -45,6 +45,7 @@ public record UserEditAccessPermissions
     public bool AllRequestsAllowed { get; set; } = false;
 
     // Moodles
+    public bool MoodlesEnabledAllowed { get; set; } = false; // Global
     public bool PositiveStatusTypesAllowed { get; set; } = false;
     public bool NegativeStatusTypesAllowed { get; set; } = false;
     public bool SpecialStatusTypesAllowed { get; set; } = false;
