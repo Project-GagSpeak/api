@@ -19,6 +19,15 @@ public class CharaIPCData
     /// <summary> List of player's Presets, and the Status GUID's the preset contains </summary>
     public List<MoodlePresetInfo> MoodlesPresets { get; set; } = new();
 
+    public CharaIPCData() { }
+    public CharaIPCData(CharaIPCData other)
+    {
+        MoodlesData = other.MoodlesData;
+        MoodlesDataStatuses = new List<MoodlesStatusInfo>(other.MoodlesDataStatuses);
+        MoodlesStatuses = new List<MoodlesStatusInfo>(other.MoodlesStatuses);
+        MoodlesPresets = new List<MoodlePresetInfo>(other.MoodlesPresets);
+    }
+
     /// <summary> Equals Override to ensure things are the same. </summary>
     public override bool Equals(object? obj)
     {

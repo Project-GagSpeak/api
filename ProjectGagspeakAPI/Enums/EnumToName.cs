@@ -157,7 +157,7 @@ public static partial class EnumToName
         };
     }
 
-    public static string TriggerKindToString(this TriggerKind type)
+    public static string ToName(this TriggerKind type)
     {
         return type switch
         {
@@ -171,7 +171,7 @@ public static partial class EnumToName
         };
     }
 
-    public static string DirectionToString(this TriggerDirection type)
+    public static string ToName(this TriggerDirection type)
     {
         return type switch
         {
@@ -184,7 +184,7 @@ public static partial class EnumToName
         };
     }
 
-    public static string EffectTypeToString(this LimitedActionEffectType type)
+    public static string ToName(this LimitedActionEffectType type)
     {
         return type switch
         {

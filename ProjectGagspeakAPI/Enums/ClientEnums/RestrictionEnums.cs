@@ -1,9 +1,31 @@
 namespace GagspeakAPI.Enums;
 
-/// <summary> The flag set for the hardcore traits that an item has the possibility to apply. </summary>
+// We handle this through individual cases because its more efficient 
+public static class FlagEx
+{
+    // we avoid doing generic types here because it actually increases the processing time in the compiler if we convert to ambiguous types.
+    public static bool HasAny(this HardcoreTraits flags, HardcoreTraits check) => (flags & check) != 0;
+    public static bool HasAny(this Traits flags, Traits check) => (flags & check) != 0;
+    public static bool HasAny(this RestraintFlags flags, RestraintFlags check) => (flags & check) != 0;
+    public static bool HasAny(this VisualUpdateFlags flags, VisualUpdateFlags check) => (flags & check) != 0;
+    public static bool HasAny(this PuppetPerms flags, PuppetPerms check) => (flags & check) != 0;
+    public static bool HasAny(this MoodlePerms flags, MoodlePerms check) => (flags & check) != 0;
+}
+
+public enum TraitApplyType
+{
+    Restraint,
+    Restriction,
+    Gag,
+    CursedLoot,
+    Pattern,
+    Trigger,
+}
+
 [Flags]
 public enum Traits : short
 {
+    None = 0x00,
     LegsRestrained = 0x01,
     ArmsRestrained = 0x02,
     Gagged = 0x04,
@@ -12,10 +34,24 @@ public enum Traits : short
     Weighty = 0x20,
     StimLight = 0x40,
     StimMild = 0x80,
-    StimHeavy = 0x100
+    StimHeavy = 0x100,
+
+    AnyHotbarModifier = LegsRestrained | ArmsRestrained | Gagged | Blindfolded | Immobile | Weighty,
+    AnyStim = StimLight | StimMild | StimHeavy,
 }
 
-/// <summary> The flags that define what parts of an AdvancedRestraintSlot or RestraintLayer should be applied. </summary>
+[Flags]
+public enum HardcoreTraits : byte
+{
+    None             = 0x00,
+    ForceFollow      = 0x01,
+    ForceEmote       = 0x02,
+    ForceStay        = 0x04,
+    ChatboxHidden    = 0x08,
+    ChatInputHidden  = 0x10,
+    ChatInputBlocked = 0x20,
+}
+
 [Flags]
 public enum RestraintFlags : sbyte
 {

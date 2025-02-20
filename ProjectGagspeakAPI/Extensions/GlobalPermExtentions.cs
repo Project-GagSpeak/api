@@ -1,4 +1,5 @@
 using GagspeakAPI.Data.Permissions;
+using GagspeakAPI.Data.Struct;
 
 namespace GagspeakAPI.Extensions;
 
@@ -69,29 +70,5 @@ public static class GlobalPermExtensions
     {
         if (p.ChatInputBlocked.NullOrEmpty() || !p.ChatInputBlocked.IsPermDevotional()) return true;
         return p.ChatInputBlocked.HardcorePermUID() == uid;
-    }
-
-    public struct EmoteState
-    {
-        public string UID { get; init; }
-        public ushort EmoteID { get; init; }
-        public byte CyclePoseByte { get; init; }
-        public bool Devotional { get; init; }
-
-        public EmoteState()
-        {
-            UID = string.Empty;
-            EmoteID = 0;
-            CyclePoseByte = 0;
-            Devotional = false;
-        }
-
-        public EmoteState(string uid, ushort emoteId, byte cyclePoseByte, bool devotional)
-        {
-            UID = uid;
-            EmoteID = emoteId;
-            CyclePoseByte = cyclePoseByte;
-            Devotional = devotional;
-        }
     }
 }
