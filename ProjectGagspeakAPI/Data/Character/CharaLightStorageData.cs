@@ -21,13 +21,13 @@ public class CharaLightStorageData
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightGag(AppliedSlot SlotData, RestraintFlags Flags)
+public record LightGag(AppliedSlot SlotData, RestraintFlags Flags, Traits Traits)
 {
     public string[] TraitAllowances { get; init; } = [];
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightRestriction(Guid Id, string Label, string Desc, RestraintFlags Flags)
+public record LightRestriction(Guid Id, string Label, string Desc, RestraintFlags Flags, Traits Traits)
 {
     public AppliedSlot AffectedSlot { get; init; } = new();
     public string[] TraitAllowances { get; init; } = [];
@@ -35,7 +35,7 @@ public record LightRestriction(Guid Id, string Label, string Desc, RestraintFlag
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightRestraintSet(Guid Id, string Label, string Desc, RestraintFlags Flags)
+public record LightRestraintSet(Guid Id, string Label, string Desc, RestraintFlags Flags, Traits Traits)
 {
     public List<AppliedSlot> AffectedSlots { get; init; } = [];
     public string[] TraitAllowances { get; init; } = [];

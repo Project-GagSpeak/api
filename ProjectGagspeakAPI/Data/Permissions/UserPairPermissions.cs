@@ -59,7 +59,7 @@ public record UserPairPermissions
     public bool        AllowForcedFollow         { get; set; } = false;
     public bool        AllowForcedSit            { get; set; } = false;
     public bool        AllowForcedEmote          { get; set; } = false;
-    public bool        AllowForcedToStay         { get; set; } = false;
+    public bool        AllowForcedStay           { get; set; } = false;
     public bool        AllowGarbleChannelEditing { get; set; } = false;
     public bool        AllowHidingChatBoxes      { get; set; } = false;
     public bool        AllowHidingChatInput      { get; set; } = false;
