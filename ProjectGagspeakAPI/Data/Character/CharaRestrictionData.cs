@@ -8,7 +8,12 @@ namespace GagspeakAPI.Data.Character;
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveGags
 {
-    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[3];
+    public CharaActiveGags()
+    {
+        for (int i = 0; i < GagSlots.Length; i++)
+            GagSlots[i] = new ActiveGagSlot();
+    }
+    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[3]; // Fixed Length 3
     public string ToGagString() => string.Join("\n", GagSlots.Select(g => g.ToString()));
 }
 
@@ -21,11 +26,8 @@ public record ActiveGagSlot : IPadlockableRestriction, IRestrictionValidator
     public string Password { get; set; } = string.Empty;
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;
     public string PadlockAssigner { get; set; } = string.Empty;
-
-    public ActiveGagSlot() { }
-
     public override string ToString()
-        => $"GagSlot {{ GagItem = {GagItem.GagName()}, Padlock = {Padlock.ToName()}, " +
+        => $"GagSlot {{ GagItem = {GagItem.GagName()}, Enabler = {Enabler}, Padlock = {Padlock.ToName()}, " +
            $"Password = {Password}, Timer = {Timer}, Assigner = {PadlockAssigner} }}";
 
     public bool IsLocked() => Padlock != Padlocks.None;
@@ -40,8 +42,14 @@ public record ActiveGagSlot : IPadlockableRestriction, IRestrictionValidator
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveRestrictions
 {
-    public ActiveRestriction[] Restrictions { get; init; } = new ActiveRestriction[5];
-    public string ToGagString() => string.Join("\n", Restrictions.Select(g => g.ToString()));
+    public CharaActiveRestrictions()
+    {
+        for (int i = 0; i < Restrictions.Length; i++)
+            Restrictions[i] = new ActiveRestriction();
+    }
+
+    public ActiveRestriction[] Restrictions { get; init; } = new ActiveRestriction[5]; // Fixed Length 5
+    public string ToRestrictionString() => string.Join("\n", Restrictions.Select(g => g.ToString()));
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
@@ -53,8 +61,6 @@ public record ActiveRestriction : IPadlockableRestriction, IRestrictionValidator
     public string Password { get; set; } = string.Empty;
     public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;
     public string PadlockAssigner { get; set; } = string.Empty;
-
-    public ActiveRestriction() { }
 
     public override string ToString()
         => $"Item: {{ ID = {Identifier}, Lock = {Padlock.ToName()}, " +
@@ -75,7 +81,7 @@ public record CharaActiveRestraint : ActiveRestriction
     /// <summary> Bitfield representing which layers are active, 5 bits : 0b00000 </summary>
     public byte LayersBitfield { get; set; } = 0b00000;
 
-    public CharaActiveRestraint() { }
+    public CharaActiveRestraint() : base() { }
 
     public override string ToString()
         => $"Restraint: {{ ID = {Identifier}, Layers = {LayersBitfield}, " +
