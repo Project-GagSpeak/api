@@ -1,6 +1,6 @@
 namespace GagspeakAPI.Enums;
-public enum DrawRequestsType 
-{ 
-    Outgoing, 
-    Incoming 
+public enum DrawRequestsType : sbyte
+{
+    Outgoing,
+    Incoming
 }

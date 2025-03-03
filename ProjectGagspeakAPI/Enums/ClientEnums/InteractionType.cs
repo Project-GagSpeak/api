@@ -5,7 +5,7 @@ namespace GagspeakAPI.Enums;
 
 public enum InteractionType
 {
-    None,    
+    None,
     SwappedRestraint,
     ApplyRestraint,
     LockRestraint,

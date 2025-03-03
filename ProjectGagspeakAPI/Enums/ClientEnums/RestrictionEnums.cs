@@ -12,13 +12,15 @@ public static class FlagEx
     public static bool HasAny(this MoodlePerms flags, MoodlePerms check) => (flags & check) != 0;
 }
 
-public enum TraitApplyType
+public enum ModuleSection
 {
     Restraint,
     Restriction,
     Gag,
     CursedLoot,
+    Puppeteer,
     Pattern,
+    Alarm,
     Trigger,
 }
 
