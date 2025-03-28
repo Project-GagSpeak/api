@@ -39,5 +39,4 @@ global using IPCProfileDataTuple = (
 
 // if we want to ever use a more direct transfer with our light storage of worn equip items, use this.
 // Do note that if we do this, it may get around needing to resolve the information, but we will be transferring more data.
-global using PseudoEquipItem = System.ValueTuple<string, ulong, uint, ushort, ushort, byte, uint>;
 

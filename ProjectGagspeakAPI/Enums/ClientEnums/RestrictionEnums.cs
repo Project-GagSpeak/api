@@ -6,6 +6,7 @@ public static class FlagEx
     // we avoid doing generic types here because it actually increases the processing time in the compiler if we convert to ambiguous types.
     public static bool HasAny(this HardcoreTraits flags, HardcoreTraits check) => (flags & check) != 0;
     public static bool HasAny(this Traits flags, Traits check) => (flags & check) != 0;
+    public static bool HasAny(this Stimulation flags, Stimulation check) => (flags & check) != 0;
     public static bool HasAny(this RestraintFlags flags, RestraintFlags check) => (flags & check) != 0;
     public static bool HasAny(this VisualUpdateFlags flags, VisualUpdateFlags check) => (flags & check) != 0;
     public static bool HasAny(this PuppetPerms flags, PuppetPerms check) => (flags & check) != 0;
@@ -14,6 +15,7 @@ public static class FlagEx
 
 public enum ModuleSection
 {
+    None,
     Restraint,
     Restriction,
     Gag,
@@ -34,12 +36,15 @@ public enum Traits : short
     Blindfolded = 0x08,
     Immobile = 0x10,
     Weighty = 0x20,
-    StimLight = 0x40,
-    StimMild = 0x80,
-    StimHeavy = 0x100,
+}
 
-    AnyHotbarModifier = LegsRestrained | ArmsRestrained | Gagged | Blindfolded | Immobile | Weighty,
-    AnyStim = StimLight | StimMild | StimHeavy,
+public enum Stimulation : byte
+{
+    None    = 0x00,
+    Light   = 0x01,
+    Mild    = 0x02,
+    Heavy   = 0x04,
+    Any = Light | Mild | Heavy,
 }
 
 [Flags]
@@ -70,7 +75,6 @@ public enum RestraintFlags : sbyte
 }
 
 /// <summary> Helps track what changes were made during application or removal of a restriction. </summary>
-/// </summary>
 [Flags]
 public enum VisualUpdateFlags : byte
 {
@@ -93,6 +97,13 @@ public enum MoodleType
 {
     Status = 0,
     Preset = 1
+}
+
+public enum BlindfoldType
+{
+    Light,
+    Sensual,
+    CustomPath,
 }
 
 /// <summary> The kind of change being made to the current restriction (Will be removed later) </summary>

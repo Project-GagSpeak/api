@@ -19,8 +19,8 @@ public record struct DeviceInfo(string DeviceName, int DeviceIndex)
 {
     [Key(0)] public string DeviceName { get; init; } = DeviceName;
     [Key(1)] public int DeviceIndex { get; init; } = DeviceIndex;
-    [Key(2)] public List<Motor> VibrateMotors { get; set; }
-    [Key(3)] public List<Motor> RotateMotors { get; set; }
+    [Key(2)] public List<Motor> VibrateMotors { get; set; } = new List<Motor>();
+    [Key(3)] public List<Motor> RotateMotors { get; set; } = new List<Motor>();
     [Key(4)] public double BatteryLevel { get; set; }
 }
 

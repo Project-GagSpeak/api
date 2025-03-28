@@ -115,12 +115,11 @@ public static partial class EnumToName
     public static string ToName(this Precedence precedence)
     => precedence switch
     {
-        Precedence.VeryLow => "Very Low",
-        Precedence.Low => "Low",
-        Precedence.Default => "Default",
-        Precedence.High => "High",
-        Precedence.VeryHigh => "Very High",
-        Precedence.Highest => "Highest",
+        Precedence.VeryLow  => "Lowest",
+        Precedence.Low      => "Low",
+        Precedence.Default  => "Normal",
+        Precedence.High     => "High",
+        Precedence.Highest  => "Highest",
         _ => "UNK"
     };
 
