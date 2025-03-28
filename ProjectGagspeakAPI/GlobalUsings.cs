@@ -1,3 +1,8 @@
+global using System;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using System.Collections.Generic;
+
 
 // A global tuple statement for moodle status info.
 global using MoodlesStatusInfo = (
@@ -36,7 +41,3 @@ global using IPCProfileDataTuple = (
     System.Collections.Generic.List<(string Name, ushort WorldId, byte CharacterType, ushort CharacterSubType)> Characters,
     int Priority,
     bool IsEnabled);
-
-// if we want to ever use a more direct transfer with our light storage of worn equip items, use this.
-// Do note that if we do this, it may get around needing to resolve the information, but we will be transferring more data.
-
