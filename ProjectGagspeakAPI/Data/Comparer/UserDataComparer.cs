@@ -13,7 +13,7 @@ public class UserDataComparer : IEqualityComparer<UserData>
 
     public bool Equals(UserData? x, UserData? y)
     {
-        if (x == null || y == null) return false;
+        if (x is null || y is null) return false;
         return x.UID.Equals(y.UID, StringComparison.Ordinal);
     }
 

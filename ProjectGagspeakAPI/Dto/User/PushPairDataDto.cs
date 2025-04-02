@@ -9,7 +9,7 @@ namespace GagspeakAPI.Dto.User;
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushPairGagDataUpdateDto(UserData Recipient, DataUpdateType Type) : UserDto(Recipient)
 {
-    public GagLayer Layer { get; init; } = GagLayer.UnderLayer;
+    public int Layer { get; init; } = -1;
     public GagType Gag { get; init; } = GagType.None;
     public string Enabler { get; init; } = string.Empty;
     public Padlocks Padlock { get; init; } = Padlocks.None;

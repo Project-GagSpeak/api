@@ -27,6 +27,7 @@ public interface IGagspeakHub
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
     Task Client_ReceiveHardReconnectMessage(MessageSeverity messageSeverity, string message, ServerState state);
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo); /* Updates the client with the servers current system information */
+
     Task Client_UserAddClientPair(UserPairDto dto); /* sends to a connected user to add the specified user to their pair list */
     Task Client_UserRemoveClientPair(UserDto dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Client_UserAddPairRequest(UserPairRequestDto dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
@@ -95,7 +96,7 @@ public interface IGagspeakHub
     Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
     Task UserSetKinkPlateContent(UserKinkPlateContentDto kinkPlateContentDto); // set profile content of own kinkplate.
     Task UserSetKinkPlatePicture(UserKinkPlatePictureDto kinkPlatePictureDto); // set profile picture of own kinkplate.
-    Task UserUpdateAchievementData(UserAchievementsDto userAchievementData);
+    Task<bool> UserUpdateAchievementData(UserAchievementsDto userAchievementData);
     #endregion Client Pairs & Profile Management
 
 
@@ -119,7 +120,7 @@ public interface IGagspeakHub
     Task<bool> UserClearMoodles(UserDto dto);
 
     // -------- Vibe Server Rooms -------- //
-    /// <summary> Attempts to create a room with the spesified room name. </summary>
+    /// <summary> Attempts to create a room with the specified room name. </summary>
     /// <remarks> Will return false if the room name already exists or if it failed to create. </remarks>
     Task<bool> VibeRoomCreate(string roomName, string password);
 

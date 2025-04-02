@@ -22,7 +22,7 @@ public class UserDtoComparer : IEqualityComparer<UserDto>
      /// <returns></returns>
      public bool Equals(UserDto? x, UserDto? y)
      {
-          if (x == null || y == null) return false;
+          if (x is null || y is null) return false;
           return x.User.UID.Equals(y.User.UID, StringComparison.Ordinal);
      }
 

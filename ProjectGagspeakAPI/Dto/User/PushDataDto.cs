@@ -19,7 +19,7 @@ public record PushIpcDataUpdateDto(List<UserData> Recipients, CharaIPCData IpcDa
 public record PushGagDataUpdateDto(List<UserData> Recipients, DataUpdateType Type)
 {
     // Any of these are only set if they are the new change.
-    public GagLayer Layer { get; init; } = GagLayer.UnderLayer;
+    public int Layer { get; init; } = -1;
     public GagType Gag { get; init; } = GagType.None;
     public string Enabler { get; init; } = string.Empty;
     public Padlocks Padlock { get; init; } = Padlocks.None;

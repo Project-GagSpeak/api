@@ -8,12 +8,21 @@ namespace GagspeakAPI.Data.Character;
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveGags
 {
+    public const int GagSlotCount = 3;
     public CharaActiveGags()
     {
         for (int i = 0; i < GagSlots.Length; i++)
             GagSlots[i] = new ActiveGagSlot();
     }
-    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[3]; // Fixed Length 3
+
+    // Constructor with predefined slots (for server)
+    public CharaActiveGags(ActiveGagSlot[] slots)
+    {
+        for (int i = 0; i < GagSlots.Length; i++)
+            GagSlots[i] = slots[i];
+    }
+
+    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[GagSlotCount]; // Fixed Length 3
     public string ToGagString() => string.Join("\n", GagSlots.Select(g => g.ToString()));
 }
 
@@ -42,10 +51,18 @@ public record ActiveGagSlot : IPadlockableRestriction, IRestrictionValidator
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveRestrictions
 {
+    public const int RestrictionCount = 5;
     public CharaActiveRestrictions()
     {
         for (int i = 0; i < Restrictions.Length; i++)
             Restrictions[i] = new ActiveRestriction();
+    }
+
+    // Constructor with predefined restrictions (for server)
+    public CharaActiveRestrictions(ActiveRestriction[] restrictions)
+    {
+        for (int i = 0; i < Restrictions.Length; i++)
+            Restrictions[i] = restrictions[i];
     }
 
     public ActiveRestriction[] Restrictions { get; init; } = new ActiveRestriction[5]; // Fixed Length 5
