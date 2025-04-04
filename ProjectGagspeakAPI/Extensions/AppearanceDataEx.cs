@@ -42,7 +42,7 @@ public static class GagDataEx
 
         for (int i = 0; i < gagData.GagSlots.Length; i++)
             if (gagData.GagSlots[i].GagItem is not GagType.None)
-                trackingKeys.Add(((GagLayer)i).ToString() + '_' + gagData.GagSlots[i].GagItem.GagName());
+                trackingKeys.Add(i + '_' + gagData.GagSlots[i].GagItem.GagName());
 
         return trackingKeys;
     }

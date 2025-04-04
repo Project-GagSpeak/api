@@ -12,6 +12,7 @@ public enum DataUpdateType
     Swapped,
     Applied,
     AppliedCursed,
+    LayerToggled,
     Locked,
     Unlocked,
     Removed,

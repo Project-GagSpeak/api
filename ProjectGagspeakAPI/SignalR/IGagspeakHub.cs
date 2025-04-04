@@ -17,7 +17,7 @@ namespace GagspeakAPI.SignalR;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 12;
+    const int ApiVersion = 13;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
@@ -122,56 +122,56 @@ public interface IGagspeakHub
     // -------- Vibe Server Rooms -------- //
     /// <summary> Attempts to create a room with the specified room name. </summary>
     /// <remarks> Will return false if the room name already exists or if it failed to create. </remarks>
-    Task<bool> VibeRoomCreate(string roomName, string password);
+    Task<GsApiVibeErrorCodes> RoomCreate(string roomName, string password); // Was bool
 
     /// <summary> Sends an invite to a user to join a room. </summary>
-    Task<bool> SendRoomInvite(VibeRoomInviteDto dto);
+    Task<GsApiVibeErrorCodes> SendRoomInvite(VibeRoomInviteDto dto); // Was bool
 
     /// <summary> Changes the password of an existing room. </summary>
-    Task<bool> ChangeRoomPassword(string roomName, string newPassword);
+    Task<GsApiVibeErrorCodes> ChangeRoomPassword(string roomName, string newPassword); // Was bool
 
     /// <summary> Allows a user to join the room. </summary>
-    Task<List<VibeRoomKinksterFullDto>> VibeRoomJoin(string roomName, string password, VibeRoomKinkster dto);
+    Task<List<VibeRoomKinksterFullDto>> RoomJoin(string roomName, string password, VibeRoomKinkster dto);
 
     /// <summary> Allows a user to leave the room. </summary>
-    Task<bool> VibeRoomLeave();
+    Task<GsApiVibeErrorCodes> RoomLeave(); // Was bool
 
     /// <summary> Grants access to a user in the room. </summary>
-    Task<bool> VibeRoomGrantAccess(UserDto allowedUser);
+    Task<GsApiVibeErrorCodes> RoomGrantAccess(UserDto allowedUser); // Was bool
 
     /// <summary> Revokes access from a user in the room. </summary>
-    Task<bool> VibeRoomRevokeAccess(UserDto allowedUser);
+    Task<GsApiVibeErrorCodes> RoomRevokeAccess(UserDto allowedUser); // Was bool
 
     /// <summary> Pushes device update (e.g., for battery level, motor settings) to the room. </summary>
-    Task VibeRoomPushDeviceUpdate(DeviceInfo deviceInfo);
+    Task<GsApiVibeErrorCodes> RoomPushDeviceUpdate(DeviceInfo deviceInfo);
 
     /// <summary> Sends a data stream (vibration/rotation data) to users in the room. </summary>
-    Task VibeRoomSendDataStream(SexToyDataStreamDto dataStream);
+    Task<GsApiVibeErrorCodes> RoomSendDataStream(SexToyDataStreamDto dataStream);
 
     /// <summary> Sends a chat message to the room. </summary>
-    Task VibeRoomSendChat(string roomName, string message);
+    Task<GsApiVibeErrorCodes> RoomSendChat(string roomName, string message);
 
 
     #region Data & Permission Changes
     // -------- Client Change Own Data >> Update to Pairs (Bool returns help with InvokableActions -------- //
-    Task UserPushData(PushCompositeDataMessageDto dto);
+    Task<GsApiErrorCodes> UserPushData(PushCompositeDataMessageDto dto);
     Task UserPushDataIpc(PushIpcDataUpdateDto dto);
-    Task<bool> UserPushDataGags(PushGagDataUpdateDto dto);
-    Task<bool> UserPushDataRestrictions(PushRestrictionDataUpdateDto dto);
-    Task<bool> UserPushDataRestraint(PushRestraintDataUpdateDto dto);
-    Task<bool> UserPushDataCursedLoot(PushCursedLootDataUpdateDto dto);
-    Task<bool> UserPushDataOrders(PushOrdersDataUpdateDto dto);
-    Task<bool> UserPushDataAlias(PushAliasDataUpdateDto dto);
-    Task<bool> UserPushDataToybox(PushToyboxDataUpdateDto dto);
-    Task UserPushDataLightStorage(PushLightStorageMessageDto dto);
+    Task<GsApiErrorCodes> UserPushDataGags(PushGagDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataRestrictions(PushRestrictionDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataRestraint(PushRestraintDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataCursedLoot(PushCursedLootDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataOrders(PushOrdersDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataAlias(PushAliasDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataToybox(PushToyboxDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushDataLightStorage(PushLightStorageMessageDto dto);
 
 
     // ------ Client Change Pair Data >> Update to Pairs ------ //
-    Task UserPushPairDataGags(PushPairGagDataUpdateDto dto);
-    Task UserPushPairDataRestrictions(PushPairRestrictionDataUpdateDto dto);
-    Task UserPushPairDataRestraint(PushPairRestraintDataUpdateDto dto);
-    Task UserPushPairDataAliasStorage(PushPairAliasDataUpdateDto dto);
-    Task UserPushPairDataToybox(PushPairToyboxDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairDataGags(PushPairGagDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairDataRestrictions(PushPairRestrictionDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairDataRestraint(PushPairRestraintDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairDataAliasStorage(PushPairAliasDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairDataToybox(PushPairToyboxDataUpdateDto dto);
 
 
     // ------ Permission Updates ------ // 
@@ -180,9 +180,11 @@ public interface IGagspeakHub
     Task UserUpdateOwnGlobalPerm(UserGlobalPermChangeDto dto);
     Task UserUpdateOwnPairPerm(UserPairPermChangeDto dto);
     Task UserUpdateOwnPairPermAccess(UserPairAccessChangeDto dto);
+
     /// <summary> Push an update you made to another pairs GlobalPermissions to the server. </summary>
     /// <remarks> If you are not given explicit access to edit this, it will be rejected. </remarks>
     Task UserUpdateOtherGlobalPerm(UserGlobalPermChangeDto dto);
+
     /// <summary> Push an update you made to another pairs PairPermissions to the server. </summary>
     /// <remarks> If you are not given explicit access to edit this, it will be rejected. </remarks>
     Task UserUpdateOtherPairPerm(UserPairPermChangeDto dto);

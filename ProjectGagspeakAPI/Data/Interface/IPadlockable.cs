@@ -1,14 +1,17 @@
 using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Data.Interfaces;
-public interface IPadlockableRestriction
-{
-    string Enabler { get; set; }
-    Padlocks Padlock { get; set; }
-    string Password { get; set; }
-    DateTimeOffset Timer { get; set; }
-    string PadlockAssigner { get; set; }
 
+public interface IPadlockable
+{
+    string Enabler { get; }
+    Padlocks Padlock { get; }
+    string Password { get; }
+    DateTimeOffset Timer { get; }
+    string PadlockAssigner { get; }
+}
+public interface IPadlockableRestriction : IPadlockable
+{
     /// <summary> Retrieves if the padlock is locked. </summary>
     /// <returns> True if Padlock is not Padlock.None </returns>
     bool IsLocked();

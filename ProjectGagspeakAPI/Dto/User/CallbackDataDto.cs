@@ -16,7 +16,7 @@ public record CallbackIpcDataDto(UserData User, UserData Enactor, CharaIPCData N
 [MessagePackObject(keyAsPropertyName: true)]
 public record CallbackGagDataDto(UserData User, UserData Enactor, ActiveGagSlot NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
 {
-    public GagLayer AffectedSlot { get; init; } = GagLayer.UnderLayer;
+    public int AffectedLayer { get; init; } = -1;
     public GagType PreviousGag { get; init; } = GagType.None;
     public Padlocks PreviousPadlock { get; init; } = Padlocks.None;
 }
@@ -24,7 +24,7 @@ public record CallbackGagDataDto(UserData User, UserData Enactor, ActiveGagSlot 
 [MessagePackObject(keyAsPropertyName: true)]
 public record CallbackRestrictionDataDto(UserData User, UserData Enactor, ActiveRestriction NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
 {
-    public int AffectedIndex { get; init; } = -1;
+    public int AffectedLayer { get; init; } = -1;
     public Guid PreviousRestriction { get; init; } = Guid.Empty;
     public Padlocks PreviousPadlock { get; init; } = Padlocks.None;
 }
@@ -34,15 +34,15 @@ public record CallbackRestrictionDataDto(UserData User, UserData Enactor, Active
 public record CallbackRestraintDataDto(UserData User, UserData Enactor, CharaActiveRestraint NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
 {
     public Guid PreviousRestraint { get; init; } = Guid.Empty;
+    public byte PreviousLayers { get; init; } = 0b00000;
     public Padlocks PreviousPadlock { get; init; } = Padlocks.None;
 }
 
 
 [MessagePackObject(keyAsPropertyName: true)] // Should not need an update type for this, just track latest data and last interacted.
-public record CallbackCursedLootDto(UserData User, List<Guid> NewActiveItems) : UserDto(User)
+public record CallbackCursedLootDto(UserData User, IEnumerable<Guid> NewActiveItems) : UserDto(User)
 {
-    public Guid LastInteractedItem { get; init; } = Guid.Empty;
-    public DateTimeOffset ReleaseTime { get; init; } = DateTimeOffset.MinValue;
+    public CursedItemInfo InteractedLoot { get; init; }
 }
 
 

@@ -31,8 +31,8 @@ public record PushGagDataUpdateDto(List<UserData> Recipients, DataUpdateType Typ
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushRestrictionDataUpdateDto(List<UserData> Recipients, DataUpdateType Type)
 {
-    public int AffectedIndex { get; init; } = -1;
-    public Guid ActiveSetId { get; init; } = Guid.Empty;
+    public int Layer { get; init; } = -1;
+    public Guid Identifier { get; init; } = Guid.Empty;
     public string Enabler { get; init; } = string.Empty;
     public Padlocks Padlock { get; init; } = Padlocks.None;
     public string Password { get; init; } = string.Empty;
@@ -55,7 +55,7 @@ public record PushRestraintDataUpdateDto(List<UserData> Recipients, DataUpdateTy
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushCursedLootDataUpdateDto(List<UserData> Recipients, IEnumerable<Guid> ActiveItems)
 {
-    public CursedItemInfo LootIdInteracted { get; init; } // The Cursed Item being applied or removed.
+    public CursedItemInfo InteractedLoot { get; init; } // The Cursed Item being applied or removed.
 }
 
 
@@ -63,10 +63,10 @@ public record PushCursedLootDataUpdateDto(List<UserData> Recipients, IEnumerable
 public record struct CursedItemInfo
 {
     [Key(0)] public Guid LootId { get; set; }
-    [Key(1)] public Guid RestrictionRefId { get; set; }
-    [Key(2)] public DateTimeOffset ReleaseTime { get; set; }
+    [Key(1)] public GagType GagItem { get; set; }
+    [Key(2)] public Guid RestrictionRefId { get; set; }
+    [Key(3)] public DateTimeOffset ReleaseTime { get; set; }
 }
-
 
 
 [MessagePackObject(keyAsPropertyName: true)]
