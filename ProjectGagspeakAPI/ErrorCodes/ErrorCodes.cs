@@ -1,5 +1,3 @@
-using GagspeakAPI.Enums;
-
 namespace GagspeakAPI;
 
 /// <summary> Generic Return Codes for API calls. </summary>
@@ -49,6 +47,9 @@ public enum GsApiErrorCodes
 
     /// <summary> the DataUpdateKind was not an expected type. </summary>
     BadDataUpdateKind = 0x2000,
+
+    /// <summary> Not Connected </summary>
+    NotConnected = 0x4000,
 }
 
 public enum GsApiVibeErrorCodes
@@ -63,6 +64,9 @@ public enum GsApiVibeErrorCodes
     NoEntryFound = 0x04,
     /// <summary> Was unable to remove the entry from the server. </summary>
     DeleteFailed = 0x08,
+
+    /// <summary> Not Currently Connected. </summary>
+    NotConnected = 0x10,
 }
 
 public enum GsApiPairErrorCodes
@@ -132,6 +136,9 @@ public enum GsApiPairErrorCodes
     // Special Role Restrictions (0x40000)
     /// <summary> The user is not the assigned lock owner. </summary>
     NotLockAssigner = 0x40000,
+
+    /// <summary> Not Currently Connected. </summary>
+    NotConnected = 0x80000,
 }
 
 

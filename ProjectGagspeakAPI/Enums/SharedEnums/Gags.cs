@@ -1,5 +1,5 @@
 namespace GagspeakAPI.Enums;
-/*public enum GagLayer
+/*public enum int
 {
     UnderLayer = 0,
     MiddleLayer = 1,
@@ -8,7 +8,7 @@ namespace GagspeakAPI.Enums;
 
 public static class GagEx
 {
-    public static int ToIndex(this GagLayer layer) => (int)layer;
+    public static int ToIndex(this int layer) => (int)layer;
 }*/
 
 public enum GagType

@@ -248,7 +248,7 @@ public static partial class EnumToName
             LoggerType.PairHandlers => "Pair Handlers",
             LoggerType.OnlinePairs => "Online Pairs",
             LoggerType.VisiblePairs => "Visible Pairs",
-            LoggerType.PrivateRooms => "Private Rooms",
+            LoggerType.VibeRooms => "Vibe Rooms",
             LoggerType.GameObjects => "Game Objects",
 
             LoggerType.Cosmetics => "Cosmetics",

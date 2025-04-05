@@ -55,7 +55,7 @@ public enum LoggerType
     PairHandlers,
     OnlinePairs,
     VisiblePairs,
-    PrivateRooms,
+    VibeRooms,
     GameObjects,
 
     // services

@@ -33,7 +33,7 @@ public static class GagDataEx
     public static List<string> CurrentGagNames(this CharaActiveGags gagData) => gagData.GagSlots.Select(gag => gag.GagItem.GagName()).ToList();
 
     /// <summary>
-    /// Tracking keys use the format: ((GagLayer)i).ToString() + '_' + gagType.GagName()
+    /// Tracking keys use the format: ((int)i).ToString() + '_' + gagType.GagName()
     /// </summary>
     /// <returns> The list of tracking keys for all active gags. </returns>
     public static List<string> ActiveGagTrackingKeys(this CharaActiveGags gagData)
