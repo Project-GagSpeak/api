@@ -30,9 +30,9 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserUpdateAllPerms(Action<BulkUpdatePermsAllDto> act);
     void OnUserUpdateAllGlobalPerms(Action<BulkUpdatePermsGlobalDto> act);
     void OnUserUpdateAllUniquePerms(Action<BulkUpdatePermsUniqueDto> act);
-    void OnUserUpdatePairPermsGlobal(Action<UserGlobalPermChangeDto> act);
-    void OnUserUpdatePairPerms(Action<UserPairPermChangeDto> act);
-    void OnUserUpdatePairPermAccess(Action<UserPairAccessChangeDto> act);
+    void OnUserUpdateGlobalPerm(Action<UserGlobalPermChangeDto> act);
+    void OnUserUpdateUniquePerm(Action<UserPairPermChangeDto> act);
+    void OnUserUpdatePermAccess(Action<UserPairAccessChangeDto> act);
 
     void OnUserReceiveDataComposite(Action<OnlineUserCompositeDataDto> act);
     void OnUserReceiveDataIpc(Action<CallbackIpcDataDto> act);

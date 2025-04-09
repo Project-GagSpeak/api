@@ -43,9 +43,9 @@ public interface IGagspeakHub
     Task Client_UserUpdateAllPerms(BulkUpdatePermsAllDto dto);
     Task Client_UserUpdateAllGlobalPerms(BulkUpdatePermsGlobalDto dto);
     Task Client_UserUpdateAllUniquePerms(BulkUpdatePermsUniqueDto dto);
-    Task Client_UserUpdatePairPermsGlobal(UserGlobalPermChangeDto dto);
-    Task Client_UserUpdatePairPerms(UserPairPermChangeDto dto);
-    Task Client_UserUpdatePairPermAccess(UserPairAccessChangeDto dto);
+    Task Client_UserUpdateGlobalPerm(UserGlobalPermChangeDto dto);
+    Task Client_UserUpdateUniquePerm(UserPairPermChangeDto dto);
+    Task Client_UserUpdatePermAccess(UserPairAccessChangeDto dto);
 
     /// <summary> Callbacks to update own or pair data. </summary>
     Task Client_UserReceiveDataComposite(OnlineUserCompositeDataDto dto);

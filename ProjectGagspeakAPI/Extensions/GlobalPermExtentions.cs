@@ -1,5 +1,6 @@
 using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Data.Struct;
+using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Extensions;
 
@@ -70,5 +71,19 @@ public static class GlobalPermExtensions
     {
         if (p.ChatInputBlocked.NullOrEmpty() || !p.ChatInputBlocked.IsPermDevotional()) return true;
         return p.ChatInputBlocked.HardcorePermUID() == uid;
+    }
+
+    public static InteractionType PermChangeType(this UserGlobalPermissions p, string propertyName, string newValue)
+    {
+        return propertyName switch
+        {
+            nameof(UserGlobalPermissions.ForcedFollow) => p.ForcedFollow != newValue ? InteractionType.ForcedFollow : InteractionType.None,
+            nameof(UserGlobalPermissions.ForcedEmoteState) => p.ForcedEmoteState != newValue ? InteractionType.ForcedEmoteState : InteractionType.None,
+            nameof(UserGlobalPermissions.ForcedStay) => p.ForcedStay != newValue ? InteractionType.ForcedStay : InteractionType.None,
+            nameof(UserGlobalPermissions.ChatBoxesHidden) => p.ChatBoxesHidden != newValue ? InteractionType.ForcedChatVisibility : InteractionType.None,
+            nameof(UserGlobalPermissions.ChatInputHidden) => p.ChatInputHidden != newValue ? InteractionType.ForcedChatInputVisibility : InteractionType.None,
+            nameof(UserGlobalPermissions.ChatInputBlocked) => p.ChatInputBlocked != newValue ? InteractionType.ForcedChatInputBlock : InteractionType.None,
+            _ => InteractionType.ForcedPermChange,
+        };
     }
 }

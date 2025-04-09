@@ -6,10 +6,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
-    <PropertyGroup>
-        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    </PropertyGroup>
-
+    <!-- Try and see if we can convert this entirely to an x64 platform. 
+          But otherwise keep anyCPU-->
     <ItemGroup>
 		<PackageReference Include="MessagePack.Annotations" Version="3.1.3" />
 	</ItemGroup>
