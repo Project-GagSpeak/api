@@ -8,6 +8,8 @@ public static class Globals
     public const int MaxGagSlots = 3;
     public const int MaxRestrictionSlots = 5;
     public const int MaxRestraintLayers = 5;
+    public const int MaxRadioOptionCount = 2;
+
     /// <summary>
     /// Used to denote if an action was applied by the client and not another pair.
     /// </summary>
