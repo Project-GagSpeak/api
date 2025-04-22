@@ -45,7 +45,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveDataToybox(Action<CallbackToyboxDataDto> act);
     void OnUserReceiveLightStorage(Action<CallbackLightStorageDto> act);
 
-    void OnUserReceiveShockInstruction(Action<ShockCollarActionDto> act);
+    void OnUserReceiveShockInstruction(Action<PiShockAction> act);
 
     void OnRoomJoin(Action<VibeRoomKinksterFullDto> act);
     void OnRoomLeave(Action<VibeRoomKinksterFullDto> act);

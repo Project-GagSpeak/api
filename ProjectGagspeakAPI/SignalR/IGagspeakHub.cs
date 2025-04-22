@@ -59,7 +59,7 @@ public interface IGagspeakHub
     Task Client_UserReceiveDataToybox(CallbackToyboxDataDto dto);
     Task Client_UserReceiveLightStorage(CallbackLightStorageDto dto);
 
-    Task Client_UserReceiveShockInstruction(ShockCollarActionDto dto); /* Receive a shock instruction from the server */
+    Task Client_UserReceiveShockInstruction(PiShockAction dto); /* Receive a shock instruction from the server */
 
     Task Client_RoomJoin(VibeRoomKinksterFullDto user); /* Callback for when a user joins a room. */
     Task Client_RoomLeave(VibeRoomKinksterFullDto user); /* Callback for when a user leaves a room. */
@@ -91,7 +91,7 @@ public interface IGagspeakHub
 
     // --------- Profile & Misc --------- //
     Task SendGlobalChat(GlobalChatMessageDto dto);
-    Task UserShockActionOnPair(ShockCollarActionDto dto);
+    Task UserShockActionOnPair(PiShockAction dto);
     Task<UserKinkPlateDto> UserGetKinkPlate(UserDto dto); // get the profile of a user
     Task UserReportKinkPlate(UserKinkPlateReportDto userDto); // hopefully this is never used x-x...
     Task UserSetKinkPlateContent(UserKinkPlateContentDto kinkPlateContentDto); // set profile content of own kinkplate.

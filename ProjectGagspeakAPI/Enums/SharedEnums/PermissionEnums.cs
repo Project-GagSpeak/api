@@ -62,11 +62,3 @@ public enum StickyWindowType
     ClientPermsForPair,
     PairActionFunctions,
 }
-
-public enum ImageDataType
-{
-    None,
-    Restrictions,
-    Restraints,
-    Blindfolds,
-}

@@ -129,13 +129,6 @@ public enum MoodleType
     Preset = 1
 }
 
-public enum BlindfoldType
-{
-    Light,
-    Sensual,
-    CustomPath,
-}
-
 /// <summary> The kind of change being made to the current restriction (Will be removed later) </summary>
 public enum StorageItemChangeType
 {
@@ -149,8 +142,9 @@ public enum RestrictionType
 {
     Normal = 0,
     Blindfold = 1,
-    Collar = 2,
-    Gag = 3,
+    Hypnotic = 2,
+    Collar = 3,
+    Gag = 4,
 }
 
 /// <summary> The type of slot that is being applied. </summary>
