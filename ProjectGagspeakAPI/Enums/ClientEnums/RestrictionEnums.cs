@@ -6,13 +6,16 @@ namespace GagspeakAPI.Enums;
 public static class FlagEx
 {
     // we avoid doing generic types here because it actually increases the processing time in the compiler if we convert to ambiguous types.
-    public static bool HasAny(this HardcoreTraits flags, HardcoreTraits check) => (flags & check) != 0;
+    public static bool HasAny(this HardcoreState flags, HardcoreState check) => (flags & check) != 0;
     public static bool HasAny(this Traits flags, Traits check) => (flags & check) != 0;
     public static bool HasAny(this Stimulation flags, Stimulation check) => (flags & check) != 0;
     public static bool HasAny(this RestraintFlags flags, RestraintFlags check) => (flags & check) != 0;
     public static bool HasAny(this VisualUpdateFlags flags, VisualUpdateFlags check) => (flags & check) != 0;
     public static bool HasAny(this PuppetPerms flags, PuppetPerms check) => (flags & check) != 0;
     public static bool HasAny(this MoodlePerms flags, MoodlePerms check) => (flags & check) != 0;
+    public static bool HasAny(this HypnoAttributes flags, HypnoAttributes check) => (flags & check) != 0;
+
+
 
     /// <summary> Strictly to be used for debugging purposes. </summary>
     /// <param name="flags"> The flags to check. </param>
@@ -79,7 +82,7 @@ public enum Stimulation : byte
 }
 
 [Flags]
-public enum HardcoreTraits : byte
+public enum HardcoreState : byte
 {
     None             = 0x00,
     ForceFollow      = 0x01,

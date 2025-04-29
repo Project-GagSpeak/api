@@ -1,5 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data;
 using GagspeakAPI.Data.Permissions;
 using MessagePack;
 

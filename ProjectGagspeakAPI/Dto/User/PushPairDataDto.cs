@@ -1,5 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data;
 using GagspeakAPI.Data.Interfaces;
 using GagspeakAPI.Enums;
 using MessagePack;
@@ -46,10 +46,6 @@ public record PushPairRestraintDataUpdateDto(UserData Recipient, DataUpdateType 
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushPairOrdersDataUpdateDto(UserData Recipient, DataUpdateType Type) : UserDto(Recipient);
-
-
-[MessagePackObject(keyAsPropertyName: true)] // should only EVER be called for a name change purpose, reject otherwise.
-public record PushPairAliasDataUpdateDto(UserData Recipient, CharaAliasData LastAliasData, DataUpdateType Type) : UserDto(Recipient);
 
 
 [MessagePackObject(keyAsPropertyName: true)]

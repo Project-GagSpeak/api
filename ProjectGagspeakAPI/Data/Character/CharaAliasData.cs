@@ -1,68 +1,79 @@
-using GagspeakAPI.Data;
 using GagspeakAPI.Data.Interfaces;
-using GagspeakAPI.Enums;
 using MessagePack;
-using System.Linq;
 
-namespace GagspeakAPI.Data.Character;
+namespace GagspeakAPI.Data;
 
-/// <summary>
-/// CharacterData class stores all of the user's settings, permissions, and apperance data
-/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharaAliasData
+public class PairAliasStorage : SortedList<string, NamedAliasStorage>
 {
-    public bool HasNameStored { get; set; } = false;
-    public string ListenerName { get; set; } = string.Empty;
-    public List<AliasTrigger> AliasList { get; set; } = new List<AliasTrigger>();
+    public PairAliasStorage()
+    { }
 
-    [IgnoreMember]
-    public string ExtractedListenerName => HasNameStored ? ListenerName : "Not Yet Listening!";
+    // Helpful for config read-write
+    public PairAliasStorage(SortedList<string, NamedAliasStorage> init) 
+        : base(init) 
+    { }
+
+    public bool NameIsStored(string key) => this.TryGetValue(key, out var res) && !string.IsNullOrEmpty(res.StoredNameWorld);
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record AliasTrigger
+public class NamedAliasStorage
 {
+    public string StoredNameWorld { get; set; } = string.Empty;
+    public AliasStorage Storage { get; set; } = new AliasStorage();
+
+    [IgnoreMember]
+    public string ExtractedListenerName => string.IsNullOrEmpty(StoredNameWorld) ? "Not Yet Listening!" : StoredNameWorld;
+}
+
+// This can double as a use for a GlobalAliasStorage.
+[MessagePackObject(keyAsPropertyName: true)]
+public class AliasStorage : List<AliasTrigger>
+{
+    public AliasStorage()
+    { }
+
+    public AliasStorage(IEnumerable<AliasTrigger> init)
+        : base(init)
+    { }
+}
+
+[MessagePackObject(keyAsPropertyName: true)]
+public class AliasTrigger : IEditableStorageItem<AliasTrigger>
+{
+    /// <summary> Unique identifier for the trigger. </summary>
     public Guid Identifier { get; set; } = Guid.NewGuid();
+
+    /// <summary> Whether the trigger is enabled or not. </summary>
     public bool Enabled { get; set; } = false;
+
+    /// <summary> The label for the trigger. </summary>
     public string Label { get; set; } = string.Empty;
 
     /// <summary> The input command that triggers the output command </summary>
     public string InputCommand { get; set; } = string.Empty;
 
-    /// <summary> Stores executions with unique types. </summary>
-    public Dictionary<InvokableActionType, InvokableGsAction> Executions { get; set; } = new();
+    /// <summary> Stores Actions with unique types. </summary>
+    public HashSet<InvokableGsAction> Actions { get; set; } = new HashSet<InvokableGsAction>();
 
-    public AliasTrigger() { }
+    public AliasTrigger() 
+    { }
 
     public AliasTrigger(AliasTrigger other, bool keepId)
     {
         Identifier = keepId ? other.Identifier : Guid.NewGuid();
-        Enabled = other.Enabled;
-        Label = other.Label;
-        InputCommand = other.InputCommand;
-        Executions = other.Executions.ToDictionary(x => x.Key, x => x.Value);
+        ApplyChanges(other);
     }
 
-    /// <summary> Useful for combos displaying new kinds of actions that can be added. </summary>
-    public IEnumerable<InvokableActionType> UnregisteredTypes()
-        => Enum.GetValues<InvokableActionType>().Except(Executions.Keys).Except(new[] { InvokableActionType.SexToy });
+    public AliasTrigger Clone(bool keepId = false)
+        => new AliasTrigger(this, keepId);
 
-    /// <summary> Useful for knowing if any singular type is already present in the dictionary. </summary>
-    public bool HasActionType(InvokableActionType actionType) => Executions.ContainsKey(actionType);
-
-    /// <summary> Appends the action to the dictionary. A helper function. </summary>
-    public void AddActionForType(InvokableActionType type)
+    public void ApplyChanges(AliasTrigger changedItem)
     {
-        Executions[type] = type switch
-        {
-            InvokableActionType.TextOutput => new TextAction(),
-            InvokableActionType.Gag => new GagAction(),
-            InvokableActionType.Restraint => new RestraintAction(),
-            InvokableActionType.Moodle => new MoodleAction(),
-            InvokableActionType.ShockCollar => new PiShockAction(),
-            InvokableActionType.SexToy => new SexToyAction(),
-            _ => throw new Exception("Invalid Execution Type")
-        };
+        Enabled = changedItem.Enabled;
+        Label = changedItem.Label;
+        InputCommand = changedItem.InputCommand;
+        Actions = changedItem.Actions.ToHashSet();
     }
 }

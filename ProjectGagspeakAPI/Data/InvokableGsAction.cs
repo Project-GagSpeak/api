@@ -2,19 +2,20 @@ using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Interfaces;
-
-public abstract record InvokableGsAction
+public abstract record InvokableGsAction : IEquatable<InvokableGsAction>
 {
-    public abstract InvokableActionType ExecutionType { get; }
+    public abstract InvokableActionType ActionType { get; }
 
-    // Add hash set filter codes here to compare by execution type.
-    public override int GetHashCode() => ExecutionType.GetHashCode();
+    public virtual bool Equals(InvokableGsAction? other)
+        => other is not null && ActionType == other.ActionType;
+
+    public override int GetHashCode() => (int)ActionType;
 }
 
 
 public record TextAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.TextOutput;
+    public override InvokableActionType ActionType => InvokableActionType.TextOutput;
     public string OutputCommand { get; set; } = string.Empty;
     public TextAction() { }
     public TextAction(TextAction other) : base(other) 
@@ -23,7 +24,7 @@ public record TextAction : InvokableGsAction
 
 public record GagAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.Gag;
+    public override InvokableActionType ActionType => InvokableActionType.Gag;
     public int LayerIdx { get; init; } = -1; // -1 means pick any available.
     public NewState NewState { get; set; } = NewState.Enabled;
     public GagType GagType { get; set; } = GagType.BallGag;
@@ -37,7 +38,7 @@ public record GagAction : InvokableGsAction
 
 public record RestrictionAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.Restriction;
+    public override InvokableActionType ActionType => InvokableActionType.Restriction;
     public int LayerIdx { get; init; } = -1; // -1 means pick any available.
     public NewState NewState { get; set; } = NewState.Enabled;
     public Guid RestrictionId { get; set; } = Guid.Empty;
@@ -51,7 +52,7 @@ public record RestrictionAction : InvokableGsAction
 
 public record RestraintAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.Restraint;
+    public override InvokableActionType ActionType => InvokableActionType.Restraint;
     public NewState NewState { get; set; } = NewState.Enabled;
     public Guid RestrictionId { get; set; } = Guid.Empty;
     public Padlocks Padlock { get; set; } = Padlocks.None;
@@ -64,7 +65,7 @@ public record RestraintAction : InvokableGsAction
 
 public record MoodleAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.Moodle;
+    public override InvokableActionType ActionType => InvokableActionType.Moodle;
     public MoodleType Type { get; set; } = MoodleType.Status;
     public IMoodleApi MoodleItem { get; set; } = new MoodleStatusApi(new MoodlesStatusInfo());
     public MoodleAction() { }
@@ -74,7 +75,7 @@ public record MoodleAction : InvokableGsAction
 
 public record PiShockAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.ShockCollar;
+    public override InvokableActionType ActionType => InvokableActionType.ShockCollar;
     public ShockAction ShockInstruction { get; set; } = new ShockAction();
     public PiShockAction() { }
     public PiShockAction(PiShockAction other) : base(other)
@@ -89,7 +90,7 @@ public record PiShockAction : InvokableGsAction
 [MessagePackObject(keyAsPropertyName: true)]
 public record SexToyAction : InvokableGsAction
 {
-    public override InvokableActionType ExecutionType => InvokableActionType.SexToy;
+    public override InvokableActionType ActionType => InvokableActionType.SexToy;
     public TimeSpan StartAfter { get; set; } = TimeSpan.Zero;
     public TimeSpan EndAfter { get; set; } = TimeSpan.Zero;
     public List<DeviceAction> DeviceActions { get; set; } = new List<DeviceAction>();

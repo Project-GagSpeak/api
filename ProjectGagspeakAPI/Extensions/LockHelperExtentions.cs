@@ -1,4 +1,4 @@
-using GagspeakAPI.Data.Interfaces;
+using GagspeakAPI.Data;
 using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Enums;
 using System.Text;
@@ -51,7 +51,7 @@ public static class PadlockValidation
 
     /// <summary> Validates if within allowed time. </summary>
     private static bool IsValidTime(string time, TimeSpan maxTime)
-        => PadlockEx.TryParseTimeSpan(time, out TimeSpan ts) && ts <= maxTime;
+        => PadlockEx.TryParseTimeSpan(time, out var ts) && ts <= maxTime;
 
     /// <summary> Validates a 20 character password with no spaces </summary>
     public static bool IsValidPass(string password)
@@ -133,7 +133,7 @@ public static class PadlockEx
 
     public static IEnumerable<Padlocks> GetLocksForPair(UserPairPermissions permissions)
     {
-        HashSet<Padlocks> allowedLocks = new HashSet<Padlocks>(AllLocks);
+        var allowedLocks = new HashSet<Padlocks>(AllLocks);
         if (!permissions.PermanentLocks) allowedLocks.ExceptWith(PermanentLocks);
         if (!permissions.OwnerLocks) allowedLocks.ExceptWith(OwnerLocks);
         if (!permissions.DevotionalLocks) allowedLocks.ExceptWith(DevotionalLocks);
@@ -143,18 +143,18 @@ public static class PadlockEx
     public static bool TryParseTimeSpan(string input, out TimeSpan result)
     {
         result = TimeSpan.Zero;
-        Regex regex = new Regex(@"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
-        Match match = regex.Match(input);
+        var regex = new Regex(@"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
+        var match = regex.Match(input);
 
         if (!match.Success)
         {
             return false;
         }
 
-        int days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
-        int hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
-        int minutes = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
-        int seconds = match.Groups[4].Success ? int.Parse(match.Groups[4].Value) : 0;
+        var days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
+        var hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
+        var minutes = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
+        var seconds = match.Groups[4].Success ? int.Parse(match.Groups[4].Value) : 0;
 
         result = new TimeSpan(days, hours, minutes, seconds);
         return true;
@@ -163,18 +163,18 @@ public static class PadlockEx
     public static DateTimeOffset GetEndTimeUTC(this string input)
     {
         // Match days, hours, minutes, and seconds in the input string
-        Match match = Regex.Match(input, @"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
+        var match = Regex.Match(input, @"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
 
         if (match.Success)
         {
             // Parse days, hours, minutes, and seconds 
-            int.TryParse(match.Groups[1].Value, out int days);
-            int.TryParse(match.Groups[2].Value, out int hours);
-            int.TryParse(match.Groups[3].Value, out int minutes);
-            int.TryParse(match.Groups[4].Value, out int seconds);
+            int.TryParse(match.Groups[1].Value, out var days);
+            int.TryParse(match.Groups[2].Value, out var hours);
+            int.TryParse(match.Groups[3].Value, out var minutes);
+            int.TryParse(match.Groups[4].Value, out var seconds);
 
             // Create a TimeSpan from the parsed values
-            TimeSpan duration = new TimeSpan(days, hours, minutes, seconds);
+            var duration = new TimeSpan(days, hours, minutes, seconds);
             // Add the duration to the current DateTime to get a DateTimeOffset
             return DateTimeOffset.UtcNow.Add(duration);
         }
@@ -185,13 +185,13 @@ public static class PadlockEx
 
     public static string GetEndTimeOffsetString(this DateTimeOffset endTime)
     {
-        TimeSpan timeSpan = endTime - DateTimeOffset.UtcNow;
+        var timeSpan = endTime - DateTimeOffset.UtcNow;
         return timeSpan.ToGsRemainingTime();
     }
 
     public static string ToGsRemainingTime(this TimeSpan timeSpan)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         if (timeSpan.Days > 0) sb.Append($"{timeSpan.Days}d ");
         if (timeSpan.Hours > 0) sb.Append($"{timeSpan.Hours}h ");
         if (timeSpan.Minutes > 0) sb.Append($"{timeSpan.Minutes}m ");
@@ -201,17 +201,17 @@ public static class PadlockEx
 
     public static string ToGsRemainingTimeFancy(this DateTimeOffset lockEndTime)
     {
-        TimeSpan remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
+        var remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
         // if the remaining timespan is not a negative value, output the time.
         if (remainingTime.TotalSeconds <= 0)
             return "Expired";
 
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         if (remainingTime.Days > 0) sb.Append($"{remainingTime.Days}d ");
         if (remainingTime.Hours > 0) sb.Append($"{remainingTime.Hours}h ");
         if (remainingTime.Minutes > 0) sb.Append($"{remainingTime.Minutes}m ");
         if (remainingTime.Seconds > 0 || sb.Length == 0) sb.Append($"{remainingTime.Seconds}s ");
-        string remainingTimeStr = sb.ToString().Trim();
+        var remainingTimeStr = sb.ToString().Trim();
         return remainingTimeStr + " left..";
     }
 }

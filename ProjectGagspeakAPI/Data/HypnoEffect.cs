@@ -11,7 +11,7 @@ public class HypnoticEffect
     public uint TintColor { get; set; } = 0xFFFFFFFF;
 
     /// <summary> What Attributes the hypnotic display should have. </summary>
-    public HypnoAttributes Mode { get; set; } = HypnoAttributes.TextIsSequential;
+    public HypnoAttributes Attributes { get; set; } = HypnoAttributes.TextIsSequential;
 
     /// <summary> What Tint color is applied to the displayed text, if any. (Defaults to Purple) </summary>
     public uint TextColor { get; set; } = 0xFFFF00FF;

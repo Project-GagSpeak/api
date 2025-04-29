@@ -11,8 +11,8 @@ public static class GlobalPermExtensions
     public static readonly string[] GroundSitIdList = { "52", "97", "98", "117" };
     public static readonly string[] AnySitIdList = SitIdList.Concat(GroundSitIdList).ToArray();
 
-    public static bool IsPermDevotional(this string hardcorePermString) => hardcorePermString.EndsWith(Globals.DevotedString);
-    public static string HardcorePermUID(this string hardcorePermString) => hardcorePermString.Replace(Globals.DevotedString, string.Empty);
+    public static bool IsPermDevotional(this string hardcorePermString) => hardcorePermString.EndsWith(Constants.DevotedString);
+    public static string HardcorePermUID(this string hardcorePermString) => hardcorePermString.Replace(Constants.DevotedString, string.Empty);
 
     public static bool IsFollowing(this UserGlobalPermissions p) => !p.ForcedFollow.NullOrEmpty();
     public static bool CanToggleFollow(this UserGlobalPermissions p, string uid)

@@ -6,6 +6,12 @@ public enum UpdateDir
     Other,
 }
 
+public enum AliasType
+{
+    Global,
+    Pair,
+}
+
 public enum DataUpdateType
 {
     // Generic

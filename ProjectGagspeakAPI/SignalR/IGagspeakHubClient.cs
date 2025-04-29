@@ -40,9 +40,10 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnUserReceiveDataRestrictions(Action<CallbackRestrictionDataDto> act);
     void OnUserReceiveDataRestraint(Action<CallbackRestraintDataDto> act);
     void OnUserReceiveDataCursedLoot(Action<CallbackCursedLootDto> act);
-    void OnUserReceiveDataOrders(Action<CallbackOrdersDataDto> act);
-    void OnUserReceiveDataAlias(Action<CallbackAliasDataDto> act);
+    void OnUserReceiveAliasGlobalUpdate(Action<CallbackAliasGlobalUpdateDto> act);
+    void OnUserReceiveAliasPairUpdate(Action<CallbackAliasPairUpdateDto> act);
     void OnUserReceiveDataToybox(Action<CallbackToyboxDataDto> act);
+    void OnUserReceiveListenerName(Action<UserData, string> act);
     void OnUserReceiveLightStorage(Action<CallbackLightStorageDto> act);
 
     void OnUserReceiveShockInstruction(Action<PiShockAction> act);

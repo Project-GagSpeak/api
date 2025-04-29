@@ -1,6 +1,6 @@
 using GagspeakAPI.Enums;
 
-namespace GagspeakAPI.Data.Interfaces;
+namespace GagspeakAPI.Data;
 
 public interface IPadlockable
 {

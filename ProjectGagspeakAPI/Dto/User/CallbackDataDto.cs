@@ -1,5 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
 
@@ -40,31 +40,21 @@ public record CallbackRestraintDataDto(UserData User, UserData Enactor, CharaAct
 
 
 [MessagePackObject(keyAsPropertyName: true)] // Should not need an update type for this, just track latest data and last interacted.
-public record CallbackCursedLootDto(UserData User, IEnumerable<Guid> NewActiveItems) : UserDto(User)
-{
-    public CursedItemInfo InteractedLoot { get; init; }
-}
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record CallbackOrdersDataDto(UserData User, UserData Enactor, CharaOrdersData NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
-{
-    // Nothing internal for Orders yet...
-}
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record CallbackAliasDataDto(UserData User, UserData Enactor, CharaAliasData NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
-{
-    // Nothing internal for Aliases yet...
-}
-
+public record CallbackCursedLootDto(UserData User, IEnumerable<Guid> NewActiveItems, LightCursedItem InteractedLoot) : UserDto(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record CallbackToyboxDataDto(UserData User, UserData Enactor, CharaToyboxData NewData, DataUpdateType Type, UpdateDir Direction) : UserDto(User)
 {
     public Guid InteractedIdentifier { get; init; } = Guid.Empty;
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record CallbackAliasGlobalUpdateDto(UserData User, AliasTrigger NewData) : UserDto(User);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record CallbackAliasPairUpdateDto(UserData User, AliasTrigger NewData) : UserDto(User);
+
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record CallbackLightStorageDto(UserData User, UserData Enactor, CharaLightStorageData LightStorage, UpdateDir Direction) : UserDto(User);

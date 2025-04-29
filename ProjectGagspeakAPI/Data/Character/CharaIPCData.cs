@@ -1,7 +1,7 @@
 using MessagePack;
 #pragma warning disable CS0659
 
-namespace GagspeakAPI.Data.Character;
+namespace GagspeakAPI.Data;
 
 /// <summary> Stores Information about the Player's Moodles Data </summary>
 [MessagePackObject(keyAsPropertyName: true)]

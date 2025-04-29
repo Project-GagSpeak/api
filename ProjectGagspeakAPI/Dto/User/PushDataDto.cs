@@ -1,5 +1,5 @@
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
 
@@ -53,34 +53,11 @@ public record PushRestraintDataUpdateDto(List<UserData> Recipients, DataUpdateTy
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushCursedLootDataUpdateDto(List<UserData> Recipients, IEnumerable<Guid> ActiveItems)
-{
-    public CursedItemInfo InteractedLoot { get; init; } // The Cursed Item being applied or removed.
-}
-
-
-[MessagePackObject]
-public record struct CursedItemInfo
-{
-    [Key(0)] public Guid LootId { get; set; }
-    [Key(1)] public GagType GagItem { get; set; }
-    [Key(2)] public Guid RestrictionRefId { get; set; }
-    [Key(3)] public DateTimeOffset ReleaseTime { get; set; }
-}
+public record PushCursedLootDataUpdateDto(List<UserData> Recipients, IEnumerable<Guid> ActiveItems, LightCursedItem InteractedLoot);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushOrdersDataUpdateDto(List<UserData> Recipients, DataUpdateType Type)
-{
-    /* Nothing Internal Yet */
-}
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record PushAliasDataUpdateDto(UserData RecipientUser, CharaAliasData AliasData, DataUpdateType Type)
-{
-    /* Nothing Internal Yet */
-}
+public record PushOrdersDataUpdateDto(List<UserData> Recipients, DataUpdateType Type);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
@@ -88,6 +65,13 @@ public record PushToyboxDataUpdateDto(List<UserData> Recipients, CharaToyboxData
 {
     public Guid AffectedIdentifier { get; init; } = Guid.Empty;
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushAliasGlobalUpdateDto(List<UserData> Recipients, AliasTrigger Alias);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushAliasPairUpdateDto(UserData RecipientUser, AliasTrigger Alias) : UserDto(RecipientUser);
 
 
 [MessagePackObject(keyAsPropertyName: true)]

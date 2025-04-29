@@ -3,7 +3,7 @@ using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 using GagspeakAPI.Extensions;
 
-namespace GagspeakAPI.Data.Character;
+namespace GagspeakAPI.Data;
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveGags
@@ -21,7 +21,7 @@ public record CharaActiveGags
             GagSlots[i] = slots[i];
     }
 
-    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[Globals.MaxGagSlots]; // Fixed Length 3
+    public ActiveGagSlot[] GagSlots { get; init; } = new ActiveGagSlot[Constants.MaxGagSlots]; // Fixed Length 3
     public string ToGagString() => string.Join("\n", GagSlots.Select(g => g.ToString()));
 }
 
@@ -63,7 +63,7 @@ public record CharaActiveRestrictions
             Restrictions[i] = restrictions[i];
     }
 
-    public ActiveRestriction[] Restrictions { get; init; } = new ActiveRestriction[Globals.MaxRestrictionSlots];
+    public ActiveRestriction[] Restrictions { get; init; } = new ActiveRestriction[Constants.MaxRestrictionSlots];
     public string ToRestrictionString() => string.Join("\n", Restrictions.Select(g => g.ToString()));
 }
 

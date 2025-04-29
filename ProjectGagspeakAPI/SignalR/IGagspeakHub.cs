@@ -54,9 +54,10 @@ public interface IGagspeakHub
     Task Client_UserReceiveDataRestrictions(CallbackRestrictionDataDto dto);
     Task Client_UserReceiveDataRestraint(CallbackRestraintDataDto dto);
     Task Client_UserReceiveDataCursedLoot(CallbackCursedLootDto dto);
-    Task Client_UserReceiveDataOrders(CallbackOrdersDataDto dto);
-    Task Client_UserReceiveDataAlias(CallbackAliasDataDto dto);
     Task Client_UserReceiveDataToybox(CallbackToyboxDataDto dto);
+    Task Client_UserReceiveAliasGlobalUpdate(CallbackAliasGlobalUpdateDto dto);
+    Task Client_UserReceiveAliasPairUpdate(CallbackAliasPairUpdateDto dto);
+    Task Client_UserReceiveListenerName(UserData user, string name);
     Task Client_UserReceiveLightStorage(CallbackLightStorageDto dto);
 
     Task Client_UserReceiveShockInstruction(PiShockAction dto); /* Receive a shock instruction from the server */
@@ -160,9 +161,9 @@ public interface IGagspeakHub
     Task<GsApiErrorCodes> UserPushDataRestrictions(PushRestrictionDataUpdateDto dto);
     Task<GsApiErrorCodes> UserPushDataRestraint(PushRestraintDataUpdateDto dto);
     Task<GsApiErrorCodes> UserPushDataCursedLoot(PushCursedLootDataUpdateDto dto);
-    Task<GsApiErrorCodes> UserPushDataOrders(PushOrdersDataUpdateDto dto);
-    Task<GsApiErrorCodes> UserPushDataAlias(PushAliasDataUpdateDto dto);
     Task<GsApiErrorCodes> UserPushDataToybox(PushToyboxDataUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushAliasGlobalUpdate(PushAliasGlobalUpdateDto dto);
+    Task<GsApiErrorCodes> UserPushAliasPairUpdate(PushAliasPairUpdateDto dto);
     Task<GsApiErrorCodes> UserPushDataLightStorage(PushLightStorageMessageDto dto);
 
 
@@ -170,8 +171,8 @@ public interface IGagspeakHub
     Task<GsApiPairErrorCodes> UserPushPairDataGags(PushPairGagDataUpdateDto dto);
     Task<GsApiPairErrorCodes> UserPushPairDataRestrictions(PushPairRestrictionDataUpdateDto dto);
     Task<GsApiPairErrorCodes> UserPushPairDataRestraint(PushPairRestraintDataUpdateDto dto);
-    Task<GsApiPairErrorCodes> UserPushPairDataAliasStorage(PushPairAliasDataUpdateDto dto);
     Task<GsApiPairErrorCodes> UserPushPairDataToybox(PushPairToyboxDataUpdateDto dto);
+    Task<GsApiPairErrorCodes> UserPushPairListenerName(UserDto recipient, string listenerName);
 
 
     // ------ Permission Updates ------ // 

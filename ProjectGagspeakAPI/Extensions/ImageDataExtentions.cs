@@ -1,4 +1,4 @@
-using GagspeakAPI.Data.Character;
+using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using System.Text.RegularExpressions;
 
