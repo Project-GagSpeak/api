@@ -141,6 +141,30 @@ public enum GsApiPairErrorCodes
     NotConnected = 0x80000,
 }
 
+public enum GsApiPermErrorCodes
+{
+    /// <summary> Indicates a successful interaction. </summary>
+    Success = 0x00,
+
+    /// <summary> If User attempts to update their own data. </summary>
+    AttemptedSelfChange = 0x01,
+
+    /// <summary> You are not paired with the person you are updating. </summary>
+    NotPaired = 0x02,
+
+    /// <summary> Not allowed to change the pairs permissions. </summary>
+    PermissionDenied = 0x04,
+
+    /// <summary> The permission name (entry) doesn't exist in the class. </summary>
+    NoEntryFound = 0x08,
+
+    /// <summary> Incorrectly assigned value type to defined property type. </summary>
+    InvalidDataType = 0x10,
+
+    /// <summary> Not Currently Connected. </summary>
+    NotConnected = 0x20,
+}
+
 
 public static class ErrorCodeExtensions
 {

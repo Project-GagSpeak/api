@@ -4,11 +4,11 @@ public enum InvokableActionType
 {
     TextOutput = 0, // if fired, output text to the chat. (If possible)
     Gag = 1, // if fired, interact with a gag. (If possible)
-    Restriction = 6, // if fired, interact with a restriction. (If possible)
-    Restraint = 2, // if fired, interact with a restraint set. (If possible)
-    Moodle = 3, // if fired, apply a Moodle
-    ShockCollar = 4, // if fired, perform shock collar action
-    SexToy = 5, // if fired, vibrate sex toys.
+    Restriction = 2, // if fired, interact with a restriction. (If possible) [OLD = NULL]
+    Restraint = 3, // if fired, interact with a restraint set. (If possible) [OLD = 2]
+    Moodle = 4, // if fired, apply a Moodle [OLD = 3]
+    ShockCollar = 5, // if fired, perform shock collar action [OLD = 4]
+    SexToy = 6, // if fired, vibrate sex toys. [OLD = 5]
 }
 
 public enum ThresholdPassType

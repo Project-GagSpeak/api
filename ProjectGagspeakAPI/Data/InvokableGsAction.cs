@@ -2,7 +2,7 @@ using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Interfaces;
-public abstract record InvokableGsAction : IEquatable<InvokableGsAction>
+public abstract record InvokableGsAction : IComparable<InvokableGsAction>
 {
     public abstract InvokableActionType ActionType { get; }
 
@@ -10,6 +10,9 @@ public abstract record InvokableGsAction : IEquatable<InvokableGsAction>
         => other is not null && ActionType == other.ActionType;
 
     public override int GetHashCode() => (int)ActionType;
+
+    public int CompareTo(InvokableGsAction? other)
+        => other is null ? 1 : ActionType.CompareTo(other.ActionType);
 }
 
 
@@ -25,7 +28,7 @@ public record TextAction : InvokableGsAction
 public record GagAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Gag;
-    public int LayerIdx { get; init; } = -1; // -1 means pick any available.
+    public int LayerIdx { get; set; } = -1; // -1 means pick any available.
     public NewState NewState { get; set; } = NewState.Enabled;
     public GagType GagType { get; set; } = GagType.BallGag;
     public Padlocks Padlock { get; set; } = Padlocks.None;
@@ -39,7 +42,7 @@ public record GagAction : InvokableGsAction
 public record RestrictionAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Restriction;
-    public int LayerIdx { get; init; } = -1; // -1 means pick any available.
+    public int LayerIdx { get; set; } = -1; // -1 means pick any available.
     public NewState NewState { get; set; } = NewState.Enabled;
     public Guid RestrictionId { get; set; } = Guid.Empty;
     public Padlocks Padlock { get; set; } = Padlocks.None;
@@ -66,11 +69,13 @@ public record RestraintAction : InvokableGsAction
 public record MoodleAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Moodle;
-    public MoodleType Type { get; set; } = MoodleType.Status;
-    public IMoodleApi MoodleItem { get; set; } = new MoodleStatusApi(new MoodlesStatusInfo());
-    public MoodleAction() { }
+    public Moodle MoodleItem { get; set; } = new Moodle();
+    public MoodleAction()
+    { }
     public MoodleAction(MoodleAction other) : base(other) 
-        => (Type, MoodleItem) = (other.Type, other.MoodleItem);
+        => MoodleItem = other.MoodleItem;
+
+    public bool IsValid => MoodleItem.Id != Guid.Empty;
 }
 
 public record PiShockAction : InvokableGsAction

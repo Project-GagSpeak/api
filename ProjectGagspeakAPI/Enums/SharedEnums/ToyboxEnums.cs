@@ -5,15 +5,14 @@ public enum TriggerKind
     SpellAction = 0,
     HealthPercent = 1,
     RestraintSet = 2,
-    Restriction = 6,
-    GagState = 3,
-    SocialAction = 4,
-    EmoteAction = 5,
+    Restriction = 3, 
+    GagState = 4, // OLD = 3
+    SocialAction = 5, // OLD = 4
+    EmoteAction = 6, // OLD = 5
 }
 
 public enum ShockMode : sbyte // the OPCode
 {
-    None = -1,
     Shock = 0,
     Vibrate = 1,
     Beep = 2,
