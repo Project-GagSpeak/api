@@ -14,6 +14,7 @@ public static class FlagEx
     public static bool HasAny(this PuppetPerms flags, PuppetPerms check) => (flags & check) != 0;
     public static bool HasAny(this MoodlePerms flags, MoodlePerms check) => (flags & check) != 0;
     public static bool HasAny(this HypnoAttributes flags, HypnoAttributes check) => (flags & check) != 0;
+    public static bool HasAny(this DaysOfWeek flags, DaysOfWeek check) => (flags & check) != 0;
 
 
 

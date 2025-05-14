@@ -163,7 +163,8 @@ public static partial class EnumToName
         {
             TriggerKind.SpellAction => "Action Trigger",
             TriggerKind.HealthPercent => "Health% Trigger",
-            TriggerKind.RestraintSet => "Restraint Trigger",
+            TriggerKind.RestraintSet => "Restraint State Trigger",
+            TriggerKind.Restriction => "Restriction State Trigger",
             TriggerKind.GagState => "GagState Trigger",
             TriggerKind.SocialAction => "Social Action",
             TriggerKind.EmoteAction => "Emote Action",
