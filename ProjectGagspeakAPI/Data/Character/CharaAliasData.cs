@@ -29,7 +29,7 @@ public class NamedAliasStorage
 
 // This can double as a use for a GlobalAliasStorage.
 [MessagePackObject(keyAsPropertyName: true)]
-public class AliasStorage : List<AliasTrigger>
+public class AliasStorage : List<AliasTrigger>, IEditableStorage<AliasTrigger>
 {
     public AliasStorage()
     { }
@@ -37,6 +37,15 @@ public class AliasStorage : List<AliasTrigger>
     public AliasStorage(IEnumerable<AliasTrigger> init)
         : base(init)
     { }
+
+    public bool TryApplyChanges(AliasTrigger oldItem, AliasTrigger changedItem)
+    {
+        if (changedItem is null)
+            return false;
+
+        oldItem.ApplyChanges(changedItem);
+        return true;
+    }
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
