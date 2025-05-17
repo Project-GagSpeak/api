@@ -1,5 +1,11 @@
 namespace GagspeakAPI.Enums;
 
+public enum TriggerTab
+{
+    Detection,
+    Action
+}
+
 public enum InvokableActionType
 {
     TextOutput = 0, // if fired, output text to the chat. (If possible)
