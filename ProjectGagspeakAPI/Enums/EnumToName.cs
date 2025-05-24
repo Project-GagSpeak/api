@@ -161,7 +161,7 @@ public static partial class EnumToName
     {
         return type switch
         {
-            TriggerKind.SpellAction => "Action Trigger",
+            TriggerKind.SpellAction => "Spell / Action Trigger",
             TriggerKind.HealthPercent => "Health% Trigger",
             TriggerKind.RestraintSet => "Restraint State Trigger",
             TriggerKind.Restriction => "Restriction State Trigger",
@@ -189,13 +189,14 @@ public static partial class EnumToName
     {
         return type switch
         {
-            LimitedActionEffectType.Miss => "Action Missed",
-            LimitedActionEffectType.Damage => "Damage Related",
-            LimitedActionEffectType.Heal => "Heal Related",
-            LimitedActionEffectType.BlockedDamage => "Damage Blocked",
-            LimitedActionEffectType.ParriedDamage => "Damage Parried",
-            LimitedActionEffectType.Attract1 => "Rescue Used",
-            LimitedActionEffectType.Knockback => "Pushed Back",
+            LimitedActionEffectType.Nothing         => "Anything",
+            LimitedActionEffectType.Miss            => "Action Missed",
+            LimitedActionEffectType.Damage          => "Damage Related",
+            LimitedActionEffectType.Heal            => "Heal Related",
+            LimitedActionEffectType.BlockedDamage   => "Damage Blocked",
+            LimitedActionEffectType.ParriedDamage   => "Damage Parried",
+            LimitedActionEffectType.Attract1        => "Rescue Used",
+            LimitedActionEffectType.Knockback       => "Pushed Back",
             _ => "UNK"
         };
     }

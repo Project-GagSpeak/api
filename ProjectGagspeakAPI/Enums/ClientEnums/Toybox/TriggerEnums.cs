@@ -23,15 +23,6 @@ public enum ThresholdPassType
     Under = 1,
 }
 
-public enum TriggerDirection
-{
-    Self = 0,
-    SelfToOther = 1,
-    Other = 2,
-    OtherToSelf = 3,
-    Any = 4,
-}
-
 public enum ActionSource
 {
     GlobalAlias,
@@ -49,5 +40,6 @@ public enum DeviceActionType
 // Might have future expandability, or might be worth removing.
 public enum SocialActionType
 {
-    DeathRollLoss,
+    DeathRollLoss = 0,
+    DeathRollWin = 1,
 }

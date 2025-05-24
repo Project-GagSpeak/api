@@ -1,4 +1,16 @@
 namespace GagspeakAPI.Enums;
+public enum JobRole : byte
+{
+    Unknown = 0,
+    Tank = 1,
+    Melee = 2,
+    RangedPhysical = 3,
+    RangedMagical = 4,
+    Healer = 5,
+    Crafter = 6,
+    Gatherer = 7,
+}
+
 public enum ActionRoles : byte
 {
     NonCombat = 0,
@@ -8,9 +20,19 @@ public enum ActionRoles : byte
     Healer = 0x4
 }
 
+public enum TriggerDirection
+{
+    Self = 0,
+    SelfToOther = 1,
+    Other = 2,
+    OtherToSelf = 3,
+    Any = 4,
+}
+
 // Only ones we care about for GagSpeak.
 public enum LimitedActionEffectType : byte
 {
+    Nothing = 0,
     Miss = 1,
     Damage = 3,
     Heal = 4,
