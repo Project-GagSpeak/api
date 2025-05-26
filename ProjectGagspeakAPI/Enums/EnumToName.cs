@@ -128,12 +128,12 @@ public static partial class EnumToName
         return triggerActionKind switch
         {
             InvokableActionType.TextOutput => "Text Output",
-            InvokableActionType.Gag => "Gag Act",
-            InvokableActionType.Restriction => "Restriction Act",
-            InvokableActionType.Restraint => "Restraint Act",
-            InvokableActionType.Moodle => "Moodle Act",
-            InvokableActionType.ShockCollar => "Shock Act",
-            InvokableActionType.SexToy => "SexToy Act",
+            InvokableActionType.Gag => "Gag Action",
+            InvokableActionType.Restriction => "Restriction Action",
+            InvokableActionType.Restraint => "Restraint Action",
+            InvokableActionType.Moodle => "Moodle Action",
+            InvokableActionType.ShockCollar => "Shock Action",
+            InvokableActionType.SexToy => "SexToy Action",
             _ => "UNK"
         };
     }

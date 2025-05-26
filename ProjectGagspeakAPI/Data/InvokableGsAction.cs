@@ -1,4 +1,5 @@
 using GagspeakAPI.Enums;
+using GagspeakAPI.Extensions;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Interfaces;
@@ -92,48 +93,25 @@ public record PiShockAction : InvokableGsAction
         };
 }
 
+// This is temporary because idk how the sex toy stuff will roll out entirely yet.
 [MessagePackObject(keyAsPropertyName: true)]
 public record SexToyAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.SexToy;
     public TimeSpan StartAfter { get; set; } = TimeSpan.Zero;
     public TimeSpan EndAfter { get; set; } = TimeSpan.Zero;
-    public List<DeviceAction> DeviceActions { get; set; } = new List<DeviceAction>();
+    // This below is all temporary since the main toy functionality is not setup yet.
+    public ToyActionType ActionKind { get; set; } = ToyActionType.Vibration;
+    public Guid PatternId { get; set; } = Guid.Empty;
+    public int Intensity { get; set; } = 0;
     public SexToyAction() { }
     public SexToyAction(SexToyAction other) : base(other)
     {
         StartAfter = other.StartAfter;
         EndAfter = other.EndAfter;
-        DeviceActions = other.DeviceActions.Select(x => new DeviceAction(x)).ToList();
+        PatternId = other.PatternId;
+        Intensity = other.Intensity;
     }
 }
-
-[MessagePackObject(keyAsPropertyName: true)]
-public class DeviceActionPattern : DeviceAction
-{
-    public override DeviceActionType Action => DeviceActionType.Pattern;
-    public Guid PatternId { get; set; }
-
-    public DeviceActionPattern() { }
-    public DeviceActionPattern(DeviceActionPattern other) : base(other)
-        => PatternId = other.PatternId;
-}
-
-[MessagePackObject(keyAsPropertyName: true)]
-public class DeviceAction
-{
-    public virtual DeviceActionType Action { get; set; } = DeviceActionType.Vibration;
-    public AffectedDevice[] AffectedDevices { get; set; } = [];
-
-    public DeviceAction() { }
-    public DeviceAction(DeviceAction other)
-    {
-        Action = other.Action;
-        AffectedDevices = other.AffectedDevices.Select(x => new AffectedDevice(x.Name, x.AccessedMotors)).ToArray();
-    }
-}
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record AffectedDevice(string Name, IEnumerable<int> AccessedMotors);
 
 

@@ -30,11 +30,10 @@ public enum ActionSource
     TriggerAction,
 }
 
-public enum DeviceActionType
+public enum ToyActionType
 {
     Vibration = 0,
-    Rotation = 1,
-    Pattern = 2,
+    Pattern = 1,
 }
 
 // Might have future expandability, or might be worth removing.
