@@ -1,5 +1,6 @@
 namespace GagspeakAPI.Enums;
 
+// TODO: Make this flag based for cleaner code and better performance.
 public enum LoggerType
 {
     None,
