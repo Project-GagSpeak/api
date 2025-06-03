@@ -2,6 +2,7 @@ using GagspeakAPI.Enums;
 using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 using GagspeakAPI.Extensions;
+using GagspeakAPI.Util;
 
 namespace GagspeakAPI.Data;
 

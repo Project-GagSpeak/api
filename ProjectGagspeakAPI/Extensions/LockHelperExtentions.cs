@@ -1,6 +1,7 @@
 using GagspeakAPI.Data;
 using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Enums;
+using GagspeakAPI.Hub;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,41 +9,41 @@ namespace GagspeakAPI.Extensions;
 
 public static class PadlockValidation
 {
-    public static GsApiPairErrorCodes CanLock(this IPadlockable current, IPadlockable applied, TimeSpan maxTimeAllowed)
+    public static GagSpeakApiEc CanLock(this IPadlockable current, IPadlockable applied, TimeSpan maxTimeAllowed)
     {
         return current.Padlock switch
         {
-            Padlocks.MetalPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.FiveMinutesPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.CombinationPadlock => IsValidCombo(applied.Password) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidPassword,
-            Padlocks.PasswordPadlock => IsValidPass(applied.Password) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidPassword,
-            Padlocks.TimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidTime,
+            Padlocks.MetalPadlock => GagSpeakApiEc.Success,
+            Padlocks.FiveMinutesPadlock => GagSpeakApiEc.Success,
+            Padlocks.CombinationPadlock => IsValidCombo(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.PasswordPadlock => IsValidPass(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.TimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
             Padlocks.TimerPasswordPadlock => !IsValidLockTime(applied.Timer, maxTimeAllowed)
-                ? GsApiPairErrorCodes.InvalidTime : IsValidPass(applied.Password) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidPassword,
-            Padlocks.OwnerPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.OwnerTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidTime,
-            Padlocks.DevotionalPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.DevotionalTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidTime,
-            Padlocks.MimicPadlock => GsApiPairErrorCodes.Success,
-            _ => GsApiPairErrorCodes.NoPadlockSelected,
+                ? GagSpeakApiEc.InvalidTime : IsValidPass(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.OwnerPadlock => GagSpeakApiEc.Success,
+            Padlocks.OwnerTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.DevotionalPadlock => GagSpeakApiEc.Success,
+            Padlocks.DevotionalTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.MimicPadlock => GagSpeakApiEc.Success,
+            _ => GagSpeakApiEc.NullData,
         };
     }
 
-    public static GsApiPairErrorCodes CanUnlock(this IPadlockable current, string bearerUid, string guessedPass, string enactorUid, bool allowOwner, bool allowDevotional)
+    public static GagSpeakApiEc CanUnlock(this IPadlockable current, string bearerUid, string guessedPass, string enactorUid, bool allowOwner, bool allowDevotional)
     {
         return current.Padlock switch
         {
-            Padlocks.MetalPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.FiveMinutesPadlock => GsApiPairErrorCodes.Success,
-            Padlocks.CombinationPadlock => guessedPass == current.Password ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidCombination,
-            Padlocks.PasswordPadlock => guessedPass == current.Password ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidPassword,
-            Padlocks.TimerPadlock => bearerUid != enactorUid ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.AttemptedSelfChange,
-            Padlocks.TimerPasswordPadlock => guessedPass == current.Password ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.InvalidPassword,
-            Padlocks.OwnerPadlock => allowOwner ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.OwnerDenied,
-            Padlocks.OwnerTimerPadlock => allowOwner ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.OwnerDenied,
-            Padlocks.DevotionalPadlock => current.PadlockAssigner == enactorUid ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.DevotionalDenied,
-            Padlocks.DevotionalTimerPadlock => current.PadlockAssigner == enactorUid ? GsApiPairErrorCodes.Success : GsApiPairErrorCodes.DevotionalDenied,
-            _ => GsApiPairErrorCodes.NoPadlockSelected,
+            Padlocks.MetalPadlock => GagSpeakApiEc.Success,
+            Padlocks.FiveMinutesPadlock => GagSpeakApiEc.Success,
+            Padlocks.CombinationPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.PasswordPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.TimerPadlock => bearerUid != enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidRecipient,
+            Padlocks.TimerPasswordPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.OwnerPadlock => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.OwnerTimerPadlock => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.DevotionalPadlock => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.DevotionalTimerPadlock => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            _ => GagSpeakApiEc.NullData,
         };
     }
 

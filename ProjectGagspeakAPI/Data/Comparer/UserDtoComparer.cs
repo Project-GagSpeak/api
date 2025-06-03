@@ -1,35 +1,34 @@
-using GagspeakAPI.Dto.User;
-using GagspeakAPI.Dto.Permissions;
+using GagspeakAPI.Network;
 
 namespace GagspeakAPI.Data.Comparer;
 
 /// <summary>
-/// Compares two UserDto objects based on their UID.
+/// Compares two KinksterBase objects based on their UID.
 /// </summary>
-public class UserDtoComparer : IEqualityComparer<UserDto>
+public class KinksterBaseComparer : IEqualityComparer<KinksterBase>
 {
-     private static UserDtoComparer _instance = new();
+     private static KinksterBaseComparer _instance = new();
 
-     private UserDtoComparer() { }
+     private KinksterBaseComparer() { }
 
-     public static UserDtoComparer Instance => _instance;
+     public static KinksterBaseComparer Instance => _instance;
 
      /// <summary>
-     /// Method determines if the UserDto objects are equal based on their UID.
+     /// Method determines if the KinksterBase objects are equal based on their UID.
      /// </summary>
      /// <param name="x"></param>
      /// <param name="y"></param>
      /// <returns></returns>
-     public bool Equals(UserDto? x, UserDto? y)
+     public bool Equals(KinksterBase? x, KinksterBase? y)
      {
           if (x is null || y is null) return false;
           return x.User.UID.Equals(y.User.UID, StringComparison.Ordinal);
      }
 
      /// <summary>
-     /// Gets the has code of the UserDto
+     /// Gets the has code of the KinksterBase
      /// </summary>
-     public int GetHashCode(UserDto obj)
+     public int GetHashCode(KinksterBase obj)
      {
           return obj.User.UID.GetHashCode();
      }

@@ -1,0 +1,166 @@
+using GagspeakAPI.Data;
+using GagspeakAPI.Dto.Sharehub;
+using GagspeakAPI.Dto.VibeRoom;
+using GagspeakAPI.Enums;
+using GagspeakAPI.Network;
+
+namespace GagspeakAPI.Hub;
+
+/// <summary> 
+/// The interface for the GagspeakHub
+/// <para> This interface is the server end of the SignalR calls made by the client. </para>
+/// </summary>
+public interface IGagspeakHub
+{
+    const int ApiVersion = 13;
+    const string Path = "/gagspeak";
+
+    Task<bool> CheckMainClientHealth();
+    Task<ConnectionResponse> GetConnectionResponse();
+
+    #region Callbacks
+    Task Callback_ServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
+    Task Callback_HardReconnectMessage(MessageSeverity messageSeverity, string message, ServerState state);
+    Task Callback_ServerInfo(ServerInfoResponse info); /* Updates the client with the servers current system information */
+
+    Task Callback_AddClientPair(KinksterPair dto); /* sends to a connected user to add the specified user to their pair list */
+    Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
+    Task Callback_AddPairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
+    Task Callback_RemovePairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
+
+    /// <summary> Callbacks to update moodles. </summary>
+    Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
+    Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
+    Task Callback_RemoveMoodles(MoodlesRemoval dto);
+    Task Callback_ClearMoodles(KinksterBase dto);
+
+    /// <summary> Callbacks to update permissions. </summary>
+    Task Callback_BulkChangeAll(BulkChangeAll dto);
+    Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
+    Task Callback_BulkChangeUnique(BulkChangeUnique dto);
+    Task Callback_SingleChangeGlobal(SingleChangeGlobal dto);
+    Task Callback_SingleChangeUnique(SingleChangeUnique dto);
+    Task Callback_SingleChangeAccess(SingleChangeAccess dto);
+
+    /// <summary> Callbacks to update own or pair data. </summary>
+    Task Callback_KinksterUpdateComposite(KinksterUpdateComposite dto);
+    Task Callback_KinksterUpdateIpc(KinksterUpdateIpc dto);
+    Task Callback_KinksterUpdateGags(KinksterUpdateGags dto);
+    Task Callback_KinksterUpdateRestriction(KinksterUpdateRestriction dto);
+    Task Callback_KinksterUpdateRestraint(KinksterUpdateRestraint dto);
+    Task Callback_KinksterUpdateCursedLoot(KinksterUpdateCursedLoot dto);
+    Task Callback_KinksterUpdateAliasGlobal(KinksterUpdateAliasGlobal dto);
+    Task Callback_KinksterUpdateAliasUnique(KinksterUpdateAliasUnique dto);
+    Task Callback_KinksterUpdateToybox(KinksterUpdateToybox dto);
+    Task Callback_KinksterUpdateLightStorage(KinksterUpdateLightStorage dto);
+    Task Callback_ListenerName(UserData user, string name);
+    Task Callback_ShockInstruction(ShockCollarAction dto);
+
+    Task Callback_ChatMessageGlobal(ChatMessageGlobal dto);
+    Task Callback_KinksterOffline(KinksterBase dto);
+    Task Callback_KinksterOnline(OnlineKinkster dto);
+    Task Callback_ProfileUpdated(KinksterBase dto);
+    Task Callback_ShowVerification(VerificationCode dto);
+
+    Task Callback_RoomJoin(RoomParticipant dto);
+    Task Callback_RoomLeave(RoomParticipant dto);
+    Task Callback_RoomDeviceUpdate(UserData user, ToyInfo ToyInfo);
+    Task Callback_RoomIncDataStream(ToyDataStreamResponse dataStream);
+    Task Callback_RoomAccessGranted(UserData user);
+    Task Callback_RoomAccessRevoked(UserData user);
+    Task Callback_RoomChatMessage(UserData user, string message);
+    #endregion Callbacks
+
+    // ----- Retrievals ------
+    Task<List<OnlineKinkster>> UserGetOnlinePairs();
+    Task<List<KinksterPair>> UserGetPairedClients();
+    Task<List<KinksterRequest>> UserGetPairRequests();
+    Task<KinkPlateFull> UserGetKinkPlate(KinksterBase dto);
+
+    // ------ ShareHubs ------
+    /// <summary> Uploads your pattern to the server. </summary>
+    Task<HubResponse> UploadPattern(PatternUpload dto);
+    /// <summary> Uploads your a new Moodle to the server. </summary>
+    Task<HubResponse> UploadMoodle(MoodleUpload dto);
+    /// <summary> Downloads a pattern from the server. </summary>
+    Task<HubResponse<string>> DownloadPattern(Guid patternId);
+    /// <summary> Likes a pattern you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
+    Task<HubResponse> LikePattern(Guid patternId);
+    /// <summary> Likes a Moodle you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
+    Task<HubResponse> LikeMoodle(Guid moodleId);
+    /// <summary> Deletes a pattern from the server. </summary>
+    Task<HubResponse> RemovePattern(Guid patternId);
+    /// <summary> Deletes a moodle from the server. </summary>
+    Task<HubResponse> RemoveMoodle(Guid moodleId);
+    /// <summary> Grabs the search result of your specified query to the server. </summary>
+    Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(PatternSearch dto);
+    /// <summary> Grabs the search result of your specified query to the server. </summary>
+    Task<HubResponse<List<ServerMoodleInfo>>> SearchMoodles(MoodleSearch dto);
+    /// <summary> Grabs the search result of your specified query to the server. </summary>
+    Task<HubResponse<HashSet<string>>> FetchSearchTags();
+
+    // ----- Client Vanity ------
+    /// <summary> Sends a message to the gagspeak Global chat. </summary>
+    Task<HubResponse> UserSendGlobalChat(ChatMessageGlobal dto);
+    Task<HubResponse> UserUpdateAchievementData(AchievementsUpdate dto);
+    Task<HubResponse> UserSetKinkPlateContent(KinkPlateInfo dto); // set profile content of own kinkplate.
+    Task<HubResponse> UserSetKinkPlatePicture(KinkPlateImage dto); // set profile picture of own kinkplate.
+    Task<HubResponse> UserReportKinkPlate(KinkPlateReport KinksterBase); // hopefully this is never used x-x...
+
+    // ----- Personal Interactions ------
+    Task<HubResponse> UserPushData(PushClientCompositeUpdate dto);
+    Task<HubResponse> UserPushDataIpc(PushClientIpcUpdate dto);
+    Task<HubResponse> UserPushDataGags(PushClientGagSlotUpdate dto);
+    Task<HubResponse> UserPushDataRestrictions(PushClientRestrictionUpdate dto);
+    Task<HubResponse> UserPushDataRestraint(PushClientRestraintUpdate dto);
+    Task<HubResponse> UserPushDataCursedLoot(PushClientCursedLootUpdate dto);
+    Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
+    Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
+    Task<HubResponse> UserPushDataToybox(PushClientToyboxUpdate dto);
+    Task<HubResponse> UserPushDataLightStorage(PushClientLightStorageUpdate dto);
+
+    Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
+    Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
+    Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
+    Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
+    Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
+    Task<HubResponse> UserDelete();
+
+
+    // ----- Kinkster Interactions -----
+    Task<HubResponse> UserSendKinksterRequest(CreateKinksterRequest sendRequestDto);
+    Task<HubResponse> UserCancelKinksterRequest(KinksterBase user);
+    Task<HubResponse> UserAcceptKinksterRequest(KinksterBase user);
+    Task<HubResponse> UserRejectKinksterRequest(KinksterBase user);
+    Task<HubResponse> UserRemoveKinkster(KinksterBase KinksterBase);
+
+    Task<HubResponse> UserChangeKinksterGagState(PushKinksterGagSlotUpdate dto);
+    Task<HubResponse> UserChangeKinksterRestrictionState(PushKinksterRestrictionUpdate dto);
+    Task<HubResponse> UserChangeKinksterRestraintState(PushKinksterRestraintUpdate dto);
+    Task<HubResponse> UserChangeKinksterToyboxState(PushKinksterToyboxUpdate dto);
+    Task<HubResponse> UserSendNameToKinkster(KinksterBase recipient, string listenerName);
+
+    Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);
+    Task<HubResponse> UserChangeOtherPairPerm(SingleChangeUnique dto);
+
+
+    // ---- IPC / External API Interactions ----
+    Task<HubResponse> UserApplyMoodlesByGuid(MoodlesApplierById dto);
+    Task<HubResponse> UserApplyMoodlesByStatus(MoodlesApplierByStatus dto);
+    Task<HubResponse> UserRemoveMoodles(MoodlesRemoval dto);
+    Task<HubResponse> UserClearMoodles(KinksterBase dto);
+    Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
+
+
+    // ----- Vibe Rooms ------
+    Task<HubResponse> RoomCreate(RoomCreateRequest dto);
+    Task<HubResponse> SendRoomInvite(RoomInvite dto);
+    Task<HubResponse> ChangeRoomPassword(string name, string newPass);
+    Task<HubResponse<List<RoomParticipant>>> RoomJoin(string name, string pass, RoomParticipantBase dto);
+    Task<HubResponse> RoomLeave();
+    Task<HubResponse> RoomGrantAccess(KinksterBase dto);
+    Task<HubResponse> RoomRevokeAccess(KinksterBase dto);
+    Task<HubResponse> RoomPushDeviceUpdate(ToyInfo dto);
+    Task<HubResponse> RoomSendDataStream(ToyDataStream streamDto);
+    Task<HubResponse> RoomSendChat(string name, string message);
+}
