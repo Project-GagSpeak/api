@@ -4,7 +4,7 @@ using MessagePack;
 namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserEditAccessPermissions
+public record PairPermAccess
 {
     public bool ChatGarblerActiveAllowed            { get; set; } = false; // Global
     public bool ChatGarblerLockedAllowed            { get; set; } = false; // Global

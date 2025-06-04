@@ -12,5 +12,5 @@ namespace GagspeakAPI.Network;
 ///     if used in a server call, <paramref name="User"/> is <u>the target Kinkster to make the changes to</u>.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record BulkChangeAll(UserData User, UserGlobalPermissions Globals, UserPairPermissions Unique,
-    UserEditAccessPermissions Access) : KinksterBase(User);
+public record BulkChangeAll(UserData User, GlobalPerms Globals, PairPerms Unique,
+    PairPermAccess Access) : KinksterBase(User);

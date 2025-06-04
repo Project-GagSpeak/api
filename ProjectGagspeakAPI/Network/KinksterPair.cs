@@ -12,15 +12,15 @@ namespace GagspeakAPI.Network;
 ///     hense the internal variables with setters.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterPair(UserData User, UserPairPermissions OwnPerms, UserEditAccessPermissions OwnAccess,
-    UserGlobalPermissions Globals, UserPairPermissions Perms, UserEditAccessPermissions Access) : KinksterBase(User)
+public record KinksterPair(UserData User, PairPerms OwnPerms, PairPermAccess OwnAccess,
+    GlobalPerms Globals, PairPerms Perms, PairPermAccess Access) : KinksterBase(User)
 {
     // Perms the Client has for this Kinkster
-    public UserPairPermissions OwnPerms { get; set; } = OwnPerms;
-    public UserEditAccessPermissions OwnAccess { get; set; } = OwnAccess;
+    public PairPerms OwnPerms { get; set; } = OwnPerms;
+    public PairPermAccess OwnAccess { get; set; } = OwnAccess;
 
     // Permissions this Kinkster has for the Client
-    public UserGlobalPermissions Globals { get; set; } = Globals;
-    public UserPairPermissions Perms { get; set; } = Perms;
-    public UserEditAccessPermissions Access { get; set; } = Access;
+    public GlobalPerms Globals { get; set; } = Globals;
+    public PairPerms Perms { get; set; } = Perms;
+    public PairPermAccess Access { get; set; } = Access;
 }

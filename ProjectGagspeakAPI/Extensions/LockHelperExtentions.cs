@@ -132,7 +132,7 @@ public static class PadlockEx
     public static bool IsOwnerLock(this Padlocks padlock) => OwnerLocks.Contains(padlock);
     public static bool IsDevotionalLock(this Padlocks padlock) => DevotionalLocks.Contains(padlock);
 
-    public static IEnumerable<Padlocks> GetLocksForPair(UserPairPermissions permissions)
+    public static IEnumerable<Padlocks> GetLocksForPair(PairPerms permissions)
     {
         var allowedLocks = new HashSet<Padlocks>(AllLocks);
         if (!permissions.PermanentLocks) allowedLocks.ExceptWith(PermanentLocks);

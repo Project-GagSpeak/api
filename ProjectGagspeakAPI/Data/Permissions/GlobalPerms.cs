@@ -5,7 +5,7 @@ using MessagePack;
 namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserGlobalPermissions
+public record GlobalPerms
 {
     public int         ChatGarblerChannelsBitfield { get; set; } = 0;     // bitfield for liveChatGarblerChannels. Can be set by Hardcore.
     public bool        ChatGarblerActive           { get; set; } = false; // if the live chat garbler is active

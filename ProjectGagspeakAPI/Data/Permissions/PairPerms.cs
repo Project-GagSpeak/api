@@ -5,7 +5,7 @@ using MessagePack;
 namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserPairPermissions
+public record PairPerms
 {
     public bool        IsPaused                  { get; set; } = false;  // if the pair is paused, a unique unmodifiable permission by other pairs.
 

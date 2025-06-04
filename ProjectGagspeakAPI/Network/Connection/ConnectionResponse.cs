@@ -13,7 +13,7 @@ public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(Us
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0);
     public int ServerVersion { get; set; }
 
-    public UserGlobalPermissions GlobalPerms { get; init; } = new();
+    public GlobalPerms GlobalPerms { get; init; } = new();
     public CharaActiveGags SyncedGagData { get; init; } = new();
     public CharaActiveRestrictions SyncedRestrictionsData { get; init; } = new();
     public CharaActiveRestraint SyncedRestraintSetData { get; init; } = new();
