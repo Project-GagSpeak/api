@@ -7,4 +7,4 @@ namespace GagspeakAPI.Network;
 ///     Search request for moodles.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodleSearch(string input, HashSet<string> Tags, ResultFilter Filter, SearchSort Sort);
+public record MoodleSearch(string Input, HashSet<string> Tags, ResultFilter Filter, SearchSort Sort);

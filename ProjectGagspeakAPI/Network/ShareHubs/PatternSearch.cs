@@ -7,5 +7,5 @@ namespace GagspeakAPI.Network;
 ///     Search request for patterns.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PatternSearch(string input, HashSet<string> Tags, ResultFilter Filter,
+public record PatternSearch(string Input, HashSet<string> Tags, ResultFilter Filter,
     DurationLength Length, SupportedTypes Types, SearchSort Sort);

@@ -16,8 +16,8 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Pairing and requests
     void OnAddClientPair(Action<KinksterPair> act);
     void OnRemoveClientPair(Action<KinksterBase> act);
-    void OnAddPairRequest(Action<KinksterRequest> act);
-    void OnRemovePairRequest(Action<KinksterRequest> act);
+    void OnAddPairRequest(Action<KinksterRequestEntry> act);
+    void OnRemovePairRequest(Action<KinksterRequestEntry> act);
 
     // Moodle updates
     void OnApplyMoodlesByGuid(Action<MoodlesApplierById> act);
@@ -36,7 +36,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Own or pair data updates
     void OnKinksterUpdateComposite(Action<KinksterUpdateComposite> act);
     void OnKinksterUpdateIpc(Action<KinksterUpdateIpc> act);
-    void OnKinksterUpdateGags(Action<KinksterUpdateGags> act);
+    void OnKinksterUpdateGagSlot(Action<KinksterUpdateGagSlot> act);
     void OnKinksterUpdateRestriction(Action<KinksterUpdateRestriction> act);
     void OnKinksterUpdateRestraint(Action<KinksterUpdateRestraint> act);
     void OnKinksterUpdateCursedLoot(Action<KinksterUpdateCursedLoot> act);

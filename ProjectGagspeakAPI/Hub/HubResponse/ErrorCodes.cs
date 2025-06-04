@@ -19,6 +19,9 @@ public enum GagSpeakApiEc
     /// <summary> The Recipient was not who it should be. </summary>
     InvalidRecipient = 4,
 
+    /// <summary> The Method is not yet fully implemented. </summary>
+    NotYetImplemented = 5,
+
 
     // ----- ShareHub Spesific Errors -----
 
@@ -83,6 +86,9 @@ public enum GagSpeakApiEc
 
     /// <summary> The item is already locked. </summary>
     ItemIsLocked,
+
+    /// <summary> The item is not locked, so it cannot be removed. </summary>
+    ItemNotLocked,
 
     /// <summary> For locks or items that can only be removed by the enabler. </summary>
     NotItemEnabler,

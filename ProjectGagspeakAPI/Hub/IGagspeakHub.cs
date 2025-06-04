@@ -25,8 +25,8 @@ public interface IGagspeakHub
 
     Task Callback_AddClientPair(KinksterPair dto); /* sends to a connected user to add the specified user to their pair list */
     Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
-    Task Callback_AddPairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
-    Task Callback_RemovePairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
+    Task Callback_AddPairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
+    Task Callback_RemovePairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
 
     /// <summary> Callbacks to update moodles. </summary>
     Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
@@ -45,7 +45,7 @@ public interface IGagspeakHub
     /// <summary> Callbacks to update own or pair data. </summary>
     Task Callback_KinksterUpdateComposite(KinksterUpdateComposite dto);
     Task Callback_KinksterUpdateIpc(KinksterUpdateIpc dto);
-    Task Callback_KinksterUpdateGags(KinksterUpdateGags dto);
+    Task Callback_KinksterUpdateGagSlot(KinksterUpdateGagSlot dto);
     Task Callback_KinksterUpdateRestriction(KinksterUpdateRestriction dto);
     Task Callback_KinksterUpdateRestraint(KinksterUpdateRestraint dto);
     Task Callback_KinksterUpdateCursedLoot(KinksterUpdateCursedLoot dto);
@@ -72,9 +72,12 @@ public interface IGagspeakHub
     #endregion Callbacks
 
     // ----- Retrievals ------
+    /// <summary> Requested upon login, asking for the current Kinkster pairs online. </summary>
     Task<List<OnlineKinkster>> UserGetOnlinePairs();
+    /// <summary> Requests a list of UserPair DTO's containing the client pairs  of the client caller </summary>
     Task<List<KinksterPair>> UserGetPairedClients();
-    Task<List<KinksterRequest>> UserGetPairRequests();
+    Task<List<KinksterRequestEntry>> UserGetPairRequests();
+    /// <summary> Called by a connected client who wishes to retrieve the profile of another user. </summary>
     Task<KinkPlateFull> UserGetKinkPlate(KinksterBase dto);
 
     // ------ ShareHubs ------

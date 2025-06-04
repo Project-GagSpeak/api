@@ -7,7 +7,7 @@ namespace GagspeakAPI.Network;
 ///     Contains information about a Kinkster Request between 2 people.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterRequest(UserData User, UserData Target, string Message, DateTime CreationTime) : KinksterBase(User)
+public record KinksterRequestEntry(UserData User, UserData Target, string Message, DateTime CreationTime) : KinksterBase(User)
 {
     public bool IsExpired() => DateTime.Now - CreationTime > TimeSpan.FromDays(3);
 }

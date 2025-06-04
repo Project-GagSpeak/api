@@ -10,6 +10,6 @@ namespace GagspeakAPI.Data;
 public class CharaToyboxData
 {
     public Guid ActivePattern { get; set; } = Guid.Empty;
-    public IEnumerable<Guid> ActiveAlarms { get; set; } = new List<Guid>();
-    public IEnumerable<Guid> ActiveTriggers { get; set; } = new List<Guid>();
+    public List<Guid> ActiveAlarms { get; set; } = new List<Guid>();
+    public List<Guid> ActiveTriggers { get; set; } = new List<Guid>();
 }
