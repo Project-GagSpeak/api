@@ -16,7 +16,7 @@ public class CharaLightStorageData
     public LightPattern[] Patterns { get; init; } = [];
     public LightAlarm[] Alarms { get; init; } = [];
     public LightTrigger[] Triggers { get; init; } = [];
-    public Dictionary<ModuleSection, string[]> Allowances { get; init; } = [];
+    public Dictionary<GagspeakModule, string[]> Allowances { get; init; } = [];
 }
 
 
