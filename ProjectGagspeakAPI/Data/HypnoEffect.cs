@@ -1,7 +1,9 @@
 using GagspeakAPI.Enums;
+using MessagePack;
 
 namespace GagspeakAPI.Data;
 
+[MessagePackObject(keyAsPropertyName: true)]
 public class HypnoticEffect
 {
     /// <summary> How fast the hypnotic image spins. </summary>

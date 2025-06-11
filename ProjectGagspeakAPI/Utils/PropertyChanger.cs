@@ -1,4 +1,6 @@
-﻿namespace GagspeakAPI.Util;
+using System.Diagnostics.CodeAnalysis;
+
+namespace GagspeakAPI.Util;
 public static class PropertyChanger
 {
     /// <summary>
@@ -9,7 +11,7 @@ public static class PropertyChanger
     /// <param name="propertyName"> The name of the property to set.</param>
     /// <param name="rawValue"> The raw value to set the property to. This can be of any type.</param>
     /// <param name="convertedValue"> The new value after conversion and setting.
-    public static bool TrySetProperty<T>(T target, string propertyName, object? rawValue, out object? convertedValue)
+    public static bool TrySetProperty<T>(T target, string propertyName, object? rawValue, [NotNullWhen(true)] out object? convertedValue)
     {
         // Initially assume the converted value is null.
         convertedValue = null;

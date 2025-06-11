@@ -13,6 +13,9 @@ public record struct CustomizeProfile : IEquatable<CustomizeProfile>
 
     public static CustomizeProfile Empty => new CustomizeProfile(Guid.Empty, 0);
 
+    public void SetPriority(int priority)
+        => Priority = (priority < 0) ? 0 : priority;
+
     public bool Equals(CustomizeProfile other)
         => ProfileGuid.Equals(other.ProfileGuid);
 

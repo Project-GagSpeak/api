@@ -1,89 +1,57 @@
 using GagspeakAPI.Data.Permissions;
-using GagspeakAPI.Data.Struct;
-using GagspeakAPI.Enums;
 
 namespace GagspeakAPI.Extensions;
 
 public static class GlobalPermsEx
 {
-    public static readonly string[] StandIdleList = { "0", "91", "92", "107", "108", "218", "219" };
-    public static readonly string[] SitIdList = { "50", "95", "96", "254", "255" };
-    public static readonly string[] GroundSitIdList = { "52", "97", "98", "117" };
-    public static readonly string[] AnySitIdList = SitIdList.Concat(GroundSitIdList).ToArray();
+    private static bool IsDevotional(string s) => s.EndsWith(Constants.DevotedString);
+    private static string PermEnactor(string s) => s.Replace(Constants.DevotedString, string.Empty);
 
-    public static bool IsPermDevotional(this string hardcorePermString) => hardcorePermString.EndsWith(Constants.DevotedString);
-    public static string HardcorePermUID(this string hardcorePermString) => hardcorePermString.Replace(Constants.DevotedString, string.Empty);
-
-    public static bool IsFollowing(this GlobalPerms p) => !p.ForcedFollow.NullOrEmpty();
-    public static bool CanToggleFollow(this GlobalPerms p, string uid)
+    public static string HcFollowEnactor(this GlobalPerms p) => PermEnactor(p.ForcedFollow);
+    public static bool HcFollowIsDevotional(this GlobalPerms p) => IsDevotional(p.ForcedFollow);
+    public static bool CanChangeHcFollow(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ForcedFollow.NullOrEmpty() || !p.ForcedFollow.IsPermDevotional()) return true;
-        return p.ForcedFollow.HardcorePermUID() == uid; // Check because it's PairLocked
+        if (string.IsNullOrEmpty(p.ForcedFollow) || !IsDevotional(p.ForcedFollow)) return true;
+        return kinksterUid.Equals(PermEnactor(p.ForcedFollow));
     }
 
-    public static bool IsGroundSitting(this GlobalPerms p) => !p.ForcedEmoteState.NullOrEmpty() &&
-        p.ForcedEmoteState.Split('|') is { Length: >= 2 } parts && GroundSitIdList.Contains(parts[1]);
-    public static bool IsSitting(this GlobalPerms p) =>
-        p.ForcedEmoteState.Split('|') is { Length: >= 2 } parts && SitIdList.Contains(parts[1]);
-    public static bool IsAnySitting(this GlobalPerms p) =>
-        p.ForcedEmoteState.Split('|') is { Length: >= 2 } parts && AnySitIdList.Contains(parts[1]);
-    public static string EmoteStateUID(this GlobalPerms p) => p.ForcedEmoteState.Split('|')[0];
-    public static bool CanToggleEmoteState(this GlobalPerms p, string uid)
+    public static string HcEmoteEnactor(this GlobalPerms p) => p.ForcedEmoteState.Split('|')[0];
+    public static bool HcEmoteIsDevotional(this GlobalPerms p) => IsDevotional(p.ForcedEmoteState);
+    public static bool CanChangeHcEmote(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ForcedEmoteState.NullOrEmpty() || !p.ForcedEmoteState.IsPermDevotional()) return true;
-        return p.ForcedEmoteState.HardcorePermUID() == uid;
-    }
-    public static EmoteState ExtractEmoteState(this GlobalPerms p)
-    {
-        // Handle empty case.
-        if (string.IsNullOrEmpty(p.ForcedEmoteState))
-            return new EmoteState();
-
-        // Handle valid case.
-        var parts = p.ForcedEmoteState.Split('|');
-        return new EmoteState(parts[0], ushort.Parse(parts[1]), byte.Parse(parts[2]), parts.Length > 3);
+        if (string.IsNullOrEmpty(p.ForcedEmoteState) || !IsDevotional(p.ForcedEmoteState)) return true;
+        return kinksterUid.Equals(p.ForcedEmoteState.Split('|')[0]);
     }
 
-
-    public static bool IsStaying(this GlobalPerms p) => !p.ForcedStay.NullOrEmpty();
-    public static bool CanToggleStay(this GlobalPerms p, string uid)
+    public static string HcStayEnactor(this GlobalPerms p) => PermEnactor(p.ForcedStay);
+    public static bool HcStayIsDevotional(this GlobalPerms p) => IsDevotional(p.ForcedStay);
+    public static bool CanChangeHcStay(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ForcedStay.NullOrEmpty() || !p.ForcedStay.IsPermDevotional()) return true;
-        return p.ForcedStay.HardcorePermUID() == uid;
+        if (string.IsNullOrEmpty(p.ForcedStay) || !IsDevotional(p.ForcedStay)) return true;
+        return kinksterUid.Equals(PermEnactor(p.ForcedStay));
     }
 
-    public static bool IsChatHidden(this GlobalPerms p) => !p.ChatBoxesHidden.NullOrEmpty();
-    public static bool CanToggleChatHidden(this GlobalPerms p, string uid)
+    public static string HcChatVisEnactor(this GlobalPerms p) => PermEnactor(p.ForcedFollow);
+    public static bool HcChatVisIsDevotional(this GlobalPerms p) => IsDevotional(p.ChatBoxesHidden);
+    public static bool CanChangeHcChatVis(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ChatBoxesHidden.NullOrEmpty() || !p.ChatBoxesHidden.IsPermDevotional()) return true;
-        return p.ChatBoxesHidden.HardcorePermUID() == uid;
+        if (string.IsNullOrEmpty(p.ChatBoxesHidden) || !IsDevotional(p.ChatBoxesHidden)) return true;
+        return kinksterUid.Equals(PermEnactor(p.ChatBoxesHidden));
     }
 
-    public static bool IsChatInputHidden(this GlobalPerms p) => !p.ChatInputHidden.NullOrEmpty();
-    public static bool CanToggleChatInputHidden(this GlobalPerms p, string uid)
+    public static string HcChatInputVisEnactor(this GlobalPerms p) => PermEnactor(p.ChatInputHidden);
+    public static bool HcChatInputVisIsDevotional(this GlobalPerms p) => IsDevotional(p.ChatInputHidden);
+    public static bool CanChangeHcChatInputVis(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ChatInputHidden.NullOrEmpty() || !p.ChatInputHidden.IsPermDevotional()) return true;
-        return p.ChatInputHidden.HardcorePermUID() == uid;
+        if (string.IsNullOrEmpty(p.ChatInputHidden) || !IsDevotional(p.ChatInputHidden)) return true;
+        return kinksterUid.Equals(PermEnactor(p.ChatInputHidden));
     }
 
-    public static bool IsChatInputBlocked(this GlobalPerms p) => !p.ChatInputBlocked.NullOrEmpty();
-    public static bool CanToggleChatInputBlocked(this GlobalPerms p, string uid)
+    public static string HcBlockChatInputEnactor(this GlobalPerms p) => PermEnactor(p.ChatInputBlocked);
+    public static bool HcBlockChatInputDevotional(this GlobalPerms p) => IsDevotional(p.ChatInputBlocked);
+    public static bool CanChangeHcBlockChatInput(this GlobalPerms p, string kinksterUid)
     {
-        if (p.ChatInputBlocked.NullOrEmpty() || !p.ChatInputBlocked.IsPermDevotional()) return true;
-        return p.ChatInputBlocked.HardcorePermUID() == uid;
-    }
-
-    public static InteractionType PermChangeType(this GlobalPerms p, string propertyName, string newValue)
-    {
-        return propertyName switch
-        {
-            nameof(GlobalPerms.ForcedFollow) => p.ForcedFollow != newValue ? InteractionType.ForcedFollow : InteractionType.None,
-            nameof(GlobalPerms.ForcedEmoteState) => p.ForcedEmoteState != newValue ? InteractionType.ForcedEmoteState : InteractionType.None,
-            nameof(GlobalPerms.ForcedStay) => p.ForcedStay != newValue ? InteractionType.ForcedStay : InteractionType.None,
-            nameof(GlobalPerms.ChatBoxesHidden) => p.ChatBoxesHidden != newValue ? InteractionType.ForcedChatVisibility : InteractionType.None,
-            nameof(GlobalPerms.ChatInputHidden) => p.ChatInputHidden != newValue ? InteractionType.ForcedChatInputVisibility : InteractionType.None,
-            nameof(GlobalPerms.ChatInputBlocked) => p.ChatInputBlocked != newValue ? InteractionType.ForcedChatInputBlock : InteractionType.None,
-            _ => InteractionType.ForcedPermChange,
-        };
+        if (string.IsNullOrEmpty(p.ChatInputBlocked) || !IsDevotional(p.ChatInputBlocked)) return true;
+        return kinksterUid.Equals(PermEnactor(p.ChatInputBlocked));
     }
 }

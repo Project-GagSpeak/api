@@ -1,4 +1,4 @@
-namespace GagspeakAPI.Data;
+namespace GagspeakAPI.Attributes;
 
 /// <summary>
 ///     Flag-Based Enum detailing the various attributes of a Restraint Item.

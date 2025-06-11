@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
 using MessagePack;
 
@@ -53,6 +54,6 @@ public readonly record struct AppliedSlot(byte Slot = 3, ulong CustomItemId = ul
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct Attributes(RestraintFlags Flags, Traits HcTraits, Stimulation Stimulation);
+public readonly record struct Attributes(RestraintFlags Flags, Traits HcTraits, Arousal Arousal);
 
 

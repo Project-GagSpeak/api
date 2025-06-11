@@ -1,3 +1,5 @@
+using GagspeakAPI.Attributes;
+
 namespace GagspeakAPI.Enums;
 public static partial class EnumToName
 {
@@ -197,81 +199,6 @@ public static partial class EnumToName
             LimitedActionEffectType.ParriedDamage   => "Damage Parried",
             LimitedActionEffectType.Attract1        => "Rescue Used",
             LimitedActionEffectType.Knockback       => "Pushed Back",
-            _ => "UNK"
-        };
-    }
-
-    public static string ToName(this LoggerType type)
-    {
-        return type switch
-        {
-            LoggerType.None => "None",
-            LoggerType.Achievements => "Achievements",
-            LoggerType.AchievementEvents => "Events",
-            LoggerType.AchievementInfo => "Achievement Info",
-
-            LoggerType.IpcGagSpeak => "Ipc Provider",
-            LoggerType.IpcCustomize => "Customize+",
-            LoggerType.IpcGlamourer => "Glamourer",
-            LoggerType.IpcMare => "Mare",
-            LoggerType.IpcMoodles => "Moodles",
-            LoggerType.IpcPenumbra => "Penumbra",
-
-            LoggerType.AppearanceState => "Appearance",
-            LoggerType.ToyboxState => "Toybox",
-            LoggerType.Mediator => "Mediator",
-            LoggerType.GarblerCore => "GarblerCore",
-
-            LoggerType.ToyboxAlarms => "Alarms",
-            LoggerType.ActionsNotifier => "Actions Notifier",
-            LoggerType.KinkPlateMonitor => "KinkPlates™",
-            LoggerType.EmoteMonitor => "Emote Monitor",
-            LoggerType.ChatDetours => "Chat Detours",
-            LoggerType.ActionEffects => "Action Effects",
-            LoggerType.SpatialAudioLogger => "Spatial Logger",
-
-            LoggerType.HardcoreActions => "Actions",
-            LoggerType.HardcoreMovement => "Movements",
-            LoggerType.HardcorePrompt => "Prompts",
-
-            LoggerType.ClientPlayerData => "Client Data",
-            LoggerType.GagHandling => "Gag Handling",
-            LoggerType.PadlockHandling => "Padlock Handling",
-            LoggerType.Restraints => "Restraints",
-            LoggerType.Puppeteer => "Puppeteer",
-            LoggerType.CursedLoot => "Cursed Loot",
-            LoggerType.ToyboxDevices => "Devices",
-            LoggerType.ToyboxPatterns => "Patterns",
-            LoggerType.ToyboxTriggers => "Triggers",
-            LoggerType.VibeControl => "Vibe Control",
-
-            LoggerType.PairManagement => "Pair Management",
-            LoggerType.PairInfo => "Pair Info",
-            LoggerType.PairDataTransfer => "Pair Data",
-            LoggerType.PairHandlers => "Pair Handlers",
-            LoggerType.OnlinePairs => "Online Pairs",
-            LoggerType.VisiblePairs => "Visible Pairs",
-            LoggerType.VibeRooms => "Vibe Rooms",
-            LoggerType.GameObjects => "Game Objects",
-
-            LoggerType.Cosmetics => "Cosmetics",
-            LoggerType.Textures => "Textures",
-            LoggerType.GlobalChat => "Global Chat",
-            LoggerType.ContextDtr => "Context DTR",
-            LoggerType.PatternHub => "Pattern Hub",
-            LoggerType.Safeword => "Safeword",
-
-            LoggerType.UiCore => "UI Core",
-            LoggerType.UserPairDrawer => "User Pair Drawer",
-            LoggerType.Permissions => "Permissions",
-            LoggerType.Simulation => "Simulation",
-
-            LoggerType.PiShock => "PiShock",
-            LoggerType.ApiCore => "API Core",
-            LoggerType.Callbacks => "Callbacks",
-            LoggerType.Health => "Health",
-            LoggerType.HubFactory => "Hub Factory",
-            LoggerType.JwtTokens => "JWT Tokens",
             _ => "UNK"
         };
     }

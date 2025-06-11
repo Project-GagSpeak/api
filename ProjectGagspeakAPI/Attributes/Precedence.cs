@@ -1,4 +1,4 @@
-namespace GagspeakAPI.Enums;
+namespace GagspeakAPI.Attributes;
 
 
 /// <summary> Determines the precedence level of a cursed item. </summary>
