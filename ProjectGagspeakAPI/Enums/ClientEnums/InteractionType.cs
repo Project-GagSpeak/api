@@ -47,13 +47,6 @@ public enum InteractionType
     BeepAction, // ???? Forgot where this happens
     
     BulkUpdate,
-    
-    ForcedFollow,
-    ForcedEmoteState,
-    ForcedStay,
-    ForcedChatVisibility,
-    ForcedChatInputVisibility,
-    ForcedChatInputBlock,
     ForcedPermChange,
     
     VibeControl,

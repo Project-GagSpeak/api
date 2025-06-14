@@ -1,8 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 namespace GagspeakAPI.Util;
 public static class PropertyChanger
 {
+    public static BindingFlags PropertyFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic;
+
     /// <summary>
     ///    Attempts to set a property on the target object with the given property name and raw value.
     /// </summary>
@@ -16,7 +19,7 @@ public static class PropertyChanger
         // Initially assume the converted value is null.
         convertedValue = null;
         // Get the underlying property and see if we can even write there.
-        System.Reflection.PropertyInfo? prop = typeof(T).GetProperty(propertyName);
+        PropertyInfo? prop = typeof(T).GetProperty(propertyName, PropertyFlags);
         if (prop is null || !prop.CanWrite)
             return false;
 
