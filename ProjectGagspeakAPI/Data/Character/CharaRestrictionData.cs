@@ -86,9 +86,9 @@ public record ActiveRestriction : IPadlockableRestriction, IRestrictionValidator
     public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
 
     public bool CanApply() => !IsLocked();
-    public bool CanLock() => !Identifier.IsEmptyGuid() && !IsLocked();
-    public bool CanUnlock() => IsLocked() && !Identifier.IsEmptyGuid();
-    public bool CanRemove() => !Identifier.IsEmptyGuid() && !IsLocked();
+    public bool CanLock() => Identifier != Guid.Empty && !IsLocked();
+    public bool CanUnlock() => IsLocked() && Identifier != Guid.Empty;
+    public bool CanRemove() => Identifier != Guid.Empty && !IsLocked();
 }
 
 [MessagePackObject(keyAsPropertyName: true)]

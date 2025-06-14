@@ -4,6 +4,10 @@ namespace GagspeakAPI.Extensions;
 
 public static class GlobalPermsEx
 {
+    private static readonly string[] SitIdList = { "50", "95", "96", "254", "255" };
+    private static readonly string[] GroundSitIdList = { "52", "97", "98", "117" };
+    private static readonly string[] AnySitIdList = SitIdList.Concat(GroundSitIdList).ToArray();
+
     private static bool IsDevotional(string s) => s.EndsWith(Constants.DevotedString);
     private static string PermEnactor(string s) => s.Replace(Constants.DevotedString, string.Empty);
 
@@ -16,6 +20,9 @@ public static class GlobalPermsEx
         return kinksterUid.Equals(PermEnactor(p.ForcedFollow));
     }
 
+    public static bool HcEmoteIsGroundSitting(this GlobalPerms p) => p.ForcedEmoteState.Split('|') is { Length: >= 2 } pt && GroundSitIdList.Contains(pt[1]);
+    public static bool HcEmoteIsSitting(this GlobalPerms p) => p.ForcedEmoteState.Split('|') is { Length: >= 2 } pt && SitIdList.Contains(pt[1]);
+    public static bool HcEmoteIsAnySitting(this GlobalPerms p) => p.ForcedEmoteState.Split('|') is { Length: >= 2 } pt && AnySitIdList.Contains(pt[1]); 
     public static bool HcEmoteState(this GlobalPerms p) => !string.IsNullOrEmpty(p.ForcedEmoteState);
     public static string HcEmoteEnactor(this GlobalPerms p) => p.ForcedEmoteState.Split('|')[0];
     public static bool HcEmoteIsDevotional(this GlobalPerms p) => IsDevotional(p.ForcedEmoteState);
@@ -52,7 +59,7 @@ public static class GlobalPermsEx
         return kinksterUid.Equals(PermEnactor(p.ChatInputHidden));
     }
 
-    public static bool HcBlockChatInput(this GlobalPerms p) => !string.IsNullOrEmpty(p.ChatInputBlocked);
+    public static bool HcBlockChatInputState(this GlobalPerms p) => !string.IsNullOrEmpty(p.ChatInputBlocked);
     public static string HcBlockChatInputEnactor(this GlobalPerms p) => PermEnactor(p.ChatInputBlocked);
     public static bool HcBlockChatInputDevotional(this GlobalPerms p) => IsDevotional(p.ChatInputBlocked);
     public static bool CanChangeHcBlockChatInput(this GlobalPerms p, string kinksterUid)
