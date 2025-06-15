@@ -11,9 +11,9 @@ public class CharaCompositeData
     public CharaActiveGags Gags { get; set; } = new();
     public CharaActiveRestrictions Restrictions { get; set; } = new();
     public CharaActiveRestraint Restraint { get; set; } = new();
-    public IEnumerable<Guid> ActiveCursedItems { get; set; } = new List<Guid>();
+    public List<Guid> ActiveCursedItems { get; set; } = new();
     public AliasStorage GlobalAliasData { get; set; } = new();
-    public SortedList<string, NamedAliasStorage> PairAliasData { get; set; } = new();
+    public Dictionary<string, NamedAliasStorage> PairAliasData { get; set; } = new();
     public CharaToyboxData ToyboxData { get; set; } = new();
     public CharaLightStorageData LightStorageData { get; set; } = new();
 }
