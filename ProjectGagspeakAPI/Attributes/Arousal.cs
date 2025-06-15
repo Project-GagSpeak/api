@@ -1,6 +1,5 @@
 namespace GagspeakAPI.Attributes;
 
-
 /// <summary> 
 ///     Determines the level of arousal given while restricted with an item.
 ///     Higher Arousal ratings generate higher total Arousal, or faster 

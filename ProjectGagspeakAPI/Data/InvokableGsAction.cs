@@ -1,8 +1,16 @@
 using GagspeakAPI.Enums;
-using GagspeakAPI.Extensions;
 using MessagePack;
 
-namespace GagspeakAPI.Data.Interfaces;
+namespace GagspeakAPI.Data;
+
+[MessagePackObject(keyAsPropertyName: true)]
+[Union(0, typeof(TextAction))]
+[Union(1, typeof(GagAction))]
+[Union(2, typeof(RestrictionAction))]
+[Union(3, typeof(RestraintAction))]
+[Union(4, typeof(MoodleAction))]
+[Union(5, typeof(PiShockAction))]
+[Union(6, typeof(SexToyAction))]
 public abstract record InvokableGsAction : IComparable<InvokableGsAction>
 {
     public abstract InvokableActionType ActionType { get; }
@@ -16,7 +24,7 @@ public abstract record InvokableGsAction : IComparable<InvokableGsAction>
         => other is null ? 1 : ActionType.CompareTo(other.ActionType);
 }
 
-
+[MessagePackObject(keyAsPropertyName: true)]
 public record TextAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.TextOutput;
@@ -26,6 +34,7 @@ public record TextAction : InvokableGsAction
         => OutputCommand = other.OutputCommand;
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
 public record GagAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Gag;
@@ -40,6 +49,7 @@ public record GagAction : InvokableGsAction
         => (NewState, GagType, Padlock) = (other.NewState, other.GagType, other.Padlock);
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
 public record RestrictionAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Restriction;
@@ -54,6 +64,7 @@ public record RestrictionAction : InvokableGsAction
         => (NewState, Padlock, RestrictionId) = (other.NewState, other.Padlock, other.RestrictionId);
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
 public record RestraintAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Restraint;
@@ -67,6 +78,7 @@ public record RestraintAction : InvokableGsAction
         => (NewState, Padlock, RestrictionId) = (other.NewState, other.Padlock, other.RestrictionId);
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
 public record MoodleAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.Moodle;
@@ -79,6 +91,7 @@ public record MoodleAction : InvokableGsAction
     public bool IsValid => MoodleItem.Id != Guid.Empty;
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
 public record PiShockAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.ShockCollar;
@@ -93,7 +106,6 @@ public record PiShockAction : InvokableGsAction
         };
 }
 
-// This is temporary because idk how the sex toy stuff will roll out entirely yet.
 [MessagePackObject(keyAsPropertyName: true)]
 public record SexToyAction : InvokableGsAction
 {

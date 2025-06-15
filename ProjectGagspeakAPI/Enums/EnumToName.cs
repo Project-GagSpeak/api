@@ -108,6 +108,17 @@ public static partial class EnumToName
         _ => "UNK"
     };
 
+    public static string ToName(this Arousal arousal)
+    => arousal switch
+    {
+        Arousal.None => "No Arousal",
+        Arousal.Weak => "Weak Arousal",
+        Arousal.Light => "Light Arousal",
+        Arousal.Mild => "Mild Arousal",
+        Arousal.Strong => "Strong Arousal",
+        _ => "UNK"
+    };
+
     public static string ToName(this Precedence precedence)
     => precedence switch
     {
