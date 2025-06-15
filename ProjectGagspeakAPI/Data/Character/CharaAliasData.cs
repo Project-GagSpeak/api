@@ -33,7 +33,7 @@ public class AliasStorage : List<AliasTrigger>, IEditableStorage<AliasTrigger>
     public AliasStorage()
     { }
 
-    public AliasStorage(IEnumerable<AliasTrigger> init)
+    public AliasStorage(List<AliasTrigger> init)
         : base(init)
     { }
 

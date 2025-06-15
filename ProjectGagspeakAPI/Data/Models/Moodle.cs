@@ -1,5 +1,6 @@
 using GagspeakAPI.Enums;
 using MessagePack;
+using System.Collections.Generic;
 
 namespace GagspeakAPI.Data;
 
@@ -30,7 +31,7 @@ public class Moodle
 [MessagePackObject(keyAsPropertyName: true)]
 public class MoodlePreset : Moodle
 {
-    public IEnumerable<Guid> StatusIds { get; internal set; } = Enumerable.Empty<Guid>();
+    public List<Guid> StatusIds { get; internal set; } = new List<Guid>();
 
     public MoodlePreset()
         : base()
@@ -40,8 +41,8 @@ public class MoodlePreset : Moodle
         => (Id, StatusIds) = (other.Id, other.StatusIds);
 
     public MoodlePreset(Guid id, IEnumerable<Guid> statusIds)
-        => (Id, StatusIds) = (id, statusIds);
+        => (Id, StatusIds) = (id, statusIds.ToList());
 
     public void UpdatePreset(Guid newId, IEnumerable<Guid> newStatusIds)
-        => (Id, StatusIds) = (newId, newStatusIds);
+        => (Id, StatusIds) = (newId, newStatusIds.ToList());
 }
