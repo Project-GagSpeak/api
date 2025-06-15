@@ -1,8 +1,6 @@
 using GagspeakAPI.Enums;
-using GagspeakAPI.Data.Interfaces;
-using MessagePack;
-using GagspeakAPI.Extensions;
 using GagspeakAPI.Util;
+using MessagePack;
 
 namespace GagspeakAPI.Data;
 
@@ -11,14 +9,14 @@ public record CharaActiveGags
 {
     public CharaActiveGags()
     {
-        for (int i = 0; i < GagSlots.Length; i++)
+        for (var i = 0; i < GagSlots.Length; i++)
             GagSlots[i] = new ActiveGagSlot();
     }
 
     // Constructor with predefined slots (for server)
     public CharaActiveGags(ActiveGagSlot[] slots)
     {
-        for (int i = 0; i < GagSlots.Length; i++)
+        for (var i = 0; i < GagSlots.Length; i++)
             GagSlots[i] = slots[i];
     }
 
@@ -53,14 +51,14 @@ public record CharaActiveRestrictions
 {
     public CharaActiveRestrictions()
     {
-        for (int i = 0; i < Restrictions.Length; i++)
+        for (var i = 0; i < Restrictions.Length; i++)
             Restrictions[i] = new ActiveRestriction();
     }
 
     // Constructor with predefined restrictions (for server)
     public CharaActiveRestrictions(ActiveRestriction[] restrictions)
     {
-        for (int i = 0; i < Restrictions.Length; i++)
+        for (var i = 0; i < Restrictions.Length; i++)
             Restrictions[i] = restrictions[i];
     }
 

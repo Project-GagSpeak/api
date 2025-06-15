@@ -1,4 +1,3 @@
-using GagspeakAPI.Data.Interfaces;
 using MessagePack;
 
 namespace GagspeakAPI.Data;
