@@ -63,7 +63,7 @@ public class AliasTrigger : IEditableStorageItem<AliasTrigger>
     public string InputCommand { get; set; } = string.Empty;
 
     /// <summary> Stores Actions with unique types. </summary>
-    // public HashSet<InvokableGsAction> Actions { get; set; } = new HashSet<InvokableGsAction>() { new TextAction() };
+    public HashSet<InvokableGsAction> Actions { get; set; } = new HashSet<InvokableGsAction>() { new TextAction() };
 
     public AliasTrigger() 
     { }
@@ -82,6 +82,6 @@ public class AliasTrigger : IEditableStorageItem<AliasTrigger>
         Enabled = changedItem.Enabled;
         Label = changedItem.Label;
         InputCommand = changedItem.InputCommand;
-        // Actions = changedItem.Actions.ToHashSet();
+        Actions = changedItem.Actions.ToHashSet();
     }
 }
