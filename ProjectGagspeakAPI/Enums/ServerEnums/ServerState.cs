@@ -10,6 +10,7 @@ public enum ServerState
     Reconnecting,
     Connecting,
     Connected,
+    ConnectedDataSynced,
     // Error Messages
     Unauthorized,
     VersionMisMatch,

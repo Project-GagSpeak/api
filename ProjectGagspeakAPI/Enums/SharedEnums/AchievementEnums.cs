@@ -1,15 +1,16 @@
 namespace GagspeakAPI.Enums;
 
+// Maybe Diversify this more later idk.
 public enum AchievementModuleKind
 {
-    Orders,
+    Generic,
     Gags,
     Wardrobe,
     Puppeteer,
     Toybox,
-    Hardcore,
     Remotes,
-    Generic,
+    Arousal,
+    Hardcore,
     Secrets,
 }
 
@@ -117,12 +118,4 @@ public enum PatternInteractionKind
     Liked,
     Started,
     Stopped,
-}
-
-public enum OrderInteractionKind
-{
-    Create,
-    Started,
-    Completed,
-    Fail,
 }

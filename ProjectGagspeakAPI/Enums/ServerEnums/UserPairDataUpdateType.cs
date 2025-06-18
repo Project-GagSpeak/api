@@ -37,11 +37,6 @@ public enum DataUpdateType
     StatusManagerChanged,
     StatusesUpdated,
     PresetsUpdated,
-    // Orders
-    Assigned,
-    Progressed,
-    Completed,
-    Failed,
 
     // Storage
     StorageUpdated,
