@@ -44,6 +44,7 @@ public enum CoreTexture
     ForcedEmote,
     ForcedStay,
     Gagged,
+    HypnoSpiral,
     Icon256,
     Icon256Bg,
     Immobilize,

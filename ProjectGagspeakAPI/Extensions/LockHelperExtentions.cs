@@ -51,7 +51,7 @@ public static class PadlockValidation
         => time - DateTimeOffset.UtcNow > maxTime;
 
     /// <summary> Validates if within allowed time. </summary>
-    private static bool IsValidTime(string time, TimeSpan maxTime)
+    public static bool IsValidTime(string time, TimeSpan maxTime)
         => PadlockEx.TryParseTimeSpan(time, out var ts) && ts <= maxTime;
 
     /// <summary> Validates a 20 character password with no spaces </summary>

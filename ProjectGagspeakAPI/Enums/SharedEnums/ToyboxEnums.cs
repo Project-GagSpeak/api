@@ -24,7 +24,9 @@ public enum HypnoAttributes
     TextIsSequential    = 0x00, // Displayed text cycles through the display words in order.
     TextIsRandom        = 0x01, // Displayed text pulls from the display words at random.
 
-    RainbowGradient     = 0x02, // The displayed hypnotic effect will cycle through a rainbow gradient.
+    ModeMask = TextIsSequential | TextIsRandom, // For easy masking
+
+    RainbowGradient = 0x02, // The displayed hypnotic effect will cycle through a rainbow gradient.
 
     LinearTextScale     = 0x04, // The displayed will grow in time as the total duration gets closer to the end.
     RandomTextScale     = 0x08, // The displayed text appears in randomized scales each time the text cycles.

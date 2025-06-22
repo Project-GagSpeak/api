@@ -7,20 +7,41 @@ namespace GagspeakAPI.Data;
 public class HypnoticEffect
 {
     /// <summary> How fast the hypnotic image spins. </summary>
-    public float SpinSpeed { get; set; } = 1f;
+    public float SpinSpeed = 1f;
 
     /// <summary> What Tint color is applied to the hypnotic image. (Defaults to White) </summary>
-    public uint TintColor { get; set; } = 0xFFFFFFFF;
+    public uint TintColor = 0xFFFFFFFF;
 
     /// <summary> What Attributes the hypnotic display should have. </summary>
-    public HypnoAttributes Attributes { get; set; } = HypnoAttributes.TextIsSequential;
+    public HypnoAttributes Attributes = HypnoAttributes.TextIsSequential;
 
     /// <summary> What Tint color is applied to the displayed text, if any. (Defaults to Purple) </summary>
-    public uint TextColor { get; set; } = 0xFFFF00FF;
+    public uint TextColor = 0xFFFF00FF;
 
     /// <summary> What various text strings should we show at the center of the spiral. </summary>
-    public string[] DisplayWords { get; set; } = [];
+    public string[] DisplayWords = [];
 
     /// <summary> How frequently do we cycle through the display words. </summary>
-    public float TextCycleSpeed { get; set; } = 1f;
+    public float TextCycleSpeed = 1f;
+
+    public HypnoticEffect() 
+    { }
+
+    public HypnoticEffect(HypnoticEffect other)
+    {
+        SpinSpeed = other.SpinSpeed;
+        TintColor = other.TintColor;
+        Attributes = other.Attributes;
+        TextColor = other.TextColor;
+        DisplayWords = (string[])other.DisplayWords.Clone();
+        TextCycleSpeed = other.TextCycleSpeed;
+    }
+
+    public override string ToString()
+    {
+        return $"HypnoticEffect(SpinSpeed: {SpinSpeed}, TintColor: {TintColor:X8}, Attributes: {Attributes}, " +
+            $"TextColor: {TextColor:X8}, TextCycleSpeed: {TextCycleSpeed})";
+    }
+
+
 }
