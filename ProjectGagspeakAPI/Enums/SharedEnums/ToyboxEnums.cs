@@ -34,10 +34,11 @@ public enum HypnoAttributes
     ScaleMask = LinearTextScale | RandomTextScale,
 
     TextFade           = 0x08, // Text will fade in & out between displays.
+    InvertDirection    = 0x10, // Spins Counter Clockwise over Clockwise.
 
-    SpeedUpOnCycle     = 0x10, // Text will speed up on each cycle.
-    TransposeColors    = 0x20, // Goes between normal colors and inverted RGB every cycle.
+    SpeedUpOnCycle     = 0x20, // Text will speed up on each cycle.
+    TransposeColors    = 0x40, // Goes between normal colors and inverted RGB every cycle.
 
-    ArousalScalesSpeed = 0x40, // Display Cycle Speed impacted by by arousal. (WIP)
-    ArousalPulsesText  = 0x80,// Display Cycle Pulse Speed impacted by arousal. (WIP)
+    ArousalScalesSpeed = 0x80, // Display Cycle Speed impacted by by arousal. (WIP)
+    ArousalPulsesText  = 0x120,// Display Cycle Pulse Speed impacted by arousal. (WIP)
 }
