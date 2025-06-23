@@ -207,4 +207,38 @@ public static partial class EnumToName
             _ => "UNK"
         };
     }
+
+    public static string ToName(this HypnoAttributes attribute)
+    {
+        return attribute switch
+        {
+            HypnoAttributes.TextDisplayOrdered  => "Sequential phrases",
+            HypnoAttributes.TextDisplayRandom   => "Randomized phrases",
+            HypnoAttributes.LinearTextScale     => "Text scales up",
+            HypnoAttributes.RandomTextScale     => "Text scales randomly",
+            HypnoAttributes.TextFade            => "Text fades in & out",
+            HypnoAttributes.SpeedUpOnCycle      => "Speedup inbetween",
+            HypnoAttributes.TransposeColors     => "Color Transpose",
+            HypnoAttributes.ArousalScalesSpeed  => "Arousal integration",
+            HypnoAttributes.ArousalPulsesText   => "Arousal pulses text",
+            _ => "UNK"
+        };
+    }
+
+    public static string ToTooltip(this  HypnoAttributes attribute)
+    {
+        return attribute switch
+        {
+            HypnoAttributes.TextDisplayOrdered => "Phrases display in the containers order.",
+            HypnoAttributes.TextDisplayRandom => "Phrases will display in a random order.",
+            HypnoAttributes.LinearTextScale => "Phrases will gradually grow during their display lifetime.",
+            HypnoAttributes.RandomTextScale => "Phrases will appear at randomized scales.",
+            HypnoAttributes.TextFade => "Phrases fade in and out at the start and end of display lifetime.",
+            HypnoAttributes.SpeedUpOnCycle => "Briefly accelerates spin speed between display phases.",
+            HypnoAttributes.TransposeColors => "Continuously phase between the set color and its inverse.",
+            HypnoAttributes.ArousalScalesSpeed => "Display phrase speed can be amplified by arousal rate",
+            HypnoAttributes.ArousalPulsesText => "Arousal can cause the text phrases to pulsate.",
+            _ => "UNK"
+        };
+    }
 }

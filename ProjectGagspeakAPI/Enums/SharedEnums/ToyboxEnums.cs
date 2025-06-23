@@ -21,13 +21,23 @@ public enum ShockMode : sbyte // the OPCode
 [Flags]
 public enum HypnoAttributes
 {
-    TextIsSequential    = 0x00, // Displayed text cycles through the display words in order.
-    TextIsRandom        = 0x01, // Displayed text pulls from the display words at random.
+    TextDisplayOrdered = 0x00, // Phases display in the order they exist within the wordbank.
+    TextDisplayRandom  = 0x01, // Phases display in a random order.
 
-    ModeMask = TextIsSequential | TextIsRandom, // For easy masking
+    // Bitmasks for Text Display
+    TextDisplayMask = TextDisplayOrdered | TextDisplayRandom,
 
-    RainbowGradient = 0x02, // The displayed hypnotic effect will cycle through a rainbow gradient.
+    LinearTextScale    = 0x02, // Display Phrases Gradually grow during their display time.
+    RandomTextScale    = 0x04, // Display Phrases appear at randomized Scales.
 
-    LinearTextScale     = 0x04, // The displayed will grow in time as the total duration gets closer to the end.
-    RandomTextScale     = 0x08, // The displayed text appears in randomized scales each time the text cycles.
+    // Bitmasks for Text Scaling
+    ScaleMask = LinearTextScale | RandomTextScale,
+
+    TextFade           = 0x08, // Text will fade in & out between displays.
+
+    SpeedUpOnCycle     = 0x10, // Text will speed up on each cycle.
+    TransposeColors    = 0x20, // Goes between normal colors and inverted RGB every cycle.
+
+    ArousalScalesSpeed = 0x40, // Display Cycle Speed impacted by by arousal. (WIP)
+    ArousalPulsesText  = 0x80,// Display Cycle Pulse Speed impacted by arousal. (WIP)
 }

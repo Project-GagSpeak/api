@@ -4,7 +4,7 @@ using MessagePack;
 namespace GagspeakAPI.Data;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public class HypnoticEffect
+public class   HypnoticEffect
 {
     /// <summary> How fast the hypnotic image spins. </summary>
     public float SpinSpeed = 1f;
@@ -13,7 +13,7 @@ public class HypnoticEffect
     public uint TintColor = 0xFFFFFFFF;
 
     /// <summary> What Attributes the hypnotic display should have. </summary>
-    public HypnoAttributes Attributes = HypnoAttributes.TextIsSequential;
+    public HypnoAttributes Attributes = HypnoAttributes.TextDisplayOrdered;
 
     /// <summary> What Tint color is applied to the displayed text, if any. (Defaults to Purple) </summary>
     public uint TextColor = 0xFFFF00FF;
@@ -21,8 +21,9 @@ public class HypnoticEffect
     /// <summary> What various text strings should we show at the center of the spiral. </summary>
     public string[] DisplayWords = [];
 
-    /// <summary> How frequently do we cycle through the display words. </summary>
-    public float TextCycleSpeed = 1f;
+    /// <summary> How long is each text phrase on screen before cycling? (in ms) </summary>
+    /// <remarks> This is not accounting for arousal impact, if an included attribute. </remarks>
+    public int TextLifeTime = 1000;
 
     public HypnoticEffect() 
     { }
@@ -34,13 +35,13 @@ public class HypnoticEffect
         Attributes = other.Attributes;
         TextColor = other.TextColor;
         DisplayWords = (string[])other.DisplayWords.Clone();
-        TextCycleSpeed = other.TextCycleSpeed;
+        TextLifeTime = other.TextLifeTime;
     }
 
     public override string ToString()
     {
         return $"HypnoticEffect(SpinSpeed: {SpinSpeed}, TintColor: {TintColor:X8}, Attributes: {Attributes}, " +
-            $"TextColor: {TextColor:X8}, TextCycleSpeed: {TextCycleSpeed})";
+            $"TextColor: {TextColor:X8}, TextLifeTime: {TextLifeTime})";
     }
 
 
