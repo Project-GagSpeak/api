@@ -65,6 +65,8 @@ public record PairPerms
     public bool        AllowHidingChatBoxes      { get; set; } = false;
     public bool        AllowHidingChatInput      { get; set; } = false;
     public bool        AllowChatInputBlocking    { get; set; } = false;
+    public bool        AllowHypnoEffectSending   { get; set; } = false;
+    public bool        AllowHypnoImageSending    { get; set; } = false;
 
     public string      PiShockShareCode          { get; set; } = ""; // the share Code for the shock collar unique to this user.
     public bool        AllowShocks               { get; set; } = false; // If we allow shocks from this pair.

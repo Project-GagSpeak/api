@@ -39,6 +39,8 @@ public record GlobalPerms
     public string      ChatBoxesHidden             { get; set; } = string.Empty;
     public string      ChatInputHidden             { get; set; } = string.Empty;
     public string      ChatInputBlocked            { get; set; } = string.Empty;
+    public string      HypnosisCustomEffect        { get; set; } = string.Empty;
+
 
     // Global PiShock Permissions & Helpers.
     public string      GlobalShockShareCode        { get; set; } = string.Empty;

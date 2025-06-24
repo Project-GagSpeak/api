@@ -40,5 +40,5 @@ public enum HypnoAttributes
     TransposeColors    = 0x40, // Goes between normal colors and inverted RGB every cycle.
 
     ArousalScalesSpeed = 0x80, // Display Cycle Speed impacted by by arousal. (WIP)
-    ArousalPulsesText  = 0x120,// Display Cycle Pulse Speed impacted by arousal. (WIP)
+    ArousalPulsesText  = 0x100,// Display Cycle Pulse Speed impacted by arousal. (WIP)
 }
