@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace GagspeakAPI;
 
 /// <summary> Constants used across GagSpeak. </summary>
