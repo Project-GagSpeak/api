@@ -27,8 +27,8 @@ public enum MoodlePerms : byte
 public enum PermissionType
 {
     Global,                   // Use GlobalPerms & PairPermEditAccess
-    UniquePairPerm,           // Use UniquePairPerms & PairPermEditAccess
-    UniquePairPermEditAccess, // Used to validate the edit access checkbox catagory, not used in sensarios.
+    PairPerm,           // Use UniquePairPerms & PairPermEditAccess
+    PairAccess, // Used to validate the edit access checkbox catagory, not used in sensarios.
 };
 
 
@@ -55,10 +55,10 @@ public enum PresetName : byte
     OwnersSlave
 };
 
-public enum StickyWindowType
+public enum InteractionsTab
 {
     None,
-    PairPerms,
-    ClientPermsForPair,
-    PairActionFunctions,
+    KinkstersPerms,
+    PermsForKinkster,
+    Interactions,
 }
