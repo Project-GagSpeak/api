@@ -75,7 +75,8 @@ public enum UnlocksEvent
     VibratorsToggled,
 
     // Generic
-    ChatMessageSent, // chat type, message, and sender.
+    GaggedChatSent, // chat type, message, and sender.
+    KinksterGaggedChatSent, // chat type, message, and sender.
     EmoteExecuted, // contains emote used in string value.
     TutorialCompleted,
     PairAdded,
