@@ -20,6 +20,7 @@ public class CharaLightStorageData
     public Dictionary<GagspeakModule, string[]> Allowances { get; init; } = [];
 }
 
+// Likely rework the below items later, this current data sharing model sucks arse.
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightGag(AppliedSlot SlotData, Attributes Attributes);

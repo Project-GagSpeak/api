@@ -1,5 +1,5 @@
 namespace GagspeakAPI.Enums;
-public enum StatusType
+public enum StatusType : int
 {
     Positive,
     Negative,

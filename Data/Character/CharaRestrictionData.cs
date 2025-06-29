@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
 using GagspeakAPI.Util;
 using MessagePack;
@@ -93,16 +94,11 @@ public record ActiveRestriction : IPadlockableRestriction, IRestrictionValidator
 public record CharaActiveRestraint : ActiveRestriction
 {
     /// <summary> Bitfield representing which layers are active, 5 bits : 0b00000 </summary>
-    public byte LayersBitfield { get; set; } = 0b00000;
+    public RestraintLayer ActiveLayers { get; set; } = RestraintLayer.None;
 
     public CharaActiveRestraint() : base() { }
 
     public override string ToString()
-        => $"Restraint: {{ ID = {Identifier}, Layers = {LayersBitfield}, " +
+        => $"Restraint: {{ ID = {Identifier}, ActiveLayers = {ActiveLayers}, " +
            $"Lock = {Padlock.ToName()}, Pass = {Password}, Timer = {Timer}, Assigner = {PadlockAssigner} }}";
-
-    public bool IsLayerActive(int idx) => (LayersBitfield & (1 << idx)) != 0;
-    public void SetLayerActive(int idx) => LayersBitfield |= (byte)(1 << idx);
-    public void SetLayerInactive(int idx) => LayersBitfield &= (byte)~(1 << idx);
-    public void ClearLayers() => LayersBitfield = 0b00000;
 }

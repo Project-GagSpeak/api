@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
@@ -14,6 +15,6 @@ namespace GagspeakAPI.Network;
 public record KinksterUpdateRestraint(UserData User, UserData Enactor, CharaActiveRestraint NewData, DataUpdateType Type) : KinksterBase(User)
 {
     public Guid PreviousRestraint { get; init; } = Guid.Empty;
-    public byte PreviousLayers { get; init; } = 0b00000;
+    public RestraintLayer PrevLayers { get; init; } = RestraintLayer.None;
     public Padlocks PreviousPadlock { get; init; } = Padlocks.None;
 }

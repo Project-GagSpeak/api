@@ -25,10 +25,13 @@ public record PairPermAccess
     public bool RemoveGagsAllowed                   { get; set; } = false;
 
     public bool ApplyRestrictionsAllowed            { get; set; } = false;
-    public bool ApplyRestraintLayersAllowed         { get; set; } = false;
+    public bool ApplyLayersAllowed                  { get; set; } = false;
+    public bool ApplyLayersWhileLockedAllowed       { get; set; } = false;
     public bool LockRestrictionsAllowed             { get; set; } = false;
     public bool MaxRestrictionTimeAllowed           { get; set; } = false;
     public bool UnlockRestrictionsAllowed           { get; set; } = false;
+    public bool RemoveLayersAllowed                 { get; set; } = false;
+    public bool RemoveLayersWhileLockedAllowed      { get; set; } = false;
     public bool RemoveRestrictionsAllowed           { get; set; } = false;
 
     public bool ApplyRestraintSetsAllowed           { get; set; } = false;

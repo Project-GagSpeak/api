@@ -1,4 +1,4 @@
-using GagspeakAPI.Data.Struct;
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
 using GagspeakAPI.Extensions;
 using MessagePack;
@@ -8,7 +8,7 @@ namespace GagspeakAPI.Data.Permissions;
 [MessagePackObject(keyAsPropertyName: true)]
 public record GlobalPerms
 {
-    public int         ChatGarblerChannelsBitfield { get; set; } = 0;     // bitfield for liveChatGarblerChannels. Can be set by Hardcore.
+    public InptChannel AllowedGarblerChannels      { get; set; } = 0;     // bitfield for liveChatGarblerChannels. Can be set by Hardcore.
     public bool        ChatGarblerActive           { get; set; } = false; // if the live chat garbler is active
     public bool        ChatGarblerLocked           { get; set; } = false; // if the live chat garbler is locked in an active state.
 

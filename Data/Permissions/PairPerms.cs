@@ -30,10 +30,13 @@ public record PairPerms
 
     // unique permissions for the wardrobe
     public bool        ApplyRestraintSets        { get; set; } = false;
-    public bool        ApplyRestraintLayers      { get; set; } = false; // If layers can be switched while locked. *Can make Restraint set Layers Hardcore Locked. (?)
+    public bool        ApplyLayers               { get; set; } = false;
+    public bool        ApplyLayersWhileLocked    { get; set; } = false;
     public bool        LockRestraintSets         { get; set; } = false;
     public TimeSpan    MaxRestraintTime          { get; set; } = TimeSpan.Zero;
     public bool        UnlockRestraintSets       { get; set; } = false;
+    public bool        RemoveLayers              { get; set; } = false;
+    public bool        RemoveLayersWhileLocked   { get; set; } = false;
     public bool        RemoveRestraintSets       { get; set; } = false;
 
     // unique permissions for the puppeteer

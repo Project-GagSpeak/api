@@ -29,25 +29,27 @@ public enum AchievementType
 
 public enum UnlocksEvent
 {
-    OrderAction, // for finished, failed, and created actions.
+    // Restraints lowest priority
+    RestraintUpdated, // for dye changes
+    RestraintStateChange,
+    PairRestraintStateChange,
+    RestraintLayerChange,
+    PairRestraintLayerChange,
+    RestraintLockChange,
+    PairRestraintLockChange,
 
-    // Contains the layer, type, assigner.
+    // Restrictions 2nd priority
+    RestrictionStateChange,
+    PairRestrictionStateChange,
+    RestrictionLockStateChange,
+    PairRestrictionLockStateChange,
+
+    // Gags 3rd priority
     GagStateChange,
     PairGagStateChange,
     GagLockStateChange,
     PairGagLockStateChange,
     GagUnlockGuessFailed,
-
-    RestraintUpdated, // for dye changes
-    RestraintStateChange,
-    PairRestraintStateChange,
-    RestraintLockChange,
-    PairRestraintLockChange,
-
-    RestrictionStateChange,
-    PairRestrictionStateChange,
-    RestrictionLockStateChange,
-    PairRestrictionLockStateChange,
 
     PuppeteerAccessGiven, // true == all permissions, false == emote permissions. (yes, im lazy)
     PuppeteerOrderSent, // when you make another pair execute an emote.
@@ -72,6 +74,7 @@ public enum UnlocksEvent
 
     VibratorsToggled,
 
+    // Generic
     ChatMessageSent, // chat type, message, and sender.
     EmoteExecuted, // contains emote used in string value.
     TutorialCompleted,
@@ -83,7 +86,7 @@ public enum UnlocksEvent
     PlayersInProximity,
     CutsceneInturrupted,
 
-    // For certain achievements requiring special conditions
+    // Special
     SoldSlave,
     AuctionedOff,
 }

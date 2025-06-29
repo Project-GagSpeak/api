@@ -1,6 +1,3 @@
-// AttackType from ReceiveActionEffect calls.
-// https://github.com/NightmareXIV/ECommons/blob/master/ECommons/Hooks/ActionEffectTypes/AttackType.cs
-
 namespace GagspeakAPI.Enums;
 
 public enum InteractionType
@@ -8,8 +5,10 @@ public enum InteractionType
     None,
     SwappedRestraint,
     ApplyRestraint,
+    ApplyRestraintLayers,
     LockRestraint,
     UnlockRestraint,
+    RemoveRestraintLayers,
     RemoveRestraint,
     
     SwappedRestriction,
