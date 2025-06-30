@@ -3,39 +3,39 @@ namespace GagspeakAPI.Attributes;
 /// <summary> Determines the channels that we can send garbled messages to. </summary>
 /// <remarks> This does not reflect accurately the real chatChannelID, refer to extentions. </remarks>
 [Flags]
-public enum InptChannel : int
+public enum InptChannel : long
 {
     None = 0,
-    Tell_In = 1 << 0,
-    Say = 1 << 1,
-    Party = 1 << 2,
-    Alliance = 1 << 3,
-    Yell = 1 << 4,
-    Shout = 1 << 5,
-    FreeCompany = 1 << 6,
-    NoviceNetwork = 1 << 8,
+    Tell_In = 1L << 0,
+    Say = 1L << 1,
+    Party = 1L << 2,
+    Alliance = 1L << 3,
+    Yell = 1L << 4,
+    Shout = 1L << 5,
+    FreeCompany = 1L << 6,
+    NoviceNetwork = 1L << 8,
 
-    CWL1 = 1 << 9,
-    CWL2 = 1 << 10,
-    CWL3 = 1 << 11,
-    CWL4 = 1 << 12,
-    CWL5 = 1 << 13,
-    CWL6 = 1 << 14,
-    CWL7 = 1 << 15,
-    CWL8 = 1 << 16,
+    CWL1 = 1L << 9,
+    CWL2 = 1L << 10,
+    CWL3 = 1L << 11,
+    CWL4 = 1L << 12,
+    CWL5 = 1L << 13,
+    CWL6 = 1L << 14,
+    CWL7 = 1L << 15,
+    CWL8 = 1L << 16,
 
-    Tell = 1 << 17,
+    Tell = 1L << 17,
 
-    LS1 = 1 << 19,
-    LS2 = 1 << 20,
-    LS3 = 1 << 21,
-    LS4 = 1 << 22,
-    LS5 = 1 << 23,
-    LS6 = 1 << 24,
-    LS7 = 1 << 25,
-    LS8 = 1 << 26,
+    LS1 = 1L << 19,
+    LS2 = 1L << 20,
+    LS3 = 1L << 21,
+    LS4 = 1L << 22,
+    LS5 = 1L << 23,
+    LS6 = 1L << 24,
+    LS7 = 1L << 25,
+    LS8 = 1L << 26,
 
-    Echo = 1 << 56,
+    Echo = 1L << 56,
 }
 
 public static class InputChannelExtensions
@@ -46,7 +46,7 @@ public static class InputChannelExtensions
     public static bool IsActiveChannel(this InptChannel flags, int channel)
     {
         // Optional: Prevent bitshifting into undefined territory.
-        if (channel < 0 || channel > 31)
+        if (channel < 0 || channel > 63)
             return false;
 
         return (flags & (InptChannel)(1 << channel)) != 0;
@@ -59,7 +59,7 @@ public static class InputChannelExtensions
     /// <returns>The updated flag set.</returns>
     public static InptChannel SetChannelState(this InptChannel flags, int channelIdx, bool enabled)
     {
-        if (channelIdx < 0 || channelIdx > 31)
+        if (channelIdx < 0 || channelIdx > 63)
             return flags;
 
         var channelFlag = (InptChannel)(1 << channelIdx);
