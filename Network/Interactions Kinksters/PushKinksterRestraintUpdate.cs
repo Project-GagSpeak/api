@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
@@ -13,7 +14,7 @@ namespace GagspeakAPI.Network;
 public record PushKinksterRestraintUpdate(UserData Target, DataUpdateType Type) : KinksterBase(Target), IPadlockable
 {
     public Guid ActiveSetId { get; init; } = Guid.Empty;
-    public byte LayersBitfield { get; init; } = 0b00000;
+    public RestraintLayer ActiveLayers { get; init; } = RestraintLayer.None;
     public string Enabler { get; init; } = string.Empty;
     public Padlocks Padlock { get; init; } = Padlocks.None;
     public string Password { get; init; } = string.Empty;

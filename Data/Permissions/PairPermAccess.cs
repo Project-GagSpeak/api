@@ -25,19 +25,19 @@ public record PairPermAccess
     public bool RemoveGagsAllowed                   { get; set; } = false;
 
     public bool ApplyRestrictionsAllowed            { get; set; } = false;
-    public bool ApplyLayersAllowed                  { get; set; } = false;
-    public bool ApplyLayersWhileLockedAllowed       { get; set; } = false;
     public bool LockRestrictionsAllowed             { get; set; } = false;
     public bool MaxRestrictionTimeAllowed           { get; set; } = false;
     public bool UnlockRestrictionsAllowed           { get; set; } = false;
-    public bool RemoveLayersAllowed                 { get; set; } = false;
-    public bool RemoveLayersWhileLockedAllowed      { get; set; } = false;
     public bool RemoveRestrictionsAllowed           { get; set; } = false;
 
     public bool ApplyRestraintSetsAllowed           { get; set; } = false;
+    public bool ApplyLayersAllowed                  { get; set; } = false;
+    public bool ApplyLayersWhileLockedAllowed       { get; set; } = false;
     public bool LockRestraintSetsAllowed            { get; set; } = false;
     public bool MaxRestraintTimeAllowed             { get; set; } = false;
     public bool UnlockRestraintSetsAllowed          { get; set; } = false;
+    public bool RemoveLayersAllowed                 { get; set; } = false;
+    public bool RemoveLayersWhileLockedAllowed      { get; set; } = false;
     public bool RemoveRestraintSetsAllowed          { get; set; } = false;
 
     // unique permissions for the puppeteer
@@ -59,4 +59,7 @@ public record PairPermAccess
     public bool StopPatternsAllowed                 { get; set; } = false;
     public bool ToggleAlarmsAllowed                 { get; set; } = false;
     public bool ToggleTriggersAllowed               { get; set; } = false;
+
+    // Misc.
+    public bool HypnoEffectSendingAllowed           { get; set; } = false;
 }

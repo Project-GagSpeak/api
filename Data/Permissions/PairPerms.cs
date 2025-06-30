@@ -57,6 +57,9 @@ public record PairPerms
     public bool        ToggleAlarms              { get; set; } = false;
     public bool        ToggleTriggers            { get; set; } = false;
 
+    // Misc.
+    public bool        HypnoEffectSending        { get; set; } = false;
+
     // unique hardcore permissions. (only allow the ALLOW permissions to be set by the user).
     public bool        InHardcore                { get; set; } = false;
     public bool        PairLockedStates          { get; set; } = false; // Treats any State toggled by this pair like a Devotional Padlock.
@@ -68,7 +71,6 @@ public record PairPerms
     public bool        AllowHidingChatBoxes      { get; set; } = false;
     public bool        AllowHidingChatInput      { get; set; } = false;
     public bool        AllowChatInputBlocking    { get; set; } = false;
-    public bool        AllowHypnoEffectSending   { get; set; } = false;
     public bool        AllowHypnoImageSending    { get; set; } = false;
 
     public string      PiShockShareCode          { get; set; } = ""; // the share Code for the shock collar unique to this user.
