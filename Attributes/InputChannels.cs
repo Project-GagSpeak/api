@@ -49,7 +49,7 @@ public static class InputChannelExtensions
         if (channel < 0 || channel > 63)
             return false;
 
-        return (flags & (InptChannel)(1 << channel)) != 0;
+        return (flags & (InptChannel)(1L << channel)) != 0;
     }
 
     /// <summary> Sets or clears a specific input channel flag. </summary>
@@ -62,7 +62,7 @@ public static class InputChannelExtensions
         if (channelIdx < 0 || channelIdx > 63)
             return flags;
 
-        var channelFlag = (InptChannel)(1 << channelIdx);
+        var channelFlag = (InptChannel)(1L << channelIdx);
         return enabled ? flags | channelFlag : flags & ~channelFlag;
     }
 }
