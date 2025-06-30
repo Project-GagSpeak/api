@@ -34,6 +34,8 @@ public enum InptChannel : int
     LS6 = 1 << 24,
     LS7 = 1 << 25,
     LS8 = 1 << 26,
+
+    Echo = 1 << 56,
 }
 
 public static class InputChannelExtensions
