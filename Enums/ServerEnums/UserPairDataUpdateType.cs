@@ -18,6 +18,7 @@ public enum DataUpdateType
     Swapped,
     Applied,
     AppliedCursed,
+    LayersChanged,
     LayersApplied,
     LayersRemoved,
     Locked,
