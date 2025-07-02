@@ -4,6 +4,7 @@ public enum InteractionType
 {
     None,
     SwappedRestraint,
+    SwappedRestraintLayers,
     ApplyRestraint,
     ApplyRestraintLayers,
     LockRestraint,
