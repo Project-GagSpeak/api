@@ -11,6 +11,7 @@ public enum GagspeakModule
     Gag,
     CursedLoot,
     Puppeteer,
+    SexToys,
     Pattern,
     Alarm,
     Trigger,
