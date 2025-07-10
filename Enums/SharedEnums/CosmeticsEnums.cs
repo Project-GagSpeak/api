@@ -71,7 +71,7 @@ public enum CoreTexture
     Weighty,
 }
 
-public enum CoreIntifaceTexture
+public enum CoreIntifaceElement
 {
     MotorVibration,
     MotorRotation,
@@ -116,6 +116,7 @@ public enum CoreIntifaceTexture
     SolacePro,
     Tenera2,
     Vulse,
+    UnknownDevice,
 }
 
 public enum ProfileComponent
