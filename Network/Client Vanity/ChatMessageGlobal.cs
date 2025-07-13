@@ -11,3 +11,6 @@ public record ChatMessageGlobal(UserData Sender, string Message, bool LegacyId)
         ? Sender.UID.Substring(Sender.UID.Length - 3) 
         : Sender.UID.Substring(Sender.UID.Length - 4);
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record ChatMessageVibeRoom(UserData Sender, string DisplayName, string Message);

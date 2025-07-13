@@ -82,6 +82,7 @@ public enum UnlocksEvent
     PairAdded,
     PresetApplied,
     GlobalSent,
+    VibeRoomChatSent,
     CursedDungeonLootFound,
     ChocoboRaceFinished,
     PlayersInProximity,
@@ -106,13 +107,6 @@ public enum DurationTimeUnit
     Minutes,
     Hours,
     Days
-}
-public enum DeepDungeonType
-{
-    Unknown,
-    PalaceOfTheDead,
-    HeavenOnHigh,
-    EurekaOrthos,
 }
 
 public enum PatternInteractionKind

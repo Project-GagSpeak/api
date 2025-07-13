@@ -1,10 +1,11 @@
 namespace GagspeakAPI.Enums;
 
-public enum ResultFilter
+public enum HubFilter
 {
     Downloads,
     Likes,
     DatePosted,
+    LobbySize,
 }
 
 public enum DurationLength
@@ -17,14 +18,8 @@ public enum DurationLength
     ExtraLong, // over an hour
 }
 
-public enum SearchSort
+public enum HubDirection
 {
     Ascending,
     Descending,
-}
-
-public enum SupportedTypes
-{
-    Vibration,
-    Rotation,
 }

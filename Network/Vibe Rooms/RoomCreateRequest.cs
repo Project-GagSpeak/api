@@ -6,8 +6,8 @@ namespace GagspeakAPI.Network;
 ///     The Room Creation DTO that initializes a new Vibe Room if validated.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record RoomCreateRequest(string Name, VibeRoomFlags Settings)
+public record RoomCreateRequest(string Name, bool PasswordProtected)
 {
-    public string? Password { get; init; }
-    public List<string> RoomTags { get; init; } = [];
+    public string[] Tags { get; init; } = [];
+    public string? Password { get; init; } = null;
 }

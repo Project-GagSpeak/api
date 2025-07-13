@@ -12,11 +12,12 @@ namespace GagspeakAPI.Hub;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 13;
+    const int ApiVersion = 14;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
     Task<ConnectionResponse> GetConnectionResponse();
+    Task<LobbyAndHubInfoResponce> GetShareHubAndLobbyInfo();
 
     #region Callbacks
     Task Callback_ServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
@@ -76,7 +77,10 @@ public interface IGagspeakHub
     Task<List<OnlineKinkster>> UserGetOnlinePairs();
     /// <summary> Requests a list of UserPair DTO's containing the client pairs  of the client caller </summary>
     Task<List<KinksterPair>> UserGetPairedClients();
+
+    /// <summary> Requests the list of all current Kinkster Requests active for the caller. </summary>
     Task<List<KinksterRequestEntry>> UserGetPairRequests();
+
     /// <summary> Called by a connected client who wishes to retrieve the profile of another user. </summary>
     Task<KinkPlateFull> UserGetKinkPlate(KinksterBase dto);
 
@@ -98,9 +102,7 @@ public interface IGagspeakHub
     /// <summary> Grabs the search result of your specified query to the server. </summary>
     Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(PatternSearch dto);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerMoodleInfo>>> SearchMoodles(MoodleSearch dto);
-    /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<HashSet<string>>> FetchSearchTags();
+    Task<HubResponse<List<ServerMoodleInfo>>> SearchMoodles(SearchBase dto);
 
     // ----- Client Vanity ------
     /// <summary> Sends a message to the gagspeak Global chat. </summary>
@@ -156,14 +158,15 @@ public interface IGagspeakHub
 
 
     // ----- Vibe Rooms ------
-    Task<HubResponse> RoomCreate(RoomCreateRequest dto);
-    Task<HubResponse> SendRoomInvite(RoomInvite dto);
-    Task<HubResponse> ChangeRoomPassword(string name, string newPass);
-    Task<HubResponse<List<RoomParticipant>>> RoomJoin(string name, string pass, RoomParticipantBase dto);
-    Task<HubResponse> RoomLeave();
-    Task<HubResponse> RoomGrantAccess(KinksterBase dto);
-    Task<HubResponse> RoomRevokeAccess(KinksterBase dto);
+    Task<HubResponse<List<RoomListing>>> SearchForRooms(SearchBase dto); //
+    Task<HubResponse> RoomCreate(RoomCreateRequest dto); // 
+    Task<HubResponse> SendRoomInvite(RoomInvite dto); // 
+    Task<HubResponse> ChangeRoomPassword(string name, string newPass); //
+    Task<HubResponse<List<RoomParticipant>>> RoomJoin(string name, string pass, RoomParticipantBase dto); //
+    Task<HubResponse> RoomLeave(); //
+    Task<HubResponse> RoomGrantAccess(KinksterBase dto); //
+    Task<HubResponse> RoomRevokeAccess(KinksterBase dto); //
     Task<HubResponse> RoomPushDeviceUpdate(ToyInfo dto);
     Task<HubResponse> RoomSendDataStream(ToyDataStream streamDto);
-    Task<HubResponse> RoomSendChat(string name, string message);
+    Task<HubResponse> RoomSendChat(ChatMessageVibeRoom chatMessage); //
 }

@@ -4,7 +4,7 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     Search request for moodles.
+///     Basic Search Request.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodleSearch(string Input, HashSet<string> Tags, ResultFilter Filter, SearchSort Sort);
+public record SearchBase(string Input, string[] Tags, HubFilter Filter, HubDirection Order);

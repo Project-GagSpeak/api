@@ -67,6 +67,7 @@ public enum CoreTexture
     Tier3Icon,
     Tier4Icon,
     TierBoosterIcon,
+    VibeLobby,
     Vibrator,
     Weighty,
 }

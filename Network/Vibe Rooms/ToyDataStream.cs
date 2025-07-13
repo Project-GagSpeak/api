@@ -1,9 +1,8 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.VibeRoom;
-
-// Not going to bother organizing this since it will all be changed soon anyways.
 
 // Recieving datastream from server
 [MessagePackObject(keyAsPropertyName: true)]
@@ -19,13 +18,6 @@ public record ToyDataStream(UserDeviceStream[] DataStream, long Timestamp);
 public record UserDeviceStream(UserData User, MotorStream[] MotorData);
 
 
-// Contains the data stream of 2 seconds of data.
+// Might not need the Motor enum with the Idx?
 [MessagePackObject(keyAsPropertyName: true)]
-public record MotorStream(int DeviceIdx, MotorType Type, int MotorIdx, byte[] DataStream);
-
-public enum MotorType
-{
-    Vibrate,
-    Rotate
-}
-
+public record MotorStream(ToyBrandName Toy, ToyMotor Motor, int MotorIdx, double[] Stream);

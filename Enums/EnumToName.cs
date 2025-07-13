@@ -1,7 +1,7 @@
 using GagspeakAPI.Attributes;
 
 namespace GagspeakAPI.Enums;
-public static partial class EnumToName
+public static class EnumToName
 {
     public static string ToName(this DurationLength duration)
     => duration switch
@@ -191,22 +191,6 @@ public static partial class EnumToName
             TriggerDirection.Other => "From Others",
             TriggerDirection.OtherToSelf => "From others to You",
             TriggerDirection.Any => "Any Filter",
-            _ => "UNK"
-        };
-    }
-
-    public static string ToName(this LimitedActionEffectType type)
-    {
-        return type switch
-        {
-            LimitedActionEffectType.Nothing         => "Anything",
-            LimitedActionEffectType.Miss            => "Action Missed",
-            LimitedActionEffectType.Damage          => "Damage Related",
-            LimitedActionEffectType.Heal            => "Heal Related",
-            LimitedActionEffectType.BlockedDamage   => "Damage Blocked",
-            LimitedActionEffectType.ParriedDamage   => "Damage Parried",
-            LimitedActionEffectType.Attract1        => "Rescue Used",
-            LimitedActionEffectType.Knockback       => "Pushed Back",
             _ => "UNK"
         };
     }
