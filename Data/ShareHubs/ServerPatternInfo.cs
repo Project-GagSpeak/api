@@ -6,6 +6,8 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public record ServerPatternInfo
 {
+    public int Version = 2;
+
     public Guid Identifier = Guid.Empty;
 
     public string Label = "UNK PATTERN NAME";
