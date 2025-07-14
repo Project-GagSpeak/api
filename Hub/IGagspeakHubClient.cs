@@ -56,7 +56,9 @@ public interface IGagspeakHubClient : IGagspeakHub
 
     // Room events
     void OnRoomJoin(Action<RoomParticipant> act);
-    void OnRoomLeave(Action<RoomParticipant> act);
+    void OnRoomLeave(Action<UserData> act);
+    void OnRoomAddInvite(Action<RoomInvite> act);
+    void OnRoomHostChanged(Action<UserData> act);
     void OnRoomDeviceUpdate(Action<UserData, ToyInfo> act);
     void OnRoomIncDataStream(Action<ToyDataStreamResponse> act);
     void OnRoomAccessGranted(Action<UserData> act);
