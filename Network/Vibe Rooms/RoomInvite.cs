@@ -13,6 +13,6 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record RoomInvite(UserData User, string RoomName)
 {
-    public string? AttachedMessage { get; set; } = string.Empty;
-    public string? RoomPassword { get; set; } = string.Empty;
+    public string AttachedMessage { get; set; } = string.Empty;
+    public string RoomPassword { get; set; } = string.Empty;
 }

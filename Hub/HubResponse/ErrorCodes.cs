@@ -105,9 +105,18 @@ public enum GagSpeakApiEc
     /// <summary> The vibe room is not found. </summary>
     RoomNotFound,
 
+    /// <summary> The participant is not found in the room. </summary>
+    RoomParticipantNotFound,
+
+    /// <summary> If the VibeRoom reached its max participants. </summary>
+    RoomIsFull,
+
     /// <summary> Cannot send an invite to a room you are not the host of. </summary>
     NotRoomHost,
 
     /// <summary> Cannot join another room while still in one. </summary>
     AlreadyInRoom,
+
+    /// <summary> Trying to leave a room when not in one. </summary>
+    NotInRoom,
 }

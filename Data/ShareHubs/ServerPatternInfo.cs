@@ -26,9 +26,11 @@ public record ServerPatternInfo
 
     public DateTime UploadedDate = DateTime.MinValue;
 
-    public ToyBrandName[] DevicesUsed = [];
+    public ToyBrandName PrimaryDeviceUsed = ToyBrandName.Unknown;
 
-    public ToyMotor[] MotorsUsed = [];
+    public ToyBrandName SecondaryDeviceUsed = ToyBrandName.Unknown;
+
+    public ToyMotor MotorsUsed = ToyMotor.Unknown;
 
     public bool HasLiked = false;
 }

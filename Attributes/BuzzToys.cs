@@ -13,14 +13,15 @@ public enum RemoteType
 ///     Type of Motor for a Buzztoy.
 ///     Keep index's static.
 /// </summary>
+[Flags]
 public enum ToyMotor
 {
-    Unknown = 0,
-    Vibration = 1,
-    Oscillation = 2,
-    Rotation = 3,
-    Constriction = 4,
-    Inflation = 5,
+    Unknown       = 0,
+    Vibration     = 1 << 0,
+    Oscillation   = 1 << 1,
+    Rotation      = 1 << 2,
+    Constriction  = 1 << 3,
+    Inflation     = 1 << 4,
 }
 
 /// <summary>

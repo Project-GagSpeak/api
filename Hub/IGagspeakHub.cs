@@ -28,7 +28,7 @@ public interface IGagspeakHub
     Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Callback_AddPairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
     Task Callback_RemovePairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
-
+    
     /// <summary> Callbacks to update moodles. </summary>
     Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
     Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
@@ -64,7 +64,9 @@ public interface IGagspeakHub
     Task Callback_ShowVerification(VerificationCode dto);
 
     Task Callback_RoomJoin(RoomParticipant dto);
-    Task Callback_RoomLeave(RoomParticipant dto);
+    Task Callback_RoomLeave(UserData user);
+    Task Callback_RoomAddInvite(RoomInvite dto);
+    Task Callback_RoomHostChanged(UserData newHost);
     Task Callback_RoomDeviceUpdate(UserData user, ToyInfo ToyInfo);
     Task Callback_RoomIncDataStream(ToyDataStreamResponse dataStream);
     Task Callback_RoomAccessGranted(UserData user);
@@ -161,8 +163,9 @@ public interface IGagspeakHub
     Task<HubResponse<List<RoomListing>>> SearchForRooms(SearchBase dto); //
     Task<HubResponse> RoomCreate(RoomCreateRequest dto); // 
     Task<HubResponse> SendRoomInvite(RoomInvite dto); // 
-    Task<HubResponse> ChangeRoomPassword(string name, string newPass); //
-    Task<HubResponse<List<RoomParticipant>>> RoomJoin(string name, string pass, RoomParticipantBase dto); //
+    Task<HubResponse> ChangeRoomHost(string name, KinksterBase newHost);
+    Task<HubResponse> ChangeRoomPassword(string name, string newPass);
+    Task<HubResponse<List<RoomParticipant>>> RoomJoin(string name, string pass, RoomParticipant dto); //
     Task<HubResponse> RoomLeave(); //
     Task<HubResponse> RoomGrantAccess(KinksterBase dto); //
     Task<HubResponse> RoomRevokeAccess(KinksterBase dto); //

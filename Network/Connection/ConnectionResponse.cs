@@ -10,7 +10,7 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(User)
 {
-    public Version Current_clientVersion { get; set; } = new(0, 0, 0);
+    public Version CurrentClientVersion { get; set; } = new(0, 0, 0);
     public int ServerVersion { get; set; }
 
     public GlobalPerms GlobalPerms { get; init; } = new();
@@ -27,7 +27,7 @@ public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(Us
 [MessagePackObject(keyAsPropertyName: true)]
 public record LobbyAndHubInfoResponce(List<string> HubTags)
 {
-    public readonly List<PublishedPattern> PublishedPatterns = [];
-    public readonly List<PublishedMoodle> PublishedMoodles = [];
-    public readonly List<RoomInvite> RoomInvites = [];
+    public List<PublishedPattern> PublishedPatterns { get; init; } = [];
+    public List<PublishedMoodle> PublishedMoodles { get; init; } = [];
+    public List<RoomInvite> RoomInvites { get; init; } = [];
 }

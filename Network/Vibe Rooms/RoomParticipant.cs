@@ -12,7 +12,6 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record RoomParticipant(UserData User, string DisplayName) : RoomParticipantBase(User, DisplayName)
 {
-    public bool IsHost { get; set; } = false;
     public List<string> AllowedUids { get; set; } = [];
     public List<ToyInfo> Devices { get; set; } = [];
 }

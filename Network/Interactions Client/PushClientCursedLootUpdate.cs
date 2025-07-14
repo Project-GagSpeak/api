@@ -11,4 +11,4 @@ namespace GagspeakAPI.Network;
 /// <param name="ActiveItems"> the ID's of the currently active cursed loot. </param>
 /// <param name="InteractedLoot"> The cursed loot the client interacted with that caused the update. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientCursedLootUpdate(List<UserData> Recipients, IEnumerable<Guid> ActiveItems, LightCursedItem InteractedLoot);
+public record PushClientCursedLootUpdate(List<UserData> Recipients, List<Guid> ActiveItems, LightCursedItem InteractedLoot);
