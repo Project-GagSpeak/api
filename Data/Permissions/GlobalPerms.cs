@@ -6,30 +6,30 @@ using MessagePack;
 namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record GlobalPerms
+public record GlobalPerms : IReadOnlyGlobalPerms
 {
-    public InptChannel AllowedGarblerChannels      { get; set; } = 0;     // bitfield for liveChatGarblerChannels. Can be set by Hardcore.
-    public bool        ChatGarblerActive           { get; set; } = false; // if the live chat garbler is active
-    public bool        ChatGarblerLocked           { get; set; } = false; // if the live chat garbler is locked in an active state.
-    public bool        GaggedNameplate             { get; set; } = false; // Shows GagSpeak gagged & gag-speaking icons on nameplate while gagged.
+    public InptChannel AllowedGarblerChannels      { get; set; } = 0;
+    public bool        ChatGarblerActive           { get; set; } = false;
+    public bool        ChatGarblerLocked           { get; set; } = false;
+    public bool        GaggedNameplate             { get; set; } = false;
 
     // wardrobe global modifiable permissions
-    public bool        WardrobeEnabled             { get; set; } = false; // PROFILE VIEWABLE OPT-IN || If the user's wardrobe component is active
-    public bool        GagVisuals                  { get; set; } = false; // Determines if any visual alterations of gags are applied.
-    public bool        RestrictionVisuals          { get; set; } = false; // Determines if any visual alterations of restrictions are applied.
-    public bool        RestraintSetVisuals         { get; set; } = false; // Determines if any visual alterations of restraint sets are applied.
+    public bool        WardrobeEnabled             { get; set; } = false;
+    public bool        GagVisuals                  { get; set; } = false;
+    public bool        RestrictionVisuals          { get; set; } = false;
+    public bool        RestraintSetVisuals         { get; set; } = false;
 
 
     // global puppeteer modifiable permissions.
-    public bool        PuppeteerEnabled            { get; set; } = false; // PROFILE VIEWABLE OPT-IN || If the user's puppeteer component is active
-    public string      TriggerPhrase               { get; set; } = string.Empty; // PROFILE VIEWABLE OPT-IN || Global trigger phrase for the user
+    public bool        PuppeteerEnabled            { get; set; } = false;
+    public string      TriggerPhrase               { get; set; } = string.Empty;
     public PuppetPerms PuppetPerms                 { get; set; } = 0;
 
     // global toybox modifiable permissions
-    public bool        ToyboxEnabled               { get; set; } = false; // PROFILE VIEWABLE OPT-IN || If the user's toybox component is active
-    public bool        LockToyboxUI                { get; set; } = false; // Prevents the user from interfacing with their connected toys.
-    public RemoteType  ActiveRemoteMode            { get; set; } = RemoteType.None; // Latest GagSpeakRemote state. Useful for knowing if other actions should be blocked.
-    public bool        SpatialAudio                { get; set; } = false; // if the user's toybox local audio is active
+    public bool        ToyboxEnabled               { get; set; } = false;
+    public bool        LockToyboxUI                { get; set; } = false;
+    public RemoteType  ActiveRemoteMode            { get; set; } = RemoteType.None;
+    public bool        SpatialAudio                { get; set; } = false;
 
     // global hardcore permissions (readonly for everyone)
     // Contains the UID who applied it when active. If Devotional, will have    |pairlocked    appended.
@@ -40,8 +40,6 @@ public record GlobalPerms
     public string      ChatInputHidden             { get; set; } = string.Empty;
     public string      ChatInputBlocked            { get; set; } = string.Empty;
     
-    // Going to need to fine tune this soon, but its purpose is to stop others
-    // from applying effects while a restriction or other player has one active.
     public string      HypnosisCustomEffect        { get; set; } = string.Empty;
 
 
