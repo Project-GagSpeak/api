@@ -11,8 +11,4 @@ namespace GagspeakAPI.Network;
 ///     In a <b>Callback</b>, <paramref name="User"/> is the Kinkster that sent the invite.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record RoomInvite(UserData User, string RoomName)
-{
-    public string AttachedMessage { get; set; } = string.Empty;
-    public string RoomPassword { get; set; } = string.Empty;
-}
+public record RoomInvite(UserData User, string RoomName, string AttachedMessage);
