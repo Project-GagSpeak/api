@@ -9,6 +9,6 @@ namespace GagspeakAPI.Network;
 public record RoomListing(string Name, int MaxParticipants)
 {
     public int CurrentParticipants { get; set; } = 0;
-    public string? Description { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
     public string[] Tags { get; init; } = [];
 }
