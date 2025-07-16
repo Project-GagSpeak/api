@@ -49,8 +49,8 @@ public interface IReadOnlyGlobalPerms
     /// <summary> PROFILE VIEWABLE OPT-IN || If the user's toybox component is active. </summary>
     bool        ToyboxEnabled               { get; }
 
-    /// <summary> Prevents the user from interfacing with their connected toys. </summary>
-    bool        LockToyboxUI                { get; }
+    /// <summary> If any devices are currently interactable. </summary>
+    bool        ToysAreInteractable         { get; }
 
     /// <summary> If the user is in a vibe room. When true, other remote actions are blocked. </summary>
     bool        InVibeRoom                  { get; }
