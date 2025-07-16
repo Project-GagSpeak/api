@@ -22,6 +22,7 @@ public enum ToyMotor
     Rotation      = 1 << 2,
     Constriction  = 1 << 3,
     Inflation     = 1 << 4,
+    Position      = 1 << 5,
 }
 
 /// <summary>

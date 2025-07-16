@@ -67,4 +67,13 @@ public static class GlobalPermsEx
         if (string.IsNullOrEmpty(p.ChatInputBlocked) || !IsDevotional(p.ChatInputBlocked)) return true;
         return kinksterUid.Equals(PermEnactor(p.ChatInputBlocked));
     }
+
+    public static bool HcHypnoState(this IReadOnlyGlobalPerms p) => !string.IsNullOrEmpty(p.HypnosisCustomEffect);
+    public static string HcHypnoEnactor(this IReadOnlyGlobalPerms p) => PermEnactor(p.HypnosisCustomEffect);
+    public static bool HcHypnoDevotional(this IReadOnlyGlobalPerms p) => IsDevotional(p.HypnosisCustomEffect);
+    public static bool CanChangeHcHypno(this IReadOnlyGlobalPerms p, string kinksterUid)
+    {
+        if (string.IsNullOrEmpty(p.HypnosisCustomEffect) || !IsDevotional(p.HypnosisCustomEffect)) return true;
+        return kinksterUid.Equals(PermEnactor(p.HypnosisCustomEffect));
+    }
 }
