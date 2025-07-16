@@ -52,8 +52,8 @@ public interface IReadOnlyGlobalPerms
     /// <summary> Prevents the user from interfacing with their connected toys. </summary>
     bool        LockToyboxUI                { get; }
 
-    /// <summary> Latest GagSpeakRemote state. Useful for knowing if other actions should be blocked. </summary>
-    RemoteType  ActiveRemoteMode            { get; }
+    /// <summary> If the user is in a vibe room. When true, other remote actions are blocked. </summary>
+    bool        InVibeRoom                  { get; }
 
     /// <summary> If the user's toybox local audio is active. </summary>
     bool        SpatialAudio                { get; }

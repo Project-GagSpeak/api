@@ -15,9 +15,10 @@ public record ToyDataStream(UserDeviceStream[] DataStream, long Timestamp);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserDeviceStream(UserData User, MotorStream[] MotorData);
+public record UserDeviceStream(UserData User, DeviceStream[] devices);
 
-
-// Might not need the Motor enum with the Idx?
 [MessagePackObject(keyAsPropertyName: true)]
-public record MotorStream(ToyBrandName Toy, ToyMotor Motor, int MotorIdx, double[] Stream);
+public record DeviceStream(ToyBrandName Toy, MotorStream[] MotorData);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record MotorStream(ToyMotor Motor, uint MotorIdx, double[] Stream);
