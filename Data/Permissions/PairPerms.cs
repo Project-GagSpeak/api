@@ -50,8 +50,6 @@ public record PairPerms
     public TimeSpan    MaxMoodleTime             { get; set; } = TimeSpan.Zero;
 
     // unique permissions for the toybox
-    public bool        ToggleToyState            { get; set; } = false; // If True, this pair can toggle your toys states.
-    public bool        RemoteControlAccess       { get; set; } = false; // If True, this pair can connect a remote to your toys.
     public bool        ExecutePatterns           { get; set; } = false;
     public bool        StopPatterns              { get; set; } = false;
     public bool        ToggleAlarms              { get; set; } = false;
