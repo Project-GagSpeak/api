@@ -27,7 +27,6 @@ public record GlobalPerms : IReadOnlyGlobalPerms
 
     // global toybox modifiable permissions
     public bool        ToyboxEnabled               { get; set; } = false;
-    public bool        LockToyboxUI                { get; set; } = false;
     public bool        ToysAreInteractable         { get; set; } = false;
     public bool        InVibeRoom                  { get; set; } = false;
     public bool        SpatialAudio                { get; set; } = false;

@@ -3,22 +3,15 @@ using MessagePack;
 
 namespace GagspeakAPI.Network;
 
+// Remove Interactable?
 /// <summary>
 ///     Lightweight Record for Toy Information that can be easily sent over the network.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ToyInfo(ToyBrandName BrandName, bool Interactable)
-{
-    public List<Motor> VibeMotors { get; set; } = [];
-    public List<Motor> OscillationMotors { get; set; } = [];
-    public Motor? RotateMotor { get; set; } = null;
-    public Motor? ConstrictMotor { get; set; } = null;
-    public Motor? InflateMotor { get; set; } = null;
-}
-
+public record ToyInfo(ToyBrandName BrandName, bool Interactable, Dictionary<uint, Motor> Motors);
 
 /// <summary>
-///     Represents a motor attached to a Device. (Idx is not entirely nessisary but helpful)
+///     Represents a motor attached to a Device.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record Motor(ToyMotor Type, int MotorIdx, int StepCount);
+public record Motor(ToyMotor Type, uint MotorIdx, int StepCount);

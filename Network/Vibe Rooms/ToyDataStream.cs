@@ -21,4 +21,4 @@ public record UserDeviceStream(UserData User, DeviceStream[] Devices);
 public record DeviceStream(ToyBrandName Toy, MotorStream[] MotorData);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record MotorStream(ToyMotor Motor, uint MotorIdx, double[] Stream);
+public record MotorStream(ToyMotor Motor, uint MotorIdx, double[] Data);

@@ -56,23 +56,23 @@ public enum UnlocksEvent
     PuppeteerEmoteRecieved, // when you recieve an emote order from another pair.
     PuppeteerOrderRecieved, // when you recieve an order from another pair.
 
-    PatternAction,
-    DeviceConnected,
     TriggerFired,
     DeathRollCompleted,
     ShockSent,
     ShockReceived,
     AlarmToggled,
+    AlarmTriggered,
     PvpPlayerSlain,
     ClientSlain,
     ClientOneHp,
 
     HardcoreAction,
 
-    RemoteOpened,
-    VibeRoomCreated,
-
-    VibratorsToggled,
+    // remote-related
+    PatternHubAction,
+    DeviceConnected,
+    RemoteAction,
+    VibeRoomAction,
 
     // Generic
     GaggedChatSent, // chat type, message, and sender.
@@ -109,11 +109,35 @@ public enum DurationTimeUnit
     Days
 }
 
-public enum PatternInteractionKind
+public enum PatternHubInteractionKind
 {
     Published,
     Downloaded,
     Liked,
-    Started,
-    Stopped,
+}
+
+public enum RemoteInteraction
+{
+    RemoteOpened,
+    RemoteClosed,
+    PersonalStart,
+    PersonalEnd,
+    PatternRecordStart,
+    PatternRecordEnd,
+    PatternPlaybackStart,
+    PatternPlaybackEnd,
+    VibeDataStreamStart,
+    VibeDataStreamEnd,
+}
+
+public enum VibeRoomInteraction
+{
+    CreatedRoom,
+    JoinedRoom,
+    ChangedHost,
+    GrantedAccess,
+    RevokedAccess,
+    ControlOtherStart,
+    ControlOtherEnd,
+    LeftRoom,
 }
