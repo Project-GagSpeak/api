@@ -23,7 +23,13 @@ public class CharaLightStorageData
 // Likely rework the below items later, this current data sharing model sucks arse.
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightGag(AppliedSlot SlotData, Attributes Attributes);
+public record LightGagItem(AppliedSlot SlotData, string ModName, LightMoodle Moodle, Traits Traits, Arousal Arousal, string CPlusName, bool Redraws);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public readonly record struct AppliedSlot(byte Slot = 3, ulong CustomItemId = ulong.MaxValue, byte primaryDye = 0, byte secondaryDye = 0);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public readonly record struct LightMoodle(MoodleType Type, Guid Id);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
@@ -49,9 +55,6 @@ public record LightAlarm(Guid Id, string Label, DateTimeOffset SetTimeUTC, Guid 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightTrigger(Guid Id, int Priority, string Label, string Description, TriggerKind Type, InvokableActionType ActionOnTrigger);
 
-
-[MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct AppliedSlot(byte Slot = 3, ulong CustomItemId = ulong.MaxValue, string Tooltip = "");
 
 
 [MessagePackObject(keyAsPropertyName: true)]
