@@ -11,7 +11,7 @@ public static class PadlockValidation
 {
     public static GagSpeakApiEc CanLock(this IPadlockable current, IPadlockable applied, TimeSpan maxTimeAllowed)
     {
-        return current.Padlock switch
+        return applied.Padlock switch
         {
             Padlocks.MetalPadlock => GagSpeakApiEc.Success,
             Padlocks.FiveMinutesPadlock => GagSpeakApiEc.Success,
@@ -48,7 +48,7 @@ public static class PadlockValidation
     }
 
     private static bool IsValidLockTime(DateTimeOffset time, TimeSpan maxTime)
-        => time - DateTimeOffset.UtcNow > maxTime;
+        => (time - DateTimeOffset.UtcNow) <= maxTime;
 
     /// <summary> Validates if within allowed time. </summary>
     public static bool IsValidTime(string time, TimeSpan maxTime)

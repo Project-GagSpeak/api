@@ -27,7 +27,6 @@ public record LightRestriction(Guid Id, string Label, string Desc, LightItem Pro
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightGag(GagType Gag, LightItem Properties, string CPlusName, bool Redraw);
 
-
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
 
