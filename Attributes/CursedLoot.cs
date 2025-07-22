@@ -12,3 +12,16 @@ public enum Precedence
     Highest
 }
 
+public enum CursedLootType
+{
+    None = 0,
+    Restriction = 1,
+    Gag = 2,
+}
+
+public enum LayerType
+{
+    Restriction,
+    Mod,
+}
+

@@ -5,11 +5,10 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     The updated Toybox Data of a spesified <paramref name="User"/>.
+///     An update for <paramref name="User"/>, one of a Paired Kinksters Alias Data for the Client.
+///     This is recieved whenever an Alias item is modified, created, or deleted, spesifically for this Kinkster Pair.
 /// </summary>
-/// <param name="User"> The Kinkster the updated data is for. </param>
-/// <param name="Enactor"> The Kinkster that caused the update, if applicable. </param>
-/// <param name="Type"> The type of update that was made. </param>
+/// <remarks> If <paramref name="NewData"/> is null, implies the <paramref name="AliasId"/> was removed. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterUpdateAliasUnique(UserData User, AliasTrigger NewData) : KinksterBase(User);
+public record KinksterUpdateAliasUnique(UserData User, Guid AliasId, AliasTrigger? NewData) : KinksterBase(User);
 

@@ -29,13 +29,13 @@ public interface IGagspeakHub
     Task Callback_AddPairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
     Task Callback_RemovePairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
     
-    /// <summary> Callbacks to update moodles. </summary>
+    // ---- Callbacks to update moodles.
     Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
     Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
     Task Callback_RemoveMoodles(MoodlesRemoval dto);
     Task Callback_ClearMoodles(KinksterBase dto);
 
-    /// <summary> Callbacks to update permissions. </summary>
+    // ---- Callbacks to update permissions.
     Task Callback_BulkChangeAll(BulkChangeAll dto);
     Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
     Task Callback_BulkChangeUnique(BulkChangeUnique dto);
@@ -43,26 +43,39 @@ public interface IGagspeakHub
     Task Callback_SingleChangeUnique(SingleChangeUnique dto);
     Task Callback_SingleChangeAccess(SingleChangeAccess dto);
 
-    /// <summary> Callbacks to update own or pair data. </summary>
+    // ---- Callbacks for Kinkster Active State updates.
     Task Callback_KinksterUpdateComposite(KinksterUpdateComposite dto);
     Task Callback_KinksterUpdateIpc(KinksterUpdateIpc dto);
-    Task Callback_KinksterUpdateGagSlot(KinksterUpdateGagSlot dto);
-    Task Callback_KinksterUpdateRestriction(KinksterUpdateRestriction dto);
-    Task Callback_KinksterUpdateRestraint(KinksterUpdateRestraint dto);
-    Task Callback_KinksterUpdateCursedLoot(KinksterUpdateCursedLoot dto);
+    Task Callback_KinksterUpdateActiveGag(KinksterUpdateActiveGag dto);
+    Task Callback_KinksterUpdateActiveRestriction(KinksterUpdateActiveRestriction dto);
+    Task Callback_KinksterUpdateActiveRestraint(KinksterUpdateActiveRestraint dto);
+    Task Callback_KinksterUpdateActiveCursedLoot(KinksterUpdateActiveCursedLoot dto);
     Task Callback_KinksterUpdateAliasGlobal(KinksterUpdateAliasGlobal dto);
     Task Callback_KinksterUpdateAliasUnique(KinksterUpdateAliasUnique dto);
-    Task Callback_KinksterUpdateToybox(KinksterUpdateToybox dto);
-    Task Callback_KinksterUpdateLightStorage(KinksterUpdateLightStorage dto);
+    Task Callback_KinksterUpdateActivePattern(KinksterUpdateActivePattern dto);
+    Task Callback_KinksterUpdateActiveAlarms(KinksterUpdateActiveAlarms dto);
+    Task Callback_KinksterUpdateActiveTriggers(KinksterUpdateActiveTriggers dto);
     Task Callback_ListenerName(UserData user, string name);
     Task Callback_ShockInstruction(ShockCollarAction dto);
 
+    // ---- Callbacks for Kinkster Light Storage Updates.
+    Task Callback_KinksterNewGagData(KinksterNewGagData dto);
+    Task Callback_KinksterNewRestrictionData(KinksterNewRestrictionData dto);
+    Task Callback_KinksterNewRestraintData(KinksterNewRestraintData dto);
+    Task Callback_KinksterNewLootData(KinksterNewLootData dto);
+    Task Callback_KinksterNewPatternData(KinksterNewPatternData dto);
+    Task Callback_KinksterNewAlarmData(KinksterNewAlarmData dto);
+    Task Callback_KinksterNewTriggerData(KinksterNewTriggerData dto);
+    Task Callback_KinksterNewAllowances(KinksterNewAllowances dto);
+
+    // Generics
     Task Callback_ChatMessageGlobal(ChatMessageGlobal dto);
     Task Callback_KinksterOffline(KinksterBase dto);
     Task Callback_KinksterOnline(OnlineKinkster dto);
     Task Callback_ProfileUpdated(KinksterBase dto);
     Task Callback_ShowVerification(VerificationCode dto);
 
+    // ---- Callbacks for Vibe Rooms
     Task Callback_RoomJoin(RoomParticipant dto);
     Task Callback_RoomLeave(UserData user);
     Task Callback_RoomAddInvite(RoomInvite dto);
@@ -115,16 +128,26 @@ public interface IGagspeakHub
     Task<HubResponse> UserReportKinkPlate(KinkPlateReport KinksterBase); // hopefully this is never used x-x...
 
     // ----- Personal Interactions ------
-    Task<HubResponse> UserPushData(PushClientCompositeUpdate dto);
-    Task<HubResponse> UserPushDataIpc(PushClientIpcUpdate dto);
-    Task<HubResponse> UserPushDataGags(PushClientGagSlotUpdate dto);
-    Task<HubResponse> UserPushDataRestrictions(PushClientRestrictionUpdate dto);
-    Task<HubResponse> UserPushDataRestraint(PushClientRestraintUpdate dto);
-    Task<HubResponse> UserPushDataCursedLoot(PushClientCursedLootUpdate dto);
+    Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
+    Task<HubResponse> UserPushActiveIpc(PushClientIpcUpdate dto);
+    Task<HubResponse> UserPushActiveGags(PushClientActiveGagSlot dto);
+    Task<HubResponse> UserPushActiveRestrictions(PushClientActiveRestriction dto);
+    Task<HubResponse> UserPushActiveRestraint(PushClientActiveRestraint dto);
+    Task<HubResponse> UserPushActiveLoot(PushClientActiveLoot dto);
     Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
     Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
-    Task<HubResponse> UserPushDataToybox(PushClientToyboxUpdate dto);
-    Task<HubResponse> UserPushDataLightStorage(PushClientLightStorageUpdate dto);
+    Task<HubResponse> UserPushActivePattern(PushClientActivePattern dto);
+    Task<HubResponse> UserPushActiveAlarms(PushClientActiveAlarms dto);
+    Task<HubResponse> UserPushActiveTriggers(PushClientActiveTriggers dto);
+
+    Task<HubResponse> UserPushNewGagData(PushClientDataChangeGag dto);
+    Task<HubResponse> UserPushNewRestrictionData(PushClientDataChangeRestriction dto);
+    Task<HubResponse> UserPushNewRestraintData(PushClientDataChangeRestraint dto);
+    Task<HubResponse> UserPushNewLootData(PushClientDataChangeLoot dto);
+    Task<HubResponse> UserPushNewPatternData(PushClientDataChangePattern dto);
+    Task<HubResponse> UserPushNewAlarmData(PushClientDataChangeAlarm dto);
+    Task<HubResponse> UserPushNewTriggerData(PushClientDataChangeTrigger dto);
+    Task<HubResponse> UserPushNewAllowances(PushClientAllowances dto);
 
     Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
     Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
@@ -141,10 +164,12 @@ public interface IGagspeakHub
     Task<HubResponse> UserRejectKinksterRequest(KinksterBase user);
     Task<HubResponse> UserRemoveKinkster(KinksterBase KinksterBase);
 
-    Task<HubResponse> UserChangeKinksterGagState(PushKinksterGagSlotUpdate dto);
-    Task<HubResponse> UserChangeKinksterRestrictionState(PushKinksterRestrictionUpdate dto);
-    Task<HubResponse> UserChangeKinksterRestraintState(PushKinksterRestraintUpdate dto);
-    Task<HubResponse> UserChangeKinksterToyboxState(PushKinksterToyboxUpdate dto);
+    Task<HubResponse> UserChangeKinksterActiveGag(PushKinksterActiveGagSlot dto);
+    Task<HubResponse> UserChangeKinksterActiveRestriction(PushKinksterActiveRestriction dto);
+    Task<HubResponse> UserChangeKinksterActiveRestraint(PushKinksterActiveRestraint dto);
+    Task<HubResponse> UserChangeKinksterActivePattern(PushKinksterActivePattern dto);
+    Task<HubResponse> UserChangeKinksterActiveAlarms(PushKinksterActiveAlarms dto);
+    Task<HubResponse> UserChangeKinksterActiveTriggers(PushKinksterActiveTriggers dto);
     Task<HubResponse> UserSendNameToKinkster(KinksterBase recipient, string listenerName);
 
     Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);

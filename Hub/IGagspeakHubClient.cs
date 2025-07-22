@@ -36,16 +36,27 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Own or pair data updates
     void OnKinksterUpdateComposite(Action<KinksterUpdateComposite> act);
     void OnKinksterUpdateIpc(Action<KinksterUpdateIpc> act);
-    void OnKinksterUpdateGagSlot(Action<KinksterUpdateGagSlot> act);
-    void OnKinksterUpdateRestriction(Action<KinksterUpdateRestriction> act);
-    void OnKinksterUpdateRestraint(Action<KinksterUpdateRestraint> act);
-    void OnKinksterUpdateCursedLoot(Action<KinksterUpdateCursedLoot> act);
+    void OnKinksterUpdateActiveGag(Action<KinksterUpdateActiveGag> act);
+    void OnKinksterUpdateActiveRestriction(Action<KinksterUpdateActiveRestriction> act);
+    void OnKinksterUpdateActiveRestraint(Action<KinksterUpdateActiveRestraint> act);
+    void OnKinksterUpdateActiveCursedLoot(Action<KinksterUpdateActiveCursedLoot> act);
     void OnKinksterUpdateAliasGlobal(Action<KinksterUpdateAliasGlobal> act);
     void OnKinksterUpdateAliasUnique(Action<KinksterUpdateAliasUnique> act);
-    void OnKinksterUpdateToybox(Action<KinksterUpdateToybox> act);
-    void OnKinksterUpdateLightStorage(Action<KinksterUpdateLightStorage> act);
+    void OnKinksterUpdateActivePattern(Action<KinksterUpdateActivePattern> act);
+    void OnKinksterUpdateActiveAlarms(Action<KinksterUpdateActiveAlarms> act);
+    void OnKinksterUpdateActiveTriggers(Action<KinksterUpdateActiveTriggers> act);
     void OnListenerName(Action<UserData, string> act);
     void OnShockInstruction(Action<ShockCollarAction> act);
+
+    // Kinkster updates
+    void OnKinksterNewGagData(Action<KinksterNewGagData> act);
+    void OnKinksterNewRestrictionData(Action<KinksterNewRestrictionData> act);
+    void OnKinksterNewRestraintData(Action<KinksterNewRestraintData> act);
+    void OnKinksterNewLootData(Action<KinksterNewLootData> act);
+    void OnKinksterNewPatternData(Action<KinksterNewPatternData> act);
+    void OnKinksterNewAlarmData(Action<KinksterNewAlarmData> act);
+    void OnKinksterNewTriggerData(Action<KinksterNewTriggerData> act);
+    void OnKinksterNewAllowances(Action<KinksterNewAllowances> act);
 
     // Chat and status
     void OnChatMessageGlobal(Action<ChatMessageGlobal> act);

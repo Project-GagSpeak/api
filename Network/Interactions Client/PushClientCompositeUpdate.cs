@@ -10,4 +10,4 @@ namespace GagspeakAPI.Network;
 /// <param name="Recipients"> the Client's Kinkster pairs. </param>
 /// <param name="WasSafeword"> If this update was due to a safeword or not. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientCompositeUpdate(List<UserData> Recipients, CharaCompositeData NewData, bool WasSafeword);
+public record PushClientCompositeUpdate(List<UserData> Recipients, CharaCompositeActiveData NewData, bool WasSafeword);

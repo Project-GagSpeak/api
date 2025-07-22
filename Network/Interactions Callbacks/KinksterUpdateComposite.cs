@@ -12,4 +12,4 @@ namespace GagspeakAPI.Network;
 ///     This should only be sent on connection and after safeword.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterUpdateComposite(UserData User, CharaCompositeData Data, bool WasSafeword) : KinksterBase(User);
+public record KinksterUpdateComposite(UserData User, CharaCompositeActiveData Data, bool WasSafeword) : KinksterBase(User);

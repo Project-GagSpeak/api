@@ -10,7 +10,7 @@ namespace GagspeakAPI.Network;
 /// <param name="Recipients"> the Client's Kinkster pairs. </param>
 /// <param name="Type"> The type of update that was made. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientGagSlotUpdate(List<UserData> Recipients, DataUpdateType Type)
+public record PushClientActiveGagSlot(List<UserData> Recipients, DataUpdateType Type)
 {
     // Any of these are only set if they are the new change.
     public int Layer { get; init; } = -1;
@@ -21,3 +21,9 @@ public record PushClientGagSlotUpdate(List<UserData> Recipients, DataUpdateType 
     public DateTimeOffset Timer { get; init; } = DateTimeOffset.MinValue;
     public string Assigner { get; init; } = string.Empty;
 }
+
+/// <summary>
+///     When a Gag Item is modified, push its new data to the <paramref name="Recipients"/> 
+///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
+/// </summary>
+public record PushClientDataChangeGag(List<UserData> Recipients, GagType GagType, LightGag? LightItem);

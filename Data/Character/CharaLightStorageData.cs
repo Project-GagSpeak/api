@@ -10,54 +10,79 @@ namespace GagspeakAPI.Data;
 public class CharaLightStorageData
 {
     /// <summary> The GagRestrictionItems that are set to Enabled. </summary>
-    public Dictionary<GagType, AppliedSlot> GagItems { get; init; } = [];
-    public LightRestriction[] Restrictions { get; init; } = [];
-    public LightRestraintSet[] Restraints  { get; init; } = [];
-    public LightCursedItem[] CursedItems { get; init; } = [];
-    public LightPattern[] Patterns { get; init; } = [];
-    public LightAlarm[] Alarms { get; init; } = [];
-    public LightTrigger[] Triggers { get; init; } = [];
-    public Dictionary<GagspeakModule, string[]> Allowances { get; init; } = [];
+    public LightGag[] GagItems { get; set; } = [];
+    public LightRestriction[] Restrictions { get; set; } = []; // Dictionary is useful for lookups by ID references.
+    public LightRestraint[] Restraints  { get; set; } = []; // Useful for lookups via active state reference. Also these are only sent once, so they are ok.
+    public LightCursedLoot[] CursedItems { get; set; } = [];
+    public LightPattern[] Patterns { get; set; } = [];
+    public LightAlarm[] Alarms { get; set; } = [];
+    public LightTrigger[] Triggers { get; set; } = [];
+    public Dictionary<GagspeakModule, string[]> Allowances { get; set; } = [];
 }
 
-// Likely rework the below items later, this current data sharing model sucks arse.
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightRestriction(Guid Id, string Label, string Desc, LightItem Properties);
+
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightGagItem(AppliedSlot SlotData, string ModName, LightMoodle Moodle, Traits Traits, Arousal Arousal, string CPlusName, bool Redraws);
+public record LightGag(GagType Gag, LightItem Properties, string CPlusName, bool Redraw);
+
 
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct AppliedSlot(byte Slot = 3, ulong CustomItemId = ulong.MaxValue, byte primaryDye = 0, byte secondaryDye = 0);
+public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightRestraint(Guid Id, string Label, string Desc)
+{
+    public Dictionary<byte, LightSlotBasic> BasicSlots { get; init; } = [];
+    public Dictionary<byte, LightSlotAdvanced> AdvancedSlots { get; init; } = [];
+    public List<RestrictionLayer> RestrictionLayers { get; init; } = [];
+    public List<LightModLayer> ModLayers { get; init; } = [];
+    public List<string> Mods { get; init; } = [];
+    public List<LightMoodle> Moodles { get; init; } = [];
+    public Traits BaseTraits { get; init; } = new();
+    public Arousal Arousal { get; init; } = new();
+    public bool Redraws { get; init; } = false;
+};
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightPattern(Guid Id, string Label, string Desc, TimeSpan Duration, bool Loops, ToyBrandName Device1, ToyBrandName Device2, ToyMotor Motors);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightAlarm(Guid Id, string Label, DateTimeOffset SetTimeUTC, Guid PatternId, DaysOfWeek SetDays);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightTrigger(Guid Id, int Priority, string Label, string Desc, TriggerKind Kind, InvokableActionType ActionType);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightSlotBasic(byte Slot, LightSlot Item, RestraintFlags Flags);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightSlotAdvanced(byte Slot, Guid RestrictionId, RestraintFlags Flags, byte Dye1, byte Dye2);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record RestrictionLayer(int LayerIdx, Guid Id, string Label, Arousal Arousal, Guid ItemRef, RestraintFlags Flags, byte Dye1, byte Dye2);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record LightModLayer(int LayerIdx, Guid Id, string Label, Arousal Arousal, string ModName);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public readonly record struct LightSlot(byte Slot, ulong CItemId = uint.MaxValue, byte Dye1 = 0, byte Dye2 = 0);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public readonly record struct LightItem(LightSlot Slot, string ModName, LightMoodle Moodle, Traits Traits, Arousal Arousal);
+
 
 [MessagePackObject(keyAsPropertyName: true)]
 public readonly record struct LightMoodle(MoodleType Type, Guid Id);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightRestriction(Guid Id, string Label, string Description, AppliedSlot Item, Attributes Attributes);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightRestraintSet(Guid Id, string Label, string Description, List<AppliedSlot> AffectedSlots, Attributes Attributes);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightCursedItem(Guid Id, string Label, GagType GagType, Guid RestrictionRef, DateTimeOffset ReleaseTimeUTC);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightPattern(Guid Id, string Label, string Description, TimeSpan Duration, bool Loops);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightAlarm(Guid Id, string Label, DateTimeOffset SetTimeUTC, Guid PatternThatPlays);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record LightTrigger(Guid Id, int Priority, string Label, string Description, TriggerKind Type, InvokableActionType ActionOnTrigger);
-
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct Attributes(RestraintFlags Flags, Traits HcTraits, Arousal Arousal);
 
 

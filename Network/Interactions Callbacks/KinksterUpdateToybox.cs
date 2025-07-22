@@ -4,14 +4,36 @@ using MessagePack;
 
 namespace GagspeakAPI.Network;
 
-/// <summary>
-///     The updated Toybox Data of a spesified <paramref name="User"/>.
-/// </summary>
-/// <param name="User"> The Kinkster the updated data is for. </param>
-/// <param name="Enactor"> The Kinkster that caused the update, if applicable. </param>
-/// <param name="Type"> The type of update that was made. </param>
+/// <summary> Updated ActivePattern GUID </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterUpdateToybox(UserData User, UserData Enactor, CharaToyboxData NewData, DataUpdateType Type) : KinksterBase(User)
-{
-    public Guid InteractedIdentifier { get; init; } = Guid.Empty;
-}
+public record KinksterUpdateActivePattern(UserData User, UserData Enactor, Guid ActivePattern, DataUpdateType Type);
+
+/// <summary> Updated Active Alarm List GUID </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterUpdateActiveAlarms(UserData User, UserData Enactor, List<Guid> ActiveAlarms, Guid ChangedItem, DataUpdateType Type);
+
+/// <summary> Updated ActivePattern GUID </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterUpdateActiveTriggers(UserData User, UserData Enactor, List<Guid> ActiveTriggers, Guid ChangedItem, DataUpdateType Type);
+
+/// <summary>
+///     Callback informing a Pattern's data was updated for a spesific <paramref name="User"/>. <para />
+///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
+///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
+/// </summary>
+public record KinksterNewPatternData(UserData User, Guid ItemId, LightPattern? LightItem) : KinksterBase(User);
+
+/// <summary>
+///     Callback informing a Alarm's data was updated for a spesific <paramref name="User"/>. <para />
+///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
+///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
+/// </summary>
+public record KinksterNewAlarmData(UserData User, Guid ItemId, LightAlarm? LightItem) : KinksterBase(User);
+
+/// <summary>
+///     Callback informing a Toybox's data was updated for a spesific <paramref name="User"/>. <para />
+///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
+///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
+/// </summary>
+public record KinksterNewTriggerData(UserData User, Guid ItemId, LightTrigger? LightItem) : KinksterBase(User);
+

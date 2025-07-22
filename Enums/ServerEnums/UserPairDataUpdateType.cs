@@ -24,6 +24,7 @@ public enum DataUpdateType
     Locked,
     Unlocked,
     Removed,
+
     // Puppet
     NameRegistered,
     GlobalListUpdated,

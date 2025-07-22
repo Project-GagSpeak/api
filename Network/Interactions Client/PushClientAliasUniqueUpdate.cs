@@ -5,9 +5,9 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     The Updated Unique Alias Data for a modified, created, or deleted Alias Item, sent out to all pairs.
+///     Data pushed by the client for a Global Alias Trigger that was modified, created, or deleted.
+///     Then, syncs this change with the <paramref name="Recipient"/> kinkster.
 /// </summary>
-/// <param name="Recipient"> the Kinkster this unique alias was for. </param>
-/// <param name="Alias"> The Alias item affected.</param>
+/// <remarks> If <paramref name="NewData"/> is null, implies the <paramref name="AliasId"/> was removed. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientAliasUniqueUpdate(UserData Recipient, AliasTrigger Alias) : KinksterBase(Recipient);
+public record PushClientAliasUniqueUpdate(UserData Recipient, Guid AliasId, AliasTrigger? NewData) : KinksterBase(Recipient);
