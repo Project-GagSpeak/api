@@ -17,8 +17,10 @@ public record PushClientActiveLoot(List<UserData> Recipients, List<Guid> ActiveI
 ///     When a Cursed Loot Item is modified, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeLoot(List<UserData> Recipients, Guid Id, LightCursedLoot? LightItem);
 
 
 /// <summary> Smol record detailing an applied cursed item. </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record AppliedItem(DateTimeOffset ReleaseTimeUTC, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);

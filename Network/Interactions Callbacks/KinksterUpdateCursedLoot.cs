@@ -18,5 +18,6 @@ public record KinksterUpdateActiveCursedLoot(UserData User, List<Guid> ActiveIte
 ///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
 ///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewLootData(UserData User, Guid ItemId, LightCursedLoot? LightItem) : KinksterBase(User);
 

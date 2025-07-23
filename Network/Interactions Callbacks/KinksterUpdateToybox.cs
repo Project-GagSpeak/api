@@ -21,6 +21,7 @@ public record KinksterUpdateActiveTriggers(UserData User, UserData Enactor, List
 ///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
 ///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewPatternData(UserData User, Guid ItemId, LightPattern? LightItem) : KinksterBase(User);
 
 /// <summary>
@@ -28,6 +29,7 @@ public record KinksterNewPatternData(UserData User, Guid ItemId, LightPattern? L
 ///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
 ///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewAlarmData(UserData User, Guid ItemId, LightAlarm? LightItem) : KinksterBase(User);
 
 /// <summary>
@@ -35,5 +37,6 @@ public record KinksterNewAlarmData(UserData User, Guid ItemId, LightAlarm? Light
 ///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
 ///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewTriggerData(UserData User, Guid ItemId, LightTrigger? LightItem) : KinksterBase(User);
 

@@ -23,4 +23,5 @@ public record KinksterUpdateActiveRestriction(UserData User, UserData Enactor, A
 ///     The <paramref name="ItemId"/> defines what item changed, with <paramref name="LightItem"/>
 ///     holding its data. If null, the callback implies this Item should be removed from the kinkster cache.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewRestrictionData(UserData User, Guid ItemId, LightRestriction? LightItem) : KinksterBase(User);

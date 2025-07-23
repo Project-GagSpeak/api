@@ -26,4 +26,5 @@ public record PushClientActiveGagSlot(List<UserData> Recipients, DataUpdateType 
 ///     When a Gag Item is modified, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeGag(List<UserData> Recipients, GagType GagType, LightGag? LightItem);

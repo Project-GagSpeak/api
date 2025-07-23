@@ -25,4 +25,5 @@ public record PushClientActiveRestriction(List<UserData> Recipients, DataUpdateT
 ///     When a Restriction item is created, modified, or removed, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeRestriction(List<UserData> Recipients, Guid ItemId, LightRestriction? LightItem);

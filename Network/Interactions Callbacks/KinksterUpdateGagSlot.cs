@@ -23,4 +23,5 @@ public record KinksterUpdateActiveGag(UserData User, UserData Enactor, ActiveGag
 ///     The <paramref name="GagType"/> defines what Gag changed. The item is the new data for it, 
 ///     or if null, indiciates what item to remove.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterNewGagData(UserData User, GagType GagType, LightGag? Item) : KinksterBase(User);

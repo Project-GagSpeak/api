@@ -20,16 +20,19 @@ public record PushClientActiveTriggers(List<UserData> Recipients, List<Guid> Act
 ///     When a pattern is created, modified, or removed, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangePattern(List<UserData> Recipients, Guid ItemId, LightPattern? LightItem);
 
 /// <summary>
 ///     When a alarm is created, modified, or removed, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeAlarm(List<UserData> Recipients, Guid ItemId, LightAlarm? LightItem);
 
 /// <summary>
 ///     When a trigger is created, modified, or removed, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeTrigger(List<UserData> Recipients, Guid ItemId, LightTrigger? LightItem);

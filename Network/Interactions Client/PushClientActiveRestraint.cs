@@ -26,4 +26,5 @@ public record PushClientActiveRestraint(List<UserData> Recipients, DataUpdateTyp
 ///     When a Restraint Set is created, modified, or removed, push its new data to the <paramref name="Recipients"/> 
 ///     for caching. If <paramref name="LightItem"/> is null, it is assumed the item is to be removed.
 /// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeRestraint(List<UserData> Recipients, Guid ItemId, LightRestraint? LightItem);
