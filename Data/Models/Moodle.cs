@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
 using MessagePack;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public class Moodle
 {
+    public virtual MoodleType Type => MoodleType.Status;
     public Guid Id { get; internal set; } = Guid.Empty;
 
     public Moodle()
@@ -31,6 +33,7 @@ public class Moodle
 [MessagePackObject(keyAsPropertyName: true)]
 public class MoodlePreset : Moodle
 {
+    public override MoodleType Type => MoodleType.Preset;
     public List<Guid> StatusIds { get; internal set; } = new List<Guid>();
 
     public MoodlePreset()

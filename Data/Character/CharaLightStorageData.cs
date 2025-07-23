@@ -21,22 +21,22 @@ public class CharaLightStorageData
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightRestriction(Guid Id, string Label, string Desc, LightItem Properties);
+public record LightRestriction(Guid Id, bool Enabled, RestrictionType Type, string Label, LightItem Properties);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightGag(GagType Gag, LightItem Properties, string CPlusName, bool Redraw);
+public record LightGag(GagType Gag, bool Enabled, LightItem Properties, string CPlusName, bool Redraw);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightRestraint(Guid Id, string Label, string Desc)
+public record LightRestraint(Guid Id, bool Enabled, string Label, string Desc)
 {
     public Dictionary<byte, LightSlotBasic> BasicSlots { get; init; } = [];
     public Dictionary<byte, LightSlotAdvanced> AdvancedSlots { get; init; } = [];
-    public List<RestrictionLayer> RestrictionLayers { get; init; } = [];
+    public List<LightRestrictionLayer> RestrictionLayers { get; init; } = [];
     public List<LightModLayer> ModLayers { get; init; } = [];
     public List<string> Mods { get; init; } = [];
     public List<LightMoodle> Moodles { get; init; } = [];
@@ -66,7 +66,7 @@ public record LightSlotAdvanced(byte Slot, Guid RestrictionId, RestraintFlags Fl
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record RestrictionLayer(int LayerIdx, Guid Id, string Label, Arousal Arousal, Guid ItemRef, RestraintFlags Flags, byte Dye1, byte Dye2);
+public record LightRestrictionLayer(int LayerIdx, Guid Id, string Label, Arousal Arousal, Guid ItemRef, RestraintFlags Flags, byte Dye1, byte Dye2);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
