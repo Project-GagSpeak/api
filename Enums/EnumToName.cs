@@ -29,17 +29,18 @@ public static class EnumToName
     => padlock switch
     {
         Padlocks.None => "None",
-        Padlocks.MetalPadlock => "Metal Padlock",
-        Padlocks.FiveMinutesPadlock => "5 Minutes Padlock",
-        Padlocks.CombinationPadlock => "Combination Padlock",
-        Padlocks.PasswordPadlock => "Password Padlock",
-        Padlocks.TimerPadlock => "Timer Padlock",
-        Padlocks.TimerPasswordPadlock => "Timer Password Padlock",
-        Padlocks.OwnerPadlock => "Owner Padlock",
-        Padlocks.OwnerTimerPadlock => "Owner Timer Padlock",
-        Padlocks.DevotionalPadlock => "Devotional Padlock",
-        Padlocks.DevotionalTimerPadlock => "Devotional Timer Padlock",
-        Padlocks.MimicPadlock => "Mimic Padlock",
+        Padlocks.Metal => "Metal Padlock",
+        Padlocks.FiveMinutes => "5 Minutes Padlock",
+        Padlocks.Combination => "Combination Padlock",
+        Padlocks.Password => "Password Padlock",
+        Padlocks.Timer => "Timer Padlock",
+        Padlocks.PredicamentTimer => "Predicament Timer Padlock",
+        Padlocks.TimerPassword => "Timer Password Padlock",
+        Padlocks.Owner => "Owner Padlock",
+        Padlocks.OwnerTimer => "Owner Timer Padlock",
+        Padlocks.Devotional => "Devotional Padlock",
+        Padlocks.DevotionalTimer => "Devotional Timer Padlock",
+        Padlocks.Mimic => "Mimic Padlock",
         _ => "UNK"
     };
 
@@ -47,25 +48,27 @@ public static class EnumToName
     => padlockAlias switch
     {
         "None" => Padlocks.None,
-        "Metal Padlock" => Padlocks.MetalPadlock,
-        "5 Minutes Padlock" => Padlocks.FiveMinutesPadlock,
-        "Combination Padlock" => Padlocks.CombinationPadlock,
-        "Password Padlock" => Padlocks.PasswordPadlock,
-        "Timer Padlock" => Padlocks.TimerPadlock,
-        "Timer Password Padlock" => Padlocks.TimerPasswordPadlock,
-        "Owner Padlock" => Padlocks.OwnerPadlock,
-        "Owner Timer Padlock" => Padlocks.OwnerTimerPadlock,
-        "Devotional Padlock" => Padlocks.DevotionalPadlock,
-        "Devotional Timer Padlock" => Padlocks.DevotionalTimerPadlock,
-        "Mimic Padlock" => Padlocks.MimicPadlock,
-        // handle outdated calls where they were translated by ToString()
-        "MetalPadlock" => Padlocks.MetalPadlock,
-        "CombinationPadlock" => Padlocks.CombinationPadlock,
-        "PasswordPadlock" => Padlocks.PasswordPadlock,
-        "FiveMinutesPadlock" => Padlocks.FiveMinutesPadlock,
-        "TimerPasswordPadlock" => Padlocks.TimerPasswordPadlock,
-        "OwnerPadlock" => Padlocks.OwnerPadlock,
-        "OwnerTimerPadlock" => Padlocks.OwnerTimerPadlock,
+        "Metal Padlock" => Padlocks.Metal,
+        "5 Minutes Padlock" => Padlocks.FiveMinutes,
+        "Combination Padlock" => Padlocks.Combination,
+        "Password Padlock" => Padlocks.Password,
+        "Timer Padlock" => Padlocks.Timer,
+        "Predicament Timer Padlock" => Padlocks.PredicamentTimer,
+        "Timer Password Padlock" => Padlocks.TimerPassword,
+        "Owner Padlock" => Padlocks.Owner,
+        "Owner Timer Padlock" => Padlocks.OwnerTimer,
+        "Devotional Padlock" => Padlocks.Devotional,
+        "Devotional Timer Padlock" => Padlocks.DevotionalTimer,
+        "Mimic Padlock" => Padlocks.Mimic,
+
+        // handle outdated calls where they were translated by ToString() (can likely remove, idk)
+        "Metal" => Padlocks.Metal,
+        "Combination" => Padlocks.Combination,
+        "Password" => Padlocks.Password,
+        "FiveMinutes" => Padlocks.FiveMinutes,
+        "TimerPassword" => Padlocks.TimerPassword,
+        "Owner" => Padlocks.Owner,
+        "OwnerTimer" => Padlocks.OwnerTimer,
         _ => Padlocks.None
     };
 

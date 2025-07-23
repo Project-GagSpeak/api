@@ -13,18 +13,19 @@ public static class PadlockValidation
     {
         return applied.Padlock switch
         {
-            Padlocks.MetalPadlock => GagSpeakApiEc.Success,
-            Padlocks.FiveMinutesPadlock => GagSpeakApiEc.Success,
-            Padlocks.CombinationPadlock => IsValidCombo(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.PasswordPadlock => IsValidPass(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.TimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
-            Padlocks.TimerPasswordPadlock => !IsValidLockTime(applied.Timer, maxTimeAllowed)
+            Padlocks.Metal => GagSpeakApiEc.Success,
+            Padlocks.FiveMinutes => GagSpeakApiEc.Success,
+            Padlocks.Combination => IsValidCombo(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.Password => IsValidPass(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.Timer => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.PredicamentTimer => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.TimerPassword => !IsValidLockTime(applied.Timer, maxTimeAllowed)
                 ? GagSpeakApiEc.InvalidTime : IsValidPass(applied.Password) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.OwnerPadlock => GagSpeakApiEc.Success,
-            Padlocks.OwnerTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
-            Padlocks.DevotionalPadlock => GagSpeakApiEc.Success,
-            Padlocks.DevotionalTimerPadlock => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
-            Padlocks.MimicPadlock => GagSpeakApiEc.Success,
+            Padlocks.Owner => GagSpeakApiEc.Success,
+            Padlocks.OwnerTimer => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.Devotional => GagSpeakApiEc.Success,
+            Padlocks.DevotionalTimer => IsValidLockTime(applied.Timer, maxTimeAllowed) ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidTime,
+            Padlocks.Mimic => GagSpeakApiEc.Success,
             _ => GagSpeakApiEc.NullData,
         };
     }
@@ -33,16 +34,17 @@ public static class PadlockValidation
     {
         return current.Padlock switch
         {
-            Padlocks.MetalPadlock => GagSpeakApiEc.Success,
-            Padlocks.FiveMinutesPadlock => GagSpeakApiEc.Success,
-            Padlocks.CombinationPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.PasswordPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.TimerPadlock => bearerUid != enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidRecipient,
-            Padlocks.TimerPasswordPadlock => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
-            Padlocks.OwnerPadlock => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
-            Padlocks.OwnerTimerPadlock => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
-            Padlocks.DevotionalPadlock => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
-            Padlocks.DevotionalTimerPadlock => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.Metal => GagSpeakApiEc.Success,
+            Padlocks.FiveMinutes => GagSpeakApiEc.Success,
+            Padlocks.Combination => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.Password => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.Timer => GagSpeakApiEc.Success,
+            Padlocks.PredicamentTimer => bearerUid != enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidRecipient,
+            Padlocks.TimerPassword => guessedPass == current.Password ? GagSpeakApiEc.Success : GagSpeakApiEc.InvalidPassword,
+            Padlocks.Owner => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.OwnerTimer => allowOwner ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.Devotional => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
+            Padlocks.DevotionalTimer => current.PadlockAssigner == enactorUid ? GagSpeakApiEc.Success : GagSpeakApiEc.LackingPermissions,
             _ => GagSpeakApiEc.NullData,
         };
     }
@@ -67,68 +69,71 @@ public static class PadlockEx
 {
     #region DefinedPadlockGroups
     public static readonly IEnumerable<Padlocks> AllLocksWithMimic = Enum.GetValues<Padlocks>();
-    public static readonly IEnumerable<Padlocks> AllLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.MimicPadlock);
+    public static readonly IEnumerable<Padlocks> AllLocks = Enum.GetValues<Padlocks>().Where(p => p != Padlocks.Mimic);
     public static readonly IEnumerable<Padlocks> ClientLocks = new[]
     {
         Padlocks.None,
-        Padlocks.MetalPadlock,
-        Padlocks.FiveMinutesPadlock,
-        Padlocks.CombinationPadlock,
-        Padlocks.PasswordPadlock,
-        Padlocks.TimerPadlock,
-        Padlocks.TimerPasswordPadlock,
+        Padlocks.Metal,
+        Padlocks.FiveMinutes,
+        Padlocks.Combination,
+        Padlocks.Password,
+        Padlocks.Timer,
+        Padlocks.PredicamentTimer,
+        Padlocks.TimerPassword,
     };
 
     public static readonly IEnumerable<Padlocks> TwoRowLocks = new[]
     {
-        Padlocks.CombinationPadlock,
-        Padlocks.PasswordPadlock,
-        Padlocks.TimerPadlock,
-        Padlocks.TimerPasswordPadlock,
-        Padlocks.OwnerTimerPadlock,
-        Padlocks.DevotionalTimerPadlock
+        Padlocks.Combination,
+        Padlocks.Password,
+        Padlocks.Timer,
+        Padlocks.PredicamentTimer,
+        Padlocks.TimerPassword,
+        Padlocks.OwnerTimer,
+        Padlocks.DevotionalTimer
     };
 
     public static readonly IEnumerable<Padlocks> PermanentLocks = new[]
     {
-        Padlocks.CombinationPadlock,
-        Padlocks.PasswordPadlock,
-        Padlocks.OwnerPadlock,
-        Padlocks.DevotionalPadlock
+        Padlocks.Combination,
+        Padlocks.Password,
+        Padlocks.Owner,
+        Padlocks.Devotional
     };
 
     public static readonly IEnumerable<Padlocks> PasswordPadlocks = new[]
     {
-        Padlocks.CombinationPadlock,
-        Padlocks.PasswordPadlock,
-        Padlocks.TimerPasswordPadlock
+        Padlocks.Combination,
+        Padlocks.Password,
+        Padlocks.TimerPassword
     };
 
     public static readonly IEnumerable<Padlocks> TimerLocks = new[]
     {
-        Padlocks.TimerPadlock,
-        Padlocks.TimerPasswordPadlock,
-        Padlocks.OwnerTimerPadlock,
-        Padlocks.DevotionalTimerPadlock
+        Padlocks.Timer,
+        Padlocks.PredicamentTimer,
+        Padlocks.TimerPassword,
+        Padlocks.OwnerTimer,
+        Padlocks.DevotionalTimer
     };
 
     public static readonly IEnumerable<Padlocks> OwnerLocks = new[]
     {
-        Padlocks.OwnerPadlock,
-        Padlocks.OwnerTimerPadlock
+        Padlocks.Owner,
+        Padlocks.OwnerTimer
     };
 
     public static readonly IEnumerable<Padlocks> DevotionalLocks = new[]
     {
-        Padlocks.DevotionalPadlock,
-        Padlocks.DevotionalTimerPadlock
+        Padlocks.Devotional,
+        Padlocks.DevotionalTimer
     };
     #endregion DefinedPadlockGroups
 
     public static bool IsTwoRowLock(this Padlocks padlock) => TwoRowLocks.Contains(padlock);
     public static bool IsPermanentLock(this Padlocks padlock) => PermanentLocks.Contains(padlock);
     public static bool IsPasswordLock(this Padlocks padlock) => PasswordPadlocks.Contains(padlock);
-    public static bool IsTimerLock(this Padlocks padlock) => TimerLocks.Contains(padlock) || padlock == Padlocks.MimicPadlock || padlock == Padlocks.FiveMinutesPadlock;
+    public static bool IsTimerLock(this Padlocks padlock) => TimerLocks.Contains(padlock) || padlock == Padlocks.Mimic || padlock == Padlocks.FiveMinutes;
     public static bool IsOwnerLock(this Padlocks padlock) => OwnerLocks.Contains(padlock);
     public static bool IsDevotionalLock(this Padlocks padlock) => DevotionalLocks.Contains(padlock);
 
