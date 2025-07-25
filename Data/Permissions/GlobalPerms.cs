@@ -36,6 +36,7 @@ public record GlobalPerms : IReadOnlyGlobalPerms
     public string      ForcedFollow                { get; set; } = string.Empty;
     public string      ForcedEmoteState            { get; set; } = string.Empty;
     public string      ForcedStay                  { get; set; } = string.Empty;
+    public string      Imprisoned                  { get; set; } = string.Empty;
     public string      ChatBoxesHidden             { get; set; } = string.Empty;
     public string      ChatInputHidden             { get; set; } = string.Empty;
     public string      ChatInputBlocked            { get; set; } = string.Empty;
