@@ -50,7 +50,8 @@ public record PairPermAccess
     public MoodlePerms MoodlePermsAllowed           { get; set; } = MoodlePerms.None;
     public bool MaxMoodleTimeAllowed                { get; set; } = false;
 
-    public bool HypnoEffectSendingAllowed           { get; set; } = false;
+    public bool HypnosisMaxTimeAllowed              { get; set; } = false;
+    public bool HypnosisSendingAllowed              { get; set; } = false;
 
     // unique permissions for the toybox
     public bool SpatialAudioAllowed                 { get; set; } = false; // Global

@@ -33,14 +33,13 @@ public record GlobalPerms : IReadOnlyGlobalPerms
 
     // global hardcore permissions (readonly for everyone)
     // Contains the UID who applied it when active. If Devotional, will have    |pairlocked    appended.
-    public string      ForcedFollow                { get; set; } = string.Empty;
-    public string      ForcedEmoteState            { get; set; } = string.Empty;
-    public string      ForcedStay                  { get; set; } = string.Empty;
-    public string      Imprisoned                  { get; set; } = string.Empty;
+    public string      LockedFollowing             { get; set; } = string.Empty;
+    public string      LockedEmoteState            { get; set; } = string.Empty;
+    public string      IndoorConfinement           { get; set; } = string.Empty;
+    public string      Imprisonment                { get; set; } = string.Empty;
     public string      ChatBoxesHidden             { get; set; } = string.Empty;
     public string      ChatInputHidden             { get; set; } = string.Empty;
     public string      ChatInputBlocked            { get; set; } = string.Empty;
-    
     public string      HypnosisCustomEffect        { get; set; } = string.Empty;
 
 

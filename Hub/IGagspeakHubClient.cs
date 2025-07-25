@@ -47,6 +47,9 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnKinksterUpdateActiveTriggers(Action<KinksterUpdateActiveTriggers> act);
     void OnListenerName(Action<UserData, string> act);
     void OnShockInstruction(Action<ShockCollarAction> act);
+    void OnHypnoticEffect(Action<HypnoticAction> act);
+    void OnConfineToAddress(Action<ConfineByAddress> act);
+    void OnImprisonAtPosition(Action<ImprisonAtPosition> act);
 
     // Kinkster updates
     void OnKinksterNewGagData(Action<KinksterNewGagData> act);

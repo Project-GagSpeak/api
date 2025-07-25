@@ -58,7 +58,7 @@ public interface IGagspeakHub
     Task Callback_ListenerName(UserData user, string name);
     Task Callback_ShockInstruction(ShockCollarAction dto);
     Task Callback_HypnoticEffect(HypnoticAction dto);
-    Task Callback_ForcedStayAtAddress(ForcedStayByAddress dto);
+    Task Callback_ConfineToAddress(ConfineByAddress dto);
     Task Callback_ImprisonAtPosition(ImprisonAtPosition dto);
 
     // ---- Callbacks for Kinkster Light Storage Updates.
@@ -185,8 +185,8 @@ public interface IGagspeakHub
     Task<HubResponse> UserRemoveMoodles(MoodlesRemoval dto);
     Task<HubResponse> UserClearMoodles(KinksterBase dto);
     Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
-    Task<HubResponse> UserSendKinksterHypnoEffect(HypnoticAction dto); // Sends a hypnotic effect to the kinkster.
-    Task<HubResponse> UserLockAwayKinksterByAddress(ForcedStayByAddress dto); // Forces a kinkster to stay at a spesific address.
+    Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Sends a hypnotic effect to the kinkster.
+    Task<HubResponse> UserConfineKinksterByAddress(ConfineByAddress dto); // Forces a kinkster to stay at a spesific address.
     Task<HubResponse> UserImprisonKinkster(ImprisonAtPosition dto); // Forces a kinkster to stay at a spesific position.
 
 

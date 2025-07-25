@@ -33,4 +33,5 @@ public static class Constants
     public const string CustomOfflineTag = "Gagspeak_Offline";
     public const string CustomOnlineTag = "Gagspeak_Online";
     public const string CustomVisibleTag = "Gagspeak_Visible";
+    public const string DefaultHypnoPath = "spiral";
 }

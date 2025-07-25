@@ -36,6 +36,8 @@ public enum InteractionType
     GlobalTrigger,
     PairTrigger,
 
+    HypnosisEffect,
+
     SwitchPattern,
     StartPattern,
     StopPattern,

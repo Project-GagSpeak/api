@@ -63,13 +63,16 @@ public interface IReadOnlyGlobalPerms
     // Contains the UID who applied it when active. If Devotional, will have |pairlocked| appended.
 
     /// <summary> When in ForceFollow mode, this contains the UID of the player you are following. </summary>
-    string      ForcedFollow                { get; }
+    string      LockedFollowing             { get; }
 
     /// <summary> When in ForcedEmoteState mode, this contains the emote state you are forced into, and the kinkster who did it. </summary>
-    string      ForcedEmoteState            { get; }
+    string      LockedEmoteState            { get; }
 
     /// <summary> When in ForcedStay mode, this contains the UID of the player you are forced to stay with. </summary>
-    string      ForcedStay                  { get; }
+    string      IndoorConfinement           { get; }
+
+    /// <summary> Cannot stray too far from a spesified location when set. </summary>
+    string      Imprisonment                { get; }
 
     /// <summary> Contains the UID of the player who hid your chatboxes. </summary>
     string      ChatBoxesHidden             { get; }
