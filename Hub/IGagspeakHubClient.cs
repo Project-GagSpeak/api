@@ -30,6 +30,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnBulkChangeGlobal(Action<BulkChangeGlobal> act);
     void OnBulkChangeUnique(Action<BulkChangeUnique> act);
     void OnSingleChangeGlobal(Action<SingleChangeGlobal> act);
+    void OnDoubleChangeGlobal(Action<DoubleChangeGlobal> act);
     void OnSingleChangeUnique(Action<SingleChangeUnique> act);
     void OnSingleChangeAccess(Action<SingleChangeAccess> act);
 
