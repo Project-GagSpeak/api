@@ -51,7 +51,7 @@ public enum InteractionType
     BulkUpdate,
     ForcedPermChange,
 
-    ForcedEmoteState, // For the stickyPairUI only.
+    LockedEmoteState, // For the stickyPairUI only.
     
     VibeControl,
     PiShockUpdate,

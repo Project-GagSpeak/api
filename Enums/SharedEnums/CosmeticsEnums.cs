@@ -65,7 +65,7 @@ public enum CoreTexture
     Clock,
     Collar,
     CursedLoot,
-    ForcedEmote,
+    LockedEmote,
     ForcedStay,
     Gagged,
     HypnoSpiral,
