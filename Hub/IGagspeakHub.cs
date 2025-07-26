@@ -40,6 +40,7 @@ public interface IGagspeakHub
     Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
     Task Callback_BulkChangeUnique(BulkChangeUnique dto);
     Task Callback_SingleChangeGlobal(SingleChangeGlobal dto);
+    Task Callback_DoubleChangeGlobal(DoubleChangeGlobal dto);
     Task Callback_SingleChangeUnique(SingleChangeUnique dto);
     Task Callback_SingleChangeAccess(SingleChangeAccess dto);
 

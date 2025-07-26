@@ -66,7 +66,7 @@ public enum CoreTexture
     Collar,
     CursedLoot,
     LockedEmote,
-    ForcedStay,
+    IndoorConfinement,
     Gagged,
     HypnoSpiral,
     Icon256,

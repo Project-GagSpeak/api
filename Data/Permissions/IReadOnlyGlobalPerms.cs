@@ -68,7 +68,7 @@ public interface IReadOnlyGlobalPerms
     /// <summary> When in LockedEmoteState mode, this contains the emote state you are forced into, and the kinkster who did it. </summary>
     string      LockedEmoteState            { get; }
 
-    /// <summary> When in ForcedStay mode, this contains the UID of the player you are forced to stay with. </summary>
+    /// <summary> When in IndoorConfinement mode, this contains the UID of the player you are forced to stay with. </summary>
     string      IndoorConfinement           { get; }
 
     /// <summary> Cannot stray too far from a spesified location when set. </summary>
@@ -85,6 +85,9 @@ public interface IReadOnlyGlobalPerms
 
     /// <summary> Contains the UID that put you in your active Hypnosis effect. Can be yourself, if from a restriction or cursed loot. </summary>
     string      HypnosisCustomEffect        { get; }
+
+    /// <summary> Value is true while the Kinkster is traveling to their Confinement Location. </summary>
+    bool        InConfinementTask           { get; }
 
 
     // --------- Global PiShock Permissions & Helpers ---------
