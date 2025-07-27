@@ -20,7 +20,13 @@ public class HypnoticEffect
     ///     The Monitor Resolution that this hypnotic effect was created on / sent from.
     ///     Used to extract the correct scaling factor for display on other monitors.
     /// </summary>
-    public Vector2 SourceResolution { get; set; } = new Vector2(1920, 1080);
+    public float SourceResX { get; set; } = 1920f;
+
+    /// <summary>
+    ///     The Monitor Resolution that this hypnotic effect was created on / sent from.
+    ///     Used to extract the correct scaling factor for display on other monitors.
+    /// </summary>
+    public float SourceResY { get; set; } = 1080f;
     /// <summary>
     ///     The Attributes associated with the Hypnotic effect.
     /// </summary>
@@ -122,7 +128,8 @@ public class HypnoticEffect
     public HypnoticEffect(HypnoticEffect other)
     {
         EffectId = other.EffectId;
-        SourceResolution = other.SourceResolution;
+        SourceResX = other.SourceResX;
+        SourceResY = other.SourceResY;
         Attributes = other.Attributes;
         SpinSpeed = other.SpinSpeed;
         ImageColor = other.ImageColor;
@@ -143,7 +150,7 @@ public class HypnoticEffect
     {
         return $"HypnoticEffect(" +
                $"EffectId: {EffectId}, " +
-               $"SourceResolution: {SourceResolution.X}x{SourceResolution.Y}, " +
+               $"SourceResolution: {SourceResX}x{SourceResY}, " +
                $"Attributes: {Attributes}, " +
                $"SpinSpeed: {SpinSpeed:F2}, " +
                $"ImageColor: 0x{ImageColor:X8}, " +

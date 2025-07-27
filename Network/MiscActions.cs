@@ -28,4 +28,4 @@ public record ConfineByAddress(UserData User, AddressBookEntryTuple SpesificAddr
 /// </summary>
 /// <remarks> <paramref name="User"/> is target when made in a server call, and the enactor on callback. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ImprisonAtPosition(UserData User, Vector3 Position, float MaxRadiusAllowed) : KinksterBase(User);
+public record ImprisonAtPosition(UserData User, SerializableVector3 Position, float MaxRadiusAllowed) : KinksterBase(User);
