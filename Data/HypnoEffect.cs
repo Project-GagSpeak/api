@@ -1,5 +1,6 @@
 using GagspeakAPI.Enums;
 using MessagePack;
+using System.Numerics;
 
 namespace GagspeakAPI.Data;
 
@@ -9,6 +10,17 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public class HypnoticEffect
 {
+    /// <summary>
+    ///   The unique identifier for this hypnotic effect.
+    ///   Only useful for identifying matching presets internally.
+    /// </summary>
+    public Guid EffectId { get; set; } = Guid.NewGuid();
+
+    /// <summary>
+    ///     The Monitor Resolution that this hypnotic effect was created on / sent from.
+    ///     Used to extract the correct scaling factor for display on other monitors.
+    /// </summary>
+    public Vector2 SourceResolution { get; set; } = new Vector2(1920, 1080);
     /// <summary>
     ///     The Attributes associated with the Hypnotic effect.
     /// </summary>
@@ -109,6 +121,8 @@ public class HypnoticEffect
     { }
     public HypnoticEffect(HypnoticEffect other)
     {
+        EffectId = other.EffectId;
+        SourceResolution = other.SourceResolution;
         Attributes = other.Attributes;
         SpinSpeed = other.SpinSpeed;
         ImageColor = other.ImageColor;
@@ -128,6 +142,8 @@ public class HypnoticEffect
     public override string ToString()
     {
         return $"HypnoticEffect(" +
+               $"EffectId: {EffectId}, " +
+               $"SourceResolution: {SourceResolution.X}x{SourceResolution.Y}, " +
                $"Attributes: {Attributes}, " +
                $"SpinSpeed: {SpinSpeed:F2}, " +
                $"ImageColor: 0x{ImageColor:X8}, " +

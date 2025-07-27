@@ -33,6 +33,6 @@ public static class Constants
     public const string CustomOfflineTag = "Gagspeak_Offline";
     public const string CustomOnlineTag = "Gagspeak_Online";
     public const string CustomVisibleTag = "Gagspeak_Visible";
-    public const string DefaultHypnoPath = "spiral";
-    public const string DefaultBlindfoldPath = "Blindfold Light";
+    public const string DefaultHypnoPath = "Hypno Spiral.png";
+    public const string DefaultBlindfoldPath = "Blindfold Light.png";
 }
