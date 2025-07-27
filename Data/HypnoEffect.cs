@@ -38,14 +38,14 @@ public class HypnoticEffect
     ///     Will not affect transparent areas.
     /// </summary>
     /// <remarks> Image Color can also be impacted by <see cref="HypnoAttributes.TransposeColors"/></remarks>
-    public uint ImageColor = 0xFFFFFFFF;
+    public uint ImageColor { get; set; } = 0xFFFFFFFF;
 
     /// <summary>
     ///     The zoom depth of the displayed image.
     ///     Ranges between 0.25x and 3.50x.
     /// </summary>
     /// <remarks> 0.5x is the default zoom, not 1.0x </remarks>
-    public float ZoomDepth = 0.5f;
+    public float ZoomDepth { get; set; } = 0.5f;
 
     /// <summary> 
     ///     Total milliseconds to fade from <see cref="ImageColor"/> to its inverted color.<para/>
