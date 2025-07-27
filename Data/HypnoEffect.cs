@@ -12,7 +12,7 @@ public class HypnoticEffect
     /// <summary>
     ///     The Attributes associated with the Hypnotic effect.
     /// </summary>
-    public HypnoAttributes Attributes { get; set; } = HypnoAttributes.TextDisplayOrdered;
+    public HypnoAttributes Attributes { get; set; } = HypnoAttributes.Default;
 
     /// <summary>
     ///     The image rotation speed. 

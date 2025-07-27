@@ -21,24 +21,36 @@ public enum ShockMode : sbyte // the OPCode
 [Flags]
 public enum HypnoAttributes
 {
-    TextDisplayOrdered = 0x00, // Phases display in the order they exist within the wordbank.
-    TextDisplayRandom  = 0x01, // Phases display in a random order.
+    None               = 0x00, // No attributes are set.
+    TextDisplayOrdered = 0x01, // Phases display in the order they exist within the wordbank.
+    TextDisplayRandom  = 0x02, // Phases display in a random order.
 
+    LinearTextScale    = 0x04, // Display Phrases Gradually grow during their display time.
+    RandomTextScale    = 0x08, // Display Phrases appear at randomized Scales.
+
+    TextFade           = 0x10, // Text will fade in & out between displays.
+    InvertDirection    = 0x20, // Spins Counter Clockwise over Clockwise.
+
+    SpeedUpOnCycle     = 0x40, // Text will speed up on each cycle.
+    TransposeColors    = 0x80, // Goes between normal colors and inverted RGB every cycle.
+
+    ArousalScalesSpeed = 0x100,// Display Cycle Speed impacted by by arousal. (WIP)
+    ArousalPulsesText  = 0x200,// Display Cycle Pulse Speed impacted by arousal. (WIP)
+
+    Default = TextDisplayOrdered | LinearTextScale,
     // Bitmasks for Text Display
     TextDisplayMask = TextDisplayOrdered | TextDisplayRandom,
-
-    LinearTextScale    = 0x02, // Display Phrases Gradually grow during their display time.
-    RandomTextScale    = 0x04, // Display Phrases appear at randomized Scales.
-
     // Bitmasks for Text Scaling
     ScaleMask = LinearTextScale | RandomTextScale,
+}
 
-    TextFade           = 0x08, // Text will fade in & out between displays.
-    InvertDirection    = 0x10, // Spins Counter Clockwise over Clockwise.
+public static class HypnoAttrExtensions
+{
+    public static readonly HypnoAttributes[] RawFlags = Enum.GetValues<HypnoAttributes>()
+        .Where(f => ((int)f & ((int)f - 1)) == 0)
+        .OrderBy(f => (int)f)
+        .ToArray();
 
-    SpeedUpOnCycle     = 0x20, // Text will speed up on each cycle.
-    TransposeColors    = 0x40, // Goes between normal colors and inverted RGB every cycle.
+    public static readonly HypnoAttributes[] ToggleFlags = RawFlags.Skip(5).ToArray();
 
-    ArousalScalesSpeed = 0x80, // Display Cycle Speed impacted by by arousal. (WIP)
-    ArousalPulsesText  = 0x100,// Display Cycle Pulse Speed impacted by arousal. (WIP)
 }

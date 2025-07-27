@@ -32,7 +32,8 @@ public static class GagDataEx
     /// <summary> Retrieves a list of the names of all currently equipped gags in the character's appearance data. </summary>
     /// <param name="gagData">The character appearance data to query.</param>
     /// <returns>A list of names of the currently equipped gags.</returns>
-    public static List<string> CurrentGagNames(this CharaActiveGags gagData) => gagData.GagSlots.Select(gag => gag.GagItem.GagName()).ToList();
+    public static List<string> CurrentGagNames(this CharaActiveGags gagData) 
+        => gagData.GagSlots.Select(gag => gag.GagItem.GagName()).ToList();
 
     /// <summary>
     /// Tracking keys use the format: ((int)i).ToString() + '_' + gagType.GagName()

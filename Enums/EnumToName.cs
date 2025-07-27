@@ -216,6 +216,24 @@ public static class EnumToName
         };
     }
 
+    public static string ToCompactName(this HypnoAttributes attribute)
+    {
+        return attribute switch
+        {
+            HypnoAttributes.TextDisplayOrdered => "Sequential",
+            HypnoAttributes.TextDisplayRandom => "Randomized",
+            HypnoAttributes.LinearTextScale => "Growing",
+            HypnoAttributes.RandomTextScale => "Randomized",
+            HypnoAttributes.TextFade => "Text Fades",
+            HypnoAttributes.InvertDirection => "Invert Spin",
+            HypnoAttributes.SpeedUpOnCycle => "Accel Between",
+            HypnoAttributes.TransposeColors => "Color Transpose",
+            HypnoAttributes.ArousalScalesSpeed => "Embed Arousal",
+            HypnoAttributes.ArousalPulsesText => "Arousal Pulse",
+            _ => "UNK"
+        };
+    }
+
     public static string ToTooltip(this  HypnoAttributes attribute)
     {
         return attribute switch
