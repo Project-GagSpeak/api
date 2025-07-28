@@ -1,6 +1,7 @@
 using GagspeakAPI.Enums;
 using MessagePack;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace GagspeakAPI.Data;
 
