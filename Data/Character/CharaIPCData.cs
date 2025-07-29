@@ -4,19 +4,17 @@ using MessagePack;
 namespace GagspeakAPI.Data;
 
 /// <summary> 
-///     Stores Information about the Player's Moodles Data 
-/// </summary>
-/// <remarks>
+///     Stores Information about the Player's Moodles Data <para />
 ///     If this is creating noticable performance issues, reduce to a
 ///     list and make a local client friendly dictionary version. 
-/// </remarks>
+/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaIPCData : IEquatable<CharaIPCData>
 {
     public string DataString { get; private set; } = string.Empty;
-    public Dictionary<Guid, MoodlesStatusInfo> DataInfo { get; private set; } = new();
-    public Dictionary<Guid, MoodlesStatusInfo> Statuses { get; private set; } = new();
-    public Dictionary<Guid, MoodlePresetInfo> Presets { get; private set; } = new();
+    public Dictionary<Guid, MoodlesStatusInfo> DataInfo { get; private set; } = new Dictionary<Guid, MoodlesStatusInfo>();
+    public Dictionary<Guid, MoodlesStatusInfo> Statuses { get; private set; } = new Dictionary<Guid, MoodlesStatusInfo>();
+    public Dictionary<Guid, MoodlePresetInfo> Presets { get; private set; } = new Dictionary<Guid, MoodlePresetInfo>();
 
     // Convenience access to collections.
     [IgnoreMember] public IEnumerable<MoodlesStatusInfo> DataInfoList => DataInfo.Values;
@@ -49,6 +47,7 @@ public class CharaIPCData : IEquatable<CharaIPCData>
         }
         return false;
     }
+
     public bool TryUpdatePreset(MoodlePresetInfo preset)
     {
         if (Presets.ContainsKey(preset.GUID))
@@ -67,8 +66,10 @@ public class CharaIPCData : IEquatable<CharaIPCData>
 
     public bool Equals(CharaIPCData? other)
         => other is not null && DataString == other.DataString;
+
     public override bool Equals(object? obj)
         => obj is CharaIPCData other && Equals(other);
+
     public override int GetHashCode()
         => DataString.GetHashCode();
 
