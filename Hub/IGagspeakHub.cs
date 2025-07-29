@@ -28,15 +28,19 @@ public interface IGagspeakHub
     Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
     Task Callback_AddPairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
     Task Callback_RemovePairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
-    
+
     // ---- Callbacks to update moodles.
+    Task Callback_SetKinksterIpcFull(KinksterIpcDataFull dto);
+    Task Callback_SetKinksterIpcStatusManager(KinksterIpcStatusManager dto);
+    Task Callback_SetKinksterIpcStatuses(KinksterIpcStatuses dto);
+    Task Callback_SetKinksterIpcPresets(KinksterIpcPresets dto);
     Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
     Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
     Task Callback_RemoveMoodles(MoodlesRemoval dto);
     Task Callback_ClearMoodles(KinksterBase dto);
 
     // ---- Callbacks to update permissions.
-    Task Callback_BulkChangeAll(BulkChangeAll dto);
+    // Task Callback_BulkChangeSafeword(BulkChangeAll dto);  <-- Removed until we can get a better understanding of how we handle safewords.
     Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
     Task Callback_BulkChangeUnique(BulkChangeUnique dto);
     Task Callback_SingleChangeGlobal(SingleChangeGlobal dto);
@@ -46,7 +50,6 @@ public interface IGagspeakHub
 
     // ---- Callbacks for Kinkster Active State updates.
     Task Callback_KinksterUpdateComposite(KinksterUpdateComposite dto);
-    Task Callback_KinksterUpdateIpc(KinksterUpdateIpc dto);
     Task Callback_KinksterUpdateActiveGag(KinksterUpdateActiveGag dto);
     Task Callback_KinksterUpdateActiveRestriction(KinksterUpdateActiveRestriction dto);
     Task Callback_KinksterUpdateActiveRestraint(KinksterUpdateActiveRestraint dto);
@@ -132,8 +135,12 @@ public interface IGagspeakHub
     Task<HubResponse> UserReportKinkPlate(KinkPlateReport KinksterBase); // hopefully this is never used x-x...
 
     // ----- Personal Interactions ------
+    Task<HubResponse> UserPushIpcFull(PushIpcDataFull dto);
+    Task<HubResponse> UserPushIpcStatusManager(PushIpcStatusManager dto);
+    Task<HubResponse> UserPushIpcStatuses(PushIpcStatuses dto);
+    Task<HubResponse> UserPushIpcPresets(PushIpcPresets dto);
+
     Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
-    Task<HubResponse> UserPushActiveIpc(PushClientIpcUpdate dto);
     Task<HubResponse> UserPushActiveGags(PushClientActiveGagSlot dto);
     Task<HubResponse> UserPushActiveRestrictions(PushClientActiveRestriction dto);
     Task<HubResponse> UserPushActiveRestraint(PushClientActiveRestraint dto);
@@ -153,7 +160,8 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushNewTriggerData(PushClientDataChangeTrigger dto);
     Task<HubResponse> UserPushNewAllowances(PushClientAllowances dto);
 
-    Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
+    // Removed until we can get a better understanding of how we handle safewords.
+    // Task<HubResponse> UserBulkChangeSafeword(BulkChangeGlobal dto);
     Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);

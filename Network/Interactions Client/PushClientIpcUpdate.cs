@@ -4,9 +4,19 @@ using MessagePack;
 
 namespace GagspeakAPI.Network;
 
-/// <summary>
-///     The Updated Composite Data for the client, that will be sent to all pairs.
-/// </summary>
-/// <param name="Recipients"> the Client's Kinkster pairs. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientIpcUpdate(List<UserData> Recipients, CharaIPCData NewData, DataUpdateType Type);
+public record PushIpcDataFull(List<UserData> Recipients, CharaIPCData NewData);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcStatusManager(List<UserData> Recipients, string DataString, List<MoodlesStatusInfo> DataInfo);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcStatuses(List<UserData> Recipients, List<MoodlesStatusInfo> Statuses);
+
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcPresets(List<UserData> Recipients, List<MoodlePresetInfo> Presets);
+
+
