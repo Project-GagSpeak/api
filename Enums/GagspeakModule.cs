@@ -15,4 +15,5 @@ public enum GagspeakModule
     Pattern,
     Alarm,
     Trigger,
+    ModPreset,
 }
