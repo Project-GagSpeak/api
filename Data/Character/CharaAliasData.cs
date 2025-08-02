@@ -23,7 +23,7 @@ public class NamedAliasStorage
     public AliasStorage Storage { get; set; } = new AliasStorage();
 
     [IgnoreMember]
-    public string ExtractedListenerName => string.IsNullOrEmpty(StoredNameWorld) ? "Not Yet Listening!" : StoredNameWorld;
+    public string ExtractedListenerName => string.IsNullOrEmpty(StoredNameWorld) ? "<No Name@World Set!>" : StoredNameWorld;
 }
 
 // This can double as a use for a GlobalAliasStorage.

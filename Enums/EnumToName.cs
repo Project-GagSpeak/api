@@ -44,6 +44,26 @@ public static class EnumToName
         _ => "UNK"
     };
 
+    // Courtesy of Anil for the tooltips explanations.
+    public static string ToTooltip(this Padlocks padlock)
+    => padlock switch
+    {
+        Padlocks.None => string.Empty,
+        Padlocks.Metal => "Can be locked / unlocked by anyone.",
+        Padlocks.FiveMinutes => "Automatically unlocks after 5 minutes.--NL--Can be unlocked early by anyone.",
+        Padlocks.Combination => "Locked with a 4-digit, Numerical (0-9) combination.--NL--Only unlocked if guessed correctly.",
+        Padlocks.Password => "Locked with a 4-20 character, alphanumeric password.--NL--Only unlocked if guessed correctly.",
+        Padlocks.Timer => "Automatically unlocks after the set time.--NL--Can be unlocked early by anyone.",
+        Padlocks.PredicamentTimer => "Automatically unlocks after the defined time.--NL--Cannot be unlocked by the padlock's bearer.--NL--Anyone else can unlock this.",
+        Padlocks.TimerPassword => "Acts as a --COL--Password Padlock--COL-- and a --COL--Timer Padlock--COL-- combined.--NL--Only unlocked if password is guessed, or timer expires.",
+        Padlocks.Owner => "Requires the --COL--Owner Locks--COL-- permission to use.--NL--Only others with --COL--Owner Locks--COL-- permission can remove this.",
+        Padlocks.OwnerTimer => "Same as --COL--Owner Padlock--COL--, but unlocks after the set time.",
+        Padlocks.Devotional => "Requires --COL--Devotional Locks--COL-- permission to use.--NL--Can ONLY be unlocked by the kinkster who applied it.",
+        Padlocks.DevotionalTimer => "Same as --COL--Devotional Padlock--COL--, but unlocks after the set time.",
+        Padlocks.Mimic => "Applied via Cursed Loot after having an unfortunite encounter with a Mimic!--NL--It is likely you will ever see this tooltip, and never should.",
+        _ => "UNK PADLOCK FOUND, REPORT THIS."
+    };
+
     public static Padlocks ToPadlock(this string padlockAlias)
     => padlockAlias switch
     {
@@ -136,119 +156,105 @@ public static class EnumToName
         _ => "UNK"
     };
 
-    public static string ToName(this InvokableActionType triggerActionKind)
+    public static string ToName(this InvokableActionType actKind)
+    => actKind switch
     {
-        return triggerActionKind switch
-        {
-            InvokableActionType.TextOutput => "Text Output",
-            InvokableActionType.Gag => "Gag Action",
-            InvokableActionType.Restriction => "Restriction Action",
-            InvokableActionType.Restraint => "Restraint Action",
-            InvokableActionType.Moodle => "Moodle Action",
-            InvokableActionType.ShockCollar => "Shock Action",
-            InvokableActionType.SexToy => "SexToy Action",
-            _ => "UNK"
-        };
-    }
+        InvokableActionType.TextOutput => "Text Output",
+        InvokableActionType.Gag => "Gag Action",
+        InvokableActionType.Restriction => "Restriction Action",
+        InvokableActionType.Restraint => "Restraint Action",
+        InvokableActionType.Moodle => "Moodle Action",
+        InvokableActionType.ShockCollar => "Shock Action",
+        InvokableActionType.SexToy => "SexToy Action",
+        _ => "UNK"
+    };
 
     public static string ToName(this PresetName preset)
+    => preset switch
     {
-        return preset switch
-        {
-            PresetName.NoneSelected => "None",
-            PresetName.Dominant => "Dominant",
-            PresetName.Brat => "Brat",
-            PresetName.RopeBunny => "Rope Bunny",
-            PresetName.Submissive => "Submissive",
-            PresetName.Slut => "Slut",
-            PresetName.Pet => "Pet",
-            PresetName.Slave => "Slave",
-            PresetName.OwnersSlut => "Owner's Slut",
-            PresetName.OwnersPet => "Owner's Pet",
-            PresetName.OwnersSlave => "Owner's Slave",
-            _ => "UNK"
-        };
-    }
+        PresetName.NoneSelected => "None",
+        PresetName.Dominant => "Dominant",
+        PresetName.Brat => "Brat",
+        PresetName.RopeBunny => "Rope Bunny",
+        PresetName.Submissive => "Submissive",
+        PresetName.Slut => "Slut",
+        PresetName.Pet => "Pet",
+        PresetName.Slave => "Slave",
+        PresetName.OwnersSlut => "Owner's Slut",
+        PresetName.OwnersPet => "Owner's Pet",
+        PresetName.OwnersSlave => "Owner's Slave",
+        _ => "UNK"
+    };
 
     public static string ToName(this TriggerKind type)
+    => type switch
     {
-        return type switch
-        {
-            TriggerKind.SpellAction => "Spell / Action Trigger",
-            TriggerKind.HealthPercent => "Health% Trigger",
-            TriggerKind.RestraintSet => "Restraint State Trigger",
-            TriggerKind.Restriction => "Restriction State Trigger",
-            TriggerKind.GagState => "GagState Trigger",
-            TriggerKind.SocialAction => "Social Action",
-            TriggerKind.EmoteAction => "Emote Action",
-            _ => "UNK"
-        };
-    }
+        TriggerKind.SpellAction => "Spell / Action Trigger",
+        TriggerKind.HealthPercent => "Health% Trigger",
+        TriggerKind.RestraintSet => "Restraint State Trigger",
+        TriggerKind.Restriction => "Restriction State Trigger",
+        TriggerKind.GagState => "GagState Trigger",
+        TriggerKind.SocialAction => "Social Action",
+        TriggerKind.EmoteAction => "Emote Action",
+        _ => "UNK"
+    };
 
     public static string ToName(this TriggerDirection type)
+    => type switch
     {
-        return type switch
-        {
-            TriggerDirection.Self => "From Self",
-            TriggerDirection.SelfToOther => "From you to others",
-            TriggerDirection.Other => "From Others",
-            TriggerDirection.OtherToSelf => "From others to You",
-            TriggerDirection.Any => "Any Filter",
-            _ => "UNK"
-        };
-    }
+        TriggerDirection.Self => "From Self",
+        TriggerDirection.SelfToOther => "From you to others",
+        TriggerDirection.Other => "From Others",
+        TriggerDirection.OtherToSelf => "From others to You",
+        TriggerDirection.Any => "Any Filter",
+        _ => "UNK"
+    };
 
     public static string ToName(this HypnoAttributes attribute)
+    => attribute switch
     {
-        return attribute switch
-        {
-            HypnoAttributes.TextDisplayOrdered  => "Sequential phrases",
-            HypnoAttributes.TextDisplayRandom   => "Randomized phrases",
-            HypnoAttributes.LinearTextScale     => "Text scales up",
-            HypnoAttributes.RandomTextScale     => "Text scales randomly",
-            HypnoAttributes.TextFade            => "Text fades in & out",
-            HypnoAttributes.InvertDirection     => "Invert spin",
-            HypnoAttributes.SpeedUpOnCycle      => "Speedup inbetween",
-            HypnoAttributes.TransposeColors     => "Color Transpose",
-            HypnoAttributes.ArousalScalesSpeed  => "Arousal integration",
-            HypnoAttributes.ArousalPulsesText   => "Arousal pulses text",
-            _ => "UNK"
-        };
-    }
+        HypnoAttributes.TextDisplayOrdered  => "Sequential phrases",
+        HypnoAttributes.TextDisplayRandom   => "Randomized phrases",
+        HypnoAttributes.LinearTextScale     => "Text scales up",
+        HypnoAttributes.RandomTextScale     => "Text scales randomly",
+        HypnoAttributes.TextFade            => "Text fades in & out",
+        HypnoAttributes.InvertDirection     => "Invert spin",
+        HypnoAttributes.SpeedUpOnCycle      => "Speedup inbetween",
+        HypnoAttributes.TransposeColors     => "Color Transpose",
+        HypnoAttributes.ArousalScalesSpeed  => "Arousal integration",
+        HypnoAttributes.ArousalPulsesText   => "Arousal pulses text",
+        _ => "UNK"
+    };
 
     public static string ToCompactName(this HypnoAttributes attribute)
+    => attribute switch
     {
-        return attribute switch
-        {
-            HypnoAttributes.TextDisplayOrdered => "Sequential",
-            HypnoAttributes.TextDisplayRandom => "Randomized",
-            HypnoAttributes.LinearTextScale => "Growing",
-            HypnoAttributes.RandomTextScale => "Randomized",
-            HypnoAttributes.TextFade => "Text Fades",
-            HypnoAttributes.InvertDirection => "Invert Spin",
-            HypnoAttributes.SpeedUpOnCycle => "Accel Between",
-            HypnoAttributes.TransposeColors => "Color Transpose",
-            HypnoAttributes.ArousalScalesSpeed => "Embed Arousal",
-            HypnoAttributes.ArousalPulsesText => "Arousal Pulse",
-            _ => "UNK"
-        };
-    }
+        HypnoAttributes.TextDisplayOrdered => "Sequential",
+        HypnoAttributes.TextDisplayRandom => "Randomized",
+        HypnoAttributes.LinearTextScale => "Growing",
+        HypnoAttributes.RandomTextScale => "Randomized",
+        HypnoAttributes.TextFade => "Text Fades",
+        HypnoAttributes.InvertDirection => "Invert Spin",
+        HypnoAttributes.SpeedUpOnCycle => "Accel Between",
+        HypnoAttributes.TransposeColors => "Color Transpose",
+        HypnoAttributes.ArousalScalesSpeed => "Embed Arousal",
+        HypnoAttributes.ArousalPulsesText => "Arousal Pulse",
+        _ => "UNK"
+    };
 
     public static string ToTooltip(this  HypnoAttributes attribute)
+    => attribute switch
     {
-        return attribute switch
-        {
-            HypnoAttributes.TextDisplayOrdered => "Phrases display in the containers order.",
-            HypnoAttributes.TextDisplayRandom => "Phrases will display in a random order.",
-            HypnoAttributes.LinearTextScale => "Phrases will gradually grow during their display lifetime.",
-            HypnoAttributes.RandomTextScale => "Phrases will appear at randomized scales.",
-            HypnoAttributes.TextFade => "Phrases fade in and out at the start and end of display lifetime.",
-            HypnoAttributes.InvertDirection => "Spins counter-clockwise instead of clockwise.",
-            HypnoAttributes.SpeedUpOnCycle => "Briefly accelerates spin speed between display phases.",
-            HypnoAttributes.TransposeColors => "Continuously phase between the set color and its inverse.",
-            HypnoAttributes.ArousalScalesSpeed => "Display phrase speed can be amplified by arousal rate",
-            HypnoAttributes.ArousalPulsesText => "Arousal can cause the text phrases to pulsate.",
-            _ => "UNK"
-        };
-    }
+        HypnoAttributes.TextDisplayOrdered => "Phrases display in the containers order.",
+        HypnoAttributes.TextDisplayRandom => "Phrases will display in a random order.",
+        HypnoAttributes.LinearTextScale => "Phrases will gradually grow during their display lifetime.",
+        HypnoAttributes.RandomTextScale => "Phrases will appear at randomized scales.",
+        HypnoAttributes.TextFade => "Phrases fade in and out at the start and end of display lifetime.",
+        HypnoAttributes.InvertDirection => "Spins counter-clockwise instead of clockwise.",
+        HypnoAttributes.SpeedUpOnCycle => "Briefly accelerates spin speed between display phases.",
+        HypnoAttributes.TransposeColors => "Continuously phase between the set color and its inverse.",
+        HypnoAttributes.ArousalScalesSpeed => "Display phrase speed can be amplified by arousal rate",
+        HypnoAttributes.ArousalPulsesText => "Arousal can cause the text phrases to pulsate.",
+        _ => "UNK"
+    };
 }
