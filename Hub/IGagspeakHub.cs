@@ -56,6 +56,7 @@ public interface IGagspeakHub
     Task Callback_KinksterUpdateActiveCursedLoot(KinksterUpdateActiveCursedLoot dto);
     Task Callback_KinksterUpdateAliasGlobal(KinksterUpdateAliasGlobal dto);
     Task Callback_KinksterUpdateAliasUnique(KinksterUpdateAliasUnique dto);
+    Task Callback_KinksterUpdateValidToys(KinksterUpdateValidToys dto);
     Task Callback_KinksterUpdateActivePattern(KinksterUpdateActivePattern dto);
     Task Callback_KinksterUpdateActiveAlarms(KinksterUpdateActiveAlarms dto);
     Task Callback_KinksterUpdateActiveTriggers(KinksterUpdateActiveTriggers dto);
@@ -147,6 +148,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushActiveLoot(PushClientActiveLoot dto);
     Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
     Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
+    Task<HubResponse> UserPushValidToys(PushClientValidToys dto);
     Task<HubResponse> UserPushActivePattern(PushClientActivePattern dto);
     Task<HubResponse> UserPushActiveAlarms(PushClientActiveAlarms dto);
     Task<HubResponse> UserPushActiveTriggers(PushClientActiveTriggers dto);

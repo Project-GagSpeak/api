@@ -46,6 +46,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnKinksterUpdateActiveCursedLoot(Action<KinksterUpdateActiveCursedLoot> act);
     void OnKinksterUpdateAliasGlobal(Action<KinksterUpdateAliasGlobal> act);
     void OnKinksterUpdateAliasUnique(Action<KinksterUpdateAliasUnique> act);
+    void OnKinksterUpdateValidToys(Action<KinksterUpdateValidToys> act);
     void OnKinksterUpdateActivePattern(Action<KinksterUpdateActivePattern> act);
     void OnKinksterUpdateActiveAlarms(Action<KinksterUpdateActiveAlarms> act);
     void OnKinksterUpdateActiveTriggers(Action<KinksterUpdateActiveTriggers> act);

@@ -14,6 +14,7 @@ public class CharaLightStorageData
     public LightRestriction[] Restrictions { get; set; } = []; // Dictionary is useful for lookups by ID references.
     public LightRestraint[] Restraints  { get; set; } = []; // Useful for lookups via active state reference. Also these are only sent once, so they are ok.
     public LightCursedLoot[] CursedItems { get; set; } = [];
+    public ToyBrandName[] ValidToys { get; set; } = [];
     public LightPattern[] Patterns { get; set; } = [];
     public LightAlarm[] Alarms { get; set; } = [];
     public LightTrigger[] Triggers { get; set; } = [];
@@ -23,13 +24,11 @@ public class CharaLightStorageData
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightRestriction(Guid Id, bool Enabled, RestrictionType Type, string Label, LightItem Properties);
 
-
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightGag(GagType Gag, bool Enabled, LightItem Properties, string CPlusName, bool Redraw);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
-
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightRestraint(Guid Id, bool Enabled, string Label, string Desc)

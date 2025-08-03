@@ -1,8 +1,13 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
+
+/// <summary> Updated Active Toys </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterUpdateValidToys(UserData User, List<ToyBrandName> ValidToys);
 
 /// <summary> Updated ActivePattern GUID </summary>
 [MessagePackObject(keyAsPropertyName: true)]
