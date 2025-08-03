@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using MessagePack;
 
 namespace GagspeakAPI.Data;
@@ -18,6 +19,7 @@ public class CharaCompositeActiveData
     public List<Guid> ActiveCursedItems { get; set; } = new();
     public AliasStorage GlobalAliasData { get; set; } = new();
     public Dictionary<string, NamedAliasStorage> PairAliasData { get; set; } = new();
+    public List<ToyBrandName> ValidToys { get; set; } = new();
     public Guid ActivePattern { get; set; } = Guid.Empty;
     public List<Guid> ActiveAlarms { get; set; } = new();
     public List<Guid> ActiveTriggers { get; set; } = new();

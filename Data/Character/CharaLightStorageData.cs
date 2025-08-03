@@ -14,7 +14,6 @@ public class CharaLightStorageData
     public LightRestriction[] Restrictions { get; set; } = []; // Dictionary is useful for lookups by ID references.
     public LightRestraint[] Restraints  { get; set; } = []; // Useful for lookups via active state reference. Also these are only sent once, so they are ok.
     public LightCursedLoot[] CursedItems { get; set; } = [];
-    public ToyBrandName[] ValidToys { get; set; } = [];
     public LightPattern[] Patterns { get; set; } = [];
     public LightAlarm[] Alarms { get; set; } = [];
     public LightTrigger[] Triggers { get; set; } = [];
