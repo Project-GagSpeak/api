@@ -8,8 +8,8 @@ public static class GlobalPermsEx
     private static readonly string[] GroundSitIdList = { "52", "97", "98", "117" };
     private static readonly string[] AnySitIdList = SitIdList.Concat(GroundSitIdList).ToArray();
 
-    private static bool IsDevotional(string s) => s.EndsWith(Constants.DevotedString);
-    private static string PermEnactor(string s) => s.Replace(Constants.DevotedString, string.Empty);
+    public static bool IsDevotional(string s) => s.EndsWith(Constants.DevotedString);
+    public static string PermEnactor(string s) => s.Replace(Constants.DevotedString, string.Empty);
 
     /// <summary> 
     ///     If the owner of these global perms is in IndoorConfinement or Imprisonment. <para />
