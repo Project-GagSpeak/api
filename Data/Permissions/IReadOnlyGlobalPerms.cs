@@ -86,9 +86,6 @@ public interface IReadOnlyGlobalPerms
     /// <summary> Contains the UID that put you in your active Hypnosis effect. Can be yourself, if from a restriction or cursed loot. </summary>
     string      HypnosisCustomEffect        { get; }
 
-    /// <summary> Value is true while the Kinkster is traveling to their Confinement Location. </summary>
-    bool        InConfinementTask           { get; }
-
 
     // --------- Global PiShock Permissions & Helpers ---------
     

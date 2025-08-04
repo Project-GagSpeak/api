@@ -44,8 +44,6 @@ public record GlobalPerms : IReadOnlyGlobalPerms
     public string      ChatInputHidden             { get; set; } = string.Empty;
     public string      ChatInputBlocked            { get; set; } = string.Empty;
 
-    public bool        InConfinementTask           { get; set;} = false;
-
     // Global PiShock Permissions & Helpers.
     public string      GlobalShockShareCode        { get; set; } = string.Empty;
     public bool        AllowShocks                 { get; set; } = false;
