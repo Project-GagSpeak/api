@@ -85,6 +85,7 @@ public static class GlobalPermsEx
 
     public static bool HypnoState(this IReadOnlyGlobalPerms p) => !string.IsNullOrEmpty(p.HypnosisCustomEffect);
     public static string HypnoEnactor(this IReadOnlyGlobalPerms p) => PermEnactor(p.HypnosisCustomEffect);
+    public static bool HypnoIsDevotional(this IReadOnlyGlobalPerms p) => IsDevotional(p.HypnosisCustomEffect);
     public static bool CanChangeHypno(this IReadOnlyGlobalPerms p, string kinksterUid)
     {
         if (string.IsNullOrEmpty(p.HypnosisCustomEffect) || !IsDevotional(p.HypnosisCustomEffect)) return true;
