@@ -43,7 +43,6 @@ public interface IReadOnlyGlobalPerms
     /// <summary> Global puppeteer permissions. </summary>
     PuppetPerms PuppetPerms                 { get; }
 
-
     // --------- Global Toybox Modifiable Permissions ---------
 
     /// <summary> PROFILE VIEWABLE OPT-IN || If the user's toybox component is active. </summary>
@@ -57,35 +56,6 @@ public interface IReadOnlyGlobalPerms
 
     /// <summary> If the user's toybox local audio is active. </summary>
     bool        SpatialAudio                { get; }
-
-
-    // --------- Global Hardcore Permissions (readonly for everyone) ---------
-    // Contains the UID who applied it when active. If Devotional, will have |pairlocked| appended.
-
-    /// <summary> When in ForceFollow mode, this contains the UID of the player you are following. </summary>
-    string      LockedFollowing             { get; }
-
-    /// <summary> When in LockedEmoteState mode, this contains the emote state you are forced into, and the kinkster who did it. </summary>
-    string      LockedEmoteState            { get; }
-
-    /// <summary> When in IndoorConfinement mode, this contains the UID of the player you are forced to stay with. </summary>
-    string      IndoorConfinement           { get; }
-
-    /// <summary> Cannot stray too far from a spesified location when set. </summary>
-    string      Imprisonment                { get; }
-
-    /// <summary> Contains the UID of the player who hid your chatboxes. </summary>
-    string      ChatBoxesHidden             { get; }
-
-    /// <summary> Contains the UID of the player who hid your chat input. </summary>
-    string      ChatInputHidden             { get; }
-
-    /// <summary> Contains the UID of the player who blocked your chat input. </summary>
-    string      ChatInputBlocked            { get; }
-
-    /// <summary> Contains the UID that put you in your active Hypnosis effect. Can be yourself, if from a restriction or cursed loot. </summary>
-    string      HypnosisCustomEffect        { get; }
-
 
     // --------- Global PiShock Permissions & Helpers ---------
     

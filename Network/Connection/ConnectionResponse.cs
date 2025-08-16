@@ -14,9 +14,11 @@ public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(Us
     public int ServerVersion { get; set; }
 
     public GlobalPerms GlobalPerms { get; init; } = new();
+    public HardcoreState HardcoreState { get; init; } = new();
     public CharaActiveGags SyncedGagData { get; init; } = new();
     public CharaActiveRestrictions SyncedRestrictionsData { get; init; } = new();
     public CharaActiveRestraint SyncedRestraintSetData { get; init; } = new();
+    public ActiveCollar SyncedCollarData { get; init; } = new();
 
     public List<string> ActiveAccountUidList { get; init; } = new();
     public string UserAchievements { get; set; } = string.Empty;

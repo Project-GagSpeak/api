@@ -102,3 +102,12 @@ public record CharaActiveRestraint : ActiveRestriction
         => $"Restraint: {{ ID = {Identifier}, ActiveLayers = {ActiveLayers}, " +
            $"Lock = {Padlock.ToName()}, Pass = {Password}, Timer = {Timer}, Assigner = {PadlockAssigner} }}";
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record ActiveCollar
+{
+    // reflects the collar item that is bound to this action.
+    public Guid Identifier { get; set; } = Guid.Empty;
+
+    // a lot of this stuff is still WIP since we are handling how it is displayed/controlled.
+}

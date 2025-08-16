@@ -26,18 +26,10 @@ public enum MoodlePerms : byte
 
 public enum PermissionType
 {
-    Global,                   // Use GlobalPerms & PairPermEditAccess
-    PairPerm,           // Use UniquePairPerms & PairPermEditAccess
+    Global,     // Use GlobalPerms & PairEditAccess
+    Hardcore,   // Use HardcoreState & PairPerms
+    PairPerm,   // Use UniquePairPerms & PairEditAccess
     PairAccess, // Used to validate the edit access checkbox catagory, not used in sensarios.
-};
-
-
-public enum PermissionValueType
-{
-    YesNo,
-    TimeSpan,
-    String,
-    TimeSpanSliderInt,
 };
 
 public enum PresetName : byte

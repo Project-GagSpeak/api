@@ -72,6 +72,7 @@ public enum CoreTexture
     Icon256,
     Icon256Bg,
     Immobilize,
+    Imprisoned,
     Leash,
     Play,
     Power,

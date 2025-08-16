@@ -31,19 +31,6 @@ public record GlobalPerms : IReadOnlyGlobalPerms
     public bool        InVibeRoom                  { get; set; } = false;
     public bool        SpatialAudio                { get; set; } = false;
 
-    /// <summary> The UID of the applier on the hypnosis effect. </summary>
-    public string      HypnosisCustomEffect        { get; set; } = string.Empty;
-
-    // global hardcore permissions (readonly for everyone)
-    // Contains the UID who applied it when active. If Devotional, will have    |pairlocked    appended.
-    public string      LockedFollowing             { get; set; } = string.Empty;
-    public string      LockedEmoteState            { get; set; } = string.Empty;
-    public string      IndoorConfinement           { get; set; } = string.Empty;
-    public string      Imprisonment                { get; set; } = string.Empty;
-    public string      ChatBoxesHidden             { get; set; } = string.Empty;
-    public string      ChatInputHidden             { get; set; } = string.Empty;
-    public string      ChatInputBlocked            { get; set; } = string.Empty;
-
     // Global PiShock Permissions & Helpers.
     public string      GlobalShockShareCode        { get; set; } = string.Empty;
     public bool        AllowShocks                 { get; set; } = false;

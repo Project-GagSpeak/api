@@ -26,8 +26,8 @@ public interface IGagspeakHub
 
     Task Callback_AddClientPair(KinksterPair dto); /* sends to a connected user to add the specified user to their pair list */
     Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
-    Task Callback_AddPairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
-    Task Callback_RemovePairRequest(KinksterRequestEntry dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
+    Task Callback_AddPairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
+    Task Callback_RemovePairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
 
     // ---- Callbacks to update moodles.
     Task Callback_SetKinksterIpcFull(KinksterIpcDataFull dto);
@@ -101,7 +101,7 @@ public interface IGagspeakHub
     Task<List<KinksterPair>> UserGetPairedClients();
 
     /// <summary> Requests the list of all current Kinkster Requests active for the caller. </summary>
-    Task<List<KinksterRequestEntry>> UserGetPairRequests();
+    Task<ActiveRequests> UserGetActiveRequests();
 
     /// <summary> Called by a connected client who wishes to retrieve the profile of another user. </summary>
     Task<KinkPlateFull> UserGetKinkPlate(KinksterBase dto);

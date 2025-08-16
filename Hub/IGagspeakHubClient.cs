@@ -16,8 +16,8 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Pairing and requests
     void OnAddClientPair(Action<KinksterPair> act);
     void OnRemoveClientPair(Action<KinksterBase> act);
-    void OnAddPairRequest(Action<KinksterRequestEntry> act);
-    void OnRemovePairRequest(Action<KinksterRequestEntry> act);
+    void OnAddPairRequest(Action<KinksterRequest> act);
+    void OnRemovePairRequest(Action<KinksterRequest> act);
 
     // Moodle updates
     void OnSetKinksterIpcFull(Action<KinksterIpcDataFull> act);
