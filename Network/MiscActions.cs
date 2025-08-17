@@ -9,7 +9,7 @@ namespace GagspeakAPI.Network;
 /// </summary>
 /// <remarks> <paramref name="User"/> is the target when sent, the enactor when received. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record HypnoticAction(UserData User, int Duration, HypnoticEffect Effect, string? base64Image = null) : KinksterBase(User);
+public record HypnoticAction(UserData User, DateTimeOffset ExpireTime, HypnoticEffect Effect, string? base64Image = null) : KinksterBase(User);
 
 /// <summary> 
 ///     Sends out a shock collar instruction to the target <paramref name="User"/>.

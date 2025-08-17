@@ -14,6 +14,6 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record SingleChangeGlobal(UserData Target, KeyValuePair<string, object> NewPerm, UserData Enactor) : KinksterBase(Target)
 {
-    public override string ToString() => $"SingleChangeGlobal: " +
-        $"[Target Kinkster -> {User.AliasOrUID}, Changed Permission -> {NewPerm.Key} to {NewPerm.Value}, Enacted by {Enactor.AliasOrUID}]";
+    public override string ToString() => "GlobalChange: " +
+        $"[Target -> {User.AliasOrUID}, Update -> ({NewPerm.Key} >> {NewPerm.Value})] Enactor: {Enactor.AliasOrUID}";
 }

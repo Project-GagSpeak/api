@@ -10,4 +10,8 @@ namespace GagspeakAPI.Network;
 /// </summary>
 /// <remarks> If <paramref name="NewData"/> is null, implies the <paramref name="AliasId"/> was removed. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterUpdateAliasGlobal(UserData User, Guid AliasId, AliasTrigger? NewData) : KinksterBase(User);
+public record KinksterUpdateAliasGlobal(UserData User, Guid AliasId, AliasTrigger? NewData) : KinksterBase(User)
+{
+    public override string ToString()
+        => $"GlobalAliasUpdate: [Target -> {User.AliasOrUID}, AliasId -> {AliasId}, Updated Trigger [{(NewData is null ? "UNK" : NewData.Label)}";
+}

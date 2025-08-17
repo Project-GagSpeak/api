@@ -13,6 +13,6 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record SingleChangeAccess(UserData Target, KeyValuePair<string, object> NewPerm, UpdateDir Direction, UserData Enactor) : KinksterBase(Target)
 {
-    public override string ToString() => $"SingleChangeAccess: " +
-        $"[Target Kinkster -> {User.AliasOrUID}, Changed Access Permission -> {NewPerm.Key} to {NewPerm.Value}, Enacted by {Enactor.AliasOrUID}]";
+    public override string ToString() => "PermAccessChange: " +
+        $"[Target -> {User.AliasOrUID}, Update -> ({NewPerm.Key} >> {NewPerm.Value})] Enactor: {Enactor.AliasOrUID} ({Direction.ToString()} direction)";
 }

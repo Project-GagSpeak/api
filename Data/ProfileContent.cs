@@ -3,7 +3,7 @@ using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary> Kinkplate Content stored in a Kinksters profile, storing the selected cosmetic info.
+/// <summary> KinkPlate™ Content stored in a Kinksters profile, storing the selected cosmetic info.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinkPlateContent
@@ -14,6 +14,11 @@ public record KinkPlateContent
     public string Description { get; set; } = string.Empty;
     public int CompletedAchievementsTotal { get; set; } = 0;
     public int ChosenTitleId { get; set; } = 0; // Identifier for the achievement they have chosen a title for. 0 is nothing.
+    
+    // Collar Specific variables.
+    public List<string> CollarOwners { get; set; } = new();
+    public string CollarWriting { get; set; } = string.Empty;
+
 
     public ProfileStyleBG PlateBackground { get; set; } = ProfileStyleBG.Default;
     public ProfileStyleBorder PlateBorder { get; set; } = ProfileStyleBorder.Default;

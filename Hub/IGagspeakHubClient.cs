@@ -16,8 +16,10 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Pairing and requests
     void OnAddClientPair(Action<KinksterPair> act);
     void OnRemoveClientPair(Action<KinksterBase> act);
-    void OnAddPairRequest(Action<KinksterRequest> act);
-    void OnRemovePairRequest(Action<KinksterRequest> act);
+    void OnAddPairRequest(Action<KinksterPairRequest> act);
+    void OnRemovePairRequest(Action<KinksterPairRequest> act);
+    void OnAddCollarRequest(Action<CollarOwnershipRequest> act);
+    void OnRemoveCollarRequest(Action<CollarOwnershipRequest> act);
 
     // Moodle updates
     void OnSetKinksterIpcFull(Action<KinksterIpcDataFull> act);
@@ -30,18 +32,19 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnClearMoodles(Action<KinksterBase> act);
 
     // Permission updates
-    void OnBulkChangeAll(Action<BulkChangeAll> act);
     void OnBulkChangeGlobal(Action<BulkChangeGlobal> act);
     void OnBulkChangeUnique(Action<BulkChangeUnique> act);
     void OnSingleChangeGlobal(Action<SingleChangeGlobal> act);
     void OnSingleChangeUnique(Action<SingleChangeUnique> act);
     void OnSingleChangeAccess(Action<SingleChangeAccess> act);
+    void OnStateChangeHardcore(Action<HardcoreStateChange> act);
 
     // Own or pair data updates
     void OnKinksterUpdateComposite(Action<KinksterUpdateComposite> act);
     void OnKinksterUpdateActiveGag(Action<KinksterUpdateActiveGag> act);
     void OnKinksterUpdateActiveRestriction(Action<KinksterUpdateActiveRestriction> act);
     void OnKinksterUpdateActiveRestraint(Action<KinksterUpdateActiveRestraint> act);
+    void OnKinksterUpdateActiveCollar(Action<KinksterUpdateActiveCollar> act);
     void OnKinksterUpdateActiveCursedLoot(Action<KinksterUpdateActiveCursedLoot> act);
     void OnKinksterUpdateAliasGlobal(Action<KinksterUpdateAliasGlobal> act);
     void OnKinksterUpdateAliasUnique(Action<KinksterUpdateAliasUnique> act);
@@ -52,13 +55,12 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnListenerName(Action<UserData, string> act);
     void OnShockInstruction(Action<ShockCollarAction> act);
     void OnHypnoticEffect(Action<HypnoticAction> act);
-    void OnConfineToAddress(Action<ConfineByAddress> act);
-    void OnImprisonAtPosition(Action<ImprisonAtPosition> act);
 
     // Kinkster updates
     void OnKinksterNewGagData(Action<KinksterNewGagData> act);
     void OnKinksterNewRestrictionData(Action<KinksterNewRestrictionData> act);
     void OnKinksterNewRestraintData(Action<KinksterNewRestraintData> act);
+    void OnKinksterNewCollarData(Action<KinksterNewCollarData> act);
     void OnKinksterNewLootData(Action<KinksterNewLootData> act);
     void OnKinksterNewPatternData(Action<KinksterNewPatternData> act);
     void OnKinksterNewAlarmData(Action<KinksterNewAlarmData> act);
