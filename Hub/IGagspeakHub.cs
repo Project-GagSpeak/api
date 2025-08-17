@@ -12,22 +12,25 @@ namespace GagspeakAPI.Hub;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 14;
+    const int ApiVersion = 15;
     const string Path = "/gagspeak";
 
     Task<bool> CheckMainClientHealth();
     Task<ConnectionResponse> GetConnectionResponse();
-    Task<LobbyAndHubInfoResponce> GetShareHubAndLobbyInfo();
+    Task<LobbyAndHubInfoResponse> GetShareHubAndLobbyInfo();
 
     #region Callbacks
-    Task Callback_ServerMessage(MessageSeverity messageSeverity, string message); /* General Server message that is sent to client with various severities */
+    Task Callback_ServerMessage(MessageSeverity messageSeverity, string message);
     Task Callback_HardReconnectMessage(MessageSeverity messageSeverity, string message, ServerState state);
-    Task Callback_ServerInfo(ServerInfoResponse info); /* Updates the client with the servers current system information */
+    Task Callback_ServerInfo(ServerInfoResponse info);
 
-    Task Callback_AddClientPair(KinksterPair dto); /* sends to a connected user to add the specified user to their pair list */
-    Task Callback_RemoveClientPair(KinksterBase dto); /* sends to a connected user to remove the specified user from their pair list */
-    Task Callback_AddPairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us. */
-    Task Callback_RemovePairRequest(KinksterRequest dto); /* Can be either incoming or outgoing when called, direction depends on which UserData is us.  */
+    // sends to a connected user to add the specified user to their pair list
+    Task Callback_AddClientPair(KinksterPair dto);
+    Task Callback_RemoveClientPair(KinksterBase dto);
+    Task Callback_AddPairRequest(KinksterPairRequest dto);
+    Task Callback_RemovePairRequest(KinksterPairRequest dto);
+    Task Callback_AddCollarRequest(CollarOwnershipRequest dto);
+    Task Callback_RemoveCollarRequest(CollarOwnershipRequest dto);
 
     // ---- Callbacks to update moodles.
     Task Callback_SetKinksterIpcFull(KinksterIpcDataFull dto);
@@ -40,18 +43,19 @@ public interface IGagspeakHub
     Task Callback_ClearMoodles(KinksterBase dto);
 
     // ---- Callbacks to update permissions.
-    // Task Callback_BulkChangeSafeword(BulkChangeAll dto);  <-- Removed until we can get a better understanding of how we handle safewords.
     Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
     Task Callback_BulkChangeUnique(BulkChangeUnique dto);
     Task Callback_SingleChangeGlobal(SingleChangeGlobal dto);
     Task Callback_SingleChangeUnique(SingleChangeUnique dto);
     Task Callback_SingleChangeAccess(SingleChangeAccess dto);
+    Task Callback_StateChangeHardcore(HardcoreStateChange dto); // reject if for hypnosis, too much data for DB.
 
     // ---- Callbacks for Kinkster Active State updates.
     Task Callback_KinksterUpdateComposite(KinksterUpdateComposite dto);
     Task Callback_KinksterUpdateActiveGag(KinksterUpdateActiveGag dto);
     Task Callback_KinksterUpdateActiveRestriction(KinksterUpdateActiveRestriction dto);
     Task Callback_KinksterUpdateActiveRestraint(KinksterUpdateActiveRestraint dto);
+    Task Callback_KinksterUpdateActiveCollar(KinksterUpdateActiveCollar dto);
     Task Callback_KinksterUpdateActiveCursedLoot(KinksterUpdateActiveCursedLoot dto);
     Task Callback_KinksterUpdateAliasGlobal(KinksterUpdateAliasGlobal dto);
     Task Callback_KinksterUpdateAliasUnique(KinksterUpdateAliasUnique dto);
@@ -61,14 +65,14 @@ public interface IGagspeakHub
     Task Callback_KinksterUpdateActiveTriggers(KinksterUpdateActiveTriggers dto);
     Task Callback_ListenerName(UserData user, string name);
     Task Callback_ShockInstruction(ShockCollarAction dto);
-    Task Callback_HypnoticEffect(HypnoticAction dto);
-    Task Callback_ConfineToAddress(ConfineByAddress dto);
-    Task Callback_ImprisonAtPosition(ImprisonAtPosition dto);
+    Task Callback_HypnoticEffect(HypnoticAction dto); // hcState update for hypnosis, be sure to update HcState as well.
+
 
     // ---- Callbacks for Kinkster Light Storage Updates.
     Task Callback_KinksterNewGagData(KinksterNewGagData dto);
     Task Callback_KinksterNewRestrictionData(KinksterNewRestrictionData dto);
     Task Callback_KinksterNewRestraintData(KinksterNewRestraintData dto);
+    Task Callback_KinksterNewCollarData(KinksterNewCollarData dto);
     Task Callback_KinksterNewLootData(KinksterNewLootData dto);
     Task Callback_KinksterNewPatternData(KinksterNewPatternData dto);
     Task Callback_KinksterNewAlarmData(KinksterNewAlarmData dto);
@@ -144,6 +148,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushActiveGags(PushClientActiveGagSlot dto);
     Task<HubResponse> UserPushActiveRestrictions(PushClientActiveRestriction dto);
     Task<HubResponse> UserPushActiveRestraint(PushClientActiveRestraint dto);
+    Task<HubResponse> UserPushActiveCollar(PushClientActiveCollar dto);
     Task<HubResponse> UserPushActiveLoot(PushClientActiveLoot dto);
     Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
     Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
@@ -155,39 +160,48 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushNewGagData(PushClientDataChangeGag dto);
     Task<HubResponse> UserPushNewRestrictionData(PushClientDataChangeRestriction dto);
     Task<HubResponse> UserPushNewRestraintData(PushClientDataChangeRestraint dto);
+    Task<HubResponse> UserPushNewCollarData(PushClientDataChangeCollar dto);
     Task<HubResponse> UserPushNewLootData(PushClientDataChangeLoot dto);
     Task<HubResponse> UserPushNewPatternData(PushClientDataChangePattern dto);
     Task<HubResponse> UserPushNewAlarmData(PushClientDataChangeAlarm dto);
     Task<HubResponse> UserPushNewTriggerData(PushClientDataChangeTrigger dto);
     Task<HubResponse> UserPushNewAllowances(PushClientAllowances dto);
 
-    // Removed until we can get a better understanding of how we handle safewords.
-    // Task<HubResponse> UserBulkChangeSafeword(BulkChangeGlobal dto);
+    // Can only be called by the kinkster themselves, and only used for safeword action.
+    Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
     Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
+    // Kinksters CANNOT change their own hardcore state outside of using a safeword.
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
     Task<HubResponse> UserDelete();
 
 
     // ----- Kinkster Interactions -----
-    Task<HubResponse> UserSendKinksterRequest(CreateKinksterRequest sendRequestDto);
+    Task<HubResponse> UserSendKinksterRequest(CreateKinksterRequest requestDto);
     Task<HubResponse> UserCancelKinksterRequest(KinksterBase user);
     Task<HubResponse> UserAcceptKinksterRequest(KinksterBase user);
     Task<HubResponse> UserRejectKinksterRequest(KinksterBase user);
+    Task<HubResponse> UserSendCollarRequest(CreateCollarRequest requestDto);
+    Task<HubResponse> UserCancelCollarRequest(KinksterBase user);
+    Task<HubResponse> UserAcceptCollarRequest(AcceptCollarRequest dto);
+    Task<HubResponse> UserRejectCollarRequest(KinksterBase user);
     Task<HubResponse> UserRemoveKinkster(KinksterBase KinksterBase);
 
     Task<HubResponse> UserChangeKinksterActiveGag(PushKinksterActiveGagSlot dto);
     Task<HubResponse> UserChangeKinksterActiveRestriction(PushKinksterActiveRestriction dto);
     Task<HubResponse> UserChangeKinksterActiveRestraint(PushKinksterActiveRestraint dto);
+    Task<HubResponse> UserChangeKinksterActiveCollar(PushKinksterActiveCollar dto);
     Task<HubResponse> UserChangeKinksterActivePattern(PushKinksterActivePattern dto);
     Task<HubResponse> UserChangeKinksterActiveAlarms(PushKinksterActiveAlarms dto);
     Task<HubResponse> UserChangeKinksterActiveTriggers(PushKinksterActiveTriggers dto);
     Task<HubResponse> UserSendNameToKinkster(KinksterBase recipient, string listenerName);
 
+    // ------ Permission & State Changes ------
     Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOtherPairPerm(SingleChangeUnique dto);
-
+    Task<HubResponse> UserChangeHardcoreState(HardcoreStateChange dto);
+    Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Applies a hypnosis state to another Kinkster. (special toggle)
 
     // ---- IPC / External API Interactions ----
     Task<HubResponse> UserApplyMoodlesByGuid(MoodlesApplierById dto);
@@ -195,10 +209,6 @@ public interface IGagspeakHub
     Task<HubResponse> UserRemoveMoodles(MoodlesRemoval dto);
     Task<HubResponse> UserClearMoodles(KinksterBase dto);
     Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
-    Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Sends a hypnotic effect to the kinkster.
-    Task<HubResponse> UserConfineKinksterByAddress(ConfineByAddress dto); // Forces a kinkster to stay at a spesific address.
-    Task<HubResponse> UserImprisonKinkster(ImprisonAtPosition dto); // Forces a kinkster to stay at a spesific position.
-
 
     // ----- Vibe Rooms ------
     Task<HubResponse<List<RoomListing>>> SearchForRooms(SearchBase dto); //

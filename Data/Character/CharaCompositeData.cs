@@ -16,6 +16,7 @@ public class CharaCompositeActiveData
     public CharaActiveGags Gags { get; set; } = new();
     public CharaActiveRestrictions Restrictions { get; set; } = new();
     public CharaActiveRestraint Restraint { get; set; } = new();
+    public CharaActiveCollar Collar { get; set; } = new();
     public List<Guid> ActiveCursedItems { get; set; } = new();
     public AliasStorage GlobalAliasData { get; set; } = new();
     public Dictionary<string, NamedAliasStorage> PairAliasData { get; set; } = new();

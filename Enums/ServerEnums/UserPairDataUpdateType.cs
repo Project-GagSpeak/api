@@ -25,6 +25,15 @@ public enum DataUpdateType
     Unlocked,
     Removed,
 
+    // Collar
+    RequestAccepted,
+    OwnersUpdated,
+    VisibilityChange,
+    DyesChange,
+    CollarMoodleChange,
+    CollarWritingChange,
+    CollarRemoved,
+
     // Puppet
     NameRegistered,
     GlobalListUpdated,

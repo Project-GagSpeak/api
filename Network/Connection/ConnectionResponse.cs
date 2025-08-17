@@ -18,16 +18,16 @@ public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(Us
     public CharaActiveGags SyncedGagData { get; init; } = new();
     public CharaActiveRestrictions SyncedRestrictionsData { get; init; } = new();
     public CharaActiveRestraint SyncedRestraintSetData { get; init; } = new();
-    public ActiveCollar SyncedCollarData { get; init; } = new();
+    public CharaActiveCollar SyncedCollarData { get; init; } = new();
 
     public List<string> ActiveAccountUidList { get; init; } = new();
     public string UserAchievements { get; set; } = string.Empty;
 }
 
 /// <summary> Initial Data to retrieve from the ShareHubs upon initial connection. </summary>
-/// <remarks> This avoids excess server calls, and only performs them when nessisary. </remarks>
+/// <remarks> This avoids excess server calls, and only performs them when necessary. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record LobbyAndHubInfoResponce(List<string> HubTags)
+public record LobbyAndHubInfoResponse(List<string> HubTags)
 {
     public List<PublishedPattern> PublishedPatterns { get; init; } = [];
     public List<PublishedMoodle> PublishedMoodles { get; init; } = [];

@@ -9,7 +9,7 @@ namespace GagspeakAPI.Network;
 /// </summary>
 /// <remarks>
 ///     Usually only fully assigned on connection, and after that updated individually,
-///     hense the internal variables with setters.
+///     hence the internal variables with setters.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterPair(UserData User, PairPerms OwnPerms, PairPermAccess OwnAccess,

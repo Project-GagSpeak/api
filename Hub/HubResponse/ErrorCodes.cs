@@ -37,7 +37,7 @@ public enum GagSpeakApiEc
     /// <summary> Not the publisher, so you cannot remove the shareHub item. </summary>
     NotPublisher,
 
-    // ----- Client Vanity Spesific Errors -----
+    // ----- Client Vanity Specific Errors -----
 
     /// <summary> The provided image file is not in PNG format. </summary>
     InvalidImageFormat,
@@ -52,16 +52,31 @@ public enum GagSpeakApiEc
     KinkPlateNotFound,
 
 
-    // ----- Interaction Spesific Errors -----
+    // ----- Interaction Specific Errors -----
 
     /// <summary> Cant send Request to someone already paired. </summary>
     AlreadyPaired,
 
+    /// <summary> Cant send a collar request to someone you have already collared. </summary>
+    AlreadyCollared,
+
     /// <summary> A Request for the recipient was already made by the sender. </summary>
     KinksterRequestExists,
 
+    /// <summary> A Collar Request for the recipient was already made by the sender. </summary>
+    CollarRequestExists,
+
     /// <summary> Cannot cancel a request that no longer exists. </summary>
     KinksterRequestNotFound,
+
+    /// <summary> Cannot cancel a collar request that no longer exists. </summary>
+    CollarRequestNotFound,
+
+    /// <summary> Someone tried to make changes to another Kinkster's collar that they are not the owner of. </summary>
+    NotCollarOwner,
+
+    /// <summary> When a Collar update request is made by a client that is not collared. </summary>
+    NotCollared,
 
     /// <summary> Not paired with the intended recipient. </summary>
     NotPaired,
@@ -69,8 +84,11 @@ public enum GagSpeakApiEc
     /// <summary> The incorrect updateKind was used for the call made. </summary>
     BadUpdateKind,
 
-    /// <summary> You lack the nessisary permissions to execute the call on the user. </summary>
+    /// <summary> You lack the necessary permissions to execute the call on the user. </summary>
     LackingPermissions,
+
+    /// <summary> When trying to enable something while already enabled, or disable something while already disabled. </summary>
+    InvalidDataState,
 
     /// <summary> The Layer to update was out of bounds. </summary>
     InvalidLayer,

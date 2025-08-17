@@ -104,10 +104,26 @@ public record CharaActiveRestraint : ActiveRestriction
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record ActiveCollar
+public record CharaActiveCollar
 {
     // reflects the collar item that is bound to this action.
     public Guid Identifier { get; set; } = Guid.Empty;
 
-    // a lot of this stuff is still WIP since we are handling how it is displayed/controlled.
+    // who has ownership over this collar.
+    public List<string> OwnerUIDs { get; set; } = new();
+
+    // The visuals toggle usually set in the storage item, but is instead applied here.
+    // This allows for the owners to control it's toggle, if allowed.
+    public bool Visuals { get; set; } = true;
+
+    // The dyes for the glamour item.
+    public byte Dye1 { get; set; } = 0;
+    public byte Dye2 { get; set; } = 0;
+
+    // The moodle to be bound to the collar.
+    // This is self composed.
+    public MoodlesStatusInfo Moodle { get; set; } = new();
+
+    // Writing that is linked to the collar.
+    public string Writing { get; set; } = string.Empty;
 }
