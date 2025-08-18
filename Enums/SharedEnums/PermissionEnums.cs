@@ -22,6 +22,7 @@ public enum MoodlePerms : byte
     PairCanApplyYourMoodlesToYou  = 0x10, //   pair can apply your moodles to you.
     PermanentMoodles              = 0x20, //   permanent moodles are allowed.
     RemovingMoodles               = 0x40, //   moodles can be removed.
+    ClearingMoodles               = 0x80, //   moodles can be cleared.
 }
 
 public enum PermissionType

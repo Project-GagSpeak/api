@@ -5,10 +5,12 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary> 
-///     The data send to a client that just successfully connected to GagSpeak servers.
+///     Data sent to the client upon a successful connection. <para />
+///     UserData includes if a user is verified or not. <para />
+///     ActiveAccountUidList includes all profiles for the user's account.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ConnectionResponse(UserData User, bool Verified) : KinksterBase(User)
+public record ConnectionResponse(UserData User) : KinksterBase(User)
 {
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0);
     public int ServerVersion { get; set; }
