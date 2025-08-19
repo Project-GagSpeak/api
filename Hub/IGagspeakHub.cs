@@ -1,4 +1,5 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.Data.Permissions;
 using GagspeakAPI.Dto.Sharehub;
 using GagspeakAPI.Dto.VibeRoom;
 using GagspeakAPI.Enums;
@@ -145,11 +146,11 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushIpcPresets(PushIpcPresets dto);
 
     Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
-    Task<HubResponse> UserPushActiveGags(PushClientActiveGagSlot dto);
-    Task<HubResponse> UserPushActiveRestrictions(PushClientActiveRestriction dto);
-    Task<HubResponse> UserPushActiveRestraint(PushClientActiveRestraint dto);
+    Task<HubResponse<ActiveGagSlot>> UserPushActiveGags(PushClientActiveGagSlot dto);
+    Task<HubResponse<ActiveRestriction>> UserPushActiveRestrictions(PushClientActiveRestriction dto);
+    Task<HubResponse<CharaActiveRestraint>> UserPushActiveRestraint(PushClientActiveRestraint dto);
     Task<HubResponse> UserPushActiveCollar(PushClientActiveCollar dto);
-    Task<HubResponse> UserPushActiveLoot(PushClientActiveLoot dto);
+    Task<HubResponse<Guid>> UserPushActiveLoot(PushClientActiveLoot dto);
     Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
     Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
     Task<HubResponse> UserPushValidToys(PushClientValidToys dto);
@@ -173,6 +174,11 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
+    
+    /// <summary>
+    ///     It is safe to assume that ALL calls from this method are made to DISABLE the respective hardcore state.
+    /// </summary>
+    Task<HubResponse<HardcoreState>> UserChangeOwnHardcoreState(HardcoreStateChange dto);
     Task<HubResponse> UserDelete();
 
 
@@ -199,7 +205,7 @@ public interface IGagspeakHub
     // ------ Permission & State Changes ------
     Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOtherPairPerm(SingleChangeUnique dto);
-    Task<HubResponse> UserChangeHardcoreState(HardcoreStateChange dto);
+    Task<HubResponse> UserChangeOtherHardcoreState(HardcoreStateChange dto);
 
     // ---- IPC / External API Interactions ----
     Task<HubResponse> UserApplyMoodlesByGuid(MoodlesApplierById dto);
