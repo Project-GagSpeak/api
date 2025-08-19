@@ -50,6 +50,7 @@ public enum InteractionType
     
     BulkUpdate,
     ForcedPermChange,
+    HardcoreStateChange,
 
     LockedEmoteState, // For the stickyPairUI only.
     

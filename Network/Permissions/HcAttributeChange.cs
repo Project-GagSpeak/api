@@ -9,3 +9,8 @@ public record HardcoreStateChange(UserData Target, HardcoreState NewData, HcAttr
 {
     public override string ToString() => $"HcStateChange: [Target -> {User.AliasOrUID}, Changed Attribute -> ({Changed})] Enactor: {Enactor.AliasOrUID}";
 }
+
+public record HardcoreAttributeExpired(HcAttribute Attribute, UserData Enactor)
+{
+    public override string ToString() => $"Hardcore Attribute Expired: [Attribute -> {Attribute}] Fake Enactor: {Enactor.AliasOrUID}";
+}

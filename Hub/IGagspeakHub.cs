@@ -174,11 +174,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
-    
-    /// <summary>
-    ///     It is safe to assume that ALL calls from this method are made to DISABLE the respective hardcore state.
-    /// </summary>
-    Task<HubResponse<HardcoreState>> UserChangeOwnHardcoreState(HardcoreStateChange dto);
+    Task<HubResponse<HardcoreState>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
     Task<HubResponse> UserDelete();
 
 
