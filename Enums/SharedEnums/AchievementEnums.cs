@@ -51,10 +51,15 @@ public enum UnlocksEvent
     PairGagLockStateChange,
     GagUnlockGuessFailed,
 
+    // Collars 4th priority
+    CollarUpdated,
+    CollarStateChange,
+    PairCollarStateChange,
+
     PuppeteerAccessGiven, // true == all permissions, false == emote permissions. (yes, im lazy)
     PuppeteerOrderSent, // when you make another pair execute an emote.
-    PuppeteerEmoteRecieved, // when you recieve an emote order from another pair.
-    PuppeteerOrderRecieved, // when you recieve an order from another pair.
+    PuppeteerEmoteReceived, // when you receive an emote order from another pair.
+    PuppeteerOrderReceived, // when you receive an order from another pair.
 
     TriggerFired,
     DeathRollCompleted,

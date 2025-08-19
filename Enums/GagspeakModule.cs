@@ -9,6 +9,7 @@ public enum GagspeakModule
     Restraint,
     Restriction,
     Gag,
+    Collar,
     CursedLoot,
     Puppeteer,
     SexToys,

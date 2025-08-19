@@ -32,6 +32,8 @@ public enum DataUpdateType
     DyesChange,
     CollarMoodleChange,
     CollarWritingChange,
+    CollarPermChange,
+    CollarOwnerPermChange,
     CollarRemoved,
 
     // Puppet

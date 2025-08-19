@@ -126,4 +126,8 @@ public record CharaActiveCollar
 
     // Writing that is linked to the collar.
     public string Writing { get; set; } = string.Empty;
+
+    // Internally defined permissions.
+    public CollarAccess CollaredAccess { get; set; } = CollarAccess.None;
+    public CollarAccess OwnerAccess { get; set; } = CollarAccess.None;
 }

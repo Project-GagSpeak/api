@@ -13,6 +13,7 @@ public record ActiveRequests(List<KinksterPairRequest> KinksterRequests, List<Co
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterPairRequest(UserData User, UserData Target, string Message, DateTime CreationTime) : KinksterBase(User)
 {
+    public TimeSpan TimeLeft() => TimeSpan.FromDays(3) - (DateTime.UtcNow - CreationTime);
     public bool IsExpired() => DateTime.Now - CreationTime > TimeSpan.FromDays(3);
 }
 
@@ -28,8 +29,8 @@ public record KinksterPairRequest(UserData User, UserData Target, string Message
 ///     If at any point the item is removed from storage and cannot be found, the collar and bond are removed. <para />
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CollarOwnershipRequest(UserData User, UserData Target, string Writing, DateTime CreationTime, 
-    CollarAccess TargetAccess, CollarAccess OwnerAccess) : KinksterBase(User)
+public record CollarOwnershipRequest(UserData User, UserData Target, string Writing, DateTime CreationTime, CollarAccess TargetAccess, CollarAccess OwnerAccess) : KinksterBase(User)
 {
+    public TimeSpan TimeLeft() => TimeSpan.FromHours(8) - (DateTime.UtcNow - CreationTime);
     public bool IsExpired() => DateTime.Now - CreationTime > TimeSpan.FromHours(8);
-};
+}

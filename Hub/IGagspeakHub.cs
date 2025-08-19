@@ -171,7 +171,6 @@ public interface IGagspeakHub
     Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
     Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
-    // Kinksters CANNOT change their own hardcore state outside of using a safeword.
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
     Task<HubResponse> UserDelete();
@@ -201,7 +200,6 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOtherPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeHardcoreState(HardcoreStateChange dto);
-    Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Applies a hypnosis state to another Kinkster. (special toggle)
 
     // ---- IPC / External API Interactions ----
     Task<HubResponse> UserApplyMoodlesByGuid(MoodlesApplierById dto);
@@ -209,6 +207,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserRemoveMoodles(MoodlesRemoval dto);
     Task<HubResponse> UserClearMoodles(KinksterBase dto);
     Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
+    Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Applies a hypnosis state to another Kinkster. (special toggle)
 
     // ----- Vibe Rooms ------
     Task<HubResponse<List<RoomListing>>> SearchForRooms(SearchBase dto); //

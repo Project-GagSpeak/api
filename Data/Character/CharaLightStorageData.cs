@@ -30,7 +30,7 @@ public record LightGag(GagType Gag, bool Enabled, LightItem Properties, string C
 // This one kind of breaks convention a bit.
 // Most of it is determined by server-side, so only store what is necessary for KinkPlates
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightCollar(Guid Id, LightSlot Glamour, string ModName);
+public record LightCollar(Guid Id, string Label, LightSlot Glamour, string ModName);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
