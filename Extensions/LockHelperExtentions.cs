@@ -149,13 +149,15 @@ public static class PadlockEx
     public static bool TryParseTimeSpan(string input, out TimeSpan result)
     {
         result = TimeSpan.Zero;
+
+        if (input.Length is 0)
+            return false;
+
         var regex = new Regex(@"^\s*(?:(\d+)d\s*)?\s*(?:(\d+)h\s*)?\s*(?:(\d+)m\s*)?\s*(?:(\d+)s\s*)?$");
         var match = regex.Match(input);
 
         if (!match.Success)
-        {
             return false;
-        }
 
         var days = match.Groups[1].Success ? int.Parse(match.Groups[1].Value) : 0;
         var hours = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : 0;
