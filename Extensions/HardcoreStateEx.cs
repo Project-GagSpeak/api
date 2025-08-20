@@ -41,19 +41,19 @@ public static class HardcoreStateEx
     ///     The enactor of <paramref name="attribute"/>.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public static string Enactor(this IReadOnlyHardcoreState? hs, HcAttribute attribute)
+    public static string Enactor(this IReadOnlyHardcoreState hs, HcAttribute attribute)
         => hs is not null ? attribute switch
         {
-            HcAttribute.Follow => hs.LockedFollowing.Replace(Constants.DevotedString, string.Empty),
+            HcAttribute.Follow => hs.LockedFollowing.Split('|')[0],
             HcAttribute.EmoteState => hs.LockedEmoteState.Split('|')[0],
-            HcAttribute.Confinement => hs.IndoorConfinement.Replace(Constants.DevotedString, string.Empty),
-            HcAttribute.Imprisonment => hs.Imprisonment.Replace(Constants.DevotedString, string.Empty),
-            HcAttribute.HiddenChatBox => hs.ChatBoxesHidden.Replace(Constants.DevotedString, string.Empty),
-            HcAttribute.HiddenChatInput => hs.ChatInputHidden.Replace(Constants.DevotedString, string.Empty),
-            HcAttribute.BlockedChatInput => hs.ChatInputBlocked.Replace(Constants.DevotedString, string.Empty),
-            HcAttribute.HypnoticEffect => hs.HypnoticEffect.Replace(Constants.DevotedString, string.Empty),
+            HcAttribute.Confinement => hs.IndoorConfinement.Split('|')[0],
+            HcAttribute.Imprisonment => hs.Imprisonment.Split('|')[0],
+            HcAttribute.HiddenChatBox => hs.ChatBoxesHidden.Split('|')[0],
+            HcAttribute.HiddenChatInput => hs.ChatInputHidden.Split('|')[0],
+            HcAttribute.BlockedChatInput => hs.ChatInputBlocked.Split('|')[0],
+            HcAttribute.HypnoticEffect => hs.HypnoticEffect.Split('|')[0],
             _ => throw new NotImplementedException(),
-        } : throw new ArgumentNullException(nameof(hs), "Hardcore state cannot be null.");
+        };
 
     /// <summary>
     ///     If the attribute is devotionally locked.
