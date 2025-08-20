@@ -42,7 +42,7 @@ public static class HardcoreStateEx
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     public static string Enactor(this IReadOnlyHardcoreState hs, HcAttribute attribute)
-        => hs is not null ? attribute switch
+        => attribute switch
         {
             HcAttribute.Follow => hs.LockedFollowing.Split('|')[0],
             HcAttribute.EmoteState => hs.LockedEmoteState.Split('|')[0],
