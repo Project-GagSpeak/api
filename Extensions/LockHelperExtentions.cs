@@ -209,6 +209,9 @@ public static class PadlockEx
 
     public static string ToGsRemainingTimeFancy(this DateTimeOffset lockEndTime)
     {
+        if (lockEndTime == DateTimeOffset.MaxValue)
+            return "Permanent";
+
         var remainingTime = (lockEndTime - DateTimeOffset.UtcNow);
         // if the remaining timespan is not a negative value, output the time.
         if (remainingTime.TotalSeconds <= 0)
