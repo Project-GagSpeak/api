@@ -48,16 +48,23 @@ public enum InteractionType
     ToggleAlarm,
     ToggleTrigger,
     
-    ShockAction, // ???? Forgot where this happens
-    VibrateAction, // ???? Forgot where this happens
-    BeepAction, // ???? Forgot where this happens
+    ShockAction,
+    VibrateAction,
+    BeepAction,
     
     BulkUpdate,
     ForcedPermChange,
     HardcoreStateChange,
 
-    LockedEmoteState, // For the stickyPairUI only.
-    
+    // Hardcore State Changes (For Interactions Menu)
+    LockedFollow,
+    LockedEmoteState,
+    Confinement,
+    Imprisonment,
+    ChatBoxHiding,
+    ChatInputHiding,
+    ChatInputBlocking,
+
     VibeControl,
     PiShockUpdate,
 }
