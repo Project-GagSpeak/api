@@ -24,6 +24,10 @@ public enum InteractionType
     UnlockGag,
     RemoveGag,
 
+    ApplyCollar,
+    UpdateCollar,
+    RemoveCollar,
+
     ApplyPairMoodle,
     ApplyPairMoodlePreset,
     ApplyOwnMoodle,

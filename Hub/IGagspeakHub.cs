@@ -169,7 +169,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushNewAllowances(PushClientAllowances dto);
 
     // Can only be called by the kinkster themselves, and only used for safeword action.
-    Task<HubResponse> UserBulkChangeGlobal(BulkChangeGlobal dto);
+    Task<HubResponse<ClientGlobals>> UserBulkChangeGlobal(BulkChangeGlobal dto);
     Task<HubResponse> UserBulkChangeUnique(BulkChangeUnique dto);
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);

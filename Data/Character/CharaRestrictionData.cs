@@ -32,7 +32,7 @@ public record ActiveGagSlot : IPadlockableRestriction, IRestrictionValidator
     public string Enabler { get; set; } = string.Empty;
     public Padlocks Padlock { get; set; } = Padlocks.None;
     public string Password { get; set; } = string.Empty;
-    public DateTimeOffset Timer { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset Timer { get; set; } = DateTimeOffset.UtcNow;
     public string PadlockAssigner { get; set; } = string.Empty;
     public override string ToString()
         => $"GagSlot {{ GagItem = {GagItem.GagName()}, Enabler = {Enabler}, Padlock = {Padlock.ToName()}, " +

@@ -33,6 +33,16 @@ public static class PropertyChanger
         return true;
     }
 
+    public static object? GetValue<T>(T target, string propertyName)
+    {
+        // Get the underlying property and see if we can even read there.
+        PropertyInfo? prop = typeof(T).GetProperty(propertyName, PropertyFlags);
+        if (prop is null || !prop.CanRead)
+            return null;
+        // Return the value of the property.
+        return prop.GetValue(target);
+    }
+
     /// <summary>
     ///     Converts a value type to its proper handle, correcting what it got changed to on the server's end.
     /// </summary>

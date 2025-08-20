@@ -30,6 +30,25 @@ public class Moodle
         => Id.GetHashCode();
 }
 
+[MessagePackObject(keyAsPropertyName: true )]
+public class MoodleTuple : Moodle
+{
+    public override MoodleType Type => MoodleType.Tuple;
+    public MoodlesStatusInfo Tuple { get; internal set; } = new();
+    public MoodleTuple()
+        : base()
+    { }
+
+    public MoodleTuple(MoodleTuple other)
+        => (Id, Tuple) = (other.Id, other.Tuple);
+
+    public MoodleTuple(MoodlesStatusInfo tuple)
+        => UpdateTuple(tuple.GUID, tuple);
+
+    public void UpdateTuple(Guid newId, MoodlesStatusInfo newTuple)
+        => (Id, Tuple) = (newId, newTuple);
+}
+
 [MessagePackObject(keyAsPropertyName: true)]
 public class MoodlePreset : Moodle
 {

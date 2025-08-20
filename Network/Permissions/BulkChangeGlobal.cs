@@ -16,3 +16,6 @@ public record BulkChangeGlobal(UserData User, GlobalPerms NewPerms, HardcoreStat
 {
     public override string ToString() => $"BulkChangeGlobalPerms: [Target -> {User.AliasOrUID}]";
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record ClientGlobals(GlobalPerms Globals, HardcoreState Hardcore);
