@@ -82,7 +82,7 @@ public record PairPerms
     public TimeSpan    MaxVibrateDuration        { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
 
     // member helper for PiShock functions.
-    public bool HasValidShareCode() => !PiShockShareCode.NullOrEmpty() && MaxDuration > 0;
+    public bool HasValidShareCode() => !string.IsNullOrWhiteSpace(PiShockShareCode) && MaxDuration > 0;
     public TimeSpan GetTimespanFromDuration()
     {
         if (MaxDuration > 15 && MaxDuration < 100)

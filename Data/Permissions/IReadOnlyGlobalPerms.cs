@@ -81,7 +81,7 @@ public interface IReadOnlyGlobalPerms
     TimeSpan    ShockVibrateDuration        { get; }
 
     /// <summary> If the Kinkster has a valid share code for the PiShock. </summary>
-    public bool HasValidShareCode() => !GlobalShockShareCode.NullOrEmpty() && MaxDuration > 0;
+    public bool HasValidShareCode() => string.IsNullOrWhiteSpace(GlobalShockShareCode) && MaxDuration > 0;
 
     /// <summary> Gets the maximum duration of the shock in a TimeSpan format, based on the MaxDuration value. </summary>
     public TimeSpan GetTimespanFromDuration()

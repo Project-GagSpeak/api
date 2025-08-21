@@ -96,17 +96,7 @@ public static class EnumToName
     => interactionType switch
     {
         InteractionType.None => "None",
-        InteractionType.SwappedGag => "Gag Swapped",
-        InteractionType.ApplyGag => "Gag Applied",
-        InteractionType.LockGag => "Gag Locked",
-        InteractionType.UnlockGag => "Gag Unlocked",
-        InteractionType.RemoveGag => "Gag Removed",
-        InteractionType.SwappedRestriction => "Restriction Swapped",
-        InteractionType.ApplyRestriction => "Restriction Applied",
-        InteractionType.LockRestriction => "Restriction Locked",
-        InteractionType.UnlockRestriction => "Restriction Unlocked",
-        InteractionType.RemoveRestriction => "Restriction Removed",
-        InteractionType.SwappedRestraint=> "Restraint Swapped",
+        InteractionType.SwappedRestraint => "Restraint Swapped",
         InteractionType.SwappedRestraintLayers => "Restraint Layers Swapped",
         InteractionType.ApplyRestraint => "Restraint Applied",
         InteractionType.ApplyRestraintLayers => "Restraint Layers Applied",
@@ -114,23 +104,54 @@ public static class EnumToName
         InteractionType.UnlockRestraint => "Restraint Unlocked",
         InteractionType.RemoveRestraintLayers => "Restraint Layers Removed",
         InteractionType.RemoveRestraint => "Restraint Removed",
+
+        InteractionType.SwappedRestriction => "Restriction Swapped",
+        InteractionType.ApplyRestriction => "Restriction Applied",
+        InteractionType.LockRestriction => "Restriction Locked",
+        InteractionType.UnlockRestriction => "Restriction Unlocked",
+        InteractionType.RemoveRestriction => "Restriction Removed",
+
+        InteractionType.SwappedGag => "Gag Swapped",
+        InteractionType.ApplyGag => "Gag Applied",
+        InteractionType.LockGag => "Gag Locked",
+        InteractionType.UnlockGag => "Gag Unlocked",
+        InteractionType.RemoveGag => "Gag Removed",
+
+        InteractionType.ApplyCollar => "Collar Applied",
+        InteractionType.UpdateCollar => "Collar Updated",
+        InteractionType.RemoveCollar => "Collar Removed",
+
         InteractionType.ApplyPairMoodle => "Moodle Applied",
         InteractionType.ApplyPairMoodlePreset => "Moodle Preset Applied",
         InteractionType.ApplyOwnMoodle => "Moodle Applied",
         InteractionType.ApplyOwnMoodlePreset => "Moodle Preset Applied",
         InteractionType.RemoveMoodle => "Moodle Removed",
         InteractionType.ClearMoodle => "Moodle Cleared",
-        InteractionType.ToggleAlarm => "Alarm Toggled",
+
         InteractionType.SwitchPattern => "Pattern Switched",
         InteractionType.StartPattern => "Pattern Started",
         InteractionType.StopPattern => "Pattern Stopped",
+        InteractionType.ToggleAlarm => "Alarm Toggled",
         InteractionType.ToggleTrigger => "Trigger Toggled",
+
         InteractionType.ShockAction => "Shock Action",
         InteractionType.VibrateAction => "Vibrate Action",
         InteractionType.BeepAction => "Beep Action",
+
         InteractionType.BulkUpdate => "Bulk Update",        
         InteractionType.ForcedPermChange => "Forced Perm Change",
+        InteractionType.HardcoreStateChange => "Hardcore State Change",
+
+        InteractionType.LockedFollow => "Locked Follow",
+        InteractionType.LockedEmoteState => "Locked Emote State",
+        InteractionType.Confinement => "Confinement",
+        InteractionType.Imprisonment => "Imprisonment",
+        InteractionType.ChatBoxHiding => "Chat Box Hiding",
+        InteractionType.ChatInputHiding => "Chat Input Hiding",
+        InteractionType.ChatInputBlocking => "Chat Input Blocking",
+
         InteractionType.VibeControl => "Vibe Control",
+        InteractionType.PiShockUpdate => "Shockies Update",
         _ => "UNK"
     };
 

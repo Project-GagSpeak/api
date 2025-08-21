@@ -40,7 +40,7 @@ public record GlobalPerms : IReadOnlyGlobalPerms
     public int         MaxDuration                 { get; set; } = -1;
     public TimeSpan    ShockVibrateDuration        { get; set; } = TimeSpan.Zero;
 
-    public bool HasValidShareCode() => !GlobalShockShareCode.NullOrEmpty() && MaxDuration > 0;
+    public bool HasValidShareCode() => !string.IsNullOrWhiteSpace(GlobalShockShareCode) && MaxDuration > 0;
 
     public TimeSpan GetTimespanFromDuration()
     {
