@@ -4,16 +4,28 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcDataFull(UserData User, UserData Enactor, CharaIPCData NewData) : KinksterBase(User);
+public record KinksterMoodlesDataFull(UserData User, UserData Enactor, CharaMoodleData NewData) : KinksterBase(User);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterMoodlesSM(UserData User, UserData Enactor, string DataString, List<MoodlesStatusInfo> DataInfo) : KinksterBase(User);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterMoodlesStatuses(UserData User, UserData Enactor, List<MoodlesStatusInfo> Statuses) : KinksterBase(User);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterMoodlesPresets(UserData User, UserData Enactor, List<MoodlePresetInfo> Presets) : KinksterBase(User);
+
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcStatusManager(UserData User, UserData Enactor, string DataString, List<MoodlesStatusInfo> DataInfo) : KinksterBase(User);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcStatuses(UserData User, UserData Enactor, List<MoodlesStatusInfo> Statuses) : KinksterBase(User);
-
+public record KinksterIpcData(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcPresets(UserData User, UserData Enactor, List<MoodlePresetInfo> Presets) : KinksterBase(User);
+public record KinksterIpcDataLight(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
+
+// The most frequently changed IPC data is pulled out into its own group to avoid sending excess data that can be handled seperately.
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterIpcManipulations(UserData User, string ModManipulations) : KinksterBase(User);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record KinksterIpcGlamourer(UserData User, string ActorBase64) : KinksterBase(User);

@@ -11,4 +11,5 @@ public static class FlagEx
     public static bool HasAny(this RestraintFlags flags, RestraintFlags check) => (flags & check) != 0;
     public static bool HasAny(this RestraintLayer flags, RestraintLayer check) => (flags & check) != 0;
     public static bool HasAny(this CollarAccess flags, CollarAccess check) => (flags & check) != 0;
+    public static bool HasAny(this DataSyncKind flags, DataSyncKind check) => (flags & check) != 0;
 }

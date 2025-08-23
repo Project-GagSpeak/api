@@ -33,11 +33,15 @@ public interface IGagspeakHub
     Task Callback_AddCollarRequest(CollarOwnershipRequest dto);
     Task Callback_RemoveCollarRequest(CollarOwnershipRequest dto);
 
-    // ---- Callbacks to update moodles.
-    Task Callback_SetKinksterIpcFull(KinksterIpcDataFull dto);
-    Task Callback_SetKinksterIpcStatusManager(KinksterIpcStatusManager dto);
-    Task Callback_SetKinksterIpcStatuses(KinksterIpcStatuses dto);
-    Task Callback_SetKinksterIpcPresets(KinksterIpcPresets dto);
+    // ---- Callbacks to update IPC.
+    Task Callback_SetKinksterIpcData(KinksterIpcData dto);
+    Task Callback_SetKinksterIpcLight(KinksterIpcDataLight dto);
+    Task Callback_SetKinksterIpcManipulations(KinksterIpcManipulations dto);
+    Task Callback_SetKinksterIpcGlamourer(KinksterIpcGlamourer dto);
+    Task Callback_SetKinksterMoodlesFull(KinksterMoodlesDataFull dto);
+    Task Callback_SetKinksterMoodlesSM(KinksterMoodlesSM dto);
+    Task Callback_SetKinksterMoodlesStatuses(KinksterMoodlesStatuses dto);
+    Task Callback_SetKinksterMoodlesPresets(KinksterMoodlesPresets dto);
     Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
     Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
     Task Callback_RemoveMoodles(MoodlesRemoval dto);
@@ -140,10 +144,14 @@ public interface IGagspeakHub
     Task<HubResponse> UserReportKinkPlate(KinkPlateReport KinksterBase); // hopefully this is never used x-x...
 
     // ----- Personal Interactions ------
-    Task<HubResponse> UserPushIpcFull(PushIpcDataFull dto);
-    Task<HubResponse> UserPushIpcStatusManager(PushIpcStatusManager dto);
-    Task<HubResponse> UserPushIpcStatuses(PushIpcStatuses dto);
-    Task<HubResponse> UserPushIpcPresets(PushIpcPresets dto);
+    Task<HubResponse> UserPushIpcData(PushIpcFull dto);
+    Task<HubResponse> UserPushIpcDataLight(PushIpcLight dto);
+    Task<HubResponse> UserPushIpcModManips(PushIpcModManips dto);
+    Task<HubResponse> UserPushIpcGlamourer(PushIpcGlamourer dto);
+    Task<HubResponse> UserPushMoodlesFull(PushMoodlesFull dto);
+    Task<HubResponse> UserPushMoodlesSM(PushMoodlesSM dto);
+    Task<HubResponse> UserPushMoodlesStatuses(PushMoodlesStatuses dto);
+    Task<HubResponse> UserPushMoodlesPresets(PushMoodlesPresets dto);
 
     Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
     Task<HubResponse<ActiveGagSlot>> UserPushActiveGags(PushClientActiveGagSlot dto);

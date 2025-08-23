@@ -69,6 +69,9 @@ public enum InteractionType
 
     VibeControl,
     PiShockUpdate,
+
+    VisibilityChange,
+    AppearanceChange,
 }
 
 public enum InteractionFilter

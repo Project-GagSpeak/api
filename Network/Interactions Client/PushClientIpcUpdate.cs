@@ -5,18 +5,27 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcDataFull(List<UserData> Recipients, CharaIPCData NewData);
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcStatusManager(List<UserData> Recipients, string DataString, List<MoodlesStatusInfo> DataInfo);
-
+public record PushMoodlesFull(List<UserData> Recipients, CharaMoodleData NewData);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcStatuses(List<UserData> Recipients, List<MoodlesStatusInfo> Statuses);
-
+public record PushMoodlesSM(List<UserData> Recipients, string DataString, List<MoodlesStatusInfo> DataInfo);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcPresets(List<UserData> Recipients, List<MoodlePresetInfo> Presets);
+public record PushMoodlesStatuses(List<UserData> Recipients, List<MoodlesStatusInfo> Statuses);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushMoodlesPresets(List<UserData> Recipients, List<MoodlePresetInfo> Presets);
 
 
+// For actual IPC.
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcFull(List<UserData> Recipients, CharaIpcDataFull NewData);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcLight(List<UserData> Recipients, CharaIpcLight NewData);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcModManips(List<UserData> Recipients, string? ModManipulations);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushIpcGlamourer(List<UserData> Recipients, string? GlamourerBase64);

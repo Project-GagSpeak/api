@@ -21,11 +21,17 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnAddCollarRequest(Action<CollarOwnershipRequest> act);
     void OnRemoveCollarRequest(Action<CollarOwnershipRequest> act);
 
+    // Appearance updates
+    void OnSetKinksterIpcData(Action<KinksterIpcData> act);
+    void OnSetKinksterIpcLight(Action<KinksterIpcDataLight> act);
+    void OnSetKinksterIpcManipulations(Action<KinksterIpcManipulations> act);
+    void OnSetKinksterIpcGlamourer(Action<KinksterIpcGlamourer> act);
+
     // Moodle updates
-    void OnSetKinksterIpcFull(Action<KinksterIpcDataFull> act);
-    void OnSetKinksterIpcStatusManager(Action<KinksterIpcStatusManager> act);
-    void OnSetKinksterIpcStatuses(Action<KinksterIpcStatuses> act);
-    void OnSetKinksterIpcPresets(Action<KinksterIpcPresets> act);
+    void OnSetKinksterMoodlesFull(Action<KinksterMoodlesDataFull> act);
+    void OnSetKinksterMoodlesSM(Action<KinksterMoodlesSM> act);
+    void OnSetKinksterMoodlesStatuses(Action<KinksterMoodlesStatuses> act);
+    void OnSetKinksterMoodlesPresets(Action<KinksterMoodlesPresets> act);
     void OnApplyMoodlesByGuid(Action<MoodlesApplierById> act);
     void OnApplyMoodlesByStatus(Action<MoodlesApplierByStatus> act);
     void OnRemoveMoodles(Action<MoodlesRemoval> act);
