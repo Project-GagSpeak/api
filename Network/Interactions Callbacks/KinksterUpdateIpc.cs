@@ -21,7 +21,7 @@ public record KinksterMoodlesPresets(UserData User, UserData Enactor, List<Moodl
 public record KinksterIpcData(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcDataLight(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
+public record KinksterIpcDataLight(UserData User, CharaIpcLight NewData) : KinksterBase(User);
 
 // The most frequently changed IPC data is pulled out into its own group to avoid sending excess data that can be handled seperately.
 [MessagePackObject(keyAsPropertyName: true)]
