@@ -23,4 +23,7 @@ public record PushMoodlesPresets(List<UserData> Recipients, List<MoodlePresetInf
 public record PushIpcFull(List<UserData> Recipients, CharaIpcDataFull NewData);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcSingle(List<UserData> Recipients, DataSyncKind Type, string Data);
+public record PushIpcSingle(List<UserData> Recipients, DataSyncKind Type, string Data)
+{
+    public override string ToString() => $"To ({Recipients.Count}) recipients, Type: {Type}";
+}
