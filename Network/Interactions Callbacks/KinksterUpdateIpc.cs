@@ -22,7 +22,4 @@ public record KinksterMoodlesPresets(UserData User, UserData Enactor, List<Moodl
 public record KinksterIpcData(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcDataLight(UserData User, CharaIpcLight NewData) : KinksterBase(User);
-
-[MessagePackObject(keyAsPropertyName: true)]
 public record KinksterIpcSingle(UserData User, DataSyncKind Type, string NewData) : KinksterBase(User);

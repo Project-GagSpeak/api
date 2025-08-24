@@ -23,7 +23,6 @@ public interface IGagspeakHubClient : IGagspeakHub
 
     // Appearance updates
     void OnSetKinksterIpcData(Action<KinksterIpcData> act);
-    void OnSetKinksterIpcLight(Action<KinksterIpcDataLight> act);
     void OnSetKinksterIpcSingle(Action<KinksterIpcSingle> act);
 
     // Moodle updates

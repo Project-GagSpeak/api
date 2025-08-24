@@ -26,19 +26,19 @@ public class CharaIpcDataFull
         if (other.PetNicknames != null) PetNicknames = other.PetNicknames;
     }
 
-    public void UpdateNonNull(CharaIpcLight other)
+    public void UpdateNewData(DataSyncKind type, string newData)
     {
-        if (other.CustomizeProfile != null) CustomizeProfile = other.CustomizeProfile;
-        if (other.HeelsOffset != null) HeelsOffset = other.HeelsOffset;
-        if (other.HonorificTitle != null) HonorificTitle = other.HonorificTitle;
-        if (other.PetNicknames != null) PetNicknames = other.PetNicknames;
+        switch (type)
+        {
+            case DataSyncKind.Glamourer: GlamourerBase64 = newData; break;
+            case DataSyncKind.CPlus: CustomizeProfile = newData; break;
+            case DataSyncKind.Heels: HeelsOffset = newData; break;
+            case DataSyncKind.Honorific: HonorificTitle = newData; break;
+            case DataSyncKind.PetNames: PetNicknames = newData; break;
+            default: break;
+        }
     }
-}
 
-public class CharaIpcLight
-{
-    public string? CustomizeProfile{ get; set; } = null;
-    public string? HeelsOffset { get; set; } = null;
-    public string? HonorificTitle { get; set; } = null;
-    public string? PetNicknames { get; set; } = null;
+    public bool IsEmpty()
+        => GlamourerBase64 == null && CustomizeProfile == null && HeelsOffset == null && HonorificTitle == null && PetNicknames == null;
 }
