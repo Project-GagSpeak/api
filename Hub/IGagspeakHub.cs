@@ -36,8 +36,7 @@ public interface IGagspeakHub
     // ---- Callbacks to update IPC.
     Task Callback_SetKinksterIpcData(KinksterIpcData dto);
     Task Callback_SetKinksterIpcLight(KinksterIpcDataLight dto);
-    Task Callback_SetKinksterIpcManipulations(KinksterIpcManipulations dto);
-    Task Callback_SetKinksterIpcGlamourer(KinksterIpcGlamourer dto);
+    Task Callback_SetKinksterIpcSingle(KinksterIpcSingle dto);
     Task Callback_SetKinksterMoodlesFull(KinksterMoodlesDataFull dto);
     Task Callback_SetKinksterMoodlesSM(KinksterMoodlesSM dto);
     Task Callback_SetKinksterMoodlesStatuses(KinksterMoodlesStatuses dto);
@@ -146,8 +145,7 @@ public interface IGagspeakHub
     // ----- Personal Interactions ------
     Task<HubResponse> UserPushIpcData(PushIpcFull dto);
     Task<HubResponse> UserPushIpcDataLight(PushIpcLight dto);
-    Task<HubResponse> UserPushIpcModManips(PushIpcModManips dto);
-    Task<HubResponse> UserPushIpcGlamourer(PushIpcGlamourer dto);
+    Task<HubResponse> UserPushIpcDataSingle(PushIpcSingle dto);
     Task<HubResponse> UserPushMoodlesFull(PushMoodlesFull dto);
     Task<HubResponse> UserPushMoodlesSM(PushMoodlesSM dto);
     Task<HubResponse> UserPushMoodlesStatuses(PushMoodlesStatuses dto);

@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using MessagePack;
 
@@ -23,9 +24,5 @@ public record KinksterIpcData(UserData User, CharaIpcDataFull NewData) : Kinkste
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterIpcDataLight(UserData User, CharaIpcLight NewData) : KinksterBase(User);
 
-// The most frequently changed IPC data is pulled out into its own group to avoid sending excess data that can be handled seperately.
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcManipulations(UserData User, string ModManipulations) : KinksterBase(User);
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcGlamourer(UserData User, string ActorBase64) : KinksterBase(User);
+public record KinksterIpcSingle(UserData User, DataSyncKind Type, string NewData) : KinksterBase(User);

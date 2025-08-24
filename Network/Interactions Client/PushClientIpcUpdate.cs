@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using MessagePack;
@@ -25,7 +26,4 @@ public record PushIpcFull(List<UserData> Recipients, CharaIpcDataFull NewData);
 public record PushIpcLight(List<UserData> Recipients, CharaIpcLight NewData);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcModManips(List<UserData> Recipients, string? ModManipulations);
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record PushIpcGlamourer(List<UserData> Recipients, string? GlamourerBase64);
+public record PushIpcSingle(List<UserData> Recipients, DataSyncKind Type, string? Data);
