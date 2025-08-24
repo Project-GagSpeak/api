@@ -24,8 +24,7 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Appearance updates
     void OnSetKinksterIpcData(Action<KinksterIpcData> act);
     void OnSetKinksterIpcLight(Action<KinksterIpcDataLight> act);
-    void OnSetKinksterIpcManipulations(Action<KinksterIpcManipulations> act);
-    void OnSetKinksterIpcGlamourer(Action<KinksterIpcGlamourer> act);
+    void OnSetKinksterIpcSingle(Action<KinksterIpcSingle> act);
 
     // Moodle updates
     void OnSetKinksterMoodlesFull(Action<KinksterMoodlesDataFull> act);
