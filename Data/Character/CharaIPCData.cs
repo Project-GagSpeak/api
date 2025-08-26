@@ -10,7 +10,7 @@ namespace GagspeakAPI.Data;
 public class CharaIpcDataFull
 {
     // Until we manage pcp's inside of collections, it won't be worth enforcing this.
-    // public string? ModManips { get; set; } = null;
+    public string? ModManips { get; set; } = null;
     public string? GlamourerBase64 { get; set; } = null; // only for player currently.
     public string? CustomizeProfile { get; set; } = null; // currently only for player.
     public string? HeelsOffset { get; set; } = null;
@@ -19,8 +19,9 @@ public class CharaIpcDataFull
 
     public void UpdateNonNull(CharaIpcDataFull other)
     {
-        if (other.CustomizeProfile != null) CustomizeProfile = other.CustomizeProfile;
+        if (other.ModManips != null) ModManips = other.ModManips;
         if (other.GlamourerBase64 != null) GlamourerBase64 = other.GlamourerBase64;
+        if (other.CustomizeProfile != null) CustomizeProfile = other.CustomizeProfile;
         if (other.HeelsOffset != null) HeelsOffset = other.HeelsOffset;
         if (other.HonorificTitle != null) HonorificTitle = other.HonorificTitle;
         if (other.PetNicknames != null) PetNicknames = other.PetNicknames;
@@ -30,6 +31,7 @@ public class CharaIpcDataFull
     {
         switch (type)
         {
+            case DataSyncKind.ModManips: ModManips = newData; break;
             case DataSyncKind.Glamourer: GlamourerBase64 = newData; break;
             case DataSyncKind.CPlus: CustomizeProfile = newData; break;
             case DataSyncKind.Heels: HeelsOffset = newData; break;
@@ -40,5 +42,10 @@ public class CharaIpcDataFull
     }
 
     public bool IsEmpty()
-        => GlamourerBase64 == null && CustomizeProfile == null && HeelsOffset == null && HonorificTitle == null && PetNicknames == null;
+        => ModManips == null
+        && GlamourerBase64 == null
+        && CustomizeProfile == null
+        && HeelsOffset == null
+        && HonorificTitle == null
+        && PetNicknames == null;
 }
