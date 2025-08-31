@@ -131,3 +131,6 @@ public record CharaActiveCollar
     public CollarAccess CollaredAccess { get; set; } = CollarAccess.None;
     public CollarAccess OwnerAccess { get; set; } = CollarAccess.None;
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record AppliedCursedItem(Guid Id, int? GagLayer = null);

@@ -154,7 +154,7 @@ public interface IGagspeakHub
     Task<HubResponse<ActiveRestriction>> UserPushActiveRestrictions(PushClientActiveRestriction dto);
     Task<HubResponse<CharaActiveRestraint>> UserPushActiveRestraint(PushClientActiveRestraint dto);
     Task<HubResponse> UserPushActiveCollar(PushClientActiveCollar dto);
-    Task<HubResponse<Guid>> UserPushActiveLoot(PushClientActiveLoot dto);
+    Task<HubResponse<AppliedCursedItem>> UserPushActiveLoot(PushClientActiveLoot dto);
     Task<HubResponse> UserPushAliasGlobalUpdate(PushClientAliasGlobalUpdate dto);
     Task<HubResponse> UserPushAliasUniqueUpdate(PushClientAliasUniqueUpdate dto);
     Task<HubResponse> UserPushValidToys(PushClientValidToys dto);

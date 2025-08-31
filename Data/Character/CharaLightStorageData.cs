@@ -33,7 +33,7 @@ public record LightGag(GagType Gag, bool Enabled, LightItem Properties, string C
 public record LightCollar(Guid Id, string Label, LightSlot Glamour, string ModName);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightCursedLoot(Guid Id, string Label, bool CanOverride, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
+public record LightCursedLoot(Guid Id, string Label, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightRestraint(Guid Id, bool Enabled, string Label, string Desc)
