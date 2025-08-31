@@ -1,5 +1,11 @@
 namespace GagspeakAPI.Enums;
 
+public enum CursedLootKind
+{
+    Gag = 0,
+    Restriction = 1,    
+}
+
 public enum TriggerKind
 {
     SpellAction = 0,

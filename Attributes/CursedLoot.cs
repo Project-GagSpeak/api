@@ -12,6 +12,7 @@ public enum Precedence
     Highest
 }
 
+// redundant?
 public enum CursedLootType
 {
     None = 0,
