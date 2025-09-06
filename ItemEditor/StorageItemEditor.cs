@@ -4,37 +4,10 @@ namespace GagspeakAPI.Data;
 
 #pragma warning disable IDE1006 // Naming Styles
 
-public interface IEditableStorage<T> where T : class, IEditableStorageItem<T>
-{
-
-    /// <summary> Replace the original item with a new one (used for abstract type changes). </summary>
-    /// <param name="oldItem"> The item to be replaced. </param>
-    /// <param name="newItem"> The new item to replace the old one with. </param>
-    /// <returns> True if the item was replaced, false if it was not. </returns>
-    public virtual T? ReplaceSource(T oldItem, T newItem) => null;
-
-    /// <summary> Apply changes from changedItem to the original source item (in-place update). </summary>
-    /// <remarks> This will keep the source item as a reference, and only updates internals. </remarks>
-    public bool TryApplyChanges(T sourceItem, T changedItem);
-}
- 
-
-
-/// <summary> Signifies that this item can be used in an editor interface when inside a storage container. </summary>
-public interface IEditableStorageItem<T> where T : class
-{
-    /// <summary> Clones the item, creating a new instance of the item with the same values. </summary>
-    /// <remarks> KeepIdentifier allows you to choose if the GUID is copied or not. </remarks>
-    /// <returns> The new instance of the cloned item. </returns>
-    T Clone(bool keepId = false);
-
-    /// <summary> Apply changes from another item to this one (in-place update). </summary>
-    /// <remarks> This will keep the source item as a reference, and only updates internals. </remarks>
-    void ApplyChanges(T changedItem);
-}
-
-/// <summary> Handles the editing of items which are referenced storage items. </summary>
-/// <remarks> Finished edits apply updates to the object source without replacing the object itself. </remarks>
+/// <summary> 
+///     Handles the editing of items which are referenced storage items. <para />
+///     Finished edits apply updates to the object source without replacing the object itself.
+/// </summary>
 /// <typeparam name="T"> An editable storage item that can clone and apply changes. </typeparam>
 public sealed class StorageItemEditor<T> where T : class, IEditableStorageItem<T>
 {
@@ -111,4 +84,3 @@ public sealed class StorageItemEditor<T> where T : class, IEditableStorageItem<T
     }
 }
 #pragma warning restore IDE1006 // Naming Styles
-

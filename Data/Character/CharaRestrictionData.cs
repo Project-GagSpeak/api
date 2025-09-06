@@ -106,8 +106,9 @@ public record CharaActiveRestraint : ActiveRestriction
 [MessagePackObject(keyAsPropertyName: true)]
 public record CharaActiveCollar
 {
-    // reflects the collar item that is bound to this action.
-    public Guid Identifier { get; set; } = Guid.Empty;
+    // Determines if the collar item is actively applied or not.
+    // This does NOT determine the visuals.
+    public bool Applied { get; set; } = false;
 
     // who has ownership over this collar.
     public List<string> OwnerUIDs { get; set; } = new();

@@ -40,7 +40,8 @@ public enum CollarAccess : byte
     // do not allow changing mods, this is too complicated.
     Moodle = 1 << 2, // moodle is applied.
     Writing = 1 << 3, // what is inscribe on the collar, (shown in kinkplates)
+    GlamMod = 1 << 4, // allow changing the collars glamour and mod. Does not apply for collar Owners.
 
-    AllButWriting = Visuals | Dyes | Moodle, // all access areas except writing.
-    All = Visuals | Dyes | Moodle | Writing, // all access areas.
+    AllButWriting = Visuals | Dyes | Moodle | GlamMod, // all access areas except writing.
+    All = Visuals | Dyes | Moodle | Writing | GlamMod, // all access areas.
 }

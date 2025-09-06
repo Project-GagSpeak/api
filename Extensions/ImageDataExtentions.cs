@@ -6,6 +6,7 @@ public enum ImageDataType
     None,
     Restrictions,
     Restraints,
+    Collar,
     Blindfolds,
     Hypnosis,
 }

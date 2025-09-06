@@ -13,8 +13,9 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushClientActiveCollar(List<UserData> Recipients, DataUpdateType Type)
 {
-    public Guid CollarId { get; init; } = Guid.Empty;
+    public bool Applied { get; init; } = false;
     public List<string> OwnerUIDs { get; init; } = new List<string>();
+    public bool Visuals { get; init; } = false;
     public byte Dye1 { get; init; } = 0;
     public byte Dye2 { get; init; } = 0;
     public MoodlesStatusInfo Moodle { get; init; } = new();
@@ -33,4 +34,4 @@ public record PushClientActiveCollar(List<UserData> Recipients, DataUpdateType T
 ///     Because the Collar's Data is mostly reflected in its active state, little is changed here.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientDataChangeCollar(List<UserData> Recipients, Guid ItemId, LightCollar? LightItem);
+public record PushClientDataChangeCollar(List<UserData> Recipients, LightCollar? LightItem);

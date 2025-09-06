@@ -13,7 +13,7 @@ public class CharaLightStorageData
     public LightGag[] GagItems { get; set; } = [];
     public LightRestriction[] Restrictions { get; set; } = []; // Dictionary is useful for lookups by ID references.
     public LightRestraint[] Restraints  { get; set; } = []; // Useful for lookups via active state reference. Also these are only sent once, so they are ok.
-    public LightCollar[] Collars { get; set; } = []; // maybe remove, idk.
+    public LightCollar Collar { get; set; } = new(string.Empty, new LightSlot(), string.Empty);
     public LightCursedLoot[] CursedItems { get; set; } = [];
     public LightPattern[] Patterns { get; set; } = [];
     public LightAlarm[] Alarms { get; set; } = [];
@@ -30,7 +30,7 @@ public record LightGag(GagType Gag, bool Enabled, LightItem Properties, string C
 // This one kind of breaks convention a bit.
 // Most of it is determined by server-side, so only store what is necessary for KinkPlates
 [MessagePackObject(keyAsPropertyName: true)]
-public record LightCollar(Guid Id, string Label, LightSlot Glamour, string ModName);
+public record LightCollar(string Label, LightSlot Glamour, string ModName);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record LightCursedLoot(Guid Id, string Label, Precedence Precedence, CursedLootType Type, Guid? RefId = null, GagType? Gag = null);
