@@ -10,8 +10,3 @@ public enum ImageDataType
     Blindfolds,
     Hypnosis,
 }
-
-public static class ImageDataEx
-{
-    // Anything needed here we can do when the time comes.
-}
