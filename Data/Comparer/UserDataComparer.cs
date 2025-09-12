@@ -1,6 +1,5 @@
-using GagspeakAPI.Data;
-
 namespace GagspeakAPI.Data.Comparer;
+#pragma warning disable IDE1006 // Naming Styles
 
 public class UserDataComparer : IEqualityComparer<UserData>
 {
@@ -22,3 +21,4 @@ public class UserDataComparer : IEqualityComparer<UserData>
         return obj.UID.GetHashCode();
     }
 }
+#pragma warning restore IDE1006 // Naming Styles

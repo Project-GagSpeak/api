@@ -30,8 +30,8 @@ public interface IGagspeakHub
     Task Callback_RemoveClientPair(KinksterBase dto);
     Task Callback_AddPairRequest(KinksterPairRequest dto);
     Task Callback_RemovePairRequest(KinksterPairRequest dto);
-    Task Callback_AddCollarRequest(CollarOwnershipRequest dto);
-    Task Callback_RemoveCollarRequest(CollarOwnershipRequest dto);
+    Task Callback_AddCollarRequest(CollarRequest dto);
+    Task Callback_RemoveCollarRequest(CollarRequest dto);
 
     // ---- Callbacks to update IPC.
     Task Callback_SetKinksterIpcData(KinksterIpcData dto);

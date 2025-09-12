@@ -18,8 +18,8 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnRemoveClientPair(Action<KinksterBase> act);
     void OnAddPairRequest(Action<KinksterPairRequest> act);
     void OnRemovePairRequest(Action<KinksterPairRequest> act);
-    void OnAddCollarRequest(Action<CollarOwnershipRequest> act);
-    void OnRemoveCollarRequest(Action<CollarOwnershipRequest> act);
+    void OnAddCollarRequest(Action<CollarRequest> act);
+    void OnRemoveCollarRequest(Action<CollarRequest> act);
 
     // Appearance updates
     void OnSetKinksterIpcData(Action<KinksterIpcData> act);
