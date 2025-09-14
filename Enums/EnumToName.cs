@@ -1,4 +1,5 @@
 using GagspeakAPI.Attributes;
+using System.Numerics;
 
 namespace GagspeakAPI.Enums;
 public static class EnumToName
@@ -173,6 +174,7 @@ public static class EnumToName
         Precedence.Low      => "Low",
         Precedence.Default  => "Normal",
         Precedence.High     => "High",
+        Precedence.VeryHigh => "Very High",
         Precedence.Highest  => "Highest",
         _ => "UNK"
     };
