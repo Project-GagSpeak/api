@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace GagspeakAPI.Data;
 
 public interface IThresholdContainer

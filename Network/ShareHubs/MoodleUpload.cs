@@ -1,4 +1,3 @@
-using GagspeakAPI.Data;
 using MessagePack;
 
 namespace GagspeakAPI.Dto.Sharehub;

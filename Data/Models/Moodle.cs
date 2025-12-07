@@ -1,7 +1,5 @@
 using GagspeakAPI.Attributes;
-using GagspeakAPI.Enums;
 using MessagePack;
-using System.Collections.Generic;
 
 namespace GagspeakAPI.Data;
 

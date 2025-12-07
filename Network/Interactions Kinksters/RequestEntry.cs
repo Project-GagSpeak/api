@@ -1,6 +1,5 @@
 using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
-using GagspeakAPI.Data.Comparer;
 using MessagePack;
 
 namespace GagspeakAPI.Network;

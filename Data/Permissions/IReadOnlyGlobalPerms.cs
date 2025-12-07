@@ -1,6 +1,5 @@
 using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
-using GagspeakAPI.Extensions;
 
 namespace GagspeakAPI.Data.Permissions;
 

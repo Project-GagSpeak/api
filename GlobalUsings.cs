@@ -32,25 +32,3 @@ global using MoodlePresetInfo = (
     GagspeakAPI.Enums.PresetApplicationType ApplicationType,
     string Title
     );
-
-global using IPCProfileDataTuple = (
-    System.Guid UniqueId,
-    string Name,
-    string VirtualPath,
-    System.Collections.Generic.List<(string Name, ushort WorldId, byte CharacterType, ushort CharacterSubType)> Characters,
-    int Priority,
-    bool IsEnabled
-    );
-
-global using AddressBookEntryTuple = (
-    string Name,
-    int World,
-    int City,
-    int Ward,
-    int PropertyType,
-    int Plot,
-    int Apartment,
-    bool ApartmentSubdivision,
-    bool AliasEnabled,
-    string Alias
-    );

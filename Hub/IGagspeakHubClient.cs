@@ -21,10 +21,6 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnAddCollarRequest(Action<CollarRequest> act);
     void OnRemoveCollarRequest(Action<CollarRequest> act);
 
-    // Appearance updates
-    void OnSetKinksterIpcData(Action<KinksterIpcData> act);
-    void OnSetKinksterIpcSingle(Action<KinksterIpcSingle> act);
-
     // Moodle updates
     void OnSetKinksterMoodlesFull(Action<KinksterMoodlesDataFull> act);
     void OnSetKinksterMoodlesSM(Action<KinksterMoodlesSM> act);

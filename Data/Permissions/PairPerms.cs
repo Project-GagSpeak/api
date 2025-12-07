@@ -1,5 +1,4 @@
 using GagspeakAPI.Enums;
-using GagspeakAPI.Extensions;
 using MessagePack;
 
 namespace GagspeakAPI.Data.Permissions;

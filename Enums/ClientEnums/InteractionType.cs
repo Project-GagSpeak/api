@@ -1,5 +1,3 @@
-using GagspeakAPI.Attributes;
-
 namespace GagspeakAPI.Enums;
 
 public enum InteractionType

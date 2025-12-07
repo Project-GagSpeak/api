@@ -1,4 +1,3 @@
-using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using MessagePack;
 
@@ -15,11 +14,3 @@ public record KinksterMoodlesStatuses(UserData User, UserData Enactor, List<Mood
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterMoodlesPresets(UserData User, UserData Enactor, List<MoodlePresetInfo> Presets) : KinksterBase(User);
-
-
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcData(UserData User, CharaIpcDataFull NewData) : KinksterBase(User);
-
-[MessagePackObject(keyAsPropertyName: true)]
-public record KinksterIpcSingle(UserData User, DataSyncKind Type, string NewData) : KinksterBase(User);
