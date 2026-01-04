@@ -13,7 +13,7 @@ public record ServerMoodleInfo
     public HashSet<string> Tags = new HashSet<string>();
 
     /// <summary> The fetched status in MoodleStatusInfo format. </summary>
-    public MoodlesStatusInfo MoodleStatus = new MoodlesStatusInfo();
+    public MoodlesStatusInfo Status = new MoodlesStatusInfo();
 
     /// <summary> How many likes does this have? </summary>
     public int Likes = 0;

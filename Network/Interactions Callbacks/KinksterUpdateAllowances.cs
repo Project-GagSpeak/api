@@ -9,7 +9,7 @@ namespace GagspeakAPI.Network;
 ///     The updated list is nessisary to know what items the client has permission to apply with Hardcore Traits.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterNewAllowances(UserData User, GagspeakModule Module, string[] AllowedUids) : KinksterBase(User)
+public record KinksterNewAllowances(UserData User, GSModule Module, string[] AllowedUids) : KinksterBase(User)
 {
     public override string ToString() => $"{User} changed allowances for Module: {Module}";
 }

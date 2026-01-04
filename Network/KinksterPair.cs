@@ -5,15 +5,18 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     Contains the information for all permissions you have for a pair, and that the pair has for you.
+///     A helper record for a return function on accepting a request, 
+///     compiling the send online call and add pair call into one!
 /// </summary>
-/// <remarks>
-///     Usually only fully assigned on connection, and after that updated individually,
-///     hence the internal variables with setters.
-/// </remarks>
+[MessagePackObject(keyAsPropertyName: true)]
+public record AddedKinksterPair(KinksterPair Pair, OnlineKinkster? OnlineInfo);
+
+/// <summary>
+///     Holds all essential information of permissions and information between 2 paired kinksters.
+/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterPair(UserData User, PairPerms OwnPerms, PairPermAccess OwnAccess,
-    GlobalPerms Globals, HardcoreState Hardcore, PairPerms Perms, PairPermAccess Access) : KinksterBase(User)
+    GlobalPerms Globals, HardcoreState Hardcore, PairPerms Perms, PairPermAccess Access, DateTime CreatedAt) : KinksterBase(User)
 {
     // Perms the Client has for this Kinkster
     public PairPerms OwnPerms { get; set; } = OwnPerms;

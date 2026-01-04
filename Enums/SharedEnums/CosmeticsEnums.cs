@@ -65,6 +65,7 @@ public enum CoreTexture
     Collar,
     Confinement,
     CursedLoot,
+    Edit,
     Gagged,
     HypnoSpiral,
     Icon256,
@@ -144,11 +145,18 @@ public enum CoreIntifaceElement
     UnknownDevice,
 }
 
-public enum ProfileComponent
+public enum PublicityScope
+{
+    Private,
+    PairsOnly,
+    Anyone,
+}
+
+public enum PlateElement
 {
     Plate,
     PlateLight,
-    ProfilePicture,
+    Avatar,
     Description,
     DescriptionLight,
     GagSlot,
@@ -165,7 +173,7 @@ public enum StyleKind
 }
 
 // 5 for each
-public enum ProfileStyleBG
+public enum KinkPlateBG
 {
     Default,
     Ropes,
@@ -187,7 +195,7 @@ public enum ProfileStyleBG
 }
 
 // 7 each
-public enum ProfileStyleBorder
+public enum KinkPlateBorder
 {
     Default,
     Ropes,
@@ -205,7 +213,7 @@ public enum ProfileStyleBorder
 }
 
 // 6 each
-public enum ProfileStyleOverlay
+public enum KinkPlateOverlay
 {
     Default,
     Ropes,

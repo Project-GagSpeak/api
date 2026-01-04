@@ -10,5 +10,5 @@ public record PublishedMoodle
 {
     public string AuthorName = "ANONYMOUS";
 
-    public MoodlesStatusInfo MoodleStatus = new MoodlesStatusInfo();
+    public MoodlesStatusInfo Status = new MoodlesStatusInfo();
 }

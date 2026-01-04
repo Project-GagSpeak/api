@@ -9,4 +9,4 @@ namespace GagspeakAPI.Network;
 ///     The updated list is necessary to know which clients pairs can apply apply with Hardcore Traits.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientAllowances(List<UserData> Recipients, GagspeakModule Module, string[] AllowedUids);
+public record PushClientAllowances(List<UserData> Recipients, GSModule Module, string[] AllowedUids);

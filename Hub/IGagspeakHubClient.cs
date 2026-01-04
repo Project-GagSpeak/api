@@ -16,19 +16,21 @@ public interface IGagspeakHubClient : IGagspeakHub
     // Pairing and requests
     void OnAddClientPair(Action<KinksterPair> act);
     void OnRemoveClientPair(Action<KinksterBase> act);
-    void OnAddPairRequest(Action<KinksterPairRequest> act);
-    void OnRemovePairRequest(Action<KinksterPairRequest> act);
+    void OnAddPairRequest(Action<KinksterRequest> act);
+    void OnRemovePairRequest(Action<KinksterRequest> act);
     void OnAddCollarRequest(Action<CollarRequest> act);
     void OnRemoveCollarRequest(Action<CollarRequest> act);
 
     // Moodle updates
-    void OnSetKinksterMoodlesFull(Action<KinksterMoodlesDataFull> act);
-    void OnSetKinksterMoodlesSM(Action<KinksterMoodlesSM> act);
-    void OnSetKinksterMoodlesStatuses(Action<KinksterMoodlesStatuses> act);
-    void OnSetKinksterMoodlesPresets(Action<KinksterMoodlesPresets> act);
-    void OnApplyMoodlesByGuid(Action<MoodlesApplierById> act);
-    void OnApplyMoodlesByStatus(Action<MoodlesApplierByStatus> act);
-    void OnRemoveMoodles(Action<MoodlesRemoval> act);
+    void OnMoodleDataUpdated(Action<MoodlesDataUpdate> act);
+    void OnMoodleSMUpdated(Action<MoodlesSMUpdate> act);
+    void OnMoodleStatusesUpdate(Action<MoodlesStatusesUpdate> act);
+    void OnMoodlePresetsUpdate(Action<MoodlesPresetsUpdate> act);
+    void OnMoodleStatusModified(Action<MoodlesStatusModified> act);
+    void OnMoodlePresetModified(Action<MoodlesPresetModified> act);
+    void OnApplyMoodlesByGuid(Action<ApplyMoodleId> act);
+    void OnApplyMoodlesByStatus(Action<ApplyMoodleStatus> act);
+    void OnRemoveMoodles(Action<RemoveMoodleId> act);
     void OnClearMoodles(Action<KinksterBase> act);
 
     // Permission updates

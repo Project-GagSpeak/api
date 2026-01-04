@@ -29,10 +29,18 @@ public static class Constants
     public const string DevotedString = "|pairlocked";
 
     // Stuff used for tag things? If they are ever used for anything i guess?
-    public const string CustomAllTag = "Gagspeak_All";
-    public const string CustomOfflineTag = "Gagspeak_Offline";
-    public const string CustomOnlineTag = "Gagspeak_Online";
+    public const string FolderTagAll            = "All Kinksters";
+    public const string FolderTagVisible        = "Visible";
+    public const string FolderTagOnline         = "Online";
+    public const string FolderTagOffline        = "Offline";
+    public const string FolderTagRequestInc     = "Incoming Requests";
+    public const string FolderTagRequestPending = "Pending Requests";
+
     public const string CustomVisibleTag = "Gagspeak_Visible";
+    public const string CustomOnlineTag = "Gagspeak_Online";
+    public const string CustomOfflineTag = "Gagspeak_Offline";
+    public const string CustomAllTag = "Gagspeak_All";
+
     public const string DefaultHypnoPath = "Hypno Spiral.png";
     public const string DefaultBlindfoldPath = "Blindfold Light.png";
 }

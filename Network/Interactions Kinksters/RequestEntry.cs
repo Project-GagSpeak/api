@@ -5,17 +5,24 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record ActiveRequests(List<KinksterPairRequest> KinksterRequests, List<CollarRequest> CollarRequests);
+public record ActiveRequests(List<KinksterRequest> KinksterRequests, List<CollarRequest> CollarRequests);
 
 /// <summary>
 ///     Contains information about a Kinkster Request between 2 people.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterPairRequest(UserData User, UserData Target, string Message, DateTime CreationTime) : KinksterBase(User)
+public record KinksterRequest(UserData User, UserData Target, RequestDetails Details, DateTime CreatedAt) : KinksterBase(User)
 {
-    public TimeSpan TimeLeft() => TimeSpan.FromDays(3) - (DateTime.UtcNow - CreationTime);
-    public bool IsExpired() => DateTime.Now - CreationTime > TimeSpan.FromDays(3);
+    public TimeSpan TimeLeft() => TimeSpan.FromDays(3) - (DateTime.UtcNow - CreatedAt);
+    public bool IsExpired() => DateTime.UtcNow - CreatedAt > TimeSpan.FromDays(3);
 }
+
+/// <summary>
+///     Various details about a request. Useful for filtering requests and such.
+/// </summary>
+[MessagePackObject(keyAsPropertyName: true)]
+public record RequestDetails(bool IsTemp, string PreferredNick, string Message);
+
 
 /// <summary>
 ///     A request to establish a collar connection between two kinksters. <para />

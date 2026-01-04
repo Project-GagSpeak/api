@@ -11,6 +11,7 @@ namespace GagspeakAPI.Data;
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserData(string UID, bool? Verified = false, string? Alias = null, CkSupporterTier? Tier = CkSupporterTier.NoRole, DateTime? CreatedOn = null)
 {
-    [IgnoreMember]
-    public string AliasOrUID => string.IsNullOrWhiteSpace(Alias) ? UID : Alias;
+    [IgnoreMember] public string AliasOrUID => string.IsNullOrWhiteSpace(Alias) ? UID : Alias;
+    [IgnoreMember] public string AnonName => "Anon.User-" + UID[^4..];
+    [IgnoreMember] public string AnonTag => UID[^4..];
 }

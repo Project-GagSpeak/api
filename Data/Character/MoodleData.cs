@@ -9,7 +9,7 @@ namespace GagspeakAPI.Data;
 ///     list and make a local client friendly dictionary version. 
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public class CharaMoodleData : IEquatable<CharaMoodleData>
+public class MoodleData : IEquatable<MoodleData>
 {
     public string DataString { get; private set; } = string.Empty;
     public Dictionary<Guid, MoodlesStatusInfo> DataInfo { get; private set; } = new Dictionary<Guid, MoodlesStatusInfo>();
@@ -21,10 +21,10 @@ public class CharaMoodleData : IEquatable<CharaMoodleData>
     [IgnoreMember] public IEnumerable<MoodlesStatusInfo> StatusList => Statuses.Values;
     [IgnoreMember] public IEnumerable<MoodlePresetInfo> PresetList => Presets.Values;
 
-    public CharaMoodleData()
+    public MoodleData()
     { }
 
-    public CharaMoodleData(CharaMoodleData other)
+    public MoodleData(MoodleData other)
     {
         DataString = other.DataString;
         DataInfo = new Dictionary<Guid, MoodlesStatusInfo>(other.DataInfo);
@@ -64,11 +64,11 @@ public class CharaMoodleData : IEquatable<CharaMoodleData>
     public void SetPresets(IEnumerable<MoodlePresetInfo> presets)
         => Presets = presets.ToDictionary(x => x.GUID, x => x);
 
-    public bool Equals(CharaMoodleData? other)
+    public bool Equals(MoodleData? other)
         => other is not null && DataString == other.DataString;
 
     public override bool Equals(object? obj)
-        => obj is CharaMoodleData other && Equals(other);
+        => obj is MoodleData other && Equals(other);
 
     public override int GetHashCode()
         => DataString.GetHashCode();

@@ -47,7 +47,7 @@ public record PairPermAccess
 
     // Moodles
     public bool MoodlesEnabledAllowed               { get; set; } = false; // Global
-    public MoodlePerms MoodlePermsAllowed           { get; set; } = MoodlePerms.None;
+    public MoodleAccess MoodlePermsAllowed           { get; set; } = MoodleAccess.None;
     public bool MaxMoodleTimeAllowed                { get; set; } = false;
 
     public bool HypnosisMaxTimeAllowed              { get; set; } = false;

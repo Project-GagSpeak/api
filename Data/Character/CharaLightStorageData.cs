@@ -18,7 +18,7 @@ public class CharaLightStorageData
     public LightPattern[] Patterns { get; set; } = [];
     public LightAlarm[] Alarms { get; set; } = [];
     public LightTrigger[] Triggers { get; set; } = [];
-    public Dictionary<GagspeakModule, string[]> Allowances { get; set; } = [];
+    public Dictionary<GSModule, string[]> Allowances { get; set; } = [];
 }
 
 [MessagePackObject(keyAsPropertyName: true)]

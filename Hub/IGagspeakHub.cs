@@ -16,7 +16,7 @@ public interface IGagspeakHub
     const int ApiVersion = 15;
     const string Path = "/gagspeak";
 
-    Task<bool> CheckMainClientHealth();
+    Task<bool> HealthCheck();
     Task<ConnectionResponse> GetConnectionResponse();
     Task<LobbyAndHubInfoResponse> GetShareHubAndLobbyInfo();
 
@@ -28,19 +28,21 @@ public interface IGagspeakHub
     // sends to a connected user to add the specified user to their pair list
     Task Callback_AddClientPair(KinksterPair dto);
     Task Callback_RemoveClientPair(KinksterBase dto);
-    Task Callback_AddPairRequest(KinksterPairRequest dto);
-    Task Callback_RemovePairRequest(KinksterPairRequest dto);
+    Task Callback_AddPairRequest(KinksterRequest dto);
+    Task Callback_RemovePairRequest(KinksterRequest dto);
     Task Callback_AddCollarRequest(CollarRequest dto);
     Task Callback_RemoveCollarRequest(CollarRequest dto);
 
     // ---- Callbacks to update IPC.
-    Task Callback_SetKinksterMoodlesFull(KinksterMoodlesDataFull dto);
-    Task Callback_SetKinksterMoodlesSM(KinksterMoodlesSM dto);
-    Task Callback_SetKinksterMoodlesStatuses(KinksterMoodlesStatuses dto);
-    Task Callback_SetKinksterMoodlesPresets(KinksterMoodlesPresets dto);
-    Task Callback_ApplyMoodlesByGuid(MoodlesApplierById dto);
-    Task Callback_ApplyMoodlesByStatus(MoodlesApplierByStatus dto);
-    Task Callback_RemoveMoodles(MoodlesRemoval dto);
+    Task Callback_MoodleDataUpdated(MoodlesDataUpdate dto);
+    Task Callback_MoodleSMUpdated(MoodlesSMUpdate dto);
+    Task Callback_MoodleStatusesUpdate(MoodlesStatusesUpdate dto);
+    Task Callback_MoodlePresetsUpdate(MoodlesPresetsUpdate dto);
+    Task Callback_MoodleStatusModified(MoodlesStatusModified dto);
+    Task Callback_MoodlePresetModified(MoodlesPresetModified dto);
+    Task Callback_ApplyMoodlesByGuid(ApplyMoodleId dto);
+    Task Callback_ApplyMoodlesByStatus(ApplyMoodleStatus dto);
+    Task Callback_RemoveMoodles(RemoveMoodleId dto);
     Task Callback_ClearMoodles(KinksterBase dto);
 
     // ---- Callbacks to update permissions.
@@ -179,9 +181,9 @@ public interface IGagspeakHub
 
 
     // ----- Kinkster Interactions -----
-    Task<HubResponse> UserSendKinksterRequest(CreateKinksterRequest requestDto);
+    Task<HubResponse<KinksterRequest>> UserSendKinksterRequest(CreateKinksterRequest requestDto);
     Task<HubResponse> UserCancelKinksterRequest(KinksterBase user);
-    Task<HubResponse> UserAcceptKinksterRequest(KinksterBase user);
+    Task<HubResponse<AddedKinksterPair>> UserAcceptKinksterRequest(KinksterBase user);
     Task<HubResponse> UserRejectKinksterRequest(KinksterBase user);
     Task<HubResponse> UserSendCollarRequest(CreateCollarRequest requestDto);
     Task<HubResponse> UserCancelCollarRequest(KinksterBase user);
@@ -204,9 +206,9 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOtherHardcoreState(HardcoreStateChange dto);
 
     // ---- IPC / External API Interactions ----
-    Task<HubResponse> UserApplyMoodlesByGuid(MoodlesApplierById dto);
-    Task<HubResponse> UserApplyMoodlesByStatus(MoodlesApplierByStatus dto);
-    Task<HubResponse> UserRemoveMoodles(MoodlesRemoval dto);
+    Task<HubResponse> UserApplyMoodlesByGuid(ApplyMoodleId dto);
+    Task<HubResponse> UserApplyMoodlesByStatus(ApplyMoodleStatus dto);
+    Task<HubResponse> UserRemoveMoodles(RemoveMoodleId dto);
     Task<HubResponse> UserClearMoodles(KinksterBase dto);
     Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
     Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Applies a hypnosis state to another Kinkster. (special toggle)
