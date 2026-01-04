@@ -19,8 +19,24 @@ public enum GagSpeakApiEc
     /// <summary> The Recipient was not who it should be. </summary>
     InvalidRecipient = 4,
 
+    /// <summary> Blocked by sender or recipient. </summary>
+    RecipientBlocked = 5,
+
     /// <summary> The Method is not yet fully implemented. </summary>
-    NotYetImplemented = 5,
+    NotYetImplemented = 6,
+
+    /// <summary> Attempted to interact with self, but the method is for interaction with others </summary>
+    CannotInteractWithSelf = 7,
+
+    /// <summary> Tried to interact with another using a method intended for self-use only. </summary>
+    CanOnlyInteractWithSelf = 8,
+
+    /// <summary> Tried to use a feature that your account reputation prevents access to. </summary>
+    RestrictedByReputation = 9,
+
+    /// <summary> A Request for the recipient was already made by the sender. </summary>
+    AlreadyExists = 10,
+
 
 
     // ----- ShareHub Spesific Errors -----
@@ -53,6 +69,8 @@ public enum GagSpeakApiEc
 
 
     // ----- Interaction Specific Errors -----
+    /// <summary> Cannot use temporary-related interaction on permanent sundesmo. </summary>
+    AlreadyPermanent,
 
     /// <summary> Cant send Request to someone already paired. </summary>
     AlreadyPaired,

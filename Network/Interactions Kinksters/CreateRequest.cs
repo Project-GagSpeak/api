@@ -8,7 +8,7 @@ namespace GagspeakAPI.Network;
 ///     The Kinkster we wish to send a request to, and the message to attach with it.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record CreateKinksterRequest(UserData User, string Message) : KinksterBase(User);
+public record CreateKinksterRequest(UserData User, bool IsTemp, string PreferredNick, string Message) : KinksterBase(User);
 
 /// <summary> 
 ///     The Kinkster we wish to send a request to, and what writing & permissions we wish to set.

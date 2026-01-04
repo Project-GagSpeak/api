@@ -39,7 +39,7 @@ global using MoodlesStatusInfo = (
     int StackSteps,                     // How many stacks to add per reapplication.
     GagspeakAPI.Modifiers Modifiers,    // What can be customized, casted to uint from Modifiers (Dalamud IPC Rules)
     System.Guid ChainedStatus,          // What status is chained to this one.
-    byte ChainTrigger,                  // What triggers the chained status.
+    GagspeakAPI.ChainTrigger ChainTrigger,                  // What triggers the chained status.
     string Applier,                     // Who applied the moodle.
     string Dispeller,                   // When set, only this person can dispel your moodle.
     bool Permanent                      // Referred to as 'Sticky' in the Moodles UI

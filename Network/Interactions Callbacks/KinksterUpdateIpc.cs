@@ -10,10 +10,10 @@ public record MoodlesDataUpdate(UserData User, MoodleData NewData) : KinksterBas
 public record MoodlesSMUpdate(UserData User, string DataString, List<MoodlesStatusInfo> DataInfo) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodlesStatusesUpdate(UserData User, UserData Enactor, List<MoodlesStatusInfo> Statuses) : KinksterBase(User);
+public record MoodlesStatusesUpdate(UserData User, List<MoodlesStatusInfo> Statuses) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodlesPresetsUpdate(UserData User, UserData Enactor, List<MoodlePresetInfo> Presets) : KinksterBase(User);
+public record MoodlesPresetsUpdate(UserData User, List<MoodlePresetInfo> Presets) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record MoodlesStatusModified(UserData User, MoodlesStatusInfo Status, bool Deleted) : KinksterBase(User);

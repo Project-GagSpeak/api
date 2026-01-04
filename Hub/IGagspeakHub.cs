@@ -13,7 +13,7 @@ namespace GagspeakAPI.Hub;
 /// </summary>
 public interface IGagspeakHub
 {
-    const int ApiVersion = 15;
+    const int ApiVersion = 16;
     const string Path = "/gagspeak";
 
     Task<bool> HealthCheck();
@@ -146,6 +146,8 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushMoodlesSM(PushMoodlesSM dto);
     Task<HubResponse> UserPushMoodlesStatuses(PushMoodlesStatuses dto);
     Task<HubResponse> UserPushMoodlesPresets(PushMoodlesPresets dto);
+    Task<HubResponse> UserPushStatusModified(PushStatusModified dto);
+    Task<HubResponse> UserPushPresetModified(PushPresetModified dto);
 
     Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
     Task<HubResponse<ActiveGagSlot>> UserPushActiveGags(PushClientActiveGagSlot dto);
@@ -176,7 +178,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
-    Task<HubResponse<HardcoreState>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
+    Task<HubResponse<HardcoreStatus>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
     Task<HubResponse> UserDelete();
 
 

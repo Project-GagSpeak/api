@@ -6,8 +6,6 @@ namespace GagspeakAPI.Data.Permissions;
 [MessagePackObject(keyAsPropertyName: true)]
 public record PairPerms
 {
-    public bool         IsPaused                  { get; set; } = false;  // if the pair is paused, a unique unmodifiable permission by other pairs.
-
     // Advanced Lock Permissions
     public bool         PermanentLocks            { get; set; } = false; // if the client pair can apply permanent gags to you.
     public bool         OwnerLocks                { get; set; } = false; // if the pair can use OwnerPadlocks & Timer variants. Only the others with this permission can remove them.

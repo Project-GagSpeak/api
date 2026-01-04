@@ -5,29 +5,33 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary> 
-///     Data sent to the client upon a successful connection. <para />
-///     UserData includes if a user is verified or not. <para />
-///     ActiveAccountUidList includes all profiles for the user's account.
+///     The data send to a client that just successfully connected to GagSpeak servers.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ConnectionResponse(UserData User) : KinksterBase(User)
+public record ConnectionResponse(UserData User, List<string> AccountProfileUids) : KinksterBase(User)
 {
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0);
     public int ServerVersion { get; set; }
 
-    public GlobalPerms GlobalPerms { get; init; } = new();
-    public HardcoreState HardcoreState { get; init; } = new();
-    public CharaActiveGags SyncedGagData { get; init; } = new();
-    public CharaActiveRestrictions SyncedRestrictionsData { get; init; } = new();
-    public CharaActiveRestraint SyncedRestraintSetData { get; init; } = new();
-    public CharaActiveCollar SyncedCollarData { get; init; } = new();
+    // The Reputation Standing for this Kinkster's Account.
+    public UserReputation Reputation { get; set; } = new();
 
-    public List<string> ActiveAccountUidList { get; init; } = new();
+    // Personal Global Data (Active States, Achievements, ext)
+    public GlobalPerms GlobalPerms { get; init; } = new();
+    public HardcoreStatus HardcoreState { get; init; } = new();
+    public CharaActiveGags GagData { get; init; } = new();
+    public CharaActiveRestrictions RestrictionsData { get; init; } = new();
+    public CharaActiveRestraint RestraintSetData { get; init; } = new();
+    public CharaActiveCollar CollarData { get; init; } = new();
+
+    // Base64 encoded string of the user's achievement data for quick loading.
     public string UserAchievements { get; set; } = string.Empty;
 }
 
-/// <summary> Initial Data to retrieve from the ShareHubs upon initial connection. </summary>
-/// <remarks> This avoids excess server calls, and only performs them when necessary. </remarks>
+/// <summary> 
+///     Initial Data to retrieve from the ShareHubs upon initial connection. <para />
+///     (helps avoid excess server calls, only performing when necessary)
+/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record LobbyAndHubInfoResponse(List<string> HubTags)
 {

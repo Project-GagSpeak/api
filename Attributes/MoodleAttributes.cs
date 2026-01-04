@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 namespace GagspeakAPI;
 
-public enum StatusType : int
+public enum StatusType : byte
 {
     Positive,
     Negative,
@@ -41,12 +41,12 @@ public enum MoodleType
 public enum Modifiers : uint // use uint to allow for futureproof options.
 {
     None = 0,
-    CanDispel = 1u << 0, // Can be dispelled.
-    StacksIncrease = 1u << 1, // Stackable moodles, when reapplied, can increase their stack count.
-    StacksRollOver = 1u << 2, // When a stack reaches its cap, it starts over and counts up again.
-    PersistExpireTime = 1u << 3, // When reapplied, the expire time remains the same.
-    StacksMoveToChain = 1u << 4, // When a ChainStatus trigger occurs, the current stacks are is carried over.
-    StacksCarryToChain = 1u << 5, // When the stacks increase and hit max, remaining stacks carry over.
+    CanDispel           = 1u << 0, // Can be dispelled.
+    StacksIncrease      = 1u << 1, // Stackable moodles, when reapplied, can increase their stack count.
+    StacksRollOver      = 1u << 2, // When a stack reaches its cap, it starts over and counts up again.
+    PersistExpireTime   = 1u << 3, // When reapplied, the expire time remains the same.
+    StacksMoveToChain   = 1u << 4, // When a ChainStatus trigger occurs, the current stacks are is carried over.
+    StacksCarryToChain  = 1u << 5, // When the stacks increase and hit max, remaining stacks carry over.
     PersistAfterTrigger = 1u << 6, // When a ChainStatus trigger occurs, the original moodle remains.
     // Ideas: Persist original after chain trigger, ext.. 
 }

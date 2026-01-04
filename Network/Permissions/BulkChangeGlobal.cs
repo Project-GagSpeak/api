@@ -12,10 +12,10 @@ namespace GagspeakAPI.Network;
 ///     if used in a server call, <paramref name="User"/> is irrelevant, but should always be the caller.</u>.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record BulkChangeGlobal(UserData User, GlobalPerms NewPerms, HardcoreState NewState) : KinksterBase(User)
+public record BulkChangeGlobal(UserData User, GlobalPerms NewPerms, HardcoreStatus NewState) : KinksterBase(User)
 {
     public override string ToString() => $"BulkChangeGlobalPerms: [Target -> {User.AliasOrUID}]";
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record ClientGlobals(GlobalPerms Globals, HardcoreState Hardcore);
+public record ClientGlobals(GlobalPerms Globals, HardcoreStatus Hardcore);

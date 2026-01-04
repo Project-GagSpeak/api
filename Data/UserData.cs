@@ -9,7 +9,7 @@ namespace GagspeakAPI.Data;
 ///     For now, it is likely best to only pass verified when nessisary for things the client side needs.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record UserData(string UID, bool? Verified = false, string? Alias = null, CkSupporterTier? Tier = CkSupporterTier.NoRole, DateTime? CreatedOn = null)
+public record UserData(string UID, string? Alias = null, CkSupporterTier? Tier = CkSupporterTier.NoRole, DateTime? CreatedOn = null)
 {
     [IgnoreMember] public string AliasOrUID => string.IsNullOrWhiteSpace(Alias) ? UID : Alias;
     [IgnoreMember] public string AnonName => "Anon.User-" + UID[^4..];

@@ -14,3 +14,9 @@ public record PushMoodlesStatuses(List<UserData> Recipients, List<MoodlesStatusI
 
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushMoodlesPresets(List<UserData> Recipients, List<MoodlePresetInfo> Presets);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushStatusModified(List<UserData> Recipients, MoodlesStatusInfo Status, bool Deleted);
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record PushPresetModified(List<UserData> Recipients, MoodlePresetInfo Preset, bool Deleted);

@@ -16,7 +16,7 @@ public record AddedKinksterPair(KinksterPair Pair, OnlineKinkster? OnlineInfo);
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinksterPair(UserData User, PairPerms OwnPerms, PairPermAccess OwnAccess,
-    GlobalPerms Globals, HardcoreState Hardcore, PairPerms Perms, PairPermAccess Access, DateTime CreatedAt) : KinksterBase(User)
+    GlobalPerms Globals, HardcoreStatus Hardcore, PairPerms Perms, PairPermAccess Access, DateTime CreatedAt) : KinksterBase(User)
 {
     // Perms the Client has for this Kinkster
     public PairPerms OwnPerms { get; set; } = OwnPerms;
@@ -24,7 +24,7 @@ public record KinksterPair(UserData User, PairPerms OwnPerms, PairPermAccess Own
 
     // Permissions this Kinkster has for the Client
     public GlobalPerms Globals { get; set; } = Globals;
-    public HardcoreState Hardcore { get; set; } = Hardcore;
+    public HardcoreStatus Hardcore { get; set; } = Hardcore;
     public PairPerms Perms { get; set; } = Perms;
     public PairPermAccess Access { get; set; } = Access;
 }
