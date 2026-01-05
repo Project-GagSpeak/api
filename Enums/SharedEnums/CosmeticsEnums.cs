@@ -95,6 +95,7 @@ public enum CoreTexture
     VibeLobby,
     Vibrator,
     Weighty,
+    WelcomeOverlay,
 }
 
 public enum CoreIntifaceElement

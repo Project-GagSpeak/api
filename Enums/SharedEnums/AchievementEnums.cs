@@ -56,7 +56,7 @@ public enum UnlocksEvent
     CollarStateChange,
     PairCollarStateChange,
 
-    PuppeteerAccessGiven, // true == all permissions, false == emote permissions. (yes, im lazy)
+    PuppeteerAccessGiven, 
     PuppeteerOrderSent, // when you make another pair execute an emote.
     PuppeteerEmoteReceived, // when you receive an emote order from another pair.
     PuppeteerOrderReceived, // when you receive an order from another pair.

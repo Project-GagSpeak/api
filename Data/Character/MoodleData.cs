@@ -38,24 +38,19 @@ public class MoodleData : IEquatable<MoodleData>
         DataInfo = statuses.ToDictionary(x => x.GUID, x => x);
     }
 
-    public bool TryUpdateStatus(MoodlesStatusInfo status)
+    /// <summary>
+    ///     Adds a new Moodle Status, and if it fails, we know it exists, so just update it.
+    /// </summary>
+    public void AddOrUpdateStatus(MoodlesStatusInfo status)
     {
-        if(Statuses.ContainsKey(status.GUID))
-        {
+        if (!Statuses.TryAdd(status.GUID, status))
             Statuses[status.GUID] = status;
-            return true;
-        }
-        return false;
     }
 
-    public bool TryUpdatePreset(MoodlePresetInfo preset)
+    public void AddOrUpdatePreset(MoodlePresetInfo preset)
     {
-        if (Presets.ContainsKey(preset.GUID))
-        {
+        if (!Presets.TryAdd(preset.GUID, preset))
             Presets[preset.GUID] = preset;
-            return true;
-        }
-        return false;
     }
 
     public void SetStatuses(IEnumerable<MoodlesStatusInfo> statuses)
