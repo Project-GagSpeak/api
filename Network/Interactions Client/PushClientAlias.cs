@@ -11,6 +11,7 @@ namespace GagspeakAPI.Network;
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushClientDataChangeAlias(List<UserData> Recipients, Guid AliasId, AliasTrigger? NewData);
 
+// TODO: Make this generic for any module!
 /// <summary>
 ///     Pushes a single AliasTrigger state change to recipients, providing its new state. <para />
 /// </summary>
