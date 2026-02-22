@@ -37,8 +37,14 @@ public enum ToyActionType
 }
 
 // Might have future expandability, or might be worth removing.
-public enum SocialActionType
+public enum SocialGame
 {
-    DeathRollLoss = 0,
-    DeathRollWin = 1,
+    DeathRoll = 0,
+}
+
+public enum SocialGameResult
+{
+    Loss = 0,
+    Win = 1,
+    Draw = 2,
 }

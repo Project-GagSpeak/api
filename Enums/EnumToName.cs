@@ -221,13 +221,13 @@ public static class EnumToName
     public static string ToName(this TriggerKind type)
     => type switch
     {
-        TriggerKind.SpellAction => "Spell / Action Trigger",
-        TriggerKind.HealthPercent => "Health% Trigger",
-        TriggerKind.RestraintSet => "Restraint State Trigger",
-        TriggerKind.Restriction => "Restriction State Trigger",
-        TriggerKind.GagState => "GagState Trigger",
-        TriggerKind.SocialAction => "Social Action",
-        TriggerKind.EmoteAction => "Emote Action",
+        TriggerKind.SpellAction => "Spell / Action Effect",
+        TriggerKind.HealthPercent => "Health% Change",
+        TriggerKind.RestraintSet => "RestraintSet Change",
+        TriggerKind.Restriction => "Restriction Change",
+        TriggerKind.GagState => "Gag Change",
+        TriggerKind.SocialAction => "Social Event",
+        TriggerKind.EmoteAction => "Emote",
         _ => "UNK"
     };
 

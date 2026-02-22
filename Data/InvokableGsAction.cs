@@ -48,9 +48,18 @@ public record GagAction : InvokableGsAction
     public Padlocks Padlock { get; set; } = Padlocks.None;
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
-    public GagAction() { }
-    public GagAction(GagAction other) : base(other) 
-        => (NewState, GagType, Padlock) = (other.NewState, other.GagType, other.Padlock);
+    public GagAction()
+    { }
+
+    public GagAction(GagAction other) : base(other)
+    {
+        LayerIdx = other.LayerIdx;
+        NewState = other.NewState;
+        GagType = other.GagType;
+        Padlock = other.Padlock;
+        LowerBound = other.LowerBound;
+        UpperBound = other.UpperBound;
+    }
 
     public override bool IsValid() => GagType is not GagType.None || Padlock is not Padlocks.None;
 }
@@ -66,8 +75,15 @@ public record RestrictionAction : InvokableGsAction
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
     public RestrictionAction() { }
-    public RestrictionAction(RestrictionAction other) : base(other) 
-        => (NewState, Padlock, RestrictionId) = (other.NewState, other.Padlock, other.RestrictionId);
+    public RestrictionAction(RestrictionAction other) : base(other)
+    {
+        LayerIdx = other.LayerIdx;
+        NewState = other.NewState;
+        RestrictionId = other.RestrictionId;
+        Padlock = other.Padlock;
+        LowerBound = other.LowerBound;
+        UpperBound = other.UpperBound;
+    }
 
     public override bool IsValid() => RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
 
@@ -83,8 +99,14 @@ public record RestraintAction : InvokableGsAction
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
     public RestraintAction() { }
-    public RestraintAction(RestraintAction other) : base(other) 
-        => (NewState, Padlock, RestrictionId) = (other.NewState, other.Padlock, other.RestrictionId);
+    public RestraintAction(RestraintAction other) : base(other)
+    {
+        NewState = other.NewState;
+        RestrictionId = other.RestrictionId;
+        Padlock = other.Padlock;
+        LowerBound = other.LowerBound;
+        UpperBound = other.UpperBound;
+    }
 
     public override bool IsValid() => RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
 }
