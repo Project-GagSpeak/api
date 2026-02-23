@@ -6,12 +6,6 @@ public enum UpdateDir
     Other,
 }
 
-public enum AliasType
-{
-    Global,
-    Pair,
-}
-
 public enum DataUpdateType
 {
     // Generic
@@ -46,6 +40,7 @@ public enum DataUpdateType
     PatternStopped,
     AlarmToggled,
     TriggerToggled,
+
     // Ipc
     UpdateVisible,
     StatusManagerChanged,

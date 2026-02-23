@@ -7,7 +7,7 @@ public enum GSModule
 {
     None,
     Restraint,
-    Restriction,
+    Restriction, 
     Gag,
     Collar,
     CursedLoot,

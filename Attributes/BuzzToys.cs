@@ -29,7 +29,7 @@ public enum ToyMotor
 ///     The Brand Name associated with a Toy. <para/>
 ///     Lovense will release new toys, and other devies may be added, so keep index's static to not disrupt Database.
 /// </summary>
-public enum ToyBrandName
+public enum ToyBrandName : int
 {
     Unknown = 0,
     Ambi = 1,

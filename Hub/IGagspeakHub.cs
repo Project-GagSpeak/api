@@ -59,13 +59,12 @@ public interface IGagspeakHub
     Task Callback_KinksterUpdateActiveRestriction(KinksterUpdateActiveRestriction dto);
     Task Callback_KinksterUpdateActiveRestraint(KinksterUpdateActiveRestraint dto);
     Task Callback_KinksterUpdateActiveCollar(KinksterUpdateActiveCollar dto);
-    Task Callback_KinksterUpdateActiveCursedLoot(KinksterUpdateActiveCursedLoot dto);
-    Task Callback_KinksterUpdateAliasState(KinksterUpdateAliasState dto);
-    Task Callback_KinksterUpdateActiveAliases(KinksterUpdateActiveAliases dto);
-    Task Callback_KinksterUpdateValidToys(KinksterUpdateValidToys dto);
-    Task Callback_KinksterUpdateActivePattern(KinksterUpdateActivePattern dto);
-    Task Callback_KinksterUpdateActiveAlarms(KinksterUpdateActiveAlarms dto);
-    Task Callback_KinksterUpdateActiveTriggers(KinksterUpdateActiveTriggers dto);
+    Task Callback_KinksterChangeEnabledItem(KinksterChangeEnabledItem dto);
+    Task Callback_KinksterChangeEnabledGag(KinksterChangeEnabledGag dto);
+    Task Callback_KinksterChangeEnabledToy(KinksterChangeEnabledToy dto);
+    Task Callback_KinksterChangeEnabledItems(KinksterChangeEnabledItems dto);
+    Task Callback_KinksterChangeEnabledGags(KinksterChangeEnabledGags dto);
+    Task Callback_KinksterChangeEnabledToys(KinksterChangeEnabledToys dto);
     Task Callback_ListenerName(SendNameAction dto);
     Task Callback_ShockInstruction(ShockCollarAction dto);
     Task Callback_HypnoticEffect(HypnoticAction dto); // hcState update for hypnosis, be sure to update HcState as well.
@@ -81,7 +80,6 @@ public interface IGagspeakHub
     Task Callback_KinksterNewPatternData(KinksterNewPatternData dto);
     Task Callback_KinksterNewAlarmData(KinksterNewAlarmData dto);
     Task Callback_KinksterNewTriggerData(KinksterNewTriggerData dto);
-    Task Callback_KinksterNewAllowances(KinksterNewAllowances dto);
 
     // Generics
     Task Callback_ChatMessageGlobal(ChatMessageGlobal dto);
@@ -156,12 +154,12 @@ public interface IGagspeakHub
     Task<HubResponse<CharaActiveRestraint>> UserPushActiveRestraint(PushClientActiveRestraint dto);
     Task<HubResponse<CharaActiveCollar>> UserPushActiveCollar(PushClientActiveCollar dto);
     Task<HubResponse<AppliedCursedItem>> UserPushActiveLoot(PushClientActiveLoot dto);
-    Task<HubResponse> UserPushAliasState(PushClientAliasState dto);
-    Task<HubResponse> UserPushActiveAliases(PushClientActiveAliases dto);
-    Task<HubResponse> UserPushValidToys(PushClientValidToys dto);
-    Task<HubResponse> UserPushActivePattern(PushClientActivePattern dto);
-    Task<HubResponse> UserPushActiveAlarms(PushClientActiveAlarms dto);
-    Task<HubResponse> UserPushActiveTriggers(PushClientActiveTriggers dto);
+    Task<HubResponse> UserPushItemEnabledState(PushItemEnabledState dto);
+    Task<HubResponse> UserPushGagEnabledState(PushGagEnabledState dto);
+    Task<HubResponse> UserPushToyEnabledState(PushToyEnabledState dto);
+    Task<HubResponse> UserPushItemEnabledStates(PushItemEnabledStates dto);
+    Task<HubResponse> UserPushGagEnabledStates(PushGagEnabledStates dto);
+    Task<HubResponse> UserPushToyEnabledStates(PushToyEnabledStates dto);
 
     Task<HubResponse> UserPushNewGagData(PushClientDataChangeGag dto);
     Task<HubResponse> UserPushNewRestrictionData(PushClientDataChangeRestriction dto);
@@ -172,7 +170,6 @@ public interface IGagspeakHub
     Task<HubResponse> UserPushNewPatternData(PushClientDataChangePattern dto);
     Task<HubResponse> UserPushNewAlarmData(PushClientDataChangeAlarm dto);
     Task<HubResponse> UserPushNewTriggerData(PushClientDataChangeTrigger dto);
-    Task<HubResponse> UserPushNewAllowances(PushClientAllowances dto);
 
     // Can only be called by the kinkster themselves, and only used for safeword action.
     Task<HubResponse<ClientGlobals>> UserBulkChangeGlobal(BulkChangeGlobal dto);

@@ -4,21 +4,23 @@ using MessagePack;
 
 namespace GagspeakAPI.Data;
 
-/// <summary> This contains a lightweight data packet of what we want to send over to other users for our contained data. </summary>
-/// <remarks> This should only ever be sent after we finish editing any item. Not on every individual edit. Rearrangements Count. </remarks>
+/// <summary>
+///     Holds a lightweight version of the Client's storage to pass off to their Kinksters on connection. <para />
+///     <b>Should only ever be sent on connection.</b> <para />
+///     Folder structure mapping should be sent seperately as a base64 string.
+/// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaLightStorageData
 {
     /// <summary> The GagRestrictionItems that are set to Enabled. </summary>
     public LightGag[] GagItems { get; set; } = [];
-    public LightRestriction[] Restrictions { get; set; } = []; // Dictionary is useful for lookups by ID references.
-    public LightRestraint[] Restraints  { get; set; } = []; // Useful for lookups via active state reference. Also these are only sent once, so they are ok.
+    public LightRestriction[] Restrictions { get; set; } = [];
+    public LightRestraint[] Restraints  { get; set; } = [];
     public LightCollar Collar { get; set; } = new(string.Empty, new LightSlot(), string.Empty);
     public LightCursedLoot[] CursedItems { get; set; } = [];
     public LightPattern[] Patterns { get; set; } = [];
     public LightAlarm[] Alarms { get; set; } = [];
     public LightTrigger[] Triggers { get; set; } = [];
-    public Dictionary<GSModule, string[]> Allowances { get; set; } = [];
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
