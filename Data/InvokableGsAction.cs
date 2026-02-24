@@ -35,7 +35,7 @@ public record TextAction : InvokableGsAction
     public TextAction(TextAction other) : base(other) 
         => OutputCommand = other.OutputCommand;
 
-    public override bool IsValid() => !string.IsNullOrWhiteSpace(OutputCommand) && OutputCommand.StartsWith('/');
+    public override bool IsValid() => !string.IsNullOrWhiteSpace(OutputCommand);
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
