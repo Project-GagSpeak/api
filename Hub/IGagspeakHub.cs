@@ -180,7 +180,6 @@ public interface IGagspeakHub
     Task<HubResponse<HardcoreStatus>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
     Task<HubResponse> UserDelete();
 
-
     // ----- Kinkster Interactions -----
     Task<HubResponse<KinksterRequest>> UserSendKinksterRequest(CreateKinksterRequest requestDto);
     Task<HubResponse> UserCancelKinksterRequest(KinksterBase user);
@@ -196,9 +195,9 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeKinksterActiveRestriction(PushKinksterActiveRestriction dto);
     Task<HubResponse> UserChangeKinksterActiveRestraint(PushKinksterActiveRestraint dto);
     Task<HubResponse> UserChangeKinksterActiveCollar(PushKinksterActiveCollar dto);
-    Task<HubResponse> UserChangeKinksterActivePattern(PushKinksterActivePattern dto);
-    Task<HubResponse> UserChangeKinksterActiveAlarms(PushKinksterActiveAlarms dto);
-    Task<HubResponse> UserChangeKinksterActiveTriggers(PushKinksterActiveTriggers dto);
+    Task<HubResponse> UserChangeKinksterPatternState(PushKinksterEnabledState dto);
+    Task<HubResponse> UserChangeKinksterAlarmState(PushKinksterEnabledState dto);
+    Task<HubResponse> UserChangeKinksterTriggerState(PushKinksterEnabledState dto);
 
     // ------ Permission & State Changes ------
     Task<HubResponse> UserChangeOtherGlobalPerm(SingleChangeGlobal dto);

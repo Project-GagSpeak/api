@@ -4,26 +4,18 @@ using MessagePack;
 
 namespace GagspeakAPI.Network;
 
-/// <summary> Modifies a Kinkster Pair's active Pattern, then syncs the update with that kinksters pairs. </summary>
+/// <summary> 
+///     Modifies the enabled state. Item of another Kinkstera Kinkster Pair's active Pattern, then syncs the update with that kinksters pairs. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushKinksterActivePattern(UserData Target, Guid ActivePattern, DataUpdateType Type)
+public record PushKinksterEnabledState(UserData Target, GSModule Module, Guid ItemId, bool NewState)
 {
     public override string ToString()
-        => $"ActivePatternUpdate: [Target -> {Target.AliasOrUID}, ActivePattern -> {ActivePattern}, Type -> {Type}]";
+        => $"EnabledStateUpdate: [Target -> {Target.AliasOrUID}, Module -> {Module}, ItemId -> {ItemId}, NewState -> {NewState}]";
 }
 
-/// <summary> Modifies a Kinkster Pair's active Alarms, then syncs the update with that kinksters pairs. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushKinksterActiveAlarms(UserData Target, List<Guid> ActiveAlarms, Guid ChangedItem, DataUpdateType Type)
+public record PushKinksterEnabledStates(UserData Target, GSModule Module, List<Guid> Items, bool NewState)
 {
     public override string ToString()
-        => $"ActiveAlarmsUpdate: [Target -> {Target.AliasOrUID}, ChangedItem -> {ChangedItem}, Type -> {Type}]";
-}
-
-/// <summary> Modifies a Kinkster Pair's active Triggers, then syncs the update with that kinksters pairs. </summary>
-[MessagePackObject(keyAsPropertyName: true)]
-public record PushKinksterActiveTriggers(UserData Target, List<Guid> ActiveTriggers, Guid ChangedItem, DataUpdateType Type)
-{
-    public override string ToString()
-        => $"ActiveTriggersUpdate: [Target -> {Target.AliasOrUID}, ChangedItem -> {ChangedItem}, Type -> {Type}]";
+        => $"EnabledStatesUpdate: [Target -> {Target.AliasOrUID}, Module -> {Module}, ItemIds -> {string.Join(", ", Items)}, NewState -> {NewState}]"; 
 }

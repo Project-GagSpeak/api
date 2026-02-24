@@ -18,7 +18,7 @@ public record PairPerms
     public TimeSpan     MaxGagTime                { get; set; } = TimeSpan.Zero;
     public bool         UnlockGags                { get; set; } = false;
     public bool         RemoveGags                { get; set; } = false;
-    public bool         GagTraits                  { get; set; } = false;
+    public bool         GagTraits                 { get; set; } = false;
 
     // Restriction Permissions
     public bool         ApplyRestrictions         { get; set; } = false;

@@ -11,7 +11,7 @@ public record GlobalPerms : IReadOnlyGlobalPerms //remove readonly later
     public bool        ChatGarblerActive        { get; set; } = false;
     public bool        ChatGarblerLocked        { get; set; } = false;
     public bool        GaggedNameplate          { get; set; } = false;
-    public bool        ArousalManipulation      { get; set; } = false;
+    public bool        GlobalArousal            { get; set; } = false;
 
     // wardrobe global modifiable permissions
     public bool        WardrobeEnabled          { get; set; } = false;
