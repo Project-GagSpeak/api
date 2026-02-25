@@ -4,4 +4,4 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinkPlateReport(UserData User, string ReportReason) : KinksterBase(User);
+public record ProfileReport(UserData User, string ReportReason) : KinksterBase(User);

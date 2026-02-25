@@ -138,7 +138,11 @@ public interface IGagspeakHub
     Task<HubResponse> UserUpdateAchievementData(AchievementsUpdate dto);
     Task<HubResponse> UserSetKinkPlateContent(KinkPlateInfo dto); // set profile content of own kinkplate.
     Task<HubResponse> UserSetKinkPlatePicture(KinkPlateImage dto); // set profile picture of own kinkplate.
-    Task<HubResponse> UserReportKinkPlate(KinkPlateReport KinksterBase); // hopefully this is never used x-x...
+
+    // ----- Reportings -----
+    Task<HubResponse> UserReportProfile(ProfileReport dto);
+    Task<HubResponse> UserReportChat(ChatReport dto);
+
 
     // ----- Personal Interactions ------
     Task<HubResponse> UserPushMoodlesFull(PushMoodlesFull dto);
