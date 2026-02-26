@@ -10,8 +10,7 @@ namespace GagspeakAPI.Data;
 public record KinkPlateContent
 {
     public bool           IsPublic          { get; set; } = false;
-    public bool           Flagged           { get; set; } = false;
-    public bool           Disabled          { get; set; } = false;
+    public bool           Flagged           { get; set; } = false; // if pending review
     public PublicityScope AvatarVis         { get; set; } = PublicityScope.Private;
     public PublicityScope DescriptionVis    { get; set; } = PublicityScope.Private;
     public PublicityScope DecorationVis     { get; set; } = PublicityScope.Private;
