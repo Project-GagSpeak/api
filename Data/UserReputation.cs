@@ -10,16 +10,20 @@ public record UserReputation
 {
     public bool IsVerified { get; set; } = false;
     public bool IsBanned { get; set; } = false;
-    public int WarningStrikes { get; set; } = 0;
 
     public bool ProfileViewing { get; set; } = true;
+    public DateTime ProfileViewTimeout { get; set; } = DateTime.MinValue;
     public int ProfileViewStrikes { get; set; } = 0;
 
     public bool ProfileEditing { get; set; } = true;
+    public DateTime ProfileEditTimeout { get; set; } = DateTime.MinValue;
     public int ProfileEditStrikes { get; set; } = 0;
 
     public bool ChatUsage { get; set; } = true;
+    public DateTime ChatTimeout { get; set; } = DateTime.MinValue;
     public int ChatStrikes { get; set; } = 0;
 
-    public int TotalStrikes() => WarningStrikes + ProfileViewStrikes + ProfileEditStrikes + ChatStrikes;
+    public int FalseReportStrikes { get; set; } = 0;
+
+    public int TotalStrikes() => ProfileViewStrikes + ProfileEditStrikes + ChatStrikes;
 }
