@@ -26,4 +26,13 @@ public record UserReputation
     public int FalseReportStrikes { get; set; } = 0;
 
     public int TotalStrikes() => ProfileViewStrikes + ProfileEditStrikes + ChatStrikes;
+
+    public bool CanViewProfiles()
+        => !IsBanned && ProfileViewing && DateTime.UtcNow >= ProfileViewTimeout;
+
+    public bool CanEditProfile()
+        => !IsBanned && ProfileEditing && DateTime.UtcNow >= ProfileEditTimeout;
+
+    public bool CanUseChat()
+        => !IsBanned && ChatUsage && DateTime.UtcNow >= ChatTimeout;
 }
