@@ -11,14 +11,14 @@ public enum RestraintFlags : sbyte
 {
     Glamour =   0x01, // Apply Glamour Item
     Mod =       0x02, // Apply Mod while active.
-    Moodle =    0x04, // Apply Moodle While Active
+    Loci =    0x04, // Apply Loci While Active
     Trait =     0x08, // Apply Traits While Active
     Arousal =   0x10, // Apply Arousal While Active
     IsOverlay = 0x20, // Apply as an Overlay
 
     // Basic Application Type for advanced Restrictions.
-    Restriction = Glamour | Mod | Moodle | Trait | Arousal,
-    Advanced = Glamour | Mod | Moodle | Trait | Arousal | IsOverlay,
+    Restriction = Glamour | Mod | Loci | Trait | Arousal,
+    Advanced = Glamour | Mod | Loci | Trait | Arousal | IsOverlay,
 }
 
 /// <summary>

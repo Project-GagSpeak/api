@@ -24,7 +24,7 @@ public enum DataUpdateType
     OwnersUpdated,
     VisibilityChange,
     DyesChange,
-    CollarMoodleChange,
+    CollarLociDataChange,
     CollarWritingChange,
     CollarPermChange,
     CollarOwnerPermChange,

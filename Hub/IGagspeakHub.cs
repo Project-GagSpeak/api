@@ -34,16 +34,15 @@ public interface IGagspeakHub
     Task Callback_RemoveCollarRequest(CollarRequest dto);
 
     // ---- Callbacks to update IPC.
-    Task Callback_MoodleDataUpdated(MoodlesDataUpdate dto);
-    Task Callback_MoodleSMUpdated(MoodlesSMUpdate dto);
-    Task Callback_MoodleStatusesUpdate(MoodlesStatusesUpdate dto);
-    Task Callback_MoodlePresetsUpdate(MoodlesPresetsUpdate dto);
-    Task Callback_MoodleStatusModified(MoodlesStatusModified dto);
-    Task Callback_MoodlePresetModified(MoodlesPresetModified dto);
-    Task Callback_ApplyMoodlesByGuid(ApplyMoodleId dto);
-    Task Callback_ApplyMoodlesByStatus(ApplyMoodleStatus dto);
-    Task Callback_RemoveMoodles(RemoveMoodleId dto);
-    Task Callback_ClearMoodles(KinksterBase dto);
+    Task Callback_LociDataUpdated(LociDataUpdate dto);
+    Task Callback_LociStatusesUpdate(LociStatusesUpdate dto);
+    Task Callback_LociPresetsUpdate(LociPresetsUpdate dto);
+    Task Callback_LociStatusModified(LociStatusModified dto);
+    Task Callback_LociPresetModified(LociPresetModified dto);
+    Task Callback_LociApplyDataById(ApplyLociDataById dto);
+    Task Callback_LociApplyStatus(ApplyLociStatus dto);
+    Task Callback_LociRemoveData(RemoveLociData dto);
+    Task Callback_LociClearData(KinksterBase dto);
 
     // ---- Callbacks to update permissions.
     Task Callback_BulkChangeGlobal(BulkChangeGlobal dto);
@@ -115,22 +114,22 @@ public interface IGagspeakHub
     // ------ ShareHubs ------
     /// <summary> Uploads your pattern to the server. </summary>
     Task<HubResponse> UploadPattern(PatternUpload dto);
-    /// <summary> Uploads your a new Moodle to the server. </summary>
-    Task<HubResponse> UploadMoodle(MoodleUpload dto);
+    /// <summary> Uploads your a new Loci Status to the server. </summary>
+    Task<HubResponse> UploadLociStatus(LociStatusUpload dto);
     /// <summary> Downloads a pattern from the server. </summary>
     Task<HubResponse<string>> DownloadPattern(Guid patternId);
     /// <summary> Likes a pattern you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
     Task<HubResponse> LikePattern(Guid patternId);
-    /// <summary> Likes a Moodle you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
-    Task<HubResponse> LikeMoodle(Guid moodleId);
+    /// <summary> Likes a Loci Status you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
+    Task<HubResponse> LikeLociData(Guid lociId);
     /// <summary> Deletes a pattern from the server. </summary>
-    Task<HubResponse> RemovePattern(Guid patternId);
-    /// <summary> Deletes a moodle from the server. </summary>
-    Task<HubResponse> RemoveMoodle(Guid moodleId);
+    Task<HubResponse> DelistPattern(Guid patternId);
+    /// <summary> Deletes a loci from the server. </summary>
+    Task<HubResponse> DelistLociData(Guid lociId);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
     Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(PatternSearch dto);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerMoodleInfo>>> SearchMoodles(SearchBase dto);
+    Task<HubResponse<List<ServerLociInfo>>> SearchLociData(SearchBase dto);
 
     // ----- Client Vanity ------
     /// <summary> Sends a message to the gagspeak Global chat. </summary>
@@ -145,12 +144,11 @@ public interface IGagspeakHub
 
 
     // ----- Personal Interactions ------
-    Task<HubResponse> UserPushMoodlesFull(PushMoodlesFull dto);
-    Task<HubResponse> UserPushMoodlesSM(PushMoodlesSM dto);
-    Task<HubResponse> UserPushMoodlesStatuses(PushMoodlesStatuses dto);
-    Task<HubResponse> UserPushMoodlesPresets(PushMoodlesPresets dto);
-    Task<HubResponse> UserPushStatusModified(PushStatusModified dto);
-    Task<HubResponse> UserPushPresetModified(PushPresetModified dto);
+    Task<HubResponse> UserPushLociData(PushLociData dto);         // Share all data with allowed sundesmos.
+    Task<HubResponse> UserPushLociStatuses(PushLociStatuses dto); // Share all Statuses data.
+    Task<HubResponse> UserPushLociPresets(PushLociPresets dto);   // Share all Presets data.
+    Task<HubResponse> UserPushStatusModified(PushStatusModified dto);   // A LociStatus was modified, created, or deleted.
+    Task<HubResponse> UserPushPresetModified(PushPresetModified dto);   // A LociPreset was modified, created, or deleted.
 
     Task<HubResponse> UserPushActiveData(PushClientCompositeUpdate dto);
     Task<HubResponse<ActiveGagSlot>> UserPushActiveGags(PushClientActiveGagSlot dto);
@@ -209,10 +207,10 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOtherHardcoreState(HardcoreStateChange dto);
 
     // ---- IPC / External API Interactions ----
-    Task<HubResponse> UserApplyMoodlesByGuid(ApplyMoodleId dto);
-    Task<HubResponse> UserApplyMoodlesByStatus(ApplyMoodleStatus dto);
-    Task<HubResponse> UserRemoveMoodles(RemoveMoodleId dto);
-    Task<HubResponse> UserClearMoodles(KinksterBase dto);
+    Task<HubResponse> UserApplyLociData(ApplyLociDataById dto);
+    Task<HubResponse> UserApplyLociStatusTuples(ApplyLociStatus dto);
+    Task<HubResponse> UserRemoveLociData(RemoveLociData dto);
+    Task<HubResponse> UserClearLociData(KinksterBase dto);
     Task<HubResponse> UserSendNameToKinkster(SendNameAction dto);
     Task<HubResponse> UserShockKinkster(ShockCollarAction dto); // Sends a shock instruction.
     Task<HubResponse> UserHypnotizeKinkster(HypnoticAction dto); // Applies a hypnosis state to another Kinkster. (special toggle)

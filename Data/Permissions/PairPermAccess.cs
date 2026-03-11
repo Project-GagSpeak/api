@@ -45,10 +45,10 @@ public record PairPermAccess
     public bool PuppeteerEnabledAllowed             { get; set; } = false; // Global
     public PuppetPerms PuppetPermsAllowed           { get; set; } = PuppetPerms.None;
 
-    // Moodles
-    public bool MoodlesEnabledAllowed               { get; set; } = false; // Global
-    public MoodleAccess MoodleAccessAllowed           { get; set; } = MoodleAccess.None;
-    public bool MaxMoodleTimeAllowed                { get; set; } = false;
+    // Locis
+    public bool LociEnabledAllowed                  { get; set; } = false; // Global
+    public LociAccess LociAccessAllowed             { get; set; } = LociAccess.None;
+    public bool MaxLociTimeAllowed                  { get; set; } = false;
 
     public bool HypnosisMaxTimeAllowed              { get; set; } = false;
     public bool HypnosisSendingAllowed              { get; set; } = false;

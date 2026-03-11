@@ -1,66 +1,65 @@
-using GagspeakAPI.Attributes;
 using MessagePack;
 
 namespace GagspeakAPI.Data;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public class Moodle
+public class LociItem
 {
-    public virtual MoodleType Type => MoodleType.Status;
+    public virtual LociType Type => LociType.Status;
     public Guid Id { get; set; } = Guid.Empty;
 
-    public Moodle()
+    public LociItem()
     { }
 
-    public Moodle(Moodle other)
+    public LociItem(LociItem other)
         => Id = other.Id;
 
-    public Moodle(Guid id)
+    public LociItem(Guid id)
         => Id = id;
 
     public void UpdateId(Guid newId)
         => Id = newId;
 
     public override bool Equals(object? obj) 
-        => obj is Moodle other && Id.Equals(other.Id);
+        => obj is LociItem other && Id.Equals(other.Id);
 
     public override int GetHashCode()
         => Id.GetHashCode();
 }
 
 [MessagePackObject(keyAsPropertyName: true )]
-public class MoodleTuple : Moodle
+public class LociTuple : LociItem
 {
-    public override MoodleType Type => MoodleType.Tuple;
-    public MoodlesStatusInfo Tuple { get; set; } = new();
-    public MoodleTuple()
+    public override LociType Type => LociType.Tuple;
+    public LociStatusInfo Tuple { get; set; } = new();
+    public LociTuple()
         : base()
     { }
 
-    public MoodleTuple(MoodleTuple other)
+    public LociTuple(LociTuple other)
         => (Id, Tuple) = (other.Id, other.Tuple);
 
-    public MoodleTuple(MoodlesStatusInfo tuple)
+    public LociTuple(LociStatusInfo tuple)
         => UpdateTuple(tuple.GUID, tuple);
 
-    public void UpdateTuple(Guid newId, MoodlesStatusInfo newTuple)
+    public void UpdateTuple(Guid newId, LociStatusInfo newTuple)
         => (Id, Tuple) = (newId, newTuple);
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public class MoodlePreset : Moodle
+public class LociPreset : LociItem
 {
-    public override MoodleType Type => MoodleType.Preset;
+    public override LociType Type => LociType.Preset;
     public List<Guid> StatusIds { get; set; } = new List<Guid>();
 
-    public MoodlePreset()
+    public LociPreset()
         : base()
     { }
 
-    public MoodlePreset(MoodlePreset other)
+    public LociPreset(LociPreset other)
         => (Id, StatusIds) = (other.Id, other.StatusIds);
 
-    public MoodlePreset(Guid id, IEnumerable<Guid> statusIds)
+    public LociPreset(Guid id, IEnumerable<Guid> statusIds)
         => (Id, StatusIds) = (id, statusIds.ToList());
 
     public void UpdatePreset(Guid newId, IEnumerable<Guid> newStatusIds)

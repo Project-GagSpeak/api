@@ -47,9 +47,9 @@ public record PairPerms
     public char         EndChar                   { get; set; } = ')';   // the end char that is the right enclosing bracket character for commands.
     public PuppetPerms  PuppetPerms               { get; set; } = 0;
 
-    // unique Moodles permissions
-    public MoodleAccess MoodleAccess              { get; set; } = 0;     // Various Moodle Permissions configured through a flag enum.
-    public TimeSpan     MaxMoodleTime             { get; set; } = TimeSpan.Zero;
+    // unique Locis permissions
+    public LociAccess LociAccess              { get; set; } = 0;     // Various Loci Permissions configured through a flag enum.
+    public TimeSpan     MaxLociTime             { get; set; } = TimeSpan.Zero;
 
     // unique permissions for the toybox
     public bool         ExecutePatterns           { get; set; } = false;

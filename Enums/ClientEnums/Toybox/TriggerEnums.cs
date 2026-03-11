@@ -12,7 +12,7 @@ public enum InvokableActionType
     Gag = 1, // if fired, interact with a gag. (If possible)
     Restriction = 2, // if fired, interact with a restriction. (If possible) [OLD = NULL]
     Restraint = 3, // if fired, interact with a restraint set. (If possible) [OLD = 2]
-    Moodle = 4, // if fired, apply a Moodle [OLD = 3]
+    LociItem = 4, // if fired, apply a LociItem [OLD = 3]
     ShockCollar = 5, // if fired, perform shock collar action [OLD = 4]
     SexToy = 6, // if fired, vibrate sex toys. [OLD = 5]
 }

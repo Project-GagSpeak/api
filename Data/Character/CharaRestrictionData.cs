@@ -121,9 +121,9 @@ public record CharaActiveCollar
     public byte Dye1 { get; set; } = 0;
     public byte Dye2 { get; set; } = 0;
 
-    // The moodle to be bound to the collar.
+    // The loci to be bound to the collar.
     // This is self composed.
-    public MoodlesStatusInfo Moodle { get; set; } = new();
+    public LociStatusInfo StatusInfo { get; set; } = new();
 
     // Writing that is linked to the collar.
     public string Writing { get; set; } = string.Empty;

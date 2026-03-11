@@ -8,7 +8,7 @@ namespace GagspeakAPI.Data;
 [Union(1, typeof(GagAction))]
 [Union(2, typeof(RestrictionAction))]
 [Union(3, typeof(RestraintAction))]
-[Union(4, typeof(MoodleAction))]
+[Union(4, typeof(LociDataAction))]
 [Union(5, typeof(PiShockAction))]
 [Union(6, typeof(SexToyAction))]
 public abstract record InvokableGsAction : IComparable<InvokableGsAction>
@@ -112,16 +112,16 @@ public record RestraintAction : InvokableGsAction
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record MoodleAction : InvokableGsAction
+public record LociDataAction : InvokableGsAction
 {
-    public override InvokableActionType ActionType => InvokableActionType.Moodle;
-    public Moodle MoodleItem { get; set; } = new Moodle();
-    public MoodleAction()
+    public override InvokableActionType ActionType => InvokableActionType.LociItem;
+    public LociItem LociItem { get; set; } = new LociItem();
+    public LociDataAction()
     { }
-    public MoodleAction(MoodleAction other) : base(other) 
-        => MoodleItem = other.MoodleItem;
+    public LociDataAction(LociDataAction other) : base(other) 
+        => LociItem = other.LociItem;
 
-    public override bool IsValid() => MoodleItem.Id != Guid.Empty;
+    public override bool IsValid() => LociItem.Id != Guid.Empty;
 }
 
 [MessagePackObject(keyAsPropertyName: true)]

@@ -36,6 +36,6 @@ public record ConnectionResponse(UserData User, List<string> AccountProfileUids)
 public record LobbyAndHubInfoResponse(List<string> HubTags)
 {
     public List<PublishedPattern> PublishedPatterns { get; init; } = [];
-    public List<PublishedMoodle> PublishedMoodles { get; init; } = [];
+    public List<PublishedLociData> PublishedLociData { get; init; } = [];
     public List<RoomInvite> RoomInvites { get; init; } = [];
 }

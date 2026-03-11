@@ -6,9 +6,9 @@ namespace GagspeakAPI.Data;
 /// Generic Pattern Info retrieved from search results.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PublishedMoodle
+public record PublishedLociData
 {
     public string AuthorName = "ANONYMOUS";
 
-    public MoodlesStatusInfo Status = new MoodlesStatusInfo();
+    public LociStatusInfo Status = new LociStatusInfo();
 }

@@ -21,17 +21,16 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnAddCollarRequest(Action<CollarRequest> act);
     void OnRemoveCollarRequest(Action<CollarRequest> act);
 
-    // Moodle updates
-    void OnMoodleDataUpdated(Action<MoodlesDataUpdate> act);
-    void OnMoodleSMUpdated(Action<MoodlesSMUpdate> act);
-    void OnMoodleStatusesUpdate(Action<MoodlesStatusesUpdate> act);
-    void OnMoodlePresetsUpdate(Action<MoodlesPresetsUpdate> act);
-    void OnMoodleStatusModified(Action<MoodlesStatusModified> act);
-    void OnMoodlePresetModified(Action<MoodlesPresetModified> act);
-    void OnApplyMoodlesByGuid(Action<ApplyMoodleId> act);
-    void OnApplyMoodlesByStatus(Action<ApplyMoodleStatus> act);
-    void OnRemoveMoodles(Action<RemoveMoodleId> act);
-    void OnClearMoodles(Action<KinksterBase> act);
+    // Loci updates
+    void OnLociDataUpdated(Action<LociDataUpdate> act);
+    void OnLociStatusesUpdate(Action<LociStatusesUpdate> act);
+    void OnLociPresetsUpdate(Action<LociPresetsUpdate> act);
+    void OnLociStatusModified(Action<LociStatusModified> act);
+    void OnLociPresetModified(Action<LociPresetModified> act);
+    void OnLociApplyDataById(Action<ApplyLociDataById> act);
+    void OnLociApplyStatus(Action<ApplyLociStatus> act);
+    void OnLociRemoveData(Action<RemoveLociData> act);
+    void OnLociClearData(Action<KinksterBase> act);
 
     // Permission updates
     void OnBulkChangeGlobal(Action<BulkChangeGlobal> act);

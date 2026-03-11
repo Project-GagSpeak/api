@@ -1,10 +1,10 @@
 namespace GagspeakAPI.Util;
-public static class MoodleConverter
+public static class LociConverter
 {
-    // For converting Collar Moodles.
-    public static MoodlesStatusInfo FromValues(Guid id, int iconId, string title, string desc, StatusType type, string fxPath)
+    // For converting Collar Locis.
+    public static LociStatusInfo FromValues(Guid id, int iconId, string title, string desc, StatusType type, string fxPath)
     {
-        return new MoodlesStatusInfo
+        return new LociStatusInfo
         {
             GUID = id,
             IconID = iconId,
@@ -13,7 +13,6 @@ public static class MoodleConverter
             CustomVFXPath = fxPath,
             ExpireTicks = -1,
             Type = type,
-            Permanent = true
         };
     }
 }

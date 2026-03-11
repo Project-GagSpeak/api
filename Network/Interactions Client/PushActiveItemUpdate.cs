@@ -70,7 +70,7 @@ public record PushClientActiveCollar(List<UserData> Recipients, DataUpdateType T
     public bool Visuals { get; init; } = false;
     public byte Dye1 { get; init; } = 0;
     public byte Dye2 { get; init; } = 0;
-    public MoodlesStatusInfo Moodle { get; init; } = new();
+    public LociStatusInfo StatusInfo { get; init; } = new();
     public string Writing { get; init; } = string.Empty;
     // Move these to respective global/kinkster pair permission tables if it is easier there.
     public CollarAccess EditAccess { get; init; } = CollarAccess.None;

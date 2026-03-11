@@ -195,7 +195,7 @@ public static class EnumToName
         InvokableActionType.Gag => "Gag Action",
         InvokableActionType.Restriction => "Restriction Action",
         InvokableActionType.Restraint => "Restraint Action",
-        InvokableActionType.Moodle => "Moodle Action",
+        InvokableActionType.LociItem => "Loci Action",
         InvokableActionType.ShockCollar => "Shock Action",
         InvokableActionType.SexToy => "SexToy Action",
         _ => "UNK"

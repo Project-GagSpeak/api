@@ -45,7 +45,7 @@ public record LightRestraint(Guid Id, bool Enabled, string Label, string Desc)
     public List<LightRestrictionLayer> RestrictionLayers { get; init; } = [];
     public List<LightModLayer> ModLayers { get; init; } = [];
     public List<string> Mods { get; init; } = [];
-    public List<LightMoodle> Moodles { get; init; } = [];
+    public List<LightLoci> LociItems { get; init; } = [];
     public Traits BaseTraits { get; init; } = new();
     public Arousal Arousal { get; init; } = new();
     public bool Redraws { get; init; } = false;
@@ -84,10 +84,10 @@ public readonly record struct LightSlot(byte Slot, ulong CItemId = uint.MaxValue
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct LightItem(LightSlot Slot, string ModName, LightMoodle Moodle, Traits Traits, Arousal Arousal);
+public readonly record struct LightItem(LightSlot Slot, string ModName, LightLoci LociItem, Traits Traits, Arousal Arousal);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct LightMoodle(MoodleType Type, Guid Id);
+public readonly record struct LightLoci(LociType Type, Guid Id);
 
 
