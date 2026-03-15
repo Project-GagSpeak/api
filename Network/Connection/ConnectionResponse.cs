@@ -18,7 +18,7 @@ public record ConnectionResponse(UserData User, List<string> AccountProfileUids)
 
     // Personal Global Data (Active States, Achievements, ext)
     public GlobalPerms GlobalPerms { get; init; } = new();
-    public HardcoreStatus HardcoreState { get; init; } = new();
+    public HardcoreState HardcoreState { get; init; } = new();
     public CharaActiveGags GagData { get; init; } = new();
     public CharaActiveRestrictions RestrictionsData { get; init; } = new();
     public CharaActiveRestraint RestraintSetData { get; init; } = new();

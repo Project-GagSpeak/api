@@ -4,7 +4,7 @@ namespace GagspeakAPI.Data;
 
 /// <summary> Generic Pattern Info retrieved from search results. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ServerLociInfo
+public record ServerDataLociStatus
 {
     /// <summary> The Author of this server's Loci </summary>
     public string Author = string.Empty;
@@ -12,8 +12,8 @@ public record ServerLociInfo
     /// <summary> The tags for an associated LociStatus on the server. </summary>
     public HashSet<string> Tags = new HashSet<string>();
 
-    /// <summary> The fetched status in LociStatusInfo format. </summary>
-    public LociStatusInfo Status = new LociStatusInfo();
+    /// <summary> The fetched status in LociStatusStruct format. </summary>
+    public LociStatusStruct Status = new LociStatusStruct();
 
     /// <summary> How many likes does this have? </summary>
     public int Likes = 0;

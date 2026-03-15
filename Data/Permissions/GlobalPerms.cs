@@ -5,7 +5,7 @@ using MessagePack;
 namespace GagspeakAPI.Data.Permissions;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record GlobalPerms : IReadOnlyGlobalPerms //remove readonly later
+public record GlobalPerms
 {
     public InptChannel AllowedGarblerChannels   { get; set; } = 0;
     public bool        ChatGarblerActive        { get; set; } = false;

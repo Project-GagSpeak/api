@@ -123,7 +123,7 @@ public record CharaActiveCollar
 
     // The loci to be bound to the collar.
     // This is self composed.
-    public LociStatusInfo StatusInfo { get; set; } = new();
+    public LociStatusStruct StatusInfo { get; set; } = new();
 
     // Writing that is linked to the collar.
     public string Writing { get; set; } = string.Empty;

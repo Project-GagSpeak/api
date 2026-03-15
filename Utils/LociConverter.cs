@@ -1,10 +1,13 @@
+using GagspeakAPI.Data;
+
 namespace GagspeakAPI.Util;
+
+// Maybe expand this, the API is a bit of an organizational mess right now.
 public static class LociConverter
 {
     // For converting Collar Locis.
-    public static LociStatusInfo FromValues(Guid id, int iconId, string title, string desc, StatusType type, string fxPath)
-    {
-        return new LociStatusInfo
+    public static LociStatusStruct FromValues(Guid id, uint iconId, string title, string desc, byte type, string fxPath)
+        => new LociStatusStruct
         {
             GUID = id,
             IconID = iconId,
@@ -14,5 +17,4 @@ public static class LociConverter
             ExpireTicks = -1,
             Type = type,
         };
-    }
 }

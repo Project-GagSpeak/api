@@ -38,10 +38,10 @@ public enum CollarAccess : byte
     Visuals = 1 << 0, // visuals are applied.
     Dyes = 1 << 1, // dyes are applied.
     // do not allow changing mods, this is too complicated.
-    StatusInfo = 1 << 2, // loci data is applied.
+    LociData = 1 << 2, // loci data is applied.
     Writing = 1 << 3, // what is inscribe on the collar, (shown in kinkplates)
     GlamMod = 1 << 4, // allow changing the collars glamour and mod. Does not apply for collar Owners.
 
-    AllButWriting = Visuals | Dyes | StatusInfo | GlamMod, // all access areas except writing.
-    All = Visuals | Dyes | StatusInfo | Writing | GlamMod, // all access areas.
+    AllButWriting = Visuals | Dyes | LociData | GlamMod, // all access areas except writing.
+    All = Visuals | Dyes | LociData | Writing | GlamMod, // all access areas.
 }

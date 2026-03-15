@@ -113,23 +113,23 @@ public interface IGagspeakHub
 
     // ------ ShareHubs ------
     /// <summary> Uploads your pattern to the server. </summary>
-    Task<HubResponse> UploadPattern(PatternUpload dto);
+    Task<HubResponse> UploadPattern(SharehubUploadPattern dto);
     /// <summary> Uploads your a new Loci Status to the server. </summary>
-    Task<HubResponse> UploadLociStatus(LociStatusUpload dto);
+    Task<HubResponse> UploadLociStatus(SharehubUploadLociStatus dto);
     /// <summary> Downloads a pattern from the server. </summary>
     Task<HubResponse<string>> DownloadPattern(Guid patternId);
     /// <summary> Likes a pattern you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
     Task<HubResponse> LikePattern(Guid patternId);
     /// <summary> Likes a Loci Status you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
-    Task<HubResponse> LikeLociData(Guid lociId);
+    Task<HubResponse> LikeLociStatus(Guid lociId);
     /// <summary> Deletes a pattern from the server. </summary>
     Task<HubResponse> DelistPattern(Guid patternId);
     /// <summary> Deletes a loci from the server. </summary>
-    Task<HubResponse> DelistLociData(Guid lociId);
+    Task<HubResponse> DelistLociStatus(Guid lociId);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(PatternSearch dto);
+    Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(SearchPattern dto);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerLociInfo>>> SearchLociData(SearchBase dto);
+    Task<HubResponse<List<ServerDataLociStatus>>> SearchLociData(SearchBase dto);
 
     // ----- Client Vanity ------
     /// <summary> Sends a message to the gagspeak Global chat. </summary>
@@ -179,7 +179,7 @@ public interface IGagspeakHub
     Task<HubResponse> UserChangeOwnGlobalPerm(SingleChangeGlobal dto);
     Task<HubResponse> UserChangeOwnPairPerm(SingleChangeUnique dto);
     Task<HubResponse> UserChangeOwnPairPermAccess(SingleChangeAccess dto);
-    Task<HubResponse<HardcoreStatus>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
+    Task<HubResponse<HardcoreState>> UserHardcoreAttributeExpired(HardcoreAttributeExpired dto);
     Task<HubResponse> UserDelete();
 
     // ----- Kinkster Interactions -----

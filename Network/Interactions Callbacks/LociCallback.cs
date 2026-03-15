@@ -4,16 +4,16 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LociDataUpdate(UserData User, CachedLociData Data) : KinksterBase(User);
+public record LociDataUpdate(UserData User, LociContainerData Data) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LociStatusesUpdate(UserData User, List<LociStatusInfo> Statuses) : KinksterBase(User);
+public record LociStatusesUpdate(UserData User, List<LociStatusStruct> Statuses) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LociPresetsUpdate(UserData User, List<LociPresetInfo> Presets) : KinksterBase(User);
+public record LociPresetsUpdate(UserData User, List<LociPresetStruct> Presets) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LociStatusModified(UserData User, LociStatusInfo Status, bool Deleted) : KinksterBase(User);
+public record LociStatusModified(UserData User, LociStatusStruct Status, bool Deleted) : KinksterBase(User);
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record LociPresetModified(UserData User, LociPresetInfo Preset, bool Deleted) : KinksterBase(User);
+public record LociPresetModified(UserData User, LociPresetStruct Preset, bool Deleted) : KinksterBase(User);

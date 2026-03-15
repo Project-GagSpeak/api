@@ -17,7 +17,7 @@ public record PushKinksterActiveCollar(UserData Target, DataUpdateType Type) : K
     public List<string> OwnerUIDs { get; init; } = new List<string>();
     public byte Dye1 { get; init; } = 0;
     public byte Dye2 { get; init; } = 0;
-    public LociStatusInfo Loci { get; init; } = new();
+    public LociStatusStruct Loci { get; init; } = new();
     public string Writing { get; init; } = string.Empty;
     // Move these to respective global/kinkster pair permission tables if it is easier there.
     public CollarAccess EditAccess { get; init; } = CollarAccess.None;

@@ -48,8 +48,8 @@ public record PairPerms
     public PuppetPerms  PuppetPerms               { get; set; } = 0;
 
     // unique Locis permissions
-    public LociAccess LociAccess              { get; set; } = 0;     // Various Loci Permissions configured through a flag enum.
-    public TimeSpan     MaxLociTime             { get; set; } = TimeSpan.Zero;
+    public LociAccess   LociAccess                { get; set; } = 0;     // Various Loci Permissions configured through a flag enum.
+    public TimeSpan     MaxLociTime               { get; set; } = TimeSpan.Zero;
 
     // unique permissions for the toybox
     public bool         ExecutePatterns           { get; set; } = false;

@@ -50,7 +50,7 @@ public record KinksterNewLootData(UserData User, Guid ItemId, LightCursedLoot? N
 
 /// <inheritdoc cref="KinksterNewRestrictionData"/>"
 [MessagePackObject(keyAsPropertyName: true)]
-public record KinksterNewAliasData(UserData User, Guid ItemId, AliasTrigger? NewData) : KinksterBase(User)
+public record KinksterNewAliasData(UserData User, Guid ItemId, GagspeakAlias? NewData) : KinksterBase(User)
 {
     public override string ToString() => $"NewData: [User: {User.AliasOrUID} | Id: {ItemId} | Updated: {(NewData is null ? "UNK" : NewData.Label)}";
 }

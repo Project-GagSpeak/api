@@ -2,6 +2,13 @@ using MessagePack;
 
 namespace GagspeakAPI.Data;
 
+public enum LociType
+{
+    Status = 0,
+    Preset = 1,
+    Tuple = 2
+}
+
 [MessagePackObject(keyAsPropertyName: true)]
 public class LociItem
 {
@@ -31,7 +38,7 @@ public class LociItem
 public class LociTuple : LociItem
 {
     public override LociType Type => LociType.Tuple;
-    public LociStatusInfo Tuple { get; set; } = new();
+    public LociStatusStruct Tuple { get; set; } = new();
     public LociTuple()
         : base()
     { }
@@ -39,10 +46,10 @@ public class LociTuple : LociItem
     public LociTuple(LociTuple other)
         => (Id, Tuple) = (other.Id, other.Tuple);
 
-    public LociTuple(LociStatusInfo tuple)
+    public LociTuple(LociStatusStruct tuple)
         => UpdateTuple(tuple.GUID, tuple);
 
-    public void UpdateTuple(Guid newId, LociStatusInfo newTuple)
+    public void UpdateTuple(Guid newId, LociStatusStruct newTuple)
         => (Id, Tuple) = (newId, newTuple);
 }
 

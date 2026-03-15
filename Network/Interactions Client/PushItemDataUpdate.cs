@@ -41,7 +41,7 @@ public record PushClientDataChangeLoot(List<UserData> Recipients, Guid ItemId, L
 
 /// <inheritdoc cref="PushClientDataChangeGag"/>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushClientDataChangeAlias(List<UserData> Recipients, Guid ItemId, AliasTrigger? NewData);
+public record PushClientDataChangeAlias(List<UserData> Recipients, Guid ItemId, GagspeakAlias? NewData);
 
 /// <inheritdoc cref="PushClientDataChangeGag"/>
 [MessagePackObject(keyAsPropertyName: true)]

@@ -7,4 +7,4 @@ namespace GagspeakAPI.Dto.Sharehub;
 ///     The Pattern we are attempting to upload.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PatternUpload(ServerPatternInfo PatternInfo, string PatternDataBase64);
+public record SharehubUploadPattern(ServerPatternInfo PatternInfo, string PatternDataBase64);

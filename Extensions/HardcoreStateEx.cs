@@ -3,6 +3,7 @@ using GagspeakAPI.Data.Permissions;
 
 namespace GagspeakAPI.Extensions;
 
+// Maybe revise all of this later.
 public static class HardcoreStateEx
 {
     private static readonly string[] SitIdList = { "50", "95", "96", "254", "255" };
@@ -14,7 +15,7 @@ public static class HardcoreStateEx
     ///     This is not useful if you are validating any one permission. 
     ///     Rather it is meant to define when either of these can be enabled.
     /// </summary>
-    public static bool IsKinksterAnchored(this IReadOnlyHardcoreState hs)
+    public static bool IsKinksterAnchored(this HardcoreState hs)
         => string.IsNullOrEmpty(hs.IndoorConfinement) || string.IsNullOrEmpty(hs.Imprisonment);
 
     /// <summary>
@@ -23,7 +24,7 @@ public static class HardcoreStateEx
     /// <param name="attribute"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public static bool IsEnabled(this IReadOnlyHardcoreState? hs, HcAttribute attribute)
+    public static bool IsEnabled(this HardcoreState? hs, HcAttribute attribute)
         => hs is null ? false : attribute switch
         {
             HcAttribute.Follow => !string.IsNullOrEmpty(hs.LockedFollowing),
@@ -41,7 +42,7 @@ public static class HardcoreStateEx
     ///     The enactor of <paramref name="attribute"/>.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public static string Enactor(this IReadOnlyHardcoreState hs, HcAttribute attribute)
+    public static string Enactor(this HardcoreState hs, HcAttribute attribute)
         => attribute switch
         {
             HcAttribute.Follow => hs.LockedFollowing.Split('|')[0],
@@ -59,7 +60,7 @@ public static class HardcoreStateEx
     ///     If the attribute is devotionally locked.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    public static bool IsDevotional(this IReadOnlyHardcoreState? hs, HcAttribute attribute)
+    public static bool IsDevotional(this HardcoreState? hs, HcAttribute attribute)
         => hs is null ? false : attribute switch
         {
             HcAttribute.Follow => hs.LockedFollowing.EndsWith(Constants.DevotedString),
@@ -73,13 +74,13 @@ public static class HardcoreStateEx
             _ => throw new NotImplementedException(),
         };
 
-    public static bool IsChatManipulated(this IReadOnlyHardcoreState? hs)
+    public static bool IsChatManipulated(this HardcoreState? hs)
         => hs is not null && (hs.ChatBoxesHidden.Length > 0 || hs.ChatInputHidden.Length > 0 || hs.ChatInputBlocked.Length > 0);
 
     /// <summary>
     ///     If the kinkster is able to change the hardcore state for <paramref name="attribute"/>.
     /// </summary>
-    public static bool CanChange(this IReadOnlyHardcoreState? hs, HcAttribute attribute, string kinksterUid)
+    public static bool CanChange(this HardcoreState? hs, HcAttribute attribute, string kinksterUid)
     {
         if (hs is null)
             return false;
@@ -100,10 +101,10 @@ public static class HardcoreStateEx
         return curState.EndsWith(Constants.DevotedString) ? curState.Split('|')[0].Equals(kinksterUid) : true;
     }
 
-    public static bool InGroundSitEmote(this IReadOnlyHardcoreState? hs)
+    public static bool InGroundSitEmote(this HardcoreState? hs)
         => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && GroundSitIdList.Contains(pt[1]);
-    public static bool InSitEmote(this IReadOnlyHardcoreState? hs)
+    public static bool InSitEmote(this HardcoreState? hs)
         => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && SitIdList.Contains(pt[1]);
-    public static bool InAnySitEmote(this IReadOnlyHardcoreState? hs)
+    public static bool InAnySitEmote(this HardcoreState? hs)
         => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && AnySitIdList.Contains(pt[1]);
 }

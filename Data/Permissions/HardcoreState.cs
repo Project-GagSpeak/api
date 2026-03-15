@@ -9,7 +9,7 @@ namespace GagspeakAPI.Data.Permissions;
 ///     This became nessisary as Hardcore's functionality grew.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record HardcoreStatus : IReadOnlyHardcoreState
+public record HardcoreState
 {
     // Locked Following
     public string LockedFollowing { get; set; } = string.Empty;

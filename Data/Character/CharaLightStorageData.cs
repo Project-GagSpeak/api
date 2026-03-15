@@ -84,7 +84,7 @@ public readonly record struct LightSlot(byte Slot, ulong CItemId = uint.MaxValue
 
 
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct LightItem(LightSlot Slot, string ModName, LightLoci LociItem, Traits Traits, Arousal Arousal);
+public readonly record struct LightItem(LightSlot Slot, string ModName, LightLoci LociData, Traits Traits, Arousal Arousal);
 
 
 [MessagePackObject(keyAsPropertyName: true)]
