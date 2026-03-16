@@ -4,7 +4,7 @@ namespace GagspeakAPI.Data;
 
 /// <summary> Generic Pattern Info retrieved from search results. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ServerDataLociStatus
+public record SharehubLociStatus
 {
     /// <summary> The Author of this server's Loci </summary>
     public string Author = string.Empty;

@@ -4,7 +4,7 @@ using MessagePack;
 namespace GagspeakAPI.Data;
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record ServerPatternInfo
+public record SharehubPattern
 {
     public int Version = 2;
 

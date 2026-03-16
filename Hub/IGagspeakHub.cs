@@ -121,15 +121,15 @@ public interface IGagspeakHub
     /// <summary> Likes a pattern you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
     Task<HubResponse> LikePattern(Guid patternId);
     /// <summary> Likes a Loci Status you see on the server. AddingLike==true means we liked it, false means we un-liked it. </summary>
-    Task<HubResponse> LikeLociStatus(Guid lociId);
+    Task<HubResponse> LikeLociStatus(Guid statusId);
     /// <summary> Deletes a pattern from the server. </summary>
     Task<HubResponse> DelistPattern(Guid patternId);
     /// <summary> Deletes a loci from the server. </summary>
-    Task<HubResponse> DelistLociStatus(Guid lociId);
+    Task<HubResponse> DelistLociStatus(Guid statusId);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerPatternInfo>>> SearchPatterns(SearchPattern dto);
+    Task<HubResponse<List<SharehubPattern>>> SearchPatterns(SearchPattern dto);
     /// <summary> Grabs the search result of your specified query to the server. </summary>
-    Task<HubResponse<List<ServerDataLociStatus>>> SearchLociData(SearchBase dto);
+    Task<HubResponse<List<SharehubLociStatus>>> SearchLociData(SearchBase dto);
 
     // ----- Client Vanity ------
     /// <summary> Sends a message to the gagspeak Global chat. </summary>

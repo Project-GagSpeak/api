@@ -45,7 +45,7 @@ public record PairPermAccess
     public bool PuppeteerEnabledAllowed             { get; set; } = false; // Global
     public PuppetPerms PuppetPermsAllowed           { get; set; } = PuppetPerms.None;
 
-    // Locis
+    // Loci
     public bool LociEnabledAllowed                  { get; set; } = false; // Global
     public LociAccess LociAccessAllowed             { get; set; } = LociAccess.None;
     public bool MaxLociTimeAllowed                  { get; set; } = false;
