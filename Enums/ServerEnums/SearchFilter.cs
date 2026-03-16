@@ -1,6 +1,6 @@
 namespace GagspeakAPI.Enums;
 
-public enum HubFilter
+public enum HubSortBy
 {
     Downloads,
     Likes,
@@ -18,7 +18,7 @@ public enum DurationLength
     ExtraLong, // over an hour
 }
 
-public enum HubDirection
+public enum SortDirection
 {
     Ascending,
     Descending,

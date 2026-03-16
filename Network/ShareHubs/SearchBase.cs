@@ -7,4 +7,4 @@ namespace GagspeakAPI.Network;
 ///     Basic Search Request.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record SearchBase(string Input, string[] Tags, HubFilter Filter, HubDirection Order);
+public record SearchBase(string Input, string[] Tags, HubSortBy Filter, SortDirection Order);
