@@ -115,6 +115,7 @@ public record RestraintAction : InvokableGsAction
 public record LociDataAction : InvokableGsAction
 {
     public override InvokableActionType ActionType => InvokableActionType.LociItem;
+    public NewState NewState { get; set; } = NewState.Enabled;
     public LociItem LociItem { get; set; } = new LociItem();
     public LociDataAction()
     { }
