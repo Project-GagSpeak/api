@@ -162,6 +162,7 @@ public static class EnumToName
 
         InteractionType.VibeControl => "Vibe Control",
         InteractionType.PiShockUpdate => "Shockies Update",
+        InteractionType.PairRequestReceived => "Pairing Request",
         _ => "UNK"
     };
 

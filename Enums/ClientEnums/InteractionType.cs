@@ -68,6 +68,7 @@ public enum InteractionType
 
     VisibilityChange,
     AppearanceChange,
+    PairRequestReceived,
 }
 
 public enum InteractionFilter
