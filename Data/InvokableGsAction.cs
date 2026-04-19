@@ -119,8 +119,11 @@ public record LociDataAction : InvokableGsAction
     public LociItem LociItem { get; set; } = new LociItem();
     public LociDataAction()
     { }
-    public LociDataAction(LociDataAction other) : base(other) 
-        => LociItem = other.LociItem;
+    public LociDataAction(LociDataAction other) : base(other)
+    {
+        NewState = other.NewState;
+        LociItem = new LociItem(other.LociItem);
+    }
 
     public override bool IsValid() => LociItem.Id != Guid.Empty;
 }
