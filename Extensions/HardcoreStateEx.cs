@@ -102,9 +102,9 @@ public static class HardcoreStateEx
     }
 
     public static bool InGroundSitEmote(this HardcoreState? hs)
-        => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && GroundSitIdList.Contains(pt[1]);
+        => hs is not null && (hs.LockedEmoteState.Length > 0 && GroundSitIdList.Contains(hs.EmoteId.ToString()));
     public static bool InSitEmote(this HardcoreState? hs)
-        => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && SitIdList.Contains(pt[1]);
+        => hs is not null && (hs.LockedEmoteState.Length > 0 && SitIdList.Contains(hs.EmoteId.ToString()));
     public static bool InAnySitEmote(this HardcoreState? hs)
-        => hs is null ? false : hs.LockedEmoteState.Split('|') is { Length: >= 2 } pt && AnySitIdList.Contains(pt[1]);
+        => hs is not null && (hs.LockedEmoteState.Length > 0 && AnySitIdList.Contains(hs.EmoteId.ToString()));
 }
