@@ -68,6 +68,8 @@ public enum InteractionType
 
     VisibilityChange,
     AppearanceChange,
+        
+    GarblerChannelChange,
 }
 
 public enum InteractionFilter
