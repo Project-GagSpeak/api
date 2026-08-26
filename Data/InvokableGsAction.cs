@@ -1,3 +1,4 @@
+using GagspeakAPI.Attributes;
 using GagspeakAPI.Enums;
 using MessagePack;
 
@@ -95,6 +96,7 @@ public record RestraintAction : InvokableGsAction
     public override InvokableActionType ActionType => InvokableActionType.Restraint;
     public NewState NewState { get; set; } = NewState.Enabled;
     public Guid RestrictionId { get; set; } = Guid.Empty;
+    public RestraintLayer Layers { get; set; } = RestraintLayer.None;
     public Padlocks Padlock { get; set; } = Padlocks.None;
     public TimeSpan LowerBound { get; set; } = TimeSpan.Zero;
     public TimeSpan UpperBound { get; set; } = TimeSpan.Zero;
@@ -103,6 +105,7 @@ public record RestraintAction : InvokableGsAction
     {
         NewState = other.NewState;
         RestrictionId = other.RestrictionId;
+        Layers = other.Layers;
         Padlock = other.Padlock;
         LowerBound = other.LowerBound;
         UpperBound = other.UpperBound;
