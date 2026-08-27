@@ -62,7 +62,7 @@ public record GagAction : InvokableGsAction
         UpperBound = other.UpperBound;
     }
 
-    public override bool IsValid() => GagType is not GagType.None || Padlock is not Padlocks.None;
+    public override bool IsValid() => NewState is NewState.Disabled || GagType is not GagType.None || Padlock is not Padlocks.None;
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
@@ -86,7 +86,7 @@ public record RestrictionAction : InvokableGsAction
         UpperBound = other.UpperBound;
     }
 
-    public override bool IsValid() => RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
+    public override bool IsValid() => NewState is NewState.Disabled || RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
 
 }
 
@@ -111,7 +111,7 @@ public record RestraintAction : InvokableGsAction
         UpperBound = other.UpperBound;
     }
 
-    public override bool IsValid() => RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
+    public override bool IsValid() => NewState is NewState.Disabled || RestrictionId != Guid.Empty || Padlock is not Padlocks.None;
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
