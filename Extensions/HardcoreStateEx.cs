@@ -11,15 +11,15 @@ public static class HardcoreStateEx
     private static readonly string[] AnySitIdList = SitIdList.Concat(GroundSitIdList).ToArray();
 
     /// <summary>
-    ///     If this kinkster is anchored to confinement or imprisonment. <para />
-    ///     This is not useful if you are validating any one permission. 
-    ///     Rather it is meant to define when either of these can be enabled.
+    ///   If this kinkster is anchored to confinement or imprisonment. <para />
+    ///   This is not useful if you are validating any one permission. 
+    ///   Rather it is meant to define when either of these can be enabled.
     /// </summary>
     public static bool IsKinksterAnchored(this HardcoreState hs)
         => string.IsNullOrEmpty(hs.IndoorConfinement) || string.IsNullOrEmpty(hs.Imprisonment);
 
     /// <summary>
-    ///     If the hardcore state for <paramref name="attribute"/> is enabled.
+    ///   If the hardcore state for <paramref name="attribute"/> is enabled.
     /// </summary>
     /// <param name="attribute"></param>
     /// <returns></returns>
@@ -39,7 +39,7 @@ public static class HardcoreStateEx
         };
 
     /// <summary>
-    ///     The enactor of <paramref name="attribute"/>.
+    ///   The enactor of <paramref name="attribute"/>.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     public static string Enactor(this HardcoreState hs, HcAttribute attribute)
@@ -57,7 +57,7 @@ public static class HardcoreStateEx
         };
 
     /// <summary>
-    ///     If the attribute is devotionally locked.
+    ///   If the attribute is devotionally locked.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     public static bool IsDevotional(this HardcoreState? hs, HcAttribute attribute)
@@ -78,7 +78,7 @@ public static class HardcoreStateEx
         => hs is not null && (hs.ChatBoxesHidden.Length > 0 || hs.ChatInputHidden.Length > 0 || hs.ChatInputBlocked.Length > 0);
 
     /// <summary>
-    ///     If the kinkster is able to change the hardcore state for <paramref name="attribute"/>.
+    ///   If the kinkster is able to change the hardcore state for <paramref name="attribute"/>.
     /// </summary>
     public static bool CanChange(this HardcoreState? hs, HcAttribute attribute, string kinksterUid)
     {

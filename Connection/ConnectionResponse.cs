@@ -1,14 +1,16 @@
 using GagspeakAPI.Data;
 using GagspeakAPI.Data.Permissions;
+using GagspeakAPI.Network;
+using GagspeakAPI.User;
 using MessagePack;
 
-namespace GagspeakAPI.Network;
+namespace GagspeakAPI.Connection;
 
 /// <summary> 
-///     The data send to a client that just successfully connected to GagSpeak servers.
+///   The data send to a client that just successfully connected to GagSpeak servers.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public record ConnectionResponse(UserData User, List<string> AccountProfileUids) : KinksterBase(User)
+public record ConnectionResponse(UserData User, List<string> AccountProfileUids) : UserDto(User)
 {
     public Version CurrentClientVersion { get; set; } = new(0, 0, 0);
     public int ServerVersion { get; set; }
@@ -29,8 +31,8 @@ public record ConnectionResponse(UserData User, List<string> AccountProfileUids)
 }
 
 /// <summary> 
-///     Initial Data to retrieve from the ShareHubs upon initial connection. <para />
-///     (helps avoid excess server calls, only performing when necessary)
+///   Initial Data to retrieve from the ShareHubs upon initial connection. <para />
+///   (helps avoid excess server calls, only performing when necessary)
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record LobbyAndHubInfoResponse(List<string> HubTags)

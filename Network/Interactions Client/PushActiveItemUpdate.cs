@@ -1,12 +1,13 @@
 using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     The Updated GagSlot Data for the client, sent to all <paramref name="Recipients"/>
+///   The Updated GagSlot Data for the client, sent to all <paramref name="Recipients"/>
 /// </summary>
 /// <param name="Recipients"> the Client's pairs. </param>
 /// <param name="Type"> The type of update that was made. </param> 
@@ -24,7 +25,7 @@ public record PushClientActiveGagSlot(List<UserData> Recipients, DataUpdateType 
 }
 
 /// <summary>
-///     New ActiveRestrictionData for the client, sent to all <paramref name="Recipients"/>
+///   New ActiveRestrictionData for the client, sent to all <paramref name="Recipients"/>
 /// </summary>
 /// <param name="Recipients"> the Client's pairs. </param>
 /// <param name="Type"> The type of update that was made. </param> 
@@ -41,7 +42,7 @@ public record PushClientActiveRestriction(List<UserData> Recipients, DataUpdateT
 }
 
 /// <summary>
-///     New ActiveRestrictionData for the client, sent to all <paramref name="Recipients"/>
+///   New ActiveRestrictionData for the client, sent to all <paramref name="Recipients"/>
 /// </summary>
 /// <param name="Recipients"> the Client's pairs. </param>
 /// <param name="Type"> The type of update that was made. </param>
@@ -58,7 +59,7 @@ public record PushClientActiveRestraint(List<UserData> Recipients, DataUpdateTyp
 }
 
 /// <summary>
-///     The Updated Collar Data for the client, that will be sent to all pairs.
+///   The Updated Collar Data for the client, that will be sent to all pairs.
 /// </summary>
 /// <param name="Recipients"> the Client's Kinkster pairs. </param>
 /// <param name="Type"> The type of update that was made. </param>
@@ -79,8 +80,8 @@ public record PushClientActiveCollar(List<UserData> Recipients, DataUpdateType T
 
 
 /// <summary>
-///     Sends the new list of cursed <paramref name="ActiveItems"/> for the client to their Kinkster pairs,
-///     including the <paramref name="ChangeItem"/> that was applied or removed.
+///   Sends the new list of cursed <paramref name="ActiveItems"/> for the client to their Kinkster pairs,
+///   including the <paramref name="ChangeItem"/> that was applied or removed.
 /// </summary>
 /// <remarks> If <paramref name="LootItem"/> is null, the item was removed. </remarks>
 [MessagePackObject(keyAsPropertyName: true)]

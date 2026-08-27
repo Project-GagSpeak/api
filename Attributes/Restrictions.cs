@@ -1,7 +1,7 @@
 namespace GagspeakAPI.Attributes;
 
 /// <summary>
-///     Represents the type of restriction that is being applied.
+///   Represents the type of restriction that is being applied.
 /// </summary>
 public enum RestrictionType
 {
@@ -11,7 +11,7 @@ public enum RestrictionType
 }
 
 /// <summary>
-///     The type of slot that is being applied.
+///   The type of slot that is being applied.
 /// </summary>
 public enum RestraintSlotType
 {
@@ -20,7 +20,7 @@ public enum RestraintSlotType
 }
 
 /// <summary>
-///     Represents the type of layer for restraint sets.
+///   Represents the type of layer for restraint sets.
 /// </summary>
 public enum RestraintLayerType
 {
@@ -29,7 +29,7 @@ public enum RestraintLayerType
 }
 
 /// <summary>
-///     Access areas for a collar restriction that can be modified.
+///   Access areas for a collar restriction that can be modified.
 /// </summary>
 [Flags]
 public enum CollarAccess : byte

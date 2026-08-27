@@ -5,8 +5,8 @@ using System.Numerics;
 namespace GagspeakAPI.Data.Permissions;
 
 /// <summary>
-///     a secondary set of 'Global Permissions' for a kinksters Hardcore state. <para />
-///     This became nessisary as Hardcore's functionality grew.
+///   a secondary set of 'Global Permissions' for a kinksters Hardcore state. <para />
+///   This became nessisary as Hardcore's functionality grew.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record HardcoreState

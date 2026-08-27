@@ -3,7 +3,7 @@ using GagspeakAPI.Extensions;
 namespace GagspeakAPI.Attributes;
 
 /// <summary>
-///     Flag-Based Enum detailing the various attributes of a Restraint Item.
+///   Flag-Based Enum detailing the various attributes of a Restraint Item.
 /// </summary>
 /// <remarks> May be removed later after a rework to cache management. </remarks>
 [Flags]
@@ -42,7 +42,7 @@ public enum RestraintLayer : byte
 public static class RSLayerExtensions
 {
     /// <summary>
-    ///     Yields each set bit as its layer idx (0-4), will need to +1 for keys.
+    ///   Yields each set bit as its layer idx (0-4), will need to +1 for keys.
     /// </summary>
     public static IEnumerable<int> GetLayerIndices(this RestraintLayer layers)
     {

@@ -1,12 +1,13 @@
 using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     Sent to the client's pairs when the enabled state / visuals of item is changed.
+///   Sent to the client's pairs when the enabled state / visuals of item is changed.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushItemEnabledState(List<UserData> Recipients, GSModule Module, Guid ItemId, bool NewState);

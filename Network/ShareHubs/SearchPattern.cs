@@ -5,7 +5,7 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     Composition Record for Search request for patterns.
+///   Composition Record for Search request for patterns.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record SearchPattern(string Input, string[] Tags, HubSortBy Filter, SortDirection Order) : SearchBase(Input, Tags, Filter, Order)

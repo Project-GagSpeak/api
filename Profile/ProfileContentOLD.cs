@@ -4,12 +4,11 @@ using MessagePack;
 namespace GagspeakAPI.Data;
 
 /// <summary> 
-///     KinkPlate™ Content stored in a Kinksters profile, storing the selected cosmetic info.
+///   KinkPlate™ Content stored in a Kinksters profile, storing the selected cosmetic info.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record KinkPlateContent
 {
-    public bool           IsPublic          { get; set; } = false;
     public bool           Flagged           { get; set; } = false; // if pending review
     public PublicityScope AvatarVis         { get; set; } = PublicityScope.Private;
     public PublicityScope DescriptionVis    { get; set; } = PublicityScope.Private;

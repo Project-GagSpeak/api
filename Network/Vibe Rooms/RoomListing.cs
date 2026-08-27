@@ -3,7 +3,7 @@ using MessagePack;
 namespace GagspeakAPI.Network;
 
 /// <summary>
-///     A listing for a public room that can be joined if space is available.
+///   A listing for a public room that can be joined if space is available.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record RoomListing(string Name, int MaxParticipants)

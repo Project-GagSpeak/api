@@ -4,7 +4,7 @@ namespace GagspeakAPI;
 public static class Constants
 {
     /// <summary>
-    ///     The Maximum number of Garbler Restriction Slots.
+    ///   The Maximum number of Garbler Restriction Slots.
     /// </summary>
     public const int MaxGagSlots = 3;
 
@@ -14,17 +14,17 @@ public static class Constants
     public const int MaxRestrictionSlots = 5;
 
     /// <summary>
-    ///     The Maximum number of Restraint Layers.
+    ///   The Maximum number of Restraint Layers.
     /// </summary>
     public const int MaxRestraintLayers = 5;
 
     /// <summary>
-    ///     Denotes if an action was applied by the client and not another pair.
+    ///   Denotes if an action was applied by the client and not another pair.
     /// </summary>
     public const string SelfApplied = "SelfApplied";
 
     /// <summary>
-    ///     Denote that the permission can only be unlocked by the applierUID defined to the left of the |pairlocked
+    ///   Denote that the permission can only be unlocked by the applierUID defined to the left of the |pairlocked
     /// </summary>
     public const string DevotedString = "|pairlocked";
 

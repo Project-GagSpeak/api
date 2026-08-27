@@ -1,6 +1,7 @@
 using GagspeakAPI.Attributes;
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
@@ -11,7 +12,7 @@ namespace GagspeakAPI.Network;
 /// <param name="Target"> The Kinkster that the update is for. </param>
 /// <param name="Type"> The type of update that was made. </param>
 [MessagePackObject(keyAsPropertyName: true)]
-public record PushKinksterActiveRestraint(UserData Target, DataUpdateType Type) : KinksterBase(Target), IPadlockable
+public record PushKinksterActiveRestraint(UserData Target, DataUpdateType Type) : UserDto(Target), IPadlockable
 {
     public Guid ActiveSetId { get; init; } = Guid.Empty;
     public RestraintLayer ActiveLayers { get; init; } = RestraintLayer.None;

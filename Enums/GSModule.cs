@@ -1,7 +1,7 @@
 namespace GagspeakAPI.Enums;
 
 /// <summary>
-///     The various Modules throughout GagSpeak
+///   The various Modules throughout GagSpeak
 /// </summary>
 public enum GSModule
 {

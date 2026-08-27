@@ -1,13 +1,14 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
 
 /// <summary> 
-///     DTO Holding the Kinkster, and the desired achievement data string.
+///   DTO Holding the Kinkster, and the desired achievement data string.
 /// </summary>
 /// <remarks>
-///     The Data string is the compressed string of achievement data from the user.
+///   The Data string is the compressed string of achievement data from the user.
 /// </remarks>
 [MessagePackObject(keyAsPropertyName: true)]
-public record AchievementsUpdate(UserData User, string? AchievementDataBase64) : KinksterBase(User);
+public record AchievementsUpdate(UserData User, string? AchievementDataBase64) : UserDto(User);

@@ -4,7 +4,7 @@ using GagspeakAPI.Enums;
 namespace GagspeakAPI.Extensions;
 
 /// <summary> 
-///     Extentions for setting and getting BuzzToy information.
+///   Extentions for setting and getting BuzzToy information.
 /// </summary>
 public static class ToyExtensions
 {

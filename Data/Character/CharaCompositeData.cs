@@ -8,7 +8,7 @@ namespace GagspeakAPI.Data;
 // requiring the end user to compare the previous lists to the new one to get what was added or removed.
 // but we don't yet know what implications that will have.
 /// <summary> 
-///     Only sent to people once when they login, or after a safeword. 
+///   Only sent to people once when they login, or after a safeword. 
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaCompositeActiveData

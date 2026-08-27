@@ -44,7 +44,7 @@ public static class PropertyChanger
     }
 
     /// <summary>
-    ///     Converts a value type to its proper handle, correcting what it got changed to on the server's end.
+    ///   Converts a value type to its proper handle, correcting what it got changed to on the server's end.
     /// </summary>
     /// <param name="type"> The type to convert to.</param>
     /// <param name="rawValue"> The raw value to convert.</param>

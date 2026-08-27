@@ -1,4 +1,5 @@
 using GagspeakAPI.Data;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;

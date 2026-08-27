@@ -1,3 +1,5 @@
+using GagspeakAPI.User;
+
 namespace GagspeakAPI.Data.Comparer;
 #pragma warning disable IDE1006 // Naming Styles
 

@@ -1,11 +1,12 @@
 using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
+using GagspeakAPI.User;
 using MessagePack;
 
 namespace GagspeakAPI.Network;
 
 /// <summary> 
-///     Modifies the enabled state. Item of another Kinkstera Kinkster Pair's active Pattern, then syncs the update with that kinksters pairs. </summary>
+///   Modifies the enabled state. Item of another Kinkstera Kinkster Pair's active Pattern, then syncs the update with that kinksters pairs. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record PushKinksterEnabledState(UserData Target, GSModule Module, Guid ItemId, bool NewState)
 {

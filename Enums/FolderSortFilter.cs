@@ -2,8 +2,8 @@ namespace GagspeakAPI.Enums;
 
 
 /// <summary>
-///     Can rearrange the order these are listed in the folder 
-///     to adjust sort priority.
+///   Can rearrange the order these are listed in the folder 
+///   to adjust sort priority.
 /// </summary>
 public enum FolderSortFilter
 {

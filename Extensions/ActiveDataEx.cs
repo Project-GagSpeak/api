@@ -5,7 +5,7 @@ using GagspeakAPI.Util;
 namespace GagspeakAPI.Extensions;
 
 /// <summary> 
-///     An extention class for available helper methods with gag data.
+///   An extention class for available helper methods with gag data.
 /// </summary>
 public static class ActiveDataEx
 {

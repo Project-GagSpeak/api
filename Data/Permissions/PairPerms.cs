@@ -83,7 +83,7 @@ public record PairPerms
     public TimeSpan     MaxVibrateDuration        { get; set; } = TimeSpan.Zero; // separate value since vibrations have diff limits.
 
     /// <summary>
-    ///     If these permissions indicate a recipient having Puppeteer control.
+    ///   If these permissions indicate a recipient having Puppeteer control.
     /// </summary>
     public bool IsMarionette() => !string.IsNullOrWhiteSpace(TriggerPhrase) && PuppetPerms != 0;
 

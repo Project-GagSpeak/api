@@ -37,7 +37,23 @@ public enum GagSpeakApiEc
     /// <summary> A Request for the recipient was already made by the sender. </summary>
     AlreadyExists = 10,
 
+    /// <summary> Attempted to leave a group or place, but you never joined it. </summary>
+    AlreadyLeft = 11,
 
+    /// <summary> Invalid access level to perform the interaction. </summary>
+    AccessRestriction = 12,
+
+    InvalidVanityTier = 13,
+
+    // ---- Chat Related Errors ----
+    /// <summary> The provided ChatlogId does not exist, or you were not in it. </summary>
+    ChatNotFound,
+
+    /// <summary> Attempted to do a chat related call for a user not part of the chat. </summary>
+    NotChatParticipant,
+
+    // ----- Request Errors
+    RequestNotFound,
 
     // ----- ShareHub Spesific Errors -----
 

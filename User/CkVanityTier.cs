@@ -1,8 +1,8 @@
-namespace GagspeakAPI.Enums;
+namespace GagspeakAPI.User;
 
 
 /// <summary> Vanity Tier, if any. </summary>
-public enum CkSupporterTier
+public enum CkVanityTier
 {
     NoRole = 0,
     IllustriousSupporter = 1,

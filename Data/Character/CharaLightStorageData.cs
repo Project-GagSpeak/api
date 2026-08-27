@@ -5,9 +5,9 @@ using MessagePack;
 namespace GagspeakAPI.Data;
 
 /// <summary>
-///     Holds a lightweight version of the Client's storage to pass off to their Kinksters on connection. <para />
-///     <b>Should only ever be sent on connection.</b> <para />
-///     Folder structure mapping should be sent seperately as a base64 string.
+///   Holds a lightweight version of the Client's storage to pass off to their Kinksters on connection. <para />
+///   <b>Should only ever be sent on connection.</b> <para />
+///   Folder structure mapping should be sent seperately as a base64 string.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public class CharaLightStorageData

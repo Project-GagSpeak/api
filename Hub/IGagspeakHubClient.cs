@@ -1,27 +1,35 @@
-using GagspeakAPI.Data;
+using GagspeakAPI.Chat;
+using GagspeakAPI.Connection;
 using GagspeakAPI.Dto.VibeRoom;
 using GagspeakAPI.Enums;
 using GagspeakAPI.Network;
+using GagspeakAPI.User;
+using SundouleiaAPI.Reporting;
 
 namespace GagspeakAPI.Hub;
 
 /// <summary> All OnCallback actions. </summary>
 public interface IGagspeakHubClient : IGagspeakHub
 {
-    // General server messages
+    #region Callbacks (Connection Responses)
     void OnServerMessage(Action<MessageSeverity, string> act);
     void OnHardReconnectMessage(Action<MessageSeverity, string, ServerState> act);
+    void OnUserFlaggedForReport(Action<ReportKind, string> act);
+    void OnReputationInfo(Action<UserReputation, string> act);
     void OnServerInfo(Action<ServerInfoResponse> act);
+    #endregion
 
-    // Pairing and requests
-    void OnAddClientPair(Action<KinksterPair> act);
-    void OnRemoveClientPair(Action<KinksterBase> act);
+    #region Callbacks (Pairs/Requests)
+    void OnAddPair(Action<KinksterPair> act);
+    void OnRemovePair(Action<UserDto> act);
+    void OnPersistPair(Action<UserDto> act);
     void OnAddPairRequest(Action<KinksterRequest> act);
     void OnRemovePairRequest(Action<KinksterRequest> act);
     void OnAddCollarRequest(Action<CollarRequest> act);
     void OnRemoveCollarRequest(Action<CollarRequest> act);
+    #endregion
 
-    // Loci updates
+    #region Callbacks (Locis)
     void OnLociDataUpdated(Action<LociDataUpdate> act);
     void OnLociStatusesUpdate(Action<LociStatusesUpdate> act);
     void OnLociPresetsUpdate(Action<LociPresetsUpdate> act);
@@ -30,17 +38,19 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnLociApplyDataById(Action<ApplyLociDataById> act);
     void OnLociApplyStatus(Action<ApplyLociStatus> act);
     void OnLociRemoveData(Action<RemoveLociData> act);
-    void OnLociClearData(Action<KinksterBase> act);
+    void OnLociClearData(Action<UserDto> act);
+    #endregion
 
-    // Permission updates
+    #region Callbacks (Permissions)
     void OnBulkChangeGlobal(Action<BulkChangeGlobal> act);
     void OnBulkChangeUnique(Action<BulkChangeUnique> act);
     void OnSingleChangeGlobal(Action<SingleChangeGlobal> act);
     void OnSingleChangeUnique(Action<SingleChangeUnique> act);
     void OnSingleChangeAccess(Action<SingleChangeAccess> act);
     void OnStateChangeHardcore(Action<HardcoreStateChange> act);
+    #endregion
 
-    // Own or pair data updates
+    #region Callbacks (Data Updates)
     void OnKinksterUpdateComposite(Action<KinksterUpdateComposite> act);
     void OnKinksterUpdateActiveGag(Action<KinksterUpdateActiveGag> act);
     void OnKinksterUpdateActiveRestriction(Action<KinksterUpdateActiveRestriction> act);
@@ -55,8 +65,9 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnListenerName(Action<SendNameAction> act);
     void OnShockInstruction(Action<ShockCollarAction> act);
     void OnHypnoticEffect(Action<HypnoticAction> act);
+    #endregion
 
-    // Kinkster updates
+    #region Callbacks (Light Storage Updates)
     void OnKinksterNewGagData(Action<KinksterNewGagData> act);
     void OnKinksterNewRestrictionData(Action<KinksterNewRestrictionData> act);
     void OnKinksterNewRestraintData(Action<KinksterNewRestraintData> act);
@@ -66,15 +77,18 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnKinksterNewPatternData(Action<KinksterNewPatternData> act);
     void OnKinksterNewAlarmData(Action<KinksterNewAlarmData> act);
     void OnKinksterNewTriggerData(Action<KinksterNewTriggerData> act);
+    #endregion
 
-    // Chat and status
-    void OnChatMessageGlobal(Action<ChatMessageGlobal> act);
-    void OnKinksterOffline(Action<KinksterBase> act);
+    #region Callbacks (UserState / Misc.)
     void OnKinksterOnline(Action<OnlineKinkster> act);
-    void OnProfileUpdated(Action<KinksterBase> act);
+    void OnKinksterOffline(Action<UserDto> act);
+    void OnUserVanityUpdated(Action<UserDto> act);
+    void OnUserProfileUpdated(Action<UserDto> act);
     void OnShowVerification(Action<VerificationCode> act);
+    void OnChatMessageReceived(Action<ChatlogMessage> act);
+    #endregion
 
-    // Room events
+    #region VibeRooms
     void OnRoomJoin(Action<RoomParticipant> act);
     void OnRoomLeave(Action<UserData> act);
     void OnRoomAddInvite(Action<RoomInvite> act);
@@ -84,4 +98,5 @@ public interface IGagspeakHubClient : IGagspeakHub
     void OnRoomAccessGranted(Action<UserData> act);
     void OnRoomAccessRevoked(Action<UserData> act);
     void OnRoomChatMessage(Action<UserData, string> act);
+    #endregion
 }

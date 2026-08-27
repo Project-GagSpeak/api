@@ -10,8 +10,8 @@ public enum RemoteType
 }
 
 /// <summary>
-///     Type of Motor for a Buzztoy.
-///     Keep index's static.
+///   Type of Motor for a Buzztoy.
+///   Keep index's static.
 /// </summary>
 [Flags]
 public enum ToyMotor
@@ -26,8 +26,8 @@ public enum ToyMotor
 }
 
 /// <summary>
-///     The Brand Name associated with a Toy. <para/>
-///     Lovense will release new toys, and other devies may be added, so keep index's static to not disrupt Database.
+///   The Brand Name associated with a Toy. <para/>
+///   Lovense will release new toys, and other devies may be added, so keep index's static to not disrupt Database.
 /// </summary>
 public enum ToyBrandName : int
 {
