@@ -10,6 +10,7 @@ public enum FolderSortFilter
     Rendered,       // Rendered kinksters first.
     Online,         // Online kinksters first.
     Favorite,       // Favorite kinksters first.
+    Temporary,      // Temporary kinksters first.
     Alphabetical,   // Default behavior.
     DateAdded,      // When the pair was established.
 }

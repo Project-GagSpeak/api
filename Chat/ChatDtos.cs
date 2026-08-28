@@ -1,4 +1,3 @@
-﻿using GagspeakAPI.Data;
 using GagspeakAPI.User;
 using MessagePack;
 
@@ -11,7 +10,7 @@ namespace GagspeakAPI.Chat;
 public readonly record struct ChatlogId(GsChatKind Kind, string ChatId) : IEquatable<ChatlogId>
 {
     public static readonly ChatlogId Invalid = new(GsChatKind.Direct, string.Empty);
-
+    public static readonly ChatlogId GlobalChat = new(GsChatKind.Global, "GlobalChat");
     public bool Equals(ChatlogId other)
         => ChatId == other.ChatId;
 
@@ -21,7 +20,7 @@ public readonly record struct ChatlogId(GsChatKind Kind, string ChatId) : IEquat
 
 /// <summary> A Message stored on the server holding nessisary info for recovery between sessions. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct ChatlogMessage(ChatlogId ChatID, string MsgId, DateTime TimeSentUTC, UserData Sender, string Message, byte[] Contents)
+public readonly record struct ChatlogMessage(ChatlogId Chatlog, string MsgId, DateTime TimeSentUTC, UserData Sender, string Message, byte[] Contents)
 {
     public ushort GlobalChatFlags { get; init; } = 0;
 }

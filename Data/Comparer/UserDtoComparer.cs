@@ -1,4 +1,3 @@
-using GagspeakAPI.Network;
 using GagspeakAPI.User;
 
 namespace GagspeakAPI.Data.Comparer;

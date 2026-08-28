@@ -1,4 +1,4 @@
-using GagspeakAPI.Enums;
+using GagspeakAPI.Chat;
 using MessagePack;
 
 namespace GagspeakAPI.User;
@@ -18,6 +18,9 @@ public record UserData(
 {
     [IgnoreMember] public string AliasOrUID => Alias ?? UID;
     [IgnoreMember] public string VanityOrAnonName => VanityName ?? AnonName;
-    [IgnoreMember] public string AnonName => "Anon.Kinkster-" + UID[^4..];
+    [IgnoreMember] public string AnonName => "Kinkster-" + UID[^4..];
     [IgnoreMember] public string AnonTag => UID[^4..];
 }
+
+[MessagePackObject(keyAsPropertyName: true)]
+public record GlobalChatMember(UserData User, ChatFlags Flags) : UserDto(User);

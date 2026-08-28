@@ -1,5 +1,4 @@
 using GagspeakAPI.Attributes;
-using GagspeakAPI.Data;
 using GagspeakAPI.Enums;
 using GagspeakAPI.User;
 using MessagePack;

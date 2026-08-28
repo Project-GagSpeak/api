@@ -6,10 +6,8 @@ using GagspeakAPI.Dto.Sharehub;
 using GagspeakAPI.Dto.VibeRoom;
 using GagspeakAPI.Enums;
 using GagspeakAPI.Network;
-using GagspeakAPI.Profiles;
 using GagspeakAPI.Reporting;
 using GagspeakAPI.User;
-using SundouleiaAPI.Reporting;
 
 namespace GagspeakAPI.Hub;
 

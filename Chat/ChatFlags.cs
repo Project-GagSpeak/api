@@ -1,4 +1,4 @@
-namespace SundouleiaAPI.Radar;
+namespace GagspeakAPI.Chat;
 
 /// <summary>
 ///   WHat is allowed in GlobalChat

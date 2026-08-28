@@ -60,6 +60,7 @@ public enum CoreTexture
     Blindfolded,
     Bound,
     ChatBlocked,
+    ChangelogBanner,
     CircleDot,
     Clock,
     Collar,

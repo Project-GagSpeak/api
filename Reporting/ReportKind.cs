@@ -1,4 +1,4 @@
-namespace SundouleiaAPI.Reporting;
+namespace GagspeakAPI.Reporting;
 
 public enum ReportKind
 {

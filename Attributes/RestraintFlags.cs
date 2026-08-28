@@ -1,5 +1,3 @@
-using GagspeakAPI.Extensions;
-
 namespace GagspeakAPI.Attributes;
 
 /// <summary>
