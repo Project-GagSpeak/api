@@ -143,7 +143,7 @@ public interface IGagspeakHub
     Task<List<OnlineKinkster>> GetOnlineKinksters();
     /// <summary> Requests the list of all current Kinkster Requests active for the caller. </summary>
     Task<ActiveRequests> GetRequests();
-    Task<List<ChatlogMessage>> GetChatHistory(ChatHistoryRequest dto);
+    Task<ChatHistoryResult> GetChatHistory(ChatHistoryRequest dto);
     /// <summary> Retrieve the ProfileData for a User. </summary>
     Task<KinkPlateFull> GetKinkplate(UserDto user);
     /// <summary> Retrieves the profileData for a list of users. </summary>

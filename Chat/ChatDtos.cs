@@ -32,7 +32,14 @@ public readonly record struct SentMessage(ChatlogId ChatID, UserData Sender, str
     public ushort GlobalChatFlags { get; init; } = 0;
 }
 
+// Internally, prevent over 100 from being polled. Global chat will always pull 200.
 [MessagePackObject(keyAsPropertyName: true)]
-public record ChatHistoryRequest(ChatlogId Id, int total = 250);
+public record ChatHistoryRequest(List<UserData> DMs, bool FetchGlobal, int total = 50);
+
+// All associated chats, along with global chat.
+[MessagePackObject(keyAsPropertyName: true)]
+public record ChatHistoryResult(Dictionary<ChatlogId, List<ChatlogMessage>> ChatHistory);
+
+
 
 
