@@ -17,10 +17,11 @@ public record UserData(
     DateTime? CreatedOn = null)
 {
     [IgnoreMember] public string AliasOrUID => Alias ?? UID;
+    // TODO: Shift this over to userdata so we have the legacy bool in here? Idk
     [IgnoreMember] public string VanityOrAnonName => VanityName ?? AnonName;
     [IgnoreMember] public string AnonName => "Kinkster-" + UID[^4..];
     [IgnoreMember] public string AnonTag => UID[^4..];
 }
 
 [MessagePackObject(keyAsPropertyName: true)]
-public record GlobalChatMember(UserData User, ChatFlags Flags) : UserDto(User);
+public record GlobalChatMember(UserData User, bool LegacyId, ChatFlags Flags) : UserDto(User);

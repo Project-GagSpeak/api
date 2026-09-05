@@ -20,17 +20,16 @@ public readonly record struct ChatlogId(GsChatKind Kind, string ChatId) : IEquat
 
 /// <summary> A Message stored on the server holding nessisary info for recovery between sessions. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct ChatlogMessage(ChatlogId Chatlog, string MsgId, DateTime TimeSentUTC, UserData Sender, string Message, byte[] Contents)
+public readonly record struct ChatlogMessage(ChatlogId Chatlog, string MsgId, DateTime TimeSentUTC, UserData Sender, string Message, byte[] Contents, bool LegacyId)
 {
-    public ushort GlobalChatFlags { get; init; } = 0;
+    public ChatFlags Flags { get; init; } = ChatFlags.AllowProfileViewing | ChatFlags.AllowRequests;
+
+    [IgnoreMember] public string KinksterTag => LegacyId ? Sender.UID[^4..] : Sender.UID[^3..];
 }
 
 /// <summary> The contents of a sent chat message. </summary>
 [MessagePackObject(keyAsPropertyName: true)]
-public readonly record struct SentMessage(ChatlogId ChatID, UserData Sender, string Message, byte[] Contents)
-{
-    public ushort GlobalChatFlags { get; init; } = 0;
-}
+public readonly record struct SentMessage(ChatlogId ChatID, UserData Sender, string Message, byte[] Contents, bool LegacyId, ChatFlags Flags);
 
 // Internally, prevent over 100 from being polled. Global chat will always pull 200.
 [MessagePackObject(keyAsPropertyName: true)]
