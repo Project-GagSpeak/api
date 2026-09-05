@@ -22,9 +22,9 @@ public readonly record struct ChatlogId(GsChatKind Kind, string ChatId) : IEquat
 [MessagePackObject(keyAsPropertyName: true)]
 public readonly record struct ChatlogMessage(ChatlogId Chatlog, string MsgId, DateTime TimeSentUTC, UserData Sender, string Message, byte[] Contents, bool LegacyId)
 {
-    public ChatFlags Flags { get; init; } = ChatFlags.AllowProfileViewing | ChatFlags.AllowRequests;
+    public ChatFlags Flags { get; init; } = ChatFlags.AllowProfileViewing | ChatFlags.UseDisplayName | ChatFlags.AllowRequests;
 
-    [IgnoreMember] public string KinksterTag => LegacyId ? Sender.UID[^4..] : Sender.UID[^3..];
+    [IgnoreMember] public string KinksterTag => LegacyId ? Sender.UID[^3..] : Sender.UID[^4..];
 }
 
 /// <summary> The contents of a sent chat message. </summary>
