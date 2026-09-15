@@ -14,6 +14,7 @@ public enum ServerState
     // Error Messages
     Unauthorized,
     VersionMisMatch,
+    Unattached,
     NoSecretKey,
     // Occurs from Discord
     ForcedReconnect,
