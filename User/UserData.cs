@@ -4,7 +4,7 @@ using MessagePack;
 namespace GagspeakAPI.User;
 
 /// <summary>
-///   Reflects the main information of a Sundouleia user. <para />
+///   Reflects the main information of a Kinkster. <para />
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserData(

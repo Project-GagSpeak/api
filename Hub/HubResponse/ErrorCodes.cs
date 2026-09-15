@@ -85,7 +85,7 @@ public enum GagSpeakApiEc
 
 
     // ----- Interaction Specific Errors -----
-    /// <summary> Cannot use temporary-related interaction on permanent sundesmo. </summary>
+    /// <summary> Cannot use temporary-related interaction on permanent Kinkster. </summary>
     AlreadyPermanent,
 
     /// <summary> Cant send Request to someone already paired. </summary>

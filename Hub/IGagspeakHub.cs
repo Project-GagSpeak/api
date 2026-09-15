@@ -101,9 +101,8 @@ public interface IGagspeakHub
     #endregion
 
     #region Callbacks (UserState / Misc.)
-    /// <summary> Whenever one of our Sundesmo connects to Sundouleia. </summary>
     Task Callback_KinksterOnline(OnlineKinkster dto);
-    /// <summary> Whenever one of our Sundesmo disconnects from Sundouleia. </summary>
+    /// <summary> Whenever one of our Kinkster disconnects from Sundouleia. </summary>
     Task Callback_KinksterOffline(UserDto dto);
     /// <summary> Enforce a refresh on all vanity status for the kinkster. </summary>
     Task Callback_UserVanityUpdated(UserDto dto);
@@ -237,7 +236,7 @@ public interface IGagspeakHub
     #endregion
 
     #region Loci
-    Task<HubResponse> UserPushLociData(PushLociData dto);         // Share all data with allowed sundesmos.
+    Task<HubResponse> UserPushLociData(PushLociData dto);         // Share all data with allowed Kinksters.
     Task<HubResponse> UserPushLociStatuses(PushLociStatuses dto); // Share all Statuses data.
     Task<HubResponse> UserPushLociPresets(PushLociPresets dto);   // Share all Presets data.
     Task<HubResponse> UserPushStatusModified(PushStatusModified dto);   // A LociStatus was modified, created, or deleted.

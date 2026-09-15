@@ -3,7 +3,7 @@ using MessagePack;
 namespace GagspeakAPI.User;
 
 /// <summary>
-///   The primary record used to represent a Sundouleia user.
+///   The primary record used to represent a Kinkster.
 /// </summary>
 [MessagePackObject(keyAsPropertyName: true)]
 public record UserReputation
