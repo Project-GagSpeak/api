@@ -12,6 +12,7 @@ namespace GagspeakAPI.Data;
 [Union(4, typeof(LociDataAction))]
 [Union(5, typeof(PiShockAction))]
 [Union(6, typeof(SexToyAction))]
+[Union(7, typeof(ArousalAction))]
 public abstract record InvokableGsAction : IComparable<InvokableGsAction>
 {
     public abstract InvokableActionType ActionType { get; }
@@ -171,4 +172,14 @@ public record SexToyAction : InvokableGsAction
     public override bool IsValid() => true;
 }
 
+[MessagePackObject(keyAsPropertyName: true)]
+public record ArousalAction : InvokableGsAction
+{
+    public override InvokableActionType ActionType => InvokableActionType.Arousal;
+    public int Amount { get; set; } = 10; // Arousal % to add (negative to remove).
+    public ArousalAction() { }
+    public ArousalAction(ArousalAction other) : base(other)
+        => Amount = other.Amount;
 
+    public override bool IsValid() => Amount != 0;
+}

@@ -15,6 +15,7 @@ public enum InvokableActionType
     LociItem = 4, // if fired, apply a LociItem [OLD = 3]
     ShockCollar = 5, // if fired, perform shock collar action [OLD = 4]
     SexToy = 6, // if fired, vibrate sex toys. [OLD = 5]
+    Arousal = 7, // if fired, add or remove arousal.
 }
 
 public enum ThresholdPassType
