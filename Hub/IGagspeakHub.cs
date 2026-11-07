@@ -281,9 +281,12 @@ public interface IGagspeakHub
     //Task<HubResponse> UserAcceptCollarRequest(CollarResponse dto);
     //Task<HubResponse> UserRejectCollarRequest(UserDto user);
 
-    /// <summary> Explodes your logged in user from the Database, and all associated data with it. </summary>
+    /// <summary>
+    ///   Removes the user's profile from the Database, and all associated data with it. <br/>
+    ///   This will fail if called for a user the caller does not own.
+    /// </summary>
     /// <remarks> Removing your primary profile deletes all other profiles linked to your account. </remarks>
-    Task<HubResponse> UserDelete();
+    Task<HubResponse> UserDelete(UserDto user);
     #endregion
 
     #region Reports
