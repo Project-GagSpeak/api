@@ -198,6 +198,7 @@ public static class EnumToName
         InvokableActionType.LociItem => "Loci Action",
         InvokableActionType.ShockCollar => "Shock Action",
         InvokableActionType.SexToy => "SexToy Action",
+        InvokableActionType.Arousal => "Arousal Action",
         _ => "UNK"
     };
 
@@ -228,6 +229,7 @@ public static class EnumToName
         TriggerKind.GagState => "Gag Change",
         TriggerKind.SocialAction => "Social Event",
         TriggerKind.EmoteAction => "Emote",
+        TriggerKind.Arousal => "Arousal Level",
         _ => "UNK"
     };
 

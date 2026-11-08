@@ -15,6 +15,7 @@ public enum TriggerKind
     GagState = 4, // OLD = 3
     SocialAction = 5, // OLD = 4
     EmoteAction = 6, // OLD = 5
+    Arousal = 7,
 }
 
 public enum ShockMode : sbyte // the OPCode
