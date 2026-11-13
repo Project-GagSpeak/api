@@ -22,6 +22,7 @@ public enum RestraintFlags : sbyte
 /// <summary>
 ///    Flag-Based Enum detailing the various layers of Restraint Items.
 /// </summary>
+/// <remarks> TODO: Remove this, no longer used.</remarks>
 [Flags]
 public enum RestraintLayer : byte
 {

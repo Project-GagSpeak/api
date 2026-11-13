@@ -39,7 +39,7 @@ public record ActiveGagSlot : IPadlockableRestriction, IRestrictionValidator
            $"Password = {Password}, Timer = {Timer}, Assigner = {PadlockAssigner} }}";
 
     public bool IsLocked() => Padlock != Padlocks.None;
-    public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
+    public bool TimerExpired() => Timer < DateTimeOffset.UtcNow;
 
     public bool CanApply() => !IsLocked();
     public bool CanLock() => GagItem != GagType.None && !IsLocked();
@@ -82,7 +82,7 @@ public record ActiveRestriction : IPadlockableRestriction, IRestrictionValidator
            $"Pass = {Password}, Timer = {Timer}, Assigner = {PadlockAssigner} }}";
 
     public bool IsLocked() => Padlock != Padlocks.None;
-    public bool HasTimerExpired() => Timer < DateTimeOffset.UtcNow;
+    public bool TimerExpired() => Timer < DateTimeOffset.UtcNow;
 
     public bool CanApply() => !IsLocked();
     public bool CanLock() => Identifier != Guid.Empty && !IsLocked();
